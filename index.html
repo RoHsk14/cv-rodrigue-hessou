@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portail Candidatures - Rodrigue HESSOU</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Carlito:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --primary: #2e75b6;
+    --primary-light: #60a5fa;
+    --primary-dark: #1d4ed8;
+    --bg-dark: #0b1120;
+    --card-bg: #1e293b;
+    --card-border: rgba(255, 255, 255, 0.08);
+    --text-white: #ffffff;
+    --text-muted: #94a3b8;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 20px;
+    background-image: 
+      radial-gradient(at 0% 0%, rgba(46, 117, 182, 0.15) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(37, 99, 235, 0.12) 0px, transparent 50%);
+  }
+
+  .container {
+    width: 100%;
+    max-width: 960px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  /* HERO HEADER */
+  .hero-card {
+    background: rgba(30, 41, 59, 0.7);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+  }
+
+  .hero-left {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .hero-avatar {
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--primary);
+    box-shadow: 0 0 20px rgba(46, 117, 182, 0.4);
+  }
+
+  .hero-text h1 {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 6px;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 999px;
+    background: rgba(46, 117, 182, 0.2);
+    border: 1px solid rgba(96, 165, 250, 0.3);
+    color: var(--primary-light);
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .hero-info {
+    font-size: 13px;
+    color: var(--text-muted);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .hero-info span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* APPS GRID */
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  @media (max-width: 768px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+    .hero-card {
+      flex-direction: column;
+      text-align: center;
+    }
+    .hero-left {
+      flex-direction: column;
+    }
+    .hero-info {
+      justify-content: center;
+    }
+  }
+
+  .app-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+    transition: all 0.25s ease;
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.4);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .app-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(96, 165, 250, 0.4);
+    box-shadow: 0 20px 40px -10px rgba(37, 99, 235, 0.25);
+  }
+
+  .app-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .app-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+  }
+
+  .icon-cv {
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+  }
+
+  .icon-letter {
+    background: linear-gradient(135deg, #059669, #10b981);
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+  }
+
+  .app-title h2 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .app-title p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+
+  .app-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 12.5px;
+    color: #cbd5e1;
+  }
+
+  .app-features li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .app-features li::before {
+    content: "✓";
+    color: var(--primary-light);
+    font-weight: 700;
+  }
+
+  .app-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, #2e75b6, #2563eb);
+    color: white;
+    flex: 1;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+  }
+
+  .btn-primary:hover {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    background: rgba(255, 255, 255, 0.08);
+    color: #e2e8f0;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+  }
+
+  .footer-note {
+    text-align: center;
+    font-size: 12px;
+    color: #64748b;
+    margin-top: 10px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- HERO HEADER -->
+    <div class="hero-card">
+      <div class="hero-left">
+        <img src="photo.jpg" alt="Rodrigue HESSOU" class="hero-avatar">
+        <div class="hero-text">
+          <h1>Rodrigue HESSOU</h1>
+          <div class="hero-badge">Étudiant Master 1 — SUPINFO Lyon (Bac+5)</div>
+          <div class="hero-info">
+            <span>📍 Lyon (Villeurbanne)</span>
+            <span>📱 +33 7 44 11 75 73</span>
+            <span>✉️ rodriguehessou14@gmail.com</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN GRID -->
+    <div class="grid">
+
+      <!-- CARTE CV -->
+      <div class="app-card">
+        <div>
+          <div class="app-header">
+            <div class="app-icon icon-cv">📄</div>
+            <div class="app-title">
+              <h2>Curriculum Vitae</h2>
+              <p>Éditeur interactif avec 4 profils adaptables (Alternance, Stage Mobile, QA, Job Étudiant).</p>
+            </div>
+          </div>
+
+          <ul class="app-features" style="margin-top: 18px;">
+            <li>Modifiable directement en ligne en temps réel</li>
+            <li>4 profils en 1 clic (Logiciel, Mobile, QA, Job Étudiant)</li>
+            <li>Téléchargement en PDF A4 net et professionnel</li>
+          </ul>
+        </div>
+
+        <div class="app-actions">
+          <a href="editeur_cv.html" class="btn btn-primary">
+            ⚡ Ouvrir l'Éditeur de CV
+          </a>
+          <a href="CV_Rodrigue_HESSOU.pdf" target="_blank" class="btn btn-secondary">
+            📥 Voir le PDF
+          </a>
+        </div>
+      </div>
+
+      <!-- CARTE LETTRE DE MOTIVATION -->
+      <div class="app-card">
+        <div>
+          <div class="app-header">
+            <div class="app-icon icon-letter">✉️</div>
+            <div class="app-title">
+              <h2>Lettre de Motivation</h2>
+              <p>Éditeur de lettre sur-mesure avec modèle Capgemini France Lyon pré-rempli.</p>
+            </div>
+          </div>
+
+          <ul class="app-features" style="margin-top: 18px;">
+            <li>Modèle Capgemini Lyon & 3 autres presets</li>
+            <li>Modification facile de l'entreprise, objet, adresse</li>
+            <li>Téléchargement en PDF ou copie en 1 clic</li>
+          </ul>
+        </div>
+
+        <div class="app-actions">
+          <a href="editeur_lettre_motivation.html" class="btn btn-primary">
+            ⚡ Ouvrir l'Éditeur de Lettre
+          </a>
+          <a href="Lettre_de_Motivation_Rodrigue_HESSOU.pdf" target="_blank" class="btn btn-secondary">
+            📥 Voir le PDF
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-note">
+      Espace personnel déployé pour Rodrigue HESSOU · Lyon 2026
+    </div>
+
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,6 @@
+.vercel
+__pycache__/
+*.pyc
+photo_b64.txt
+test_*.pdf
+*.log

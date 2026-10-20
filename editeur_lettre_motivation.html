@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Éditeur de Lettre de Motivation - Rodrigue HESSOU</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --primary: #2e75b6;
+    --primary-dark: #1e5a8f;
+    --primary-light: #e8f2fa;
+    --slate-900: #0f172a;
+    --slate-800: #1e293b;
+    --slate-700: #334155;
+    --slate-600: #475569;
+    --slate-500: #64748b;
+    --slate-200: #e2e8f0;
+    --slate-100: #f1f5f9;
+    --slate-50: #f8fafc;
+    --success: #10b981;
+    --border: #cbd5e1;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    background-color: #0b1120;
+    color: #f8fafc;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* TOP NAVIGATION BAR */
+  .top-navbar {
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .nav-logo {
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(135deg, #2e75b6, #60a5fa);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 18px;
+    color: white;
+    box-shadow: 0 4px 12px rgba(46, 117, 182, 0.4);
+  }
+
+  .nav-title h1 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.2;
+  }
+
+  .nav-title p {
+    font-size: 11px;
+    color: #94a3b8;
+  }
+
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    border: none;
+    text-decoration: none;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, #2e75b6, #2563eb);
+    color: white;
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+  }
+
+  .btn-primary:hover {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(37, 99, 235, 0.45);
+  }
+
+  .btn-secondary {
+    background: #1e293b;
+    color: #e2e8f0;
+    border: 1px solid #334155;
+  }
+
+  .btn-secondary:hover {
+    background: #334155;
+    color: white;
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: #cbd5e1;
+    border: 1px solid #475569;
+  }
+
+  .btn-outline:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+  }
+
+  /* WORKSPACE LAYOUT */
+  .workspace {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+  }
+
+  /* LEFT SIDEBAR CONTROLS */
+  .editor-sidebar {
+    width: 440px;
+    background: #0f172a;
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    max-height: calc(100vh - 61px);
+  }
+
+  .sidebar-inner {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .card {
+    background: #1e293b;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .card-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #f1f5f9;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .card-badge {
+    font-size: 10px;
+    padding: 2px 8px;
+    background: rgba(46, 117, 182, 0.2);
+    color: #60a5fa;
+    border-radius: 999px;
+    font-weight: 600;
+  }
+
+  /* PRESET BUTTONS */
+  .preset-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .btn-preset {
+    background: #0f172a;
+    border: 1px solid #334155;
+    color: #cbd5e1;
+    padding: 8px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .btn-preset:hover, .btn-preset.active {
+    border-color: #2e75b6;
+    background: rgba(46, 117, 182, 0.15);
+    color: white;
+  }
+
+  /* FORM INPUTS */
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+
+  input, textarea, select {
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 6px;
+    padding: 8px 10px;
+    color: #f8fafc;
+    font-size: 12.5px;
+    font-family: inherit;
+    transition: border-color 0.15s ease;
+  }
+
+  input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: #2e75b6;
+    box-shadow: 0 0 0 3px rgba(46, 117, 182, 0.2);
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 70px;
+    line-height: 1.4;
+  }
+
+  .help-tip {
+    font-size: 11px;
+    color: #64748b;
+    margin-top: 2px;
+  }
+
+  /* PREVIEW PANEL */
+  .preview-panel {
+    flex: 1;
+    background: #0b1120;
+    overflow-y: auto;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+
+  .preview-notice {
+    margin-bottom: 16px;
+    background: rgba(30, 41, 59, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    color: #94a3b8;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .preview-notice strong {
+    color: #60a5fa;
+  }
+
+  /* A4 SHEET STYLING */
+  .sheet-container {
+    width: 210mm;
+    min-height: 297mm;
+    background: #ffffff;
+    color: #262626;
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    font-family: 'Carlito', 'Calibri', 'Segoe UI', Arial, sans-serif;
+    padding: 20mm 22mm 18mm 22mm;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    line-height: 1.45;
+    position: relative;
+  }
+
+  /* EDITABLE STYLING IN PREVIEW */
+  [contenteditable="true"] {
+    outline: none;
+    transition: background 0.15s ease, box-shadow 0.15s ease;
+    border-radius: 3px;
+    padding: 1px 3px;
+    margin: -1px -3px;
+  }
+
+  [contenteditable="true"]:hover {
+    background-color: rgba(46, 117, 182, 0.08);
+    cursor: text;
+  }
+
+  [contenteditable="true"]:focus {
+    background-color: rgba(46, 117, 182, 0.12);
+    box-shadow: 0 0 0 2px rgba(46, 117, 182, 0.4);
+  }
+
+  /* HEADER BLOCK */
+  .doc-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 6mm;
+  }
+
+  .sender-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1mm;
+  }
+
+  .sender-name {
+    font-size: 16pt;
+    font-weight: 700;
+    color: #1e293b;
+    letter-spacing: -0.2px;
+  }
+
+  .sender-subtitle {
+    font-size: 10pt;
+    font-weight: 700;
+    color: #2e75b6;
+    margin-bottom: 1.2mm;
+  }
+
+  .sender-detail {
+    font-size: 9.2pt;
+    color: #475569;
+    line-height: 1.35;
+  }
+
+  .recipient-card {
+    background-color: #f8fafc;
+    border-left: 3px solid #2e75b6;
+    padding: 3.5mm 5mm;
+    border-radius: 0 4px 4px 0;
+    width: 74mm;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1mm;
+  }
+
+  .recipient-company {
+    font-size: 10pt;
+    font-weight: 700;
+    color: #1e293b;
+  }
+
+  .recipient-detail {
+    font-size: 9.2pt;
+    color: #475569;
+    line-height: 1.35;
+  }
+
+  /* DATE & OBJET */
+  .doc-meta {
+    margin-bottom: 4.5mm;
+  }
+
+  .doc-date {
+    text-align: right;
+    font-size: 9.2pt;
+    color: #64748b;
+    margin-bottom: 3mm;
+  }
+
+  .doc-object {
+    font-size: 10.2pt;
+    color: #1e293b;
+    padding: 2.2mm 3.5mm;
+    background-color: #f1f5f9;
+    border-radius: 4px;
+  }
+
+  .doc-object strong {
+    color: #2e75b6;
+    font-weight: 700;
+  }
+
+  /* LETTER BODY */
+  .doc-body {
+    display: flex;
+    flex-direction: column;
+    gap: 3.6mm;
+    font-size: 9.5pt;
+    color: #262626;
+    text-align: justify;
+    line-height: 1.44;
+  }
+
+  .doc-salutation {
+    font-size: 9.8pt;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 0.5mm;
+  }
+
+  .doc-body p strong {
+    color: #1e293b;
+    font-weight: 700;
+  }
+
+  /* CLOSING & SIGNATURE */
+  .doc-closing {
+    margin-top: 4.5mm;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .signature-box {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2mm;
+  }
+
+  .signature-name {
+    font-size: 11pt;
+    font-weight: 700;
+    color: #1e293b;
+  }
+
+  .signature-title {
+    font-size: 8.8pt;
+    color: #64748b;
+  }
+
+  /* TOAST NOTIFICATION */
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: #1e293b;
+    color: #ffffff;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    padding: 12px 18px;
+    font-size: 13px;
+    font-weight: 500;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.25s ease;
+    z-index: 100;
+  }
+
+  .toast.show {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  /* PRINT MEDIA STYLES - CRITICAL FOR PERFECT PDF EXPORT */
+  @media print {
+    body {
+      background: transparent !important;
+      color: #000000 !important;
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+
+    .top-navbar, .editor-sidebar, .preview-notice, .toast {
+      display: none !important;
+    }
+
+    .workspace {
+      display: block !important;
+      overflow: visible !important;
+    }
+
+    .preview-panel {
+      padding: 0 !important;
+      background: transparent !important;
+      overflow: visible !important;
+      display: block !important;
+    }
+
+    .sheet-container {
+      width: 210mm !important;
+      height: 297mm !important;
+      min-height: 297mm !important;
+      max-height: 297mm !important;
+      margin: 0 auto !important;
+      padding: 18mm 20mm 16mm 20mm !important;
+      box-shadow: none !important;
+      border: none !important;
+      page-break-after: avoid !important;
+      page-break-inside: avoid !important;
+    }
+
+    [contenteditable="true"] {
+      outline: none !important;
+      background: transparent !important;
+      box-shadow: none !important;
+    }
+
+    @page {
+      size: A4 portrait;
+      margin: 0;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <header class="top-navbar">
+    <div class="nav-brand">
+      <div class="nav-logo">RH</div>
+      <div class="nav-title">
+        <h1>Éditeur de Lettre de Motivation</h1>
+        <p>Rodrigue HESSOU — Adaptable en 1 clic pour chaque candidature</p>
+      </div>
+    </div>
+
+    <div class="nav-actions">
+      <button class="btn btn-secondary" onclick="copyLetterText()">
+        📋 Copier le texte
+      </button>
+      <button class="btn btn-primary" onclick="printToPDF()">
+        📥 Télécharger en PDF
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN WORKSPACE -->
+  <div class="workspace">
+
+    <!-- CONTROLS SIDEBAR -->
+    <aside class="editor-sidebar">
+      <div class="sidebar-inner">
+
+        <!-- PRESETS -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">⚡ Modèles Prédéfinis</span>
+            <span class="card-badge">1 clic</span>
+          </div>
+          <div class="preset-grid">
+            <button class="btn-preset active" onclick="loadPreset('capgemini')">
+              🏢 Capgemini Lyon (Java/PLM)
+            </button>
+            <button class="btn-preset" onclick="loadPreset('mobile')">
+              📱 Dév. Mobile (Flutter/iOS)
+            </button>
+            <button class="btn-preset" onclick="loadPreset('fullstack')">
+              🌐 Dév. Web / Full-Stack
+            </button>
+            <button class="btn-preset" onclick="loadPreset('qa')">
+              🧪 QA & Recette Logicielle
+            </button>
+          </div>
+        </div>
+
+        <!-- RECIPIENT CARD -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">🏢 Entreprise Ciblée</span>
+          </div>
+          <div class="form-group">
+            <label>Nom de l'entreprise</label>
+            <input type="text" id="input-company" value="CAPGEMINI FRANCE" oninput="syncField('company', this.value)">
+          </div>
+          <div class="form-group">
+            <label>Destinataire / Service</label>
+            <input type="text" id="input-recipient" value="À l'attention de l'équipe Recrutement" oninput="syncField('recipient', this.value)">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Adresse</label>
+              <input type="text" id="input-comp-addr" value="43 Rue Pré-Gaudry" oninput="syncField('compAddr', this.value)">
+            </div>
+            <div class="form-group">
+              <label>Code Postal & Ville</label>
+              <input type="text" id="input-comp-city" value="69007 Lyon" oninput="syncField('compCity', this.value)">
+            </div>
+          </div>
+        </div>
+
+        <!-- OBJECT & DATE -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">🎯 Candidature & Objet</span>
+          </div>
+          <div class="form-group">
+            <label>Intitulé du poste / Objet</label>
+            <input type="text" id="input-object" value="Candidature au poste de Développeur Logiciel (Java / Back-End & Environnements Complexes)" oninput="syncField('object', this.value)">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Lieu de rédaction</label>
+              <input type="text" id="input-place" value="À Lyon" oninput="syncDate()">
+            </div>
+            <div class="form-group">
+              <label>Date</label>
+              <input type="text" id="input-date" value="20 octobre 2026" oninput="syncDate()">
+            </div>
+          </div>
+        </div>
+
+        <!-- SENDER DETAILS -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">👤 Mes Coordonnées</span>
+          </div>
+          <div class="form-group">
+            <label>Nom & Prénom</label>
+            <input type="text" id="input-sender-name" value="Rodrigue HESSOU" oninput="syncField('senderName', this.value)">
+          </div>
+          <div class="form-group">
+            <label>Titre / Statut</label>
+            <input type="text" id="input-sender-title" value="Développeur Logiciel — Étudiant Master 1 (Cursus Bac+5)" oninput="syncField('senderTitle', this.value)">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Adresse</label>
+              <input type="text" id="input-sender-addr" value="429 Cours Émile Zola" oninput="syncField('senderAddr', this.value)">
+            </div>
+            <div class="form-group">
+              <label>Ville</label>
+              <input type="text" id="input-sender-city" value="69100 Villeurbanne – Lyon" oninput="syncField('senderCity', this.value)">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Téléphone</label>
+              <input type="text" id="input-sender-phone" value="+33 7 44 11 75 73" oninput="syncField('senderPhone', this.value)">
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" id="input-sender-email" value="rodriguehessou14@gmail.com" oninput="syncField('senderEmail', this.value)">
+            </div>
+          </div>
+        </div>
+
+        <!-- ACTIONS & RESET -->
+        <div style="display: flex; gap: 10px;">
+          <button class="btn btn-outline" style="flex: 1;" onclick="resetToDefault()">
+            🔄 Réinitialiser
+          </button>
+          <button class="btn btn-secondary" style="flex: 1;" onclick="printToPDF()">
+            🖨️ Imprimer / PDF
+          </button>
+        </div>
+
+      </div>
+    </aside>
+
+    <!-- RIGHT PREVIEW SHEET -->
+    <main class="preview-panel">
+      <div class="preview-notice">
+        <span>💡 <strong>Astuce :</strong> Vous pouvez modifier les textes <em>directement</em> sur la feuille en cliquant dessus, ou utiliser le formulaire à gauche.</span>
+      </div>
+
+      <!-- A4 PAPER SHEET -->
+      <div class="sheet-container" id="printable-letter">
+        
+        <div>
+          <!-- HEADER EXPEDITEUR / DESTINATAIRE -->
+          <div class="doc-header">
+            <div class="sender-info">
+              <div class="sender-name" id="doc-sender-name" contenteditable="true">Rodrigue HESSOU</div>
+              <div class="sender-subtitle" id="doc-sender-title" contenteditable="true">Développeur Logiciel — Étudiant Master 1 (Cursus Bac+5)</div>
+              <div class="sender-detail" id="doc-sender-addr" contenteditable="true">429 Cours Émile Zola</div>
+              <div class="sender-detail" id="doc-sender-city" contenteditable="true">69100 Villeurbanne – Lyon</div>
+              <div class="sender-detail" id="doc-sender-phone" contenteditable="true">+33 7 44 11 75 73</div>
+              <div class="sender-detail" id="doc-sender-email" contenteditable="true">rodriguehessou14@gmail.com</div>
+            </div>
+
+            <div class="recipient-card">
+              <div class="recipient-company" id="doc-company" contenteditable="true">CAPGEMINI FRANCE</div>
+              <div class="recipient-detail" id="doc-recipient" contenteditable="true">À l'attention de l'équipe Recrutement</div>
+              <div class="recipient-detail" id="doc-comp-addr" contenteditable="true">43 Rue Pré-Gaudry</div>
+              <div class="recipient-detail" id="doc-comp-city" contenteditable="true">69007 Lyon</div>
+            </div>
+          </div>
+
+          <!-- DATE & OBJET -->
+          <div class="doc-meta">
+            <div class="doc-date" id="doc-date-line" contenteditable="true">À Lyon, le 20 octobre 2026</div>
+            <div class="doc-object">
+              <strong>Objet :</strong> <span id="doc-object" contenteditable="true">Candidature au poste de Développeur Logiciel (Java / Back-End & Environnements Complexes)</span>
+            </div>
+          </div>
+
+          <!-- CORPS DU TEXTE -->
+          <div class="doc-body" id="doc-body">
+            <div class="doc-salutation" contenteditable="true">Madame, Monsieur,</div>
+
+            <p id="p1" contenteditable="true">
+              Fortement attiré par l'envergure internationale de <strong>Capgemini France</strong>, par l'excellence de ses pratiques d'ingénierie et par la diversité de ses projets de transformation applicative, je souhaite vous soumettre ma candidature pour le poste de <strong>Développeur Logiciel</strong> au sein de vos équipes lyonnaises. Actuellement en <strong>Master 1 Informatique à SUPINFO Lyon (préparant un diplôme Bac+5)</strong> et titulaire d'une Licence en Génie Logiciel, je souhaite mettre ma solide pratique du développement logiciel, de la qualité de code et du travail collaboratif au service de vos projets clients.
+            </p>
+
+            <p id="p2" contenteditable="true">
+              Mon parcours technique et mes expériences en ESN et en entreprise m'ont permis de développer des compétences directement transférables aux exigences de votre poste. Récemment chez <strong>Nataan Group</strong> et <strong>ATANYS</strong>, j'ai participé activement à l'ensemble du cycle de vie des applications : analyse fonctionnelle des besoins clients, modélisation relationnelle de bases de données (<strong>SQL, PostgreSQL, MySQL</strong>) et développement d'architectures logicielles fiables. Formé aux concepts avancés de la programmation orientée objet, je maîtrise le développement back-end (<strong>Java, Python</strong>) et dispose d'une forte capacité d'adaptation face à des environnements techniques exigeants.
+            </p>
+
+            <p id="p3" contenteditable="true">
+              Particulièrement sensible à la robustesse et à la maintenabilité des solutions, j'ai mené avec succès des campagnes complètes de <strong>recette fonctionnelle et de tests (plus de 100 cas de test exécutés)</strong>, tout en appliquant au quotidien les bonnes pratiques de développement : revues de code, conception de tests unitaires et refactorisation propre. Habitué à évoluer dans un cadre <strong>Agile (Scrum)</strong>, j'accorde une importance majeure à la rédaction d'une documentation technique claire, au suivi rigoureux des évolutions applicatives et à l'amélioration continue des processus de livraison.
+            </p>
+
+            <p id="p4" contenteditable="true">
+              Rejoindre les équipes de <strong>Capgemini à Lyon</strong> représente pour moi une formidable opportunité professionnelle au sein de laquelle <strong>mon esprit d'analyse, ma rigueur méthodologique et ma curiosité pour les systèmes d'entreprise (notamment les écosystèmes EAM et PLM)</strong> pourront pleinement se déployer. Mes qualités relationnelles ainsi que mon niveau d'anglais professionnel me permettront de collaborer efficacement avec vos experts métiers et vos équipes multidisciplinaires.
+            </p>
+
+            <p id="p5" contenteditable="true">
+              Intégrer vos équipes constitue l'environnement idéal pour apporter une contribution concrète à vos réalisations tout en développant une expertise pointue au contact de professionnels chevronnés.
+            </p>
+
+            <p id="p6" contenteditable="true">
+              Je me tiens à votre entière disposition pour convenir d'un entretien afin de vous exposer de vive voix mes motivations et l'adéquation de mon profil avec vos attentes.
+            </p>
+
+            <p id="p7" contenteditable="true">
+              Je vous prie d'agréer, Madame, Monsieur, l'expression de mes salutations distinguées.
+            </p>
+          </div>
+        </div>
+
+        <!-- SIGNATURE -->
+        <div class="doc-closing">
+          <div class="signature-box">
+            <div class="signature-name" id="doc-sig-name" contenteditable="true">Rodrigue HESSOU</div>
+            <div class="signature-title" id="doc-sig-title" contenteditable="true">Étudiant Master 1 SUPINFO Lyon (Bac+5) · Développeur Logiciel</div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast" id="toast">Message</div>
+
+  <script>
+    // PRESETS DATA
+    const presets = {
+      capgemini: {
+        company: "CAPGEMINI FRANCE",
+        recipient: "À l'attention de l'équipe Recrutement",
+        compAddr: "43 Rue Pré-Gaudry",
+        compCity: "69007 Lyon",
+        object: "Candidature au poste de Développeur Logiciel (Java / Back-End & Environnements Complexes)",
+        p1: "Fortement attiré par l'envergure internationale de <strong>Capgemini France</strong>, par l'excellence de ses pratiques d'ingénierie et par la diversité de ses projets de transformation applicative, je souhaite vous soumettre ma candidature pour le poste de <strong>Développeur Logiciel</strong> au sein de vos équipes lyonnaises. Actuellement en <strong>Master 1 Informatique à SUPINFO Lyon (préparant un diplôme Bac+5)</strong> et titulaire d'une Licence en Génie Logiciel, je souhaite mettre ma solide pratique du développement logiciel, de la qualité de code et du travail collaboratif au service de vos projets clients.",
+        p2: "Mon parcours technique et mes expériences en ESN et en entreprise m'ont permis de développer des compétences directement transférables aux exigences de votre poste. Récemment chez <strong>Nataan Group</strong> et <strong>ATANYS</strong>, j'ai participé activement à l'ensemble du cycle de vie des applications : analyse fonctionnelle des besoins clients, modélisation relationnelle de bases de données (<strong>SQL, PostgreSQL, MySQL</strong>) et développement d'architectures logicielles fiables. Formé aux concepts avancés de la programmation orientée objet, je maîtrise le développement back-end (<strong>Java, Python</strong>) et dispose d'une forte capacité d'adaptation face à des environnements techniques exigeants.",
+        p3: "Particulièrement sensible à la robustesse et à la maintenabilité des solutions, j'ai mené avec succès des campagnes complètes de <strong>recette fonctionnelle et de tests (plus de 100 cas de test exécutés)</strong>, tout en appliquant au quotidien les bonnes pratiques de développement : revues de code, conception de tests unitaires et refactorisation propre. Habitué à évoluer dans un cadre <strong>Agile (Scrum)</strong>, j'accorde une importance majeure à la rédaction d'une documentation technique claire, au suivi rigoureux des évolutions applicatives et à l'amélioration continue des processus de livraison.",
+        p4: "Rejoindre les équipes de <strong>Capgemini à Lyon</strong> représente pour moi une formidable opportunité professionnelle au sein de laquelle <strong>mon esprit d'analyse, ma rigueur méthodologique et ma curiosité pour les systèmes d'entreprise (notamment les écosystèmes EAM et PLM)</strong> pourront pleinement se déployer. Mes qualités relationnelles ainsi que mon niveau d'anglais professionnel me permettront de collaborer efficacement avec vos experts métiers et vos équipes multidisciplinaires."
+      },
+      mobile: {
+        company: "[Nom de l'entreprise]",
+        recipient: "À l'attention de l'équipe Mobile",
+        compAddr: "[Adresse]",
+        compCity: "Lyon",
+        object: "Candidature au poste de Développeur Mobile (Flutter / iOS / Android)",
+        p1: "Passionné par l'écosystème mobile et le développement d'applications performantes et intuitives, je souhaite vous soumettre ma candidature pour le poste de <strong>Développeur Mobile (Flutter / iOS)</strong>. Actuellement en <strong>Master 1 Informatique à SUPINFO Lyon (Bac+5)</strong> et titulaire d'une Licence en Génie Logiciel, je mets à votre disposition mon expérience pratique dans la conception, le portage et le déploiement d'applications mobiles complètes sur les stores.",
+        p2: "Lors de mon récent stage chez <strong>Nataan Group</strong>, j'ai co-développé l'application mobile BoutiK sous <strong>Flutter</strong> avec backend <strong>Firebase</strong> et intégration de paiements (FedaPay). J'y ai piloté le portage sous iOS, la conformité aux guidelines Apple, l'intégration des notifications push <strong>APNs</strong> et la mise en production sur <strong>App Store Connect</strong>. Précédemment chez Darollo Technologies, j'ai conçu une application Flutter avec architecture <em>offline-first</em> et synchronisation automatique de données.",
+        p3: "Au-delà du développement pur, j'accorde une importance capitale à l'assurance qualité et à l'expérience utilisateur. J'ai notamment conduit des audits UI/UX et la recette fonctionnelle complète de plateformes (plus de 100 cas de test). Habitué au travail collaboratif en méthode Agile (Scrum) et à l'utilisation rigoureuse de Git, je m'engage à produire un code testé, maintenable et documenté.",
+        p4: "Rejoindre vos équipes représente pour moi une opportunité unique d'apporter mon expertise sur Flutter et iOS, tout en participant activement à vos futurs déploiements mobiles avec proactivité et rigueur."
+      },
+      fullstack: {
+        company: "[Nom de l'entreprise]",
+        recipient: "À l'attention du Responsable Technique",
+        compAddr: "[Adresse]",
+        compCity: "Lyon",
+        object: "Candidature au poste de Développeur Full-Stack (Python / Django / Laravel / Web)",
+        p1: "Fortement motivé par le développement d'applications web modernes, évolutives et sécurisées, je vous propose ma candidature pour le poste de <strong>Développeur Full-Stack</strong>. Actuellement étudiant en <strong>Master 1 Informatique à SUPINFO Lyon (cursus Bac+5)</strong> et diplômé d'une Licence en Génie Logiciel, je possède une expérience éprouvée sur l'ensemble de la chaîne de développement web et back-end.",
+        p2: "Mon parcours m'a permis de maîtriser des frameworks robustes tels que <strong>Django, Laravel</strong> ainsi que les langages <strong>Python, PHP et JavaScript</strong>. Chez ATANYS, j'ai conçu et déployé de bout en bout une plateforme web complète (analyse des besoins, modélisation de bases SQL sous MySQL/PostgreSQL, développement back/front et tests). Plus récemment, j'ai enrichi cette expertise par l'audit ergonomique UI/UX et la refonte de sites web institutionnels.",
+        p3: "Rigoureux sur la qualité logicielle, je maîtrise l'intégration de tests automatisés, la sécurité applicative et la structuration des bases de données relationnelles. À l'aise dans les environnements Agiles, j'accorde une grande attention aux revues de code, au versioning Git et à la documentation technique.",
+        p4: "Intégrer votre équipe me permettra d'apporter mon dynamisme, ma capacité d'apprentissage rapide et ma rigueur technique pour concevoir des fonctionnalités à fort impact pour vos utilisateurs."
+      },
+      qa: {
+        company: "[Nom de l'entreprise]",
+        recipient: "À l'attention du Responsable Qualité / QA",
+        compAddr: "[Adresse]",
+        compCity: "Lyon",
+        object: "Candidature au poste d'Ingénieur QA / Testeur Logiciel & Recette",
+        p1: "Convaincu que la qualité logicielle est le pilier central de la satisfaction utilisateur et de la performance technique, je vous adresse ma candidature pour le poste d'<strong>Ingénieur QA / Développeur Test & Qualité</strong>. Étudiant en <strong>Master 1 Informatique à SUPINFO Lyon (Bac+5)</strong>, j'allie une solide culture de développement logiciel à une expertise pratique de la recette fonctionnelle.",
+        p2: "Chez Nataan Group, j'ai pris en charge la recette fonctionnelle complète d'un site institutionnel avec la conception, l'exécution et le suivi de <strong>103 cas de test</strong>, garantissant une conformité rigoureuse avec le cahier des charges et la détection précoce des régressions. J'ai également géré la mise en conformité stricte d'une application mobile pour sa validation sur l'App Store d'Apple.",
+        p3: "Grâce à mon bagage de développeur (Java, Python, SQL), je comprends en profondeur les architectures applicatives, ce qui me permet d'échanger efficacement avec les équipes de développement, de participer aux revues de code et de mettre en place des tests unitaires pertinents.",
+        p4: "Ma rigueur d'analyse, mon souci du détail et mon esprit d'équipe seront des atouts immédiats pour renforcer la fiabilité de vos livraisons logicielles."
+      }
+    };
+
+    // SYNC FORM TO PREVIEW
+    function syncField(field, value) {
+      if (field === 'company') {
+        document.getElementById('doc-company').innerText = value;
+      } else if (field === 'recipient') {
+        document.getElementById('doc-recipient').innerText = value;
+      } else if (field === 'compAddr') {
+        document.getElementById('doc-comp-addr').innerText = value;
+      } else if (field === 'compCity') {
+        document.getElementById('doc-comp-city').innerText = value;
+      } else if (field === 'object') {
+        document.getElementById('doc-object').innerText = value;
+      } else if (field === 'senderName') {
+        document.getElementById('doc-sender-name').innerText = value;
+        document.getElementById('doc-sig-name').innerText = value;
+      } else if (field === 'senderTitle') {
+        document.getElementById('doc-sender-title').innerText = value;
+      } else if (field === 'senderAddr') {
+        document.getElementById('doc-sender-addr').innerText = value;
+      } else if (field === 'senderCity') {
+        document.getElementById('doc-sender-city').innerText = value;
+      } else if (field === 'senderPhone') {
+        document.getElementById('doc-sender-phone').innerText = value;
+      } else if (field === 'senderEmail') {
+        document.getElementById('doc-sender-email').innerText = value;
+      }
+      autoSave();
+    }
+
+    function syncDate() {
+      const place = document.getElementById('input-place').value;
+      const date = document.getElementById('input-date').value;
+      document.getElementById('doc-date-line').innerText = `${place}, le ${date}`;
+      autoSave();
+    }
+
+    // LOAD PRESET
+    function loadPreset(name) {
+      document.querySelectorAll('.btn-preset').forEach(b => b.classList.remove('active'));
+      event.target.classList.add('active');
+
+      const data = presets[name];
+      if (!data) return;
+
+      document.getElementById('input-company').value = data.company;
+      document.getElementById('input-recipient').value = data.recipient;
+      document.getElementById('input-comp-addr').value = data.compAddr;
+      document.getElementById('input-comp-city').value = data.compCity;
+      document.getElementById('input-object').value = data.object;
+
+      document.getElementById('doc-company').innerText = data.company;
+      document.getElementById('doc-recipient').innerText = data.recipient;
+      document.getElementById('doc-comp-addr').innerText = data.compAddr;
+      document.getElementById('doc-comp-city').innerText = data.compCity;
+      document.getElementById('doc-object').innerText = data.object;
+
+      if (data.p1) document.getElementById('p1').innerHTML = data.p1;
+      if (data.p2) document.getElementById('p2').innerHTML = data.p2;
+      if (data.p3) document.getElementById('p3').innerHTML = data.p3;
+      if (data.p4) document.getElementById('p4').innerHTML = data.p4;
+
+      showToast(`Modèle "${name.toUpperCase()}" chargé avec succès !`);
+      autoSave();
+    }
+
+    // PRINT / PDF TRIGGER
+    function printToPDF() {
+      showToast("Génération du PDF... Utilisez 'Enregistrer au format PDF'");
+      window.print();
+    }
+
+    // COPY TEXT TO CLIPBOARD
+    function copyLetterText() {
+      const text = document.getElementById('printable-letter').innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        showToast("Texte de la lettre copié dans le presse-papier !");
+      }).catch(err => {
+        showToast("Erreur lors de la copie.");
+      });
+    }
+
+    // TOAST NOTIFICATION
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.innerText = msg;
+      t.classList.add('show');
+      setTimeout(() => {
+        t.classList.remove('show');
+      }, 3000);
+    }
+
+    // LOCAL STORAGE AUTOSAVE
+    function autoSave() {
+      try {
+        const content = document.getElementById('printable-letter').innerHTML;
+        localStorage.setItem('lettre_rodrigue_saved', content);
+      } catch (e) {}
+    }
+
+    // RESTORE ON LOAD
+    window.addEventListener('DOMContentLoaded', () => {
+      const saved = localStorage.getItem('lettre_rodrigue_saved');
+      if (saved) {
+        // we can optionally restore or let user use preset
+      }
+
+      // Add auto-save listeners on editable spans
+      document.querySelectorAll('[contenteditable="true"]').forEach(el => {
+        el.addEventListener('input', autoSave);
+      });
+    });
+
+    function resetToDefault() {
+      localStorage.removeItem('lettre_rodrigue_saved');
+      loadPreset('capgemini');
+      showToast("Modèle Capgemini restauré par défaut !");
+    }
+  </script>
+
+</body>
+</html>

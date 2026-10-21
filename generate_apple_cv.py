@@ -295,7 +295,7 @@ html_content = f"""<!DOCTYPE html>
     <div class="sidebar-section">
       <div class="sidebar-title">Disponibilités</div>
       <div class="sidebar-item">
-        <strong>Job Étudiant / Temps Partiel</strong>
+        <strong>Job Étudiant (Rôle #114438069)</strong>
         Soirées, week-ends, vacances scolaires & plannings flexibles Apple Store
       </div>
     </div>
@@ -363,7 +363,7 @@ html_content = f"""<!DOCTYPE html>
     <!-- HEADER -->
     <header class="header">
       <h1>Rodrigue HESSOU</h1>
-      <div class="subtitle">Spécialiste Apple Retail — Vente & Expérience Client (Job Étudiant)</div>
+      <div class="subtitle">Spécialiste Apple Retail — Job Étudiant (Rôle #114438069)</div>
     </header>
 
     <!-- PROFIL -->
@@ -393,12 +393,12 @@ html_content = f"""<!DOCTYPE html>
         </ul>
       </div>
 
-      <!-- PRÉPARATEUR DE COMMANDES -->
+      <!-- PRÉPARATEUR DE COMMANDES (2025) -->
       <div class="experience-item">
         <div class="item-title">Préparateur de Commandes & Relation Client</div>
         <div class="item-subrow">
           <span>Plateforme Logistique & Distribution</span>
-          <span>2024</span>
+          <span>2025</span>
         </div>
         <ul class="item-bullets">
           <li><strong>Préparation & Rigueur :</strong> Préparation soignée et contrôle qualité des commandes clients dans le respect des délais et des standards d'excellence.</li>
@@ -496,4 +496,4 @@ html_content = f"""<!DOCTYPE html>
 with open('CV_Rodrigue_HESSOU_Apple_Retail.html', 'w', encoding='utf-8') as f:
     f.write(html_content)
 
-print("CV_Rodrigue_HESSOU_Apple_Retail.html regenerated successfully!")
+print("CV_Rodrigue_HESSOU_Apple_Retail.html updated with Role number and 2025!")

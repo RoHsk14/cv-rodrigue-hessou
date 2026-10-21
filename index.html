@@ -18,7 +18,8 @@
     --card-border: rgba(255, 255, 255, 0.08);
     --text-white: #ffffff;
     --text-muted: #94a3b8;
-    --apple-color: #f5f5f7;
+    --adidas-color: #000000;
+    --apple-color: #ffffff;
   }
 
   * {
@@ -35,8 +36,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: 40px 20px;
+    padding: 36px 20px 48px;
     background-image: 
       radial-gradient(at 0% 0%, rgba(46, 117, 182, 0.18) 0px, transparent 50%),
       radial-gradient(at 100% 100%, rgba(37, 99, 235, 0.15) 0px, transparent 50%);
@@ -44,10 +44,10 @@
 
   .container {
     width: 100%;
-    max-width: 1000px;
+    max-width: 1040px;
     display: flex;
     flex-direction: column;
-    gap: 28px;
+    gap: 24px;
   }
 
   /* HERO HEADER */
@@ -56,23 +56,23 @@
     backdrop-filter: blur(16px);
     border: 1px solid var(--card-border);
     border-radius: 16px;
-    padding: 28px 32px;
+    padding: 26px 30px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 24px;
+    gap: 20px;
     box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
   }
 
   .hero-left {
     display: flex;
     align-items: center;
-    gap: 24px;
+    gap: 22px;
   }
 
   .hero-avatar {
-    width: 84px;
-    height: 84px;
+    width: 86px;
+    height: 86px;
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid var(--primary);
@@ -83,7 +83,7 @@
     font-size: 26px;
     font-weight: 800;
     letter-spacing: -0.5px;
-    margin-bottom: 6px;
+    margin-bottom: 5px;
   }
 
   .hero-badge {
@@ -116,69 +116,91 @@
     display: flex;
     align-items: center;
     gap: 8px;
+    margin-top: 6px;
   }
 
-  /* SPECIAL APPLE HERO BANNER */
-  .apple-banner {
-    background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95));
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 16px;
-    padding: 24px 28px;
+  /* SPOTLIGHT BANNER */
+  .spotlight-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+
+  .spotlight-card {
+    border-radius: 14px;
+    padding: 20px 22px;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.4);
+    gap: 14px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.12);
   }
 
-  .apple-badge {
-    background: rgba(255, 255, 255, 0.1);
-    color: #ffffff;
+  .card-adidas {
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.85));
+    border-left: 4px solid #f97316;
+  }
+
+  .card-apple {
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95));
+    border-left: 4px solid #60a5fa;
+  }
+
+  .spotlight-badge {
+    display: inline-block;
     font-size: 11px;
     font-weight: 700;
-    padding: 3px 10px;
+    padding: 2px 8px;
     border-radius: 999px;
-    letter-spacing: 0.5px;
     text-transform: uppercase;
-    display: inline-block;
-    margin-bottom: 6px;
-  }
-
-  .apple-title h3 {
-    font-size: 19px;
-    font-weight: 700;
-    color: #ffffff;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    letter-spacing: 0.5px;
     margin-bottom: 4px;
   }
 
-  .apple-title p {
-    font-size: 13px;
+  .badge-adidas {
+    background: rgba(249, 115, 22, 0.2);
+    color: #fb923c;
+    border: 1px solid rgba(249, 115, 22, 0.3);
+  }
+
+  .badge-apple {
+    background: rgba(96, 165, 250, 0.2);
+    color: #93c5fd;
+    border: 1px solid rgba(96, 165, 250, 0.3);
+  }
+
+  .spotlight-title h3 {
+    font-size: 17px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 4px;
+  }
+
+  .spotlight-title p {
+    font-size: 12.5px;
     color: #cbd5e1;
-    max-width: 580px;
     line-height: 1.4;
   }
 
-  .apple-buttons {
+  .spotlight-actions {
     display: flex;
-    gap: 10px;
-    flex-shrink: 0;
+    gap: 8px;
+    flex-wrap: wrap;
   }
 
   /* APPS GRID */
   .grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    gap: 18px;
   }
 
-  @media (max-width: 768px) {
-    .grid {
+  @media (max-width: 820px) {
+    .spotlight-grid, .grid {
       grid-template-columns: 1fr;
     }
-    .hero-card, .apple-banner {
+    .hero-card {
       flex-direction: column;
       text-align: center;
     }
@@ -188,29 +210,25 @@
     .hero-info {
       justify-content: center;
     }
-    .apple-buttons {
-      width: 100%;
-      justify-content: center;
-    }
   }
 
   .app-card {
     background: var(--card-bg);
     border: 1px solid var(--card-border);
-    border-radius: 16px;
-    padding: 24px;
+    border-radius: 14px;
+    padding: 22px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 18px;
+    gap: 16px;
     transition: all 0.25s ease;
-    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 10px 25px -10px rgba(0, 0, 0, 0.4);
   }
 
   .app-card:hover {
-    transform: translateY(-3px);
+    transform: translateY(-2px);
     border-color: rgba(96, 165, 250, 0.4);
-    box-shadow: 0 20px 40px -10px rgba(37, 99, 235, 0.25);
+    box-shadow: 0 16px 35px -10px rgba(37, 99, 235, 0.25);
   }
 
   .app-header {
@@ -241,7 +259,7 @@
   .app-title h2 {
     font-size: 17px;
     font-weight: 700;
-    margin-bottom: 4px;
+    margin-bottom: 3px;
   }
 
   .app-title p {
@@ -254,9 +272,10 @@
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 7px;
+    gap: 6px;
     font-size: 12px;
     color: #cbd5e1;
+    margin-top: 12px;
   }
 
   .app-features li {
@@ -282,24 +301,13 @@
     align-items: center;
     justify-content: center;
     gap: 7px;
-    padding: 9px 16px;
+    padding: 8px 14px;
     border-radius: 8px;
     font-size: 12.5px;
     font-weight: 600;
     text-decoration: none;
     cursor: pointer;
     transition: all 0.15s ease;
-  }
-
-  .btn-apple {
-    background: #ffffff;
-    color: #000000;
-    box-shadow: 0 4px 14px rgba(255, 255, 255, 0.2);
-  }
-
-  .btn-apple:hover {
-    background: #f1f5f9;
-    transform: translateY(-1px);
   }
 
   .btn-primary {
@@ -325,10 +333,112 @@
     color: white;
   }
 
+  .btn-accent {
+    background: linear-gradient(135deg, #f97316, #ea580c);
+    color: white;
+    box-shadow: 0 4px 12px rgba(249, 115, 22, 0.35);
+  }
+
+  .btn-accent:hover {
+    background: linear-gradient(135deg, #ea580c, #c2410c);
+    transform: translateY(-1px);
+  }
+
+  .btn-white {
+    background: #ffffff;
+    color: #0f172a;
+    font-weight: 700;
+  }
+
+  .btn-white:hover {
+    background: #f1f5f9;
+  }
+
+  /* DOCUMENTS ARCHIVE TABLE */
+  .docs-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    padding: 20px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .docs-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .docs-header h3 {
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  .docs-table {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  @media (max-width: 680px) {
+    .docs-table {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .doc-item {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 8px;
+    padding: 10px 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .doc-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .doc-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #f1f5f9;
+  }
+
+  .doc-desc {
+    font-size: 11px;
+    color: #94a3b8;
+  }
+
+  .doc-btn {
+    font-size: 11.5px;
+    padding: 5px 10px;
+    border-radius: 6px;
+    background: rgba(46, 117, 182, 0.2);
+    color: #60a5fa;
+    border: 1px solid rgba(96, 165, 250, 0.3);
+    text-decoration: none;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: all 0.15s ease;
+  }
+
+  .doc-btn:hover {
+    background: rgba(46, 117, 182, 0.4);
+    color: white;
+  }
+
   .footer-note {
     text-align: center;
     font-size: 12px;
     color: #64748b;
+    padding-top: 10px;
   }
 </style>
 </head>
@@ -342,9 +452,9 @@
         <img src="photo.jpg" alt="Rodrigue HESSOU" class="hero-avatar">
         <div class="hero-text">
           <h1>Rodrigue HESSOU</h1>
-          <div class="hero-badge">Étudiant Master 1 — SUPINFO Lyon (Bac+5)</div>
+          <div class="hero-badge">Étudiant Master 1 — SUPINFO Lyon (Cursus Bac+5)</div>
           <div class="hero-info">
-            <span>📍 Lyon (Villeurbanne)</span>
+            <span>📍 429 Cours Émile Zola, Lyon (Villeurbanne)</span>
             <span>📱 +33 7 44 11 75 73</span>
             <span>✉️ rodriguehessou14@gmail.com</span>
           </div>
@@ -352,48 +462,76 @@
       </div>
     </div>
 
-    <!-- SPECIAL APPLE CANDIDATURE HIGHLIGHT -->
-    <div class="apple-banner">
-      <div>
-        <span class="apple-badge">🍏 Candidature Prioritaire</span>
-        <div class="apple-title">
-          <h3>Spécialiste Apple Retail (Apple Store Lyon)</h3>
-          <p>CV et Lettre de motivation spécialement personnalisés : mise en avant de l'expérience Supermarché Champion, de la logistique/closing, du relationnel client et de la passion pour l'écosystème Apple.</p>
+    <!-- CANDIDATURES SPOTLIGHT: ADIDAS & APPLE -->
+    <div class="section-tag">
+      ⭐ Candidatures Phares (Prêtes à l'Emploi)
+    </div>
+
+    <div class="spotlight-grid">
+
+      <!-- ADIDAS -->
+      <div class="spotlight-card card-adidas">
+        <div>
+          <span class="spotlight-badge badge-adidas">👟 Retail Sport & Lifestyle</span>
+          <div class="spotlight-title">
+            <h3>adidas Lyon Part-Dieu (Vendeur Polyvalent)</h3>
+            <p>Candidature personnalisée pour le poste CDI 35H : esprit rebelle optimiste, culture du sport, expérience Supermarché Champion, logistique 2025, encaissement rapide et KPIs retail.</p>
+          </div>
+        </div>
+        <div class="spotlight-actions">
+          <a href="CV_Rodrigue_HESSOU_Retail_Polyvalent.pdf" target="_blank" class="btn btn-accent">
+            📄 CV Retail (PDF)
+          </a>
+          <a href="Lettre_de_Motivation_Adidas_Rodrigue_HESSOU.pdf" target="_blank" class="btn btn-secondary">
+            ✉️ Lettre adidas (PDF)
+          </a>
         </div>
       </div>
-      <div class="apple-buttons">
-        <a href="CV_Rodrigue_HESSOU_Apple_Retail.pdf" target="_blank" class="btn btn-apple">
-          📄 CV Apple (PDF)
-        </a>
-        <a href="Lettre_de_Motivation_Apple_Retail_Rodrigue_HESSOU.pdf" target="_blank" class="btn btn-secondary">
-          ✉️ Lettre Apple (PDF)
-        </a>
+
+      <!-- APPLE -->
+      <div class="spotlight-card card-apple">
+        <div>
+          <span class="spotlight-badge badge-apple">🍏 Spécialiste Apple Store</span>
+          <div class="spotlight-title">
+            <h3>Apple Retail Lyon (Rôle #114438069)</h3>
+            <p>Candidature ciblée pour le poste de Spécialiste : passion de l'écosystème Apple, sens du service client, travail d'équipe inclusif, affluence et curiosité technologique.</p>
+          </div>
+        </div>
+        <div class="spotlight-actions">
+          <a href="CV_Rodrigue_HESSOU_Apple_Retail.pdf" target="_blank" class="btn btn-white">
+            📄 CV Apple (PDF)
+          </a>
+          <a href="Lettre_de_Motivation_Apple_Retail_Rodrigue_HESSOU.pdf" target="_blank" class="btn btn-secondary">
+            ✉️ Lettre Apple (PDF)
+          </a>
+        </div>
       </div>
+
     </div>
 
-    <!-- SECTION TITLE -->
+    <!-- OUTILS & EDITEURS INTERACTIFS -->
     <div class="section-tag">
-      🛠️ Vos Outils & Éditeurs Interactifs
+      🛠️ Vos Outils & Éditeurs Interactifs en Ligne
     </div>
 
-    <!-- MAIN GRID -->
     <div class="grid">
 
-      <!-- CARTE CV -->
+      <!-- CARTE EDITEUR CV -->
       <div class="app-card">
         <div>
           <div class="app-header">
             <div class="app-icon icon-cv">📄</div>
             <div class="app-title">
-              <h2>Curriculum Vitae</h2>
-              <p>Éditeur interactif avec adaptation des expériences en 1 clic.</p>
+              <h2>Éditeur de CV Interactif</h2>
+              <p>Personnalisez vos CV en direct et associez les numéros de rôle en 1 clic.</p>
             </div>
           </div>
 
-          <ul class="app-features" style="margin-top: 14px;">
-            <li>Modifiable directement en ligne sur la feuille</li>
-            <li>Presets : Tech (Java/Web), Mobile (iOS), QA & Job Étudiant</li>
-            <li>Téléchargement en PDF A4 net et professionnel</li>
+          <ul class="app-features">
+            <li><strong>Association N° de Rôle :</strong> Renseignez marque, poste et référence d'offre</li>
+            <li><strong>Modèles 1 Clic :</strong> adidas, Apple, Sephora, Hermès, Tech (Java/Python), Mobile, QA</li>
+            <li><strong>Édition libre :</strong> Modifiez chaque mot directement sur la feuille A4</li>
+            <li><strong>Téléchargement instantané :</strong> PDF A4 net et professionnel (1 page stricte)</li>
           </ul>
         </div>
 
@@ -401,27 +539,25 @@
           <a href="editeur_cv.html" class="btn btn-primary">
             ⚡ Ouvrir l'Éditeur de CV
           </a>
-          <a href="CV_Rodrigue_HESSOU.pdf" target="_blank" class="btn btn-secondary">
-            📥 CV Tech (PDF)
-          </a>
         </div>
       </div>
 
-      <!-- CARTE LETTRE DE MOTIVATION -->
+      <!-- CARTE EDITEUR LETTRE -->
       <div class="app-card">
         <div>
           <div class="app-header">
             <div class="app-icon icon-letter">✉️</div>
             <div class="app-title">
-              <h2>Lettre de Motivation</h2>
-              <p>Éditeur de lettre sur-mesure pour chaque entreprise.</p>
+              <h2>Éditeur de Lettre de Motivation</h2>
+              <p>Rédigez et adaptez vos lettres de motivation à n'importe quelle enseigne.</p>
             </div>
           </div>
 
-          <ul class="app-features" style="margin-top: 14px;">
-            <li>Modèles Capgemini Lyon, Apple Retail & autres</li>
-            <li>Modification facile de l'entreprise, objet, adresse</li>
-            <li>Téléchargement en PDF ou copie en 1 clic</li>
+          <ul class="app-features">
+            <li><strong>Objet Dynamique :</strong> Injection automatique du N° d'offre ou référence de rôle</li>
+            <li><strong>Modèles Inclus :</strong> adidas Part-Dieu, Apple Retail, Sephora, Hermès, Capgemini, etc.</li>
+            <li><strong>Formulaire & Live Sheet :</strong> Synchronisation temps réel ou saisie directe</li>
+            <li><strong>Export PDF & Copie 1 Clic :</strong> Prêt pour les portails de recrutement</li>
           </ul>
         </div>
 
@@ -429,16 +565,90 @@
           <a href="editeur_lettre_motivation.html" class="btn btn-primary">
             ⚡ Ouvrir l'Éditeur de Lettre
           </a>
-          <a href="Lettre_de_Motivation_Rodrigue_HESSOU.pdf" target="_blank" class="btn btn-secondary">
-            📥 Lettre Tech (PDF)
-          </a>
         </div>
       </div>
 
     </div>
 
+    <!-- TOUS LES DOCUMENTS PDF PRÉ-GÉNÉRÉS -->
+    <div class="section-tag">
+      📂 Tous Vos Documents PDF Téléchargeables (1 Page A4)
+    </div>
+
+    <div class="docs-card">
+      <div class="docs-header">
+        <h3>Fichiers PDF Prêts à Envoyer</h3>
+      </div>
+      <div class="docs-table">
+
+        <!-- CV RETAIL POLYVALENT -->
+        <div class="doc-item">
+          <div class="doc-info">
+            <span class="doc-title">CV Retail & Vente Polyvalente</span>
+            <span class="doc-desc">Polyvalent pour adidas, Sephora, Hermès...</span>
+          </div>
+          <a href="CV_Rodrigue_HESSOU_Retail_Polyvalent.pdf" target="_blank" class="doc-btn">PDF 📥</a>
+        </div>
+
+        <!-- LETTRE ADIDAS -->
+        <div class="doc-item">
+          <div class="doc-info">
+            <span class="doc-title">Lettre Vendeur Polyvalent adidas</span>
+            <span class="doc-desc">Lyon Part-Dieu · CDI 35H</span>
+          </div>
+          <a href="Lettre_de_Motivation_Adidas_Rodrigue_HESSOU.pdf" target="_blank" class="doc-btn">PDF 📥</a>
+        </div>
+
+        <!-- LETTRE RETAIL POLYVALENTE -->
+        <div class="doc-item">
+          <div class="doc-info">
+            <span class="doc-title">Lettre Conseiller de Vente Polyvalent</span>
+            <span class="doc-desc">Généraliste pour tout point de vente</span>
+          </div>
+          <a href="Lettre_de_Motivation_Retail_Polyvalent.pdf" target="_blank" class="doc-btn">PDF 📥</a>
+        </div>
+
+        <!-- CV APPLE RETAIL -->
+        <div class="doc-item">
+          <div class="doc-info">
+            <span class="doc-title">CV Spécialiste Apple Retail</span>
+            <span class="doc-desc">Rôle #114438069 · Apple Store Lyon</span>
+          </div>
+          <a href="CV_Rodrigue_HESSOU_Apple_Retail.pdf" target="_blank" class="doc-btn">PDF 📥</a>
+        </div>
+
+        <!-- LETTRE APPLE RETAIL -->
+        <div class="doc-item">
+          <div class="doc-info">
+            <span class="doc-title">Lettre Spécialiste Apple Retail</span>
+            <span class="doc-desc">Rôle #114438069 · Apple Store</span>
+          </div>
+          <a href="Lettre_de_Motivation_Apple_Retail_Rodrigue_HESSOU.pdf" target="_blank" class="doc-btn">PDF 📥</a>
+        </div>
+
+        <!-- CV TECH MASTER 1 -->
+        <div class="doc-item">
+          <div class="doc-info">
+            <span class="doc-title">CV Développeur Logiciel (Tech)</span>
+            <span class="doc-desc">Alternance / Stage Bac+5 (Java / Web / Mobile)</span>
+          </div>
+          <a href="CV_Rodrigue_HESSOU.pdf" target="_blank" class="doc-btn">PDF 📥</a>
+        </div>
+
+        <!-- LETTRE CAPGEMINI -->
+        <div class="doc-item">
+          <div class="doc-info">
+            <span class="doc-title">Lettre Développeur Capgemini Lyon</span>
+            <span class="doc-desc">Java / Back-End / Agile / EAM & PLM</span>
+          </div>
+          <a href="Lettre_de_Motivation_Rodrigue_HESSOU.pdf" target="_blank" class="doc-btn">PDF 📥</a>
+        </div>
+
+      </div>
+    </div>
+
     <div class="footer-note">
-      Espace personnel déployé pour Rodrigue HESSOU · Lyon 2026
+      Portail de candidatures déployé pour Rodrigue HESSOU · Lyon 2026
     </div>
 
   </div>

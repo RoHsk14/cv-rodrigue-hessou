@@ -18,6 +18,7 @@
     --card-border: rgba(255, 255, 255, 0.08);
     --text-white: #ffffff;
     --text-muted: #94a3b8;
+    --apple-color: #f5f5f7;
   }
 
   * {
@@ -35,18 +36,18 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 30px 20px;
+    padding: 40px 20px;
     background-image: 
-      radial-gradient(at 0% 0%, rgba(46, 117, 182, 0.15) 0px, transparent 50%),
-      radial-gradient(at 100% 100%, rgba(37, 99, 235, 0.12) 0px, transparent 50%);
+      radial-gradient(at 0% 0%, rgba(46, 117, 182, 0.18) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(37, 99, 235, 0.15) 0px, transparent 50%);
   }
 
   .container {
     width: 100%;
-    max-width: 960px;
+    max-width: 1000px;
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: 28px;
   }
 
   /* HERO HEADER */
@@ -55,7 +56,7 @@
     backdrop-filter: blur(16px);
     border: 1px solid var(--card-border);
     border-radius: 16px;
-    padding: 32px;
+    padding: 28px 32px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -70,8 +71,8 @@
   }
 
   .hero-avatar {
-    width: 88px;
-    height: 88px;
+    width: 84px;
+    height: 84px;
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid var(--primary);
@@ -79,7 +80,7 @@
   }
 
   .hero-text h1 {
-    font-size: 28px;
+    font-size: 26px;
     font-weight: 800;
     letter-spacing: -0.5px;
     margin-bottom: 6px;
@@ -105,24 +106,79 @@
     gap: 16px;
   }
 
-  .hero-info span {
+  /* SECTION TITLE */
+  .section-tag {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--primary-light);
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
+  }
+
+  /* SPECIAL APPLE HERO BANNER */
+  .apple-banner {
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95));
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    padding: 24px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.4);
+  }
+
+  .apple-badge {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 999px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 6px;
+  }
+
+  .apple-title h3 {
+    font-size: 19px;
+    font-weight: 700;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 4px;
+  }
+
+  .apple-title p {
+    font-size: 13px;
+    color: #cbd5e1;
+    max-width: 580px;
+    line-height: 1.4;
+  }
+
+  .apple-buttons {
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
   }
 
   /* APPS GRID */
   .grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 24px;
+    gap: 20px;
   }
 
   @media (max-width: 768px) {
     .grid {
       grid-template-columns: 1fr;
     }
-    .hero-card {
+    .hero-card, .apple-banner {
       flex-direction: column;
       text-align: center;
     }
@@ -132,25 +188,27 @@
     .hero-info {
       justify-content: center;
     }
+    .apple-buttons {
+      width: 100%;
+      justify-content: center;
+    }
   }
 
   .app-card {
     background: var(--card-bg);
     border: 1px solid var(--card-border);
     border-radius: 16px;
-    padding: 28px;
+    padding: 24px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 20px;
+    gap: 18px;
     transition: all 0.25s ease;
     box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.4);
-    position: relative;
-    overflow: hidden;
   }
 
   .app-card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-3px);
     border-color: rgba(96, 165, 250, 0.4);
     box-shadow: 0 20px 40px -10px rgba(37, 99, 235, 0.25);
   }
@@ -158,38 +216,36 @@
   .app-header {
     display: flex;
     align-items: flex-start;
-    gap: 16px;
+    gap: 14px;
   }
 
   .app-icon {
-    width: 48px;
-    height: 48px;
-    border-radius: 12px;
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 24px;
+    font-size: 22px;
     flex-shrink: 0;
   }
 
   .icon-cv {
     background: linear-gradient(135deg, #2563eb, #3b82f6);
-    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
   }
 
   .icon-letter {
     background: linear-gradient(135deg, #059669, #10b981);
-    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
   }
 
   .app-title h2 {
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 700;
     margin-bottom: 4px;
   }
 
   .app-title p {
-    font-size: 13px;
+    font-size: 12.5px;
     color: var(--text-muted);
     line-height: 1.4;
   }
@@ -198,8 +254,8 @@
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    font-size: 12.5px;
+    gap: 7px;
+    font-size: 12px;
     color: #cbd5e1;
   }
 
@@ -217,7 +273,7 @@
 
   .app-actions {
     display: flex;
-    gap: 10px;
+    gap: 8px;
     flex-wrap: wrap;
   }
 
@@ -225,14 +281,25 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    padding: 10px 18px;
-    border-radius: 10px;
-    font-size: 13px;
+    gap: 7px;
+    padding: 9px 16px;
+    border-radius: 8px;
+    font-size: 12.5px;
     font-weight: 600;
     text-decoration: none;
     cursor: pointer;
     transition: all 0.15s ease;
+  }
+
+  .btn-apple {
+    background: #ffffff;
+    color: #000000;
+    box-shadow: 0 4px 14px rgba(255, 255, 255, 0.2);
+  }
+
+  .btn-apple:hover {
+    background: #f1f5f9;
+    transform: translateY(-1px);
   }
 
   .btn-primary {
@@ -262,7 +329,6 @@
     text-align: center;
     font-size: 12px;
     color: #64748b;
-    margin-top: 10px;
   }
 </style>
 </head>
@@ -286,6 +352,30 @@
       </div>
     </div>
 
+    <!-- SPECIAL APPLE CANDIDATURE HIGHLIGHT -->
+    <div class="apple-banner">
+      <div>
+        <span class="apple-badge">🍏 Candidature Prioritaire</span>
+        <div class="apple-title">
+          <h3>Spécialiste Apple Retail (Apple Store Lyon)</h3>
+          <p>CV et Lettre de motivation spécialement personnalisés : mise en avant de l'expérience Supermarché Champion, de la logistique/closing, du relationnel client et de la passion pour l'écosystème Apple.</p>
+        </div>
+      </div>
+      <div class="apple-buttons">
+        <a href="CV_Rodrigue_HESSOU_Apple_Retail.pdf" target="_blank" class="btn btn-apple">
+          📄 CV Apple (PDF)
+        </a>
+        <a href="Lettre_de_Motivation_Apple_Retail_Rodrigue_HESSOU.pdf" target="_blank" class="btn btn-secondary">
+          ✉️ Lettre Apple (PDF)
+        </a>
+      </div>
+    </div>
+
+    <!-- SECTION TITLE -->
+    <div class="section-tag">
+      🛠️ Vos Outils & Éditeurs Interactifs
+    </div>
+
     <!-- MAIN GRID -->
     <div class="grid">
 
@@ -296,13 +386,13 @@
             <div class="app-icon icon-cv">📄</div>
             <div class="app-title">
               <h2>Curriculum Vitae</h2>
-              <p>Éditeur interactif avec 4 profils adaptables (Alternance, Stage Mobile, QA, Job Étudiant).</p>
+              <p>Éditeur interactif avec adaptation des expériences en 1 clic.</p>
             </div>
           </div>
 
-          <ul class="app-features" style="margin-top: 18px;">
-            <li>Modifiable directement en ligne en temps réel</li>
-            <li>4 profils en 1 clic (Logiciel, Mobile, QA, Job Étudiant)</li>
+          <ul class="app-features" style="margin-top: 14px;">
+            <li>Modifiable directement en ligne sur la feuille</li>
+            <li>Presets : Tech (Java/Web), Mobile (iOS), QA & Job Étudiant</li>
             <li>Téléchargement en PDF A4 net et professionnel</li>
           </ul>
         </div>
@@ -312,7 +402,7 @@
             ⚡ Ouvrir l'Éditeur de CV
           </a>
           <a href="CV_Rodrigue_HESSOU.pdf" target="_blank" class="btn btn-secondary">
-            📥 Voir le PDF
+            📥 CV Tech (PDF)
           </a>
         </div>
       </div>
@@ -324,12 +414,12 @@
             <div class="app-icon icon-letter">✉️</div>
             <div class="app-title">
               <h2>Lettre de Motivation</h2>
-              <p>Éditeur de lettre sur-mesure avec modèle Capgemini France Lyon pré-rempli.</p>
+              <p>Éditeur de lettre sur-mesure pour chaque entreprise.</p>
             </div>
           </div>
 
-          <ul class="app-features" style="margin-top: 18px;">
-            <li>Modèle Capgemini Lyon & 3 autres presets</li>
+          <ul class="app-features" style="margin-top: 14px;">
+            <li>Modèles Capgemini Lyon, Apple Retail & autres</li>
             <li>Modification facile de l'entreprise, objet, adresse</li>
             <li>Téléchargement en PDF ou copie en 1 clic</li>
           </ul>
@@ -340,7 +430,7 @@
             ⚡ Ouvrir l'Éditeur de Lettre
           </a>
           <a href="Lettre_de_Motivation_Rodrigue_HESSOU.pdf" target="_blank" class="btn btn-secondary">
-            📥 Voir le PDF
+            📥 Lettre Tech (PDF)
           </a>
         </div>
       </div>

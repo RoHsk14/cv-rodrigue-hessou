@@ -29,10 +29,13 @@ template = """<!DOCTYPE html>
     --accent-green: #10b981;
   }
 
-  * {
+  *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
   }
 
   body {
@@ -374,14 +377,19 @@ template = """<!DOCTYPE html>
   /* SIDEBAR IN CV */
   .cv-sidebar {
     width: 63mm;
-    background-color: #1e293b;
+    background-color: #1e293b !important;
+    background: #1e293b !important;
+    box-shadow: inset 0 0 0 1000px #1e293b !important;
     border-radius: 4px;
     padding: 4.8mm 4.5mm;
-    color: #f1f5f9;
+    color: #f1f5f9 !important;
     display: flex;
     flex-direction: column;
     gap: 3.6mm;
     flex-shrink: 0;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
   }
 
   .photo-container {
@@ -634,11 +642,20 @@ template = """<!DOCTYPE html>
 
   /* PRINT STYLES - 1 PAGE A4 STRICT */
   @media print {
-    body {
+    *, *::before, *::after {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+      color-adjust: exact !important;
+    }
+
+    html, body {
       background: transparent !important;
       color: #000000 !important;
       padding: 0 !important;
       margin: 0 !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+      color-adjust: exact !important;
     }
 
     .top-navbar, .editor-sidebar, .preview-notice, .toast {
@@ -668,6 +685,78 @@ template = """<!DOCTYPE html>
       border: none !important;
       page-break-after: avoid !important;
       page-break-inside: avoid !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+      color-adjust: exact !important;
+    }
+
+    .cv-sidebar {
+      background-color: #1e293b !important;
+      background: #1e293b !important;
+      box-shadow: inset 0 0 0 1000px #1e293b !important;
+      color: #f1f5f9 !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+      color-adjust: exact !important;
+    }
+
+    .sidebar-title {
+      color: #ffffff !important;
+      border-bottom: 1px solid #5b7fa6 !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    .sidebar-item {
+      color: #cbd5e1 !important;
+    }
+
+    .sidebar-item strong {
+      color: #ffffff !important;
+    }
+
+    .sidebar-list li {
+      color: #cbd5e1 !important;
+    }
+
+    .sidebar-list li::before {
+      background-color: #60a5fa !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    .lang-level {
+      color: #93c5fd !important;
+    }
+
+    .cv-main-title {
+      color: #1e5a8f !important;
+      border-bottom: 1.5px solid #2e75b6 !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    .main-section-title {
+      color: #2e75b6 !important;
+      border-bottom: 1.5px solid #2e75b6 !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    .cv-header .subtitle {
+      color: #2e75b6 !important;
+    }
+
+    .item-bullets li::before {
+      color: #2e75b6 !important;
+    }
+
+    .role-badge {
+      background-color: #eff6ff !important;
+      color: #1d4ed8 !important;
+      border: 1px solid #bfdbfe !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
     }
 
     [contenteditable="true"] {
@@ -696,11 +785,14 @@ template = """<!DOCTYPE html>
     </div>
 
     <div class="nav-actions">
+      <a id="btn-download-preset-pdf" href="CV_Rodrigue_HESSOU_Soutien_Scolaire.pdf" download class="btn btn-secondary" title="Télécharger directement le PDF officiel pré-généré avec le bandeau bleu">
+        ⚡ PDF Officiel Direct
+      </a>
       <button class="btn btn-secondary" onclick="exportCVText()">
         📋 Copier le texte
       </button>
       <button class="btn btn-primary" onclick="printCV()">
-        📥 Télécharger en PDF
+        🖨️ Télécharger en PDF
       </button>
     </div>
   </header>
@@ -864,7 +956,7 @@ template = """<!DOCTYPE html>
     <!-- RIGHT CANVAS PREVIEW -->
     <main class="preview-panel">
       <div class="preview-notice">
-        <span>💡 <strong>Astuce :</strong> Vous pouvez modifier chaque texte, mission et puce <em>directement</em> sur le CV en cliquant dessus.</span>
+        <span>💡 <strong>Astuce Impression :</strong> En téléchargeant en PDF, vérifiez que l'option <strong>« Graphiques d'arrière-plan »</strong> (Background graphics) est cochée dans votre fenêtre d'impression pour conserver la colonne bleue nuit à gauche, ou utilisez le bouton direct <strong>« ⚡ PDF Officiel Direct »</strong> !</span>
       </div>
 
       <!-- A4 PAPER SHEET -->
@@ -1652,6 +1744,25 @@ template = """<!DOCTYPE html>
       // Rebind contenteditable listeners
       bindEditableListeners();
 
+      // Update Direct PDF download button
+      const presetPdfMap = {
+        soutien_scolaire: 'CV_Rodrigue_HESSOU_Soutien_Scolaire.pdf',
+        macdo: 'CV_Rodrigue_HESSOU_Restauration_MacDo.pdf',
+        hote_caisse_rayon: 'CV_Rodrigue_HESSOU_Retail_Polyvalent.pdf',
+        agent_accueil: 'CV_Rodrigue_HESSOU_Retail_Polyvalent.pdf',
+        apple_part_time: 'CV_Rodrigue_HESSOU_Apple_Retail.pdf',
+        adidas_part_dieu: 'CV_Rodrigue_HESSOU_Retail_Polyvalent.pdf',
+        retail_general: 'CV_Rodrigue_HESSOU_Retail_Polyvalent.pdf',
+        stage_bac5_dev: 'CV_Rodrigue_HESSOU.pdf',
+        alternance_bac5_dev: 'CV_Rodrigue_HESSOU.pdf'
+      };
+      const directPdf = presetPdfMap[key] || 'CV_Rodrigue_HESSOU.pdf';
+      const directBtn = document.getElementById('btn-download-preset-pdf');
+      if (directBtn) {
+        directBtn.href = directPdf;
+        directBtn.setAttribute('download', directPdf);
+      }
+
       const label = key.toUpperCase().replace('_', ' ');
       showToast("Modèle " + label + " activé avec succès !");
       autoSaveCV();
@@ -1679,8 +1790,10 @@ template = """<!DOCTYPE html>
 
     // PRINT / EXPORT
     function printCV() {
-      showToast("Génération du PDF... Sélectionnez 'Enregistrer au format PDF'");
-      window.print();
+      showToast("💡 Astuce : Dans la fenêtre d'impression, cochez 'Graphiques d'arrière-plan' pour garder le bandeau bleu !");
+      setTimeout(() => {
+        window.print();
+      }, 400);
     }
 
     function exportCVText() {

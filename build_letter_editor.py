@@ -25,10 +25,13 @@ html_content = """<!DOCTYPE html>
     --border: #cbd5e1;
   }
 
-  * {
+  *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
   }
 
   body {
@@ -523,11 +526,20 @@ html_content = """<!DOCTYPE html>
 
   /* PRINT MEDIA STYLES - 1 PAGE STRICT */
   @media print {
-    body {
+    *, *::before, *::after {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+      color-adjust: exact !important;
+    }
+
+    html, body {
       background: transparent !important;
       color: #000000 !important;
       padding: 0 !important;
       margin: 0 !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+      color-adjust: exact !important;
     }
 
     .top-navbar, .editor-sidebar, .preview-notice, .toast {
@@ -557,6 +569,24 @@ html_content = """<!DOCTYPE html>
       border: none !important;
       page-break-after: avoid !important;
       page-break-inside: avoid !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+      color-adjust: exact !important;
+    }
+
+    .recipient-card {
+      background-color: #f8fafc !important;
+      border-left: 3px solid #2e75b6 !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+      color-adjust: exact !important;
+    }
+
+    .doc-object {
+      background-color: #f1f5f9 !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+      color-adjust: exact !important;
     }
 
     [contenteditable="true"] {
@@ -585,11 +615,14 @@ html_content = """<!DOCTYPE html>
     </div>
 
     <div class="nav-actions">
+      <a id="btn-download-preset-pdf" href="Lettre_de_Motivation_Soutien_Scolaire_Rodrigue_HESSOU.pdf" download class="btn btn-secondary" title="Télécharger le fichier PDF officiel pré-généré">
+        ⚡ PDF Officiel Direct
+      </a>
       <button class="btn btn-secondary" onclick="copyLetterText()">
         📋 Copier le texte
       </button>
       <button class="btn btn-primary" onclick="printToPDF()">
-        📥 Télécharger en PDF
+        🖨️ Télécharger en PDF
       </button>
     </div>
   </header>
@@ -1179,6 +1212,23 @@ html_content = """<!DOCTYPE html>
       document.getElementById('p5').innerHTML = p.p5;
       document.getElementById('p6').innerHTML = p.p6;
 
+      // Update direct PDF download button
+      const presetLetterPdfFiles = {
+        soutien_scolaire: 'Lettre_de_Motivation_Soutien_Scolaire_Rodrigue_HESSOU.pdf',
+        macdo: 'Lettre_de_Motivation_MacDo_Rodrigue_HESSOU.pdf',
+        apple_retail: 'Lettre_de_Motivation_Apple_Retail_Rodrigue_HESSOU.pdf',
+        adidas_retail: 'Lettre_de_Motivation_Adidas_Rodrigue_HESSOU.pdf',
+        retail_polyvalent: 'Lettre_de_Motivation_Retail_Polyvalent.pdf',
+        capgemini_stage: 'Lettre_de_Motivation_Rodrigue_HESSOU.pdf',
+        dev_alternance: 'Lettre_de_Motivation_Rodrigue_HESSOU.pdf'
+      };
+      const directBtn = document.getElementById('btn-download-preset-pdf');
+      if (directBtn) {
+        const file = presetLetterPdfFiles[key] || 'Lettre_de_Motivation_Rodrigue_HESSOU.pdf';
+        directBtn.href = file;
+        directBtn.setAttribute('download', file);
+      }
+
       const label = key.toUpperCase();
       showToast("Modèle " + label + " chargé avec succès !");
       autoSaveLetter();
@@ -1186,8 +1236,10 @@ html_content = """<!DOCTYPE html>
 
     // PRINT / EXPORT
     function printToPDF() {
-      showToast("Génération du PDF... Sélectionnez 'Enregistrer au format PDF'");
-      window.print();
+      showToast("💡 Astuce : Dans la fenêtre d'impression, vérifiez que 'Graphiques d'arrière-plan' est coché !");
+      setTimeout(() => {
+        window.print();
+      }, 350);
     }
 
     function copyLetterText() {

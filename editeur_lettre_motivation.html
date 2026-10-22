@@ -149,7 +149,7 @@
 
   /* SIDEBAR CONTROLS */
   .editor-sidebar {
-    width: 440px;
+    width: 450px;
     background: #0f172a;
     border-right: 1px solid rgba(255, 255, 255, 0.08);
     display: flex;
@@ -159,10 +159,10 @@
   }
 
   .sidebar-inner {
-    padding: 18px;
+    padding: 16px;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 14px;
   }
 
   .card {
@@ -214,7 +214,7 @@
   .preset-grid {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 5px;
   }
 
   .btn-preset {
@@ -223,7 +223,7 @@
     color: #cbd5e1;
     padding: 7px 10px;
     border-radius: 6px;
-    font-size: 11.5px;
+    font-size: 11px;
     font-weight: 600;
     text-align: left;
     cursor: pointer;
@@ -580,7 +580,7 @@
       <div class="nav-logo">RH</div>
       <div class="nav-title">
         <h1>Éditeur de Lettre de Motivation</h1>
-        <p>Rodrigue HESSOU — Modèles Retail & Tech avec association de numéro de rôle</p>
+        <p>Rodrigue HESSOU — Modèles Soutien Scolaire, Fast-Food, Retail & Tech</p>
       </div>
     </div>
 
@@ -608,16 +608,32 @@
             <span class="card-badge">1 clic</span>
           </div>
 
-          <div class="category-title">👟 Vente & Retail Polyvalent</div>
+          <div class="category-title">🎓 Jobs Étudiants Polyvalents</div>
           <div class="preset-grid">
-            <button class="btn-preset active" onclick="loadPreset('adidas')">
+            <button class="btn-preset active" onclick="loadPreset('soutien_scolaire')">
+              <span>🎓 Soutien Scolaire & Tutorat (Maths / Sciences)</span>
+            </button>
+            <button class="btn-preset" onclick="loadPreset('macdo')">
+              <span>🍔 McDonald's & Fast-Food (Équipier Polyvalent)</span>
+            </button>
+            <button class="btn-preset" onclick="loadPreset('hote_caisse')">
+              <span>🛒 Hôte de Caisse (Grande Distribution)</span>
+            </button>
+            <button class="btn-preset" onclick="loadPreset('agent_accueil')">
+              <span>🎟️ Agent d'Accueil & Cinéma (UGC / Événements)</span>
+            </button>
+          </div>
+
+          <div class="category-title" style="margin-top: 6px;">👟 Vente, Commerce & Marques</div>
+          <div class="preset-grid">
+            <button class="btn-preset" onclick="loadPreset('adidas')">
               <span>👟 adidas Part-Dieu (Vendeur Polyvalent)</span>
             </button>
             <button class="btn-preset" onclick="loadPreset('apple')">
               <span>🍏 Apple Retail (Spécialiste #114438069)</span>
             </button>
             <button class="btn-preset" onclick="loadPreset('retail_polyvalent')">
-              <span>🛒 Retail & Vente Polyvalente (Généraliste)</span>
+              <span>🛍️ Conseiller de Vente (Commerce Généraliste)</span>
             </button>
             <button class="btn-preset" onclick="loadPreset('sephora')">
               <span>💄 Sephora Lyon (Conseiller de Vente Beauté)</span>
@@ -627,7 +643,7 @@
             </button>
           </div>
 
-          <div class="category-title" style="margin-top: 8px;">💼 Tech & Ingénierie Bac+5</div>
+          <div class="category-title" style="margin-top: 6px;">💼 Tech & Ingénierie Bac+5</div>
           <div class="preset-grid">
             <button class="btn-preset" onclick="loadPreset('capgemini')">
               <span>🏢 Capgemini Lyon (Java / PLM)</span>
@@ -647,37 +663,37 @@
         <!-- ENTREPRISE, ROLE & CANDIDATURE -->
         <div class="card">
           <div class="card-header">
-            <span class="card-title">🏷️ Offre, Marque & Numéro de Rôle</span>
+            <span class="card-title">🏷️ Offre, Établissement & Rôle</span>
           </div>
           <div class="quick-helper-box">
             Renseignez l'intitulé du poste et le <strong>numéro de rôle ou référence d'offre</strong> pour actualiser automatiquement l'objet et le destinataire.
           </div>
           <div class="form-row">
             <div class="form-group">
-              <label>Nom de l'entreprise</label>
-              <input type="text" id="input-company" value="ADIDAS FRANCE" oninput="syncField('company', this.value)">
+              <label>Nom de la structure</label>
+              <input type="text" id="input-company" value="Organisme de Soutien Scolaire / Familles" oninput="syncField('company', this.value)">
             </div>
             <div class="form-group">
               <label>N° Rôle / Référence</label>
-              <input type="text" id="input-role-ref" value="CDI 35H - Lyon Part Dieu" placeholder="ex: 114438069, Réf. 35H..." oninput="updateLetterObjectFromInputs()">
+              <input type="text" id="input-role-ref" value="Tutorat Lyon" placeholder="ex: 114438069, Réf. Part-Dieu..." oninput="updateLetterObjectFromInputs()">
             </div>
           </div>
           <div class="form-group">
             <label>Intitulé du poste</label>
-            <input type="text" id="input-job-title" value="Vendeur Polyvalent adidas (H/F/D)" oninput="updateLetterObjectFromInputs()">
+            <input type="text" id="input-job-title" value="Enseignant / Tuteur en Soutien Scolaire" oninput="updateLetterObjectFromInputs()">
           </div>
           <div class="form-group">
             <label>Destinataire / Service</label>
-            <input type="text" id="input-recipient" value="À l'attention de l'équipe Recrutement Retail" oninput="syncField('recipient', this.value)">
+            <input type="text" id="input-recipient" value="À l'attention de l'équipe Recrutement Pédagogique" oninput="syncField('recipient', this.value)">
           </div>
           <div class="form-row">
             <div class="form-group">
-              <label>Adresse Entreprise</label>
-              <input type="text" id="input-comp-addr" value="CC Westfield La Part-Dieu, 17 Rue Dr Bouchut" oninput="syncField('compAddr', this.value)">
+              <label>Adresse Établissement</label>
+              <input type="text" id="input-comp-addr" value="Agence Acadomia / Complétude / Anacours" oninput="syncField('compAddr', this.value)">
             </div>
             <div class="form-group">
               <label>Code Postal & Ville</label>
-              <input type="text" id="input-comp-city" value="69003 Lyon" oninput="syncField('compCity', this.value)">
+              <input type="text" id="input-comp-city" value="Lyon, France" oninput="syncField('compCity', this.value)">
             </div>
           </div>
         </div>
@@ -689,7 +705,7 @@
           </div>
           <div class="form-group">
             <label>Ligne d'Objet Complète</label>
-            <input type="text" id="input-object" value="Candidature au poste de Vendeur Polyvalent adidas (H/F/D) — CDI 35H — Lyon Part-Dieu" oninput="syncField('object', this.value)">
+            <input type="text" id="input-object" value="Candidature comme Enseignant / Tuteur en Soutien Scolaire (Mathématiques & Sciences)" oninput="syncField('object', this.value)">
           </div>
           <div class="form-row">
             <div class="form-group">
@@ -714,7 +730,7 @@
           </div>
           <div class="form-group">
             <label>Titre / Statut</label>
-            <input type="text" id="input-sender-title" value="Candidat Vendeur Polyvalent — adidas Lyon Part-Dieu" oninput="syncField('senderTitle', this.value)">
+            <input type="text" id="input-sender-title" value="Professeur Particulier & Tuteur de Soutien Scolaire (Bac+5)" oninput="syncField('senderTitle', this.value)">
           </div>
           <div class="form-row">
             <div class="form-group">
@@ -765,7 +781,7 @@
           <div class="doc-header">
             <div class="sender-info">
               <div class="sender-name" id="doc-sender-name" contenteditable="true">Rodrigue HESSOU</div>
-              <div class="sender-subtitle" id="doc-sender-title" contenteditable="true">Candidat Vendeur Polyvalent — adidas Lyon Part-Dieu</div>
+              <div class="sender-subtitle" id="doc-sender-title" contenteditable="true">Professeur Particulier & Tuteur de Soutien Scolaire (Bac+5)</div>
               <div class="sender-detail" id="doc-sender-addr" contenteditable="true">429 Cours Émile Zola</div>
               <div class="sender-detail" id="doc-sender-city" contenteditable="true">69100 Villeurbanne – Lyon</div>
               <div class="sender-detail" id="doc-sender-phone" contenteditable="true">+33 7 44 11 75 73</div>
@@ -773,10 +789,10 @@
             </div>
 
             <div class="recipient-card">
-              <div class="recipient-company" id="doc-company" contenteditable="true">ADIDAS FRANCE</div>
-              <div class="recipient-detail" id="doc-recipient" contenteditable="true">À l'attention de l'équipe Recrutement Retail</div>
-              <div class="recipient-detail" id="doc-comp-addr" contenteditable="true">CC Westfield La Part-Dieu, 17 Rue Dr Bouchut</div>
-              <div class="recipient-detail" id="doc-comp-city" contenteditable="true">69003 Lyon</div>
+              <div class="recipient-company" id="doc-company" contenteditable="true">Organisme de Soutien Scolaire / Familles</div>
+              <div class="recipient-detail" id="doc-recipient" contenteditable="true">À l'attention de l'équipe Recrutement Pédagogique</div>
+              <div class="recipient-detail" id="doc-comp-addr" contenteditable="true">Agence Acadomia / Complétude / Anacours</div>
+              <div class="recipient-detail" id="doc-comp-city" contenteditable="true">Lyon, France</div>
             </div>
           </div>
 
@@ -784,7 +800,7 @@
           <div class="doc-meta">
             <div class="doc-date" id="doc-date-line" contenteditable="true">À Lyon, le 22 octobre 2026</div>
             <div class="doc-object">
-              <strong>Objet :</strong> <span id="doc-object" contenteditable="true">Candidature au poste de Vendeur Polyvalent adidas (H/F/D) — CDI 35H — Lyon Part-Dieu</span>
+              <strong>Objet :</strong> <span id="doc-object" contenteditable="true">Candidature comme Enseignant / Tuteur en Soutien Scolaire (Mathématiques & Sciences)</span>
             </div>
           </div>
 
@@ -793,27 +809,27 @@
             <div class="doc-salutation" contenteditable="true">Madame, Monsieur,</div>
 
             <p id="p1" contenteditable="true">
-              Passionné par l'univers du sport, l'énergie du lifestyle urbain et les marques qui inspirent le dépassement de soi, c'est avec un enthousiasme sincère que je vous propose ma candidature pour le poste de <strong>Vendeur Polyvalent au sein du magasin adidas Lyon Part-Dieu</strong>. La vision d'adidas — celle d'une communauté de rebelles optimistes qui changent la vie à travers le sport tout en innovant pour la durabilité et l'inclusion — résonne profondément avec mon dynamisme personnel et mon goût du collectif.
+              Passionné par la transmission des connaissances, la pédagogie positive et l'accompagnement des jeunes vers la réussite, je vous présente avec enthousiasme ma candidature en tant qu'<strong>Enseignant en Soutien Scolaire et Aide aux Devoirs</strong>. Actuellement étudiant en <strong>Master 1 à SUPINFO Lyon (Bac+5 en Informatique)</strong> et titulaire d'une <strong>Licence en Génie Logiciel</strong> précédée d'un Baccalauréat Scientifique, je souhaite mettre ma rigueur méthodologique et ma bienveillance au service de vos élèves.
             </p>
 
             <p id="p2" contenteditable="true">
-              Mon parcours m'a permis d'acquérir une solide expérience opérationnelle du commerce et du contact client direct. Lors de mon activité au <strong>Supermarché Champion en 2024</strong>, j'ai développé une grande réactivité sur le terrain : accueil chaleureux, orientation immédiate, gestion d'encaissements rapides et sans erreur lors de forts pics d'affluence, et maintien rigoureux de la propreté et du facing des rayons. Cette immersion m'a appris à garder le sourire, le sang-froid et une écoute active bienveillante en toutes circonstances.
+              Mon parcours académique m'a conféré une solide maîtrise des matières scientifiques (<strong>Mathématiques, Algorithmique, Physique et Numérique</strong>), ainsi qu'une démarche de travail structurée. Au-delà des connaissances théoriques, je suis convaincu que la clé de la réussite scolaire réside dans la relation de confiance établie avec l'élève : savoir écouter sans juger, identifier la source précise des blocages (manque de confiance, lacunes de cours ou mauvaise organisation) et réexpliquer les notions sous des angles concrets et imagés.
             </p>
 
             <p id="p3" contenteditable="true">
-              Complétée par une expérience en <strong>plateforme logistique et distribution en 2025</strong>, où j'ai assuré la réception, le contrôle qualité et la remise client avec une rigueur exemplaire, j'ai également piloté chez <strong>Nataan Group</strong> la prospection terrain de plus de <strong>100 commerçants</strong> pour le déploiement d'une solution de point de vente. Cette dernière mission m'a sensibilisé aux <strong>indicateurs clés de performance retail (KPI)</strong> : optimisation du panier moyen, indice de vente, taux de transformation et fidélisation par une expérience client personnalisée.
+              Mes expériences m'ont permis de développer de réelles compétences pédagogiques. J'ai notamment formé plus de <strong>100 utilisateurs</strong> aux fonctionnalités d'outils numériques en adaptant mon discours au rythme de chacun, et animé des ateliers individuels de renforcement. Habitué à structurer des séances de travail complètes (rappel des points clés du cours, exercices d'application guidés, puis mise en autonomie progressive), j'accorde une importance essentielle à l'acquisition d'une méthode de travail pérenne.
             </p>
 
             <p id="p4" contenteditable="true">
-              Rejoindre l'équipe adidas de Lyon Part-Dieu, c'est l'opportunité de devenir un <strong>ambassadeur passionné de la marque</strong>, d'accompagner chaque consommateur de l'accueil jusqu'à l'encaissement, et de contribuer activement à toutes les étapes du magasin (réception des livraisons, mise en rayon, conseil technique et closing). Curieux et résilient, je suis impatient de suivre votre programme certifiant et d'approfondir mes connaissances sur vos innovations produits (technologies running, textile durable, gammes Originals et Performance).
+              Mon approche s'adresse aussi bien aux élèves de <strong>collège</strong> nécessitant un cadre rassurant pour consolider leurs bases et préparer le Brevet, qu'aux lycéens préparant les épreuves du <strong>Baccalauréat</strong> ou souhaitant se perfectionner en spécialité Mathématiques et NSI. Je m'assure toujours d'un dialogue fluide et régulier avec les parents pour faire part des progrès réalisés.
             </p>
 
             <p id="p5" contenteditable="true">
-              Fidèle aux valeurs de diversité et d'égalité portées par adidas, j'ai à cœur d'apporter mon esprit d'équipe, ma rigueur et ma motivation communicative au service de vos objectifs collectifs. Je suis disponible immédiatement pour un contrat 35H et m'adapte aisément aux plannings du magasin.
+              Ponctuel, patient, motivant et à l'écoute, je suis disponible sur toute l'agglomération lyonnaise (Villeurbanne, Lyon) ainsi qu'en distanciel, sur les créneaux de fin d'après-midi, mercredis, week-ends et vacances scolaires.
             </p>
 
             <p id="p6" contenteditable="true">
-              Dans l'attente d'un échange lors duquel je serai ravi de vous faire partager mon énergie et mes motivations, je vous prie d'agréer, Madame, Monsieur, l'expression de mes salutations sportives et respectueuses.
+              Je serais ravi d'échanger avec vous lors d'un entretien afin de vous détailler mon approche pédagogique. En vous remerciant pour votre bienveillante attention, je vous prie d'agréer, Madame, Monsieur, mes salutations respectueuses.
             </p>
           </div>
         </div>
@@ -822,7 +838,7 @@
         <div class="doc-closing">
           <div class="signature-box">
             <div class="signature-name" id="doc-sig-name" contenteditable="true">Rodrigue HESSOU</div>
-            <div class="signature-title" id="doc-sig-title" contenteditable="true">Candidat Vendeur Polyvalent · adidas Lyon Part-Dieu</div>
+            <div class="signature-title" id="doc-sig-title" contenteditable="true">Étudiant Master 1 SUPINFO Lyon · Tuteur Pédagogique</div>
           </div>
         </div>
 
@@ -837,6 +853,78 @@
   <script>
     // PRESETS DATA
     const presets = {
+      soutien_scolaire: {
+        company: "Organisme de Soutien Scolaire / Familles",
+        roleRef: "Tutorat Lyon",
+        jobTitle: "Enseignant / Tuteur en Soutien Scolaire",
+        recipient: "À l'attention de l'équipe Recrutement Pédagogique",
+        compAddr: "Agence Acadomia / Complétude / Anacours",
+        compCity: "Lyon, France",
+        senderTitle: "Professeur Particulier & Tuteur de Soutien Scolaire (Bac+5)",
+        sigTitle: "Étudiant Master 1 SUPINFO Lyon · Tuteur Pédagogique",
+        object: "Candidature comme Enseignant / Tuteur en Soutien Scolaire (Mathématiques & Sciences)",
+        p1: "Passionné par la transmission des connaissances, la pédagogie positive et l'accompagnement des jeunes vers la réussite, je vous présente avec enthousiasme ma candidature en tant qu'<strong>Enseignant en Soutien Scolaire et Aide aux Devoirs</strong>. Actuellement étudiant en <strong>Master 1 à SUPINFO Lyon (Bac+5 en Informatique)</strong> et titulaire d'une <strong>Licence en Génie Logiciel</strong> précédée d'un Baccalauréat Scientifique, je souhaite mettre ma rigueur méthodologique et ma bienveillance au service de vos élèves.",
+        p2: "Mon parcours académique m'a conféré une solide maîtrise des matières scientifiques (<strong>Mathématiques, Algorithmique, Physique et Numérique</strong>), ainsi qu'une démarche de travail structurée. Au-delà des connaissances théoriques, je suis convaincu que la clé de la réussite scolaire réside dans la relation de confiance établie avec l'élève : savoir écouter sans juger, identifier la source précise des blocages (manque de confiance, lacunes de cours ou mauvaise organisation) et réexpliquer les notions sous des angles concrets et imagés.",
+        p3: "Mes expériences m'ont permis de développer de réelles compétences pédagogiques. J'ai notamment formé plus de <strong>100 utilisateurs</strong> aux fonctionnalités d'outils numériques en adaptant mon discours au rythme de chacun, et animé des ateliers individuels de renforcement. Habitué à structurer des séances de travail complètes (rappel des points clés du cours, exercices d'application guidés, puis mise en autonomie progressive), j'accorde une importance essentielle à l'acquisition d'une méthode de travail pérenne.",
+        p4: "Mon approche s'adresse aussi bien aux élèves de <strong>collège</strong> nécessitant un cadre rassurant pour consolider leurs bases et préparer le Brevet, qu'aux lycéens préparant les épreuves du <strong>Baccalauréat</strong> ou souhaitant se perfectionner en spécialité Mathématiques et NSI. Je m'assure toujours d'un dialogue fluide et régulier avec les parents pour faire part des progrès réalisés.",
+        p5: "Ponctuel, patient, motivant et à l'écoute, je suis disponible sur toute l'agglomération lyonnaise (Villeurbanne, Lyon) ainsi qu'en distanciel, sur les créneaux de fin d'après-midi, mercredis, week-ends et vacances scolaires.",
+        p6: "Je serais ravi d'échanger avec vous lors d'un entretien afin de vous détailler mon approche pédagogique. En vous remerciant pour votre bienveillante attention, je vous prie d'agréer, Madame, Monsieur, mes salutations respectueuses."
+      },
+
+      macdo: {
+        company: "MCDONALD'S FRANCE",
+        roleRef: "Job Étudiant Soirs & WE",
+        jobTitle: "Équipier Polyvalent de Restauration Rapide",
+        recipient: "À l'attention de la Direction du Restaurant",
+        compAddr: "Restaurant McDonald's Lyon (Part-Dieu / Charpennes / Villeurbanne)",
+        compCity: "Lyon, France",
+        senderTitle: "Candidat Équipier Polyvalent de Restauration — Job Étudiant",
+        sigTitle: "Candidat Équipier Polyvalent · McDonald's Lyon",
+        object: "Candidature au poste d'Équipier Polyvalent de Restauration Rapide (Job Étudiant / Temps Partiel)",
+        p1: "Actuellement étudiant en <strong>Master 1 à SUPINFO Lyon</strong>, je souhaite vivement rejoindre votre équipe en tant qu'<strong>Équipier Polyvalent au sein de votre restaurant McDonald's</strong>. Attiré par le dynamisme de votre enseigne, la rigueur de votre organisation et la qualité de votre service client, je souhaite mettre mon énergie, ma ponctualité et mon esprit d'équipe au service de votre activité quotidienne.",
+        p2: "Mes précédentes expériences m'ont permis d'acquérir une excellente réactivité sur le terrain. Lors de mon activité au <strong>Supermarché Champion en 2024</strong>, j'ai géré l'accueil et l'encaissement de nombreux clients durant les pics de forte affluence. Cette immersion m'a appris à exécuter les tâches avec rapidité et exactitude, tout en conservant un accueil souriant et courtois en toutes circonstances. J'y ai également développé une grande rigueur dans le maintien de la propreté et la tenue des postes de travail.",
+        p3: "Par ailleurs, mon travail en <strong>plateforme logistique en 2025</strong> a confirmé ma capacité à soutenir des cadences rapides et à appliquer scrupuleusement les consignes d'organisation et de sécurité. Polyvalent et doté d'une forte faculté d'adaptation, je suis prêt à intervenir sur tous les postes de votre restaurant : <strong>accueil au comptoir et aux bornes, préparation et assemblage des commandes en cuisine, service en salle et au Drive, ainsi qu'entretien régulier des équipements dans le respect strict des normes HACCP</strong>.",
+        p4: "Ce qui me motive chez McDonald's, c'est l'intensité du travail en équipe et l'engagement collectif pour satisfaire chaque visiteur en un temps record. Ponctuel, enthousiaste et communicatif, je m'intègre avec facilité et contribue à maintenir une ambiance de travail solidaire et motivante, même lors des rushs les plus intenses.",
+        p5: "Parfaitement conscient des exigences d'un contrat étudiant en restauration, je vous garantis une <strong>grande flexibilité horaire</strong> : je suis disponible en soirée (fermetures incluses), les week-ends complets ainsi que pendant toutes les vacances scolaires.",
+        p6: "Je serais très heureux de vous rencontrer à l'occasion d'un entretien pour vous démontrer ma motivation et mon envie de m'investir au sein de votre équipe. En vous remerciant de votre considération, je vous prie d'agréer, Madame, Monsieur, l'expression de mes salutations distinguées."
+      },
+
+      hote_caisse: {
+        company: "CARREFOUR / MONOPRIX / AUCHAN",
+        roleRef: "Job Étudiant Caisse",
+        jobTitle: "Hôte de Caisse & Employé Commercial",
+        recipient: "À l'attention du Responsable des Caisses & Recrutement",
+        compAddr: "Magasin Lyon (Part-Dieu / Villeurbanne / Presqu'île)",
+        compCity: "Lyon, France",
+        senderTitle: "Candidat Hôte de Caisse & Employé Commercial Polyvalent",
+        sigTitle: "Candidat Hôte de Caisse · Job Étudiant",
+        object: "Candidature au poste d'Hôte de Caisse et Employé Commercial Polyvalent (Job Étudiant)",
+        p1: "Étudiant sérieux et dynamique en <strong>Master 1 à SUPINFO Lyon</strong>, je vous soumets ma candidature pour un poste d'<strong>Hôte de Caisse et Employé Commercial Polyvalent</strong> au sein de votre magasin. Fort d'une expérience directe réussie au Supermarché Champion et de mon passage en logistique de distribution, je serai immédiatement opérationnel au sein de votre ligne de caisses.",
+        p2: "Au <strong>Supermarché Champion en 2024</strong>, j'ai assuré la gestion des encaissements lors de forts pics d'affluence avec exactitude, rapidité et un sens permanent de l'amabilité. Cette expérience m'a appris à gérer le flux avec sérénité, à vérifier scrupuleusement les moyens de paiement et à renseigner chaque client avec le sourire. J'y ai également effectué des missions de réassort, de facing et de contrôle des dates limites de péremption (DLC).",
+        p3: "Rigoureux, ponctuel et doté d'une excellente présentation, je valorise la relation client de proximité et le travail en équipe. Mon sens des responsabilités me permet d'assurer une tenue de caisse irréprochable et de respecter scrupuleusement les consignes de sécurité financière de votre magasin.",
+        p4: "Disponible immédiatement pour un contrat étudiant à temps partiel (soirées, samedis, dimanches matin et vacances scolaires), je m'adapte avec souplesse à votre planning.",
+        p5: "Je me tiens à votre disposition pour convenir d'un entretien et vous exprimer de vive voix ma motivation. Je vous prie d'agréer, Madame, Monsieur, mes salutations respectueuses.",
+        p6: ""
+      },
+
+      agent_accueil: {
+        company: "CINÉMAS UGC / PATHÉ / ÉVÉNEMENTIEL",
+        roleRef: "Accueil & Billetterie",
+        jobTitle: "Agent d'Accueil & de Billetterie",
+        recipient: "À l'attention du Responsable d'Exploitation",
+        compAddr: "Cinéma / Salle de Spectacles Lyon",
+        compCity: "Lyon, France",
+        senderTitle: "Candidat Agent d'Accueil & de Service — Job Étudiant",
+        sigTitle: "Candidat Agent d'Accueil · Job Étudiant",
+        object: "Candidature au poste d'Agent d'Accueil, de Billetterie et de Service (Job Étudiant)",
+        p1: "Passionné par le contact avec le public, la culture et l'univers du spectacle, c'est avec un grand enthousiasme que je vous adresse ma candidature pour le poste d'<strong>Agent d'Accueil, de Billetterie et de Service</strong> au sein de votre établissement lyonnais. Étudiant en <strong>Master 1 à SUPINFO Lyon</strong>, je souhaite mettre ma courtoisie, mon dynamisme et mon sens du service au cœur de l'expérience de vos spectateurs.",
+        p2: "Mes expériences professionnelles dans le commerce et la relation client m'ont appris à délivrer un accueil chaleureux et irréprochable en toutes circonstances. Au contact direct du public lors de mon activité au Supermarché Champion, j'ai développé une grande aisance relationnelle, le sens de l'orientation et la gestion rapide de la billetterie et des encaissements en période de forte affluence.",
+        p3: "Polyvalent et proactif, je suis en mesure d'assurer aussi bien l'accueil physique et l'information des spectateurs, le contrôle des billets aux accès, la vente au comptoir confiserie/snacks, que l'entretien et la vérification des salles avant et après chaque séance. Mon bon niveau d'anglais me permet par ailleurs de renseigner efficacement les spectateurs internationaux.",
+        p4: "Reconnu pour ma ponctualité, mon sourire et ma capacité à travailler en équipe dans une ambiance festive et rythmée, je suis disponible sur tous vos créneaux clés : soirées, fins de semaine, jours fériés et vacances scolaires.",
+        p5: "Je serais ravi de vous rencontrer lors d'un entretien pour vous témoigner de vive voix de mon engagement à faire vivre une expérience mémorable à vos spectateurs. Je vous prie d'agréer, Madame, Monsieur, l'expression de mes salutations distinguées.",
+        p6: ""
+      },
+
       adidas: {
         company: "ADIDAS FRANCE",
         roleRef: "CDI 35H - Lyon Part Dieu",
@@ -1129,11 +1217,12 @@
 
     function resetToDefault() {
       localStorage.removeItem('rodrigue_letter_saved');
-      loadPreset('adidas');
+      loadPreset('soutien_scolaire');
       showToast("Lettre réinitialisée aux paramètres par défaut.");
     }
 
     window.addEventListener('DOMContentLoaded', () => {
+      loadPreset('soutien_scolaire');
       document.querySelectorAll('[contenteditable="true"]').forEach(el => {
         el.addEventListener('input', autoSaveLetter);
       });

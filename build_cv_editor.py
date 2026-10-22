@@ -153,7 +153,7 @@ template = """<!DOCTYPE html>
 
   /* SIDEBAR CONTROLS */
   .editor-sidebar {
-    width: 440px;
+    width: 450px;
     background: #0f172a;
     border-right: 1px solid rgba(255, 255, 255, 0.08);
     display: flex;
@@ -163,10 +163,10 @@ template = """<!DOCTYPE html>
   }
 
   .sidebar-inner {
-    padding: 18px;
+    padding: 16px;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 14px;
   }
 
   .card {
@@ -221,7 +221,7 @@ template = """<!DOCTYPE html>
   .preset-grid {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 5px;
   }
 
   .btn-preset {
@@ -230,7 +230,7 @@ template = """<!DOCTYPE html>
     color: #cbd5e1;
     padding: 7px 10px;
     border-radius: 6px;
-    font-size: 11.5px;
+    font-size: 11px;
     font-weight: 600;
     text-align: left;
     cursor: pointer;
@@ -450,14 +450,14 @@ template = """<!DOCTYPE html>
     padding-left: 3.5mm;
   }
 
-  .sidebar-list li::before {
+  .sidebar-list li::before {{
     content: "•";
     position: absolute;
     left: 0;
     color: #60a5fa;
     font-size: 9pt;
     line-height: 1;
-  }
+  }}
 
   /* MAIN COLUMN IN CV */
   .cv-main {
@@ -691,7 +691,7 @@ template = """<!DOCTYPE html>
       <div class="nav-logo">RH</div>
       <div class="nav-title">
         <h1>Éditeur de CV Interactif</h1>
-        <p>Rodrigue HESSOU — Retail, Vente Polyvalente, Alternance & Stage</p>
+        <p>Rodrigue HESSOU — Jobs Étudiants, Retail & Ingénierie Bac+5</p>
       </div>
     </div>
 
@@ -719,16 +719,32 @@ template = """<!DOCTYPE html>
             <span class="card-badge">1 clic</span>
           </div>
 
-          <div class="category-title">👟 Vente, Commerce & Retail</div>
+          <div class="category-title">🎓 Jobs Étudiants Polyvalents</div>
           <div class="preset-grid">
-            <button class="btn-preset active" onclick="loadCVPreset('adidas')">
+            <button class="btn-preset active" onclick="loadCVPreset('soutien_scolaire')">
+              <span>🎓 Soutien Scolaire & Tutorat (Maths / Sciences)</span>
+            </button>
+            <button class="btn-preset" onclick="loadCVPreset('macdo')">
+              <span>🍔 McDonald's & Fast-Food (Équipier Polyvalent)</span>
+            </button>
+            <button class="btn-preset" onclick="loadCVPreset('hote_caisse_rayon')">
+              <span>🛒 Hôte de Caisse / Rayon (Grande Distribution)</span>
+            </button>
+            <button class="btn-preset" onclick="loadCVPreset('agent_accueil')">
+              <span>🎟️ Agent d'Accueil & Cinéma (UGC / Événements)</span>
+            </button>
+          </div>
+
+          <div class="category-title" style="margin-top: 6px;">👟 Vente, Commerce & Marques</div>
+          <div class="preset-grid">
+            <button class="btn-preset" onclick="loadCVPreset('adidas')">
               <span>👟 adidas Part-Dieu (Vendeur Polyvalent)</span>
             </button>
             <button class="btn-preset" onclick="loadCVPreset('apple')">
               <span>🍏 Apple Retail (Spécialiste #114438069)</span>
             </button>
             <button class="btn-preset" onclick="loadCVPreset('retail_polyvalent')">
-              <span>🛒 Retail & Vente Polyvalente (Généraliste)</span>
+              <span>🛍️ Conseiller de Vente (Commerce Généraliste)</span>
             </button>
             <button class="btn-preset" onclick="loadCVPreset('sephora')">
               <span>💄 Sephora / Beauté & Cosmétiques</span>
@@ -738,7 +754,7 @@ template = """<!DOCTYPE html>
             </button>
           </div>
 
-          <div class="category-title" style="margin-top: 8px;">💼 Tech & Ingénierie Bac+5</div>
+          <div class="category-title" style="margin-top: 6px;">💼 Tech & Ingénierie Bac+5</div>
           <div class="preset-grid">
             <button class="btn-preset" onclick="loadCVPreset('alternance_logiciel')">
               <span>💻 Alternance Dév. Logiciel (Java/Python)</span>
@@ -762,17 +778,17 @@ template = """<!DOCTYPE html>
           </div>
           <div class="form-row">
             <div class="form-group">
-              <label>Enseigne / Marque</label>
-              <input type="text" id="input-brand" value="adidas" placeholder="ex: adidas, Apple, Sephora..." oninput="updateCVTitleFromInputs()">
+              <label>Enseigne / Établissement</label>
+              <input type="text" id="input-brand" value="Acadomia / Complétude" placeholder="ex: McDonald's, Acadomia..." oninput="updateCVTitleFromInputs()">
             </div>
             <div class="form-group">
               <label>N° Rôle / Référence</label>
-              <input type="text" id="input-role-ref" value="CDI 35H - Lyon Part Dieu" placeholder="ex: 114438069, Réf. 35H..." oninput="updateCVTitleFromInputs()">
+              <input type="text" id="input-role-ref" value="Tutorat Lyon" placeholder="ex: 114438069, Réf. Soirs..." oninput="updateCVTitleFromInputs()">
             </div>
           </div>
           <div class="form-group">
             <label>Intitulé du poste ciblé</label>
-            <input type="text" id="input-job-role" value="Vendeur Polyvalent" placeholder="ex: Vendeur Polyvalent, Conseiller de Vente..." oninput="updateCVTitleFromInputs()">
+            <input type="text" id="input-job-role" value="Professeur Particulier & Tuteur Soutien Scolaire" placeholder="ex: Équipier Polyvalent, Tuteur..." oninput="updateCVTitleFromInputs()">
           </div>
         </div>
 
@@ -783,11 +799,11 @@ template = """<!DOCTYPE html>
           </div>
           <div class="form-group">
             <label>Titre Affiché sur le CV</label>
-            <input type="text" id="input-cv-title" value="Vendeur Polyvalent — adidas (CDI 35H - Lyon Part Dieu)" oninput="syncCV('title', this.value)">
+            <input type="text" id="input-cv-title" value="Professeur Particulier & Tuteur de Soutien Scolaire — Maths & Sciences" oninput="syncCV('title', this.value)">
           </div>
           <div class="form-group">
             <label>Texte du Profil / Accroche</label>
-            <textarea id="input-cv-profile" oninput="syncCV('profile', this.value)">Étudiant en Master 1 à SUPINFO Lyon, doté d'une excellente énergie relationnelle et passionné par le contact humain et le commerce de détail. Fort d'expériences concrètes dans le commerce en magasin, la logistique de distribution et la prospection terrain, je maîtrise l'ensemble des étapes de l'acte de vente : accueil personnalisé, identification fine des attentes, conseil produit sur-mesure, gestion fluide de la caisse et fidélisation. Dynamique, curieux et résilient, je m'épanouis dans les environnements rythmés et valorise l'esprit d'équipe, l'inclusion et le dépassement de soi. Je souhaite m'investir pleinement comme ambassadeur de votre marque afin de délivrer une expérience client mémorable et contribuer aux objectifs commerciaux du magasin.</textarea>
+            <textarea id="input-cv-profile" oninput="syncCV('profile', this.value)">Étudiant en Master 1 à SUPINFO Lyon (Bac+5 en Informatique) et titulaire d'une Licence en Génie Logiciel avec un Baccalauréat Scientifique, je propose des cours de soutien scolaire et d'aide aux devoirs personnalisés pour élèves de collège et de lycée. Passionné par la transmission des savoirs, je m'appuie sur une démarche méthodique : diagnostic des lacunes, explication pas à pas des cours, exercices progressifs et techniques d'apprentissage concrètes pour redonner confiance et autonomie à l'élève. Patient, rigoureux et attentif, je veille à instaurer un climat d'échange bienveillant propice à la réussite et à l'obtention de résultats mesurables.</textarea>
           </div>
         </div>
 
@@ -874,8 +890,8 @@ template = """<!DOCTYPE html>
           <div class="sidebar-section" id="sb-dispo-sec">
             <div class="sidebar-title">Disponibilités</div>
             <div class="sidebar-item" id="sb-dispo-item" contenteditable="true">
-              <strong>Vente & Relation Client</strong>
-              Disponible immédiatement · Soirées, week-ends, 35H ou temps partiel
+              <strong>Tutorat & Cours Particuliers</strong>
+              Soirées en semaine, mercredis après-midi, week-ends et vacances scolaires
             </div>
           </div>
 
@@ -888,32 +904,32 @@ template = """<!DOCTYPE html>
             </div>
             <div class="sidebar-item">
               <strong>Anglais</strong>
-              Niveau B1/B2 — accueil et conseil d'une clientèle internationale
+              Niveau B1/B2 — pratique courante
             </div>
           </div>
 
           <!-- COMPÉTENCES / ATOUTS SIDEBAR -->
           <div class="sidebar-section" id="sidebar-skills">
-            <div class="sidebar-title" id="sb-skills-title">Atouts & Savoir-Être</div>
+            <div class="sidebar-title" id="sb-skills-title">Atouts Pédagogiques</div>
             <div class="sidebar-item" id="sb-skill-1" contenteditable="true">
-              <strong>Sens du Service & Conseil</strong>
-              Accueil chaleureux, écoute active, découverte des besoins et personnalisation
+              <strong>Patience & Écoute Active</strong>
+              Capacité à débloquer les difficultés sans jugement et redonner confiance
             </div>
             <div class="sidebar-item" id="sb-skill-2" contenteditable="true">
-              <strong>Performance & KPIs Retail</strong>
-              Sensibilisation aux objectifs : panier moyen, taux de transformation, fidélisation
+              <strong>Pédagogie Adaptative</strong>
+              Explications imagées et vulgarisation des concepts abstraits
             </div>
             <div class="sidebar-item" id="sb-skill-3" contenteditable="true">
-              <strong>Dynamisme & Esprit d'Équipe</strong>
-              Entraide permanente, optimisme, curiosité et respect de la diversité & inclusion
+              <strong>Suivi & Communication</strong>
+              Bilans réguliers avec les parents et fixation d'objectifs hebdomadaires
             </div>
             <div class="sidebar-item" id="sb-skill-4" contenteditable="true">
-              <strong>Gestion du Rythme & Affluence</strong>
-              Sang-froid en pic d'activité, polyvalence caisse, conseil et réassort
+              <strong>Rigueur Scientifique</strong>
+              Culture des mathématiques, logique algorithmique et sciences physiques
             </div>
             <div class="sidebar-item" id="sb-skill-5" contenteditable="true">
-              <strong>Rigueur & Tenue du Magasin</strong>
-              Encaissement exact, respect du merchandising et tenue irréprochable des zones
+              <strong>Méthodologie d'Examen</strong>
+              Préparation au Brevet des collèges et épreuves du Baccalauréat
             </div>
           </div>
 
@@ -921,19 +937,19 @@ template = """<!DOCTYPE html>
           <div class="sidebar-section" id="sidebar-qualities">
             <div class="sidebar-title">Qualités</div>
             <ul class="sidebar-list" id="sb-qualities-list">
-              <li contenteditable="true">Sourire, enthousiasme et relationnel naturel</li>
-              <li contenteditable="true">Ambassadeur de marque engagé et proactif</li>
-              <li contenteditable="true">Sens du détail et exigence d'excellence</li>
-              <li contenteditable="true">Ponctualité, résilience et esprit d'apprentissage</li>
+              <li contenteditable="true">Bienveillance, calme et clarté d'élocution</li>
+              <li contenteditable="true">Rigueur scientifique et esprit d'analyse</li>
+              <li contenteditable="true">Ponctualité exemplaire et assiduité</li>
+              <li contenteditable="true">Transmission du goût de l'effort</li>
             </ul>
           </div>
 
           <!-- CENTRES D'INTÉRÊT -->
           <div class="sidebar-section" id="sidebar-interests">
             <div class="sidebar-title">Centres d'intérêt</div>
-            <div class="sidebar-item compact" id="sb-int-1" contenteditable="true">Sport, Football & Esprit d'équipe</div>
-            <div class="sidebar-item compact" id="sb-int-2" contenteditable="true">Mode, Lifestyle & Tendances</div>
-            <div class="sidebar-item compact" id="sb-int-3" contenteditable="true">Nouvelles technologies & Innovation</div>
+            <div class="sidebar-item compact" id="sb-int-1" contenteditable="true">Jeux de logique & Algorithmes</div>
+            <div class="sidebar-item compact" id="sb-int-2" contenteditable="true">Football & Esprit d'équipe</div>
+            <div class="sidebar-item compact" id="sb-int-3" contenteditable="true">Lecture & Vulgarisation scientifique</div>
           </div>
         </aside>
 
@@ -942,84 +958,29 @@ template = """<!DOCTYPE html>
           <!-- HEADER -->
           <header class="cv-header">
             <h1 contenteditable="true">Rodrigue HESSOU</h1>
-            <div class="subtitle" id="cv-subtitle" contenteditable="true">Vendeur Polyvalent — adidas (CDI 35H - Lyon Part Dieu)</div>
+            <div class="subtitle" id="cv-subtitle" contenteditable="true">Professeur Particulier & Tuteur de Soutien Scolaire — Maths & Sciences</div>
           </header>
 
           <!-- PROFIL -->
           <section class="main-section">
-            <div class="main-section-title" id="sec-profile-title">Profil Professionnel</div>
+            <div class="main-section-title" id="sec-profile-title">Profil Pédagogique</div>
             <p class="profile-text" id="cv-profile-p" contenteditable="true">
-              Étudiant en <strong>Master 1 à SUPINFO Lyon</strong>, doté d'une excellente énergie relationnelle et passionné par le contact humain et le commerce de détail. Fort d'expériences concrètes dans le commerce en magasin, la logistique de distribution et la prospection terrain, je maîtrise l'ensemble des étapes de l'acte de vente : accueil personnalisé, identification fine des attentes, conseil produit sur-mesure, gestion fluide de la caisse et fidélisation. Dynamique, curieux et résilient, je m'épanouis dans les environnements rythmés et valorise l'esprit d'équipe, l'inclusion et le dépassement de soi. Je souhaite m'investir pleinement comme ambassadeur de votre marque afin de délivrer une expérience client mémorable et contribuer aux objectifs commerciaux du magasin.
+              Étudiant en <strong>Master 1 à SUPINFO Lyon (Bac+5 en Informatique)</strong> et titulaire d'une <strong>Licence en Génie Logiciel</strong> avec un Baccalauréat Scientifique, je propose des cours de soutien scolaire et d'aide aux devoirs personnalisés pour élèves de collège et de lycée. Passionné par la transmission des savoirs, je m'appuie sur une démarche méthodique : diagnostic des lacunes, explication pas à pas des cours, exercices progressifs et techniques d'apprentissage concrètes pour redonner confiance et autonomie à l'élève. Patient, rigoureux et attentif, je veille à instaurer un climat d'échange bienveillant propice à la réussite et à l'obtention de résultats mesurables.
             </p>
           </section>
 
           <!-- EXPERIENCES -->
           <section class="main-section">
-            <div class="main-section-title">Expériences Professionnelles</div>
+            <div class="main-section-title">Expériences de Transmission & Encadrement</div>
 
             <div id="experiences-container">
-              <!-- EXP 1: CHAMPION (OU TECH) -->
-              <div class="experience-item" id="exp-1">
-                <div class="item-title" id="exp-1-title" contenteditable="true">Employé Commercial & Polyvalent — Vente & Relation Client</div>
-                <div class="item-subrow">
-                  <span id="exp-1-comp" contenteditable="true">Supermarché Champion</span>
-                  <span id="exp-1-date" contenteditable="true">2024</span>
-                </div>
-                <ul class="item-bullets" id="exp-1-bullets">
-                  <li contenteditable="true"><strong>Accueil & Conseil Client :</strong> Accueil personnalisé des visiteurs, écoute attentive des besoins, orientation immédiate et valorisation des offres du magasin.</li>
-                  <li contenteditable="true"><strong>Encaissement & Gestion d'Affluence :</strong> Gestion rapide et rigoureuse des encaissements lors des pics de forte affluence ; fidélisation et gestion bienveillante des réclamations.</li>
-                  <li contenteditable="true"><strong>Tenue de Rayon & Merchandising :</strong> Réassort quotidien, respect des standards de facing et de propreté, contrôle minutieux des stocks et des dates de péremption.</li>
-                  <li contenteditable="true"><strong>Travail d'Équipe & Polyvalence :</strong> Entraide active avec l'équipe pour garantir la fluidité opérationnelle et la satisfaction totale de chaque client.</li>
-                </ul>
-              </div>
-
-              <!-- EXP 2: PREPARATEUR LOGISTIQUE -->
-              <div class="experience-item" id="exp-2">
-                <div class="item-title" id="exp-2-title" contenteditable="true">Préparateur de Commandes & Relation Client</div>
-                <div class="item-subrow">
-                  <span id="exp-2-comp" contenteditable="true">Plateforme Logistique & Distribution</span>
-                  <span id="exp-2-date" contenteditable="true">2025</span>
-                </div>
-                <ul class="item-bullets" id="exp-2-bullets">
-                  <li contenteditable="true"><strong>Rigueur Opérationnelle :</strong> Réception, contrôle conformité, préparation minutieuse et emballage des commandes selon les normes d'exigence et de sécurité.</li>
-                  <li contenteditable="true"><strong>Gestion des Flux & Cadence :</strong> Coordination des flux de marchandises et respect strict des délais de livraison dans un environnement à haut rythme.</li>
-                  <li contenteditable="true"><strong>Remise Client & Closing :</strong> Remise soignée des commandes aux clients, écoute des retours, résolution proactive des imprévus et fidélisation.</li>
-                </ul>
-              </div>
-
-              <!-- EXP 3: NATAAN GROUP -->
-              <div class="experience-item" id="exp-3">
-                <div class="item-title" id="exp-3-title" contenteditable="true">Chargé de Prospection Commerciale & Déploiement POS</div>
-                <div class="item-subrow">
-                  <span id="exp-3-comp" contenteditable="true">Nataan Group (ESN) — Lomé, Togo</span>
-                  <span id="exp-3-date" contenteditable="true">Juil. 2026 – Sept. 2026</span>
-                </div>
-                <ul class="item-bullets" id="exp-3-bullets">
-                  <li contenteditable="true"><strong>Développement Commercial B2B :</strong> Prospection directe et qualification approfondie de <strong>100 commerçants et professionnels</strong> de proximité ; démonstration de valeur et closing d'offres.</li>
-                  <li contenteditable="true"><strong>Solution d'Encaissement & Retail :</strong> Déploiement de l'application de caisse/point de vente <em>BoutiK</em> ; accompagnement des commerçants sur la gestion des encaissements et le suivi des stocks.</li>
-                  <li contenteditable="true"><strong>Sensibilisation aux KPIs Retail :</strong> Analyse des leviers de vente (panier moyen, fréquence d'achat, rapidité d'encaissement) et optimisation des parcours clients.</li>
-                  <li contenteditable="true"><strong>Service & Qualité :</strong> Écoute active des retours utilisateurs (103 tests fonctionnels exécutés) pour assurer une satisfaction et une adoption optimales.</li>
-                </ul>
-              </div>
-
-              <!-- EXP 4: DAROLLO / ATANYS -->
-              <div class="experience-item" id="exp-4">
-                <div class="item-title" id="exp-4-title" contenteditable="true">Conseiller Utilisateurs & Analyse des Besoins</div>
-                <div class="item-subrow">
-                  <span id="exp-4-comp" contenteditable="true">Darollo Technologies & ATANYS</span>
-                  <span id="exp-4-date" contenteditable="true">2025</span>
-                </div>
-                <ul class="item-bullets" id="exp-4-bullets">
-                  <li contenteditable="true">Écoute empathique, diagnostic précis des attentes utilisateurs et formulation de recommandations adaptées.</li>
-                  <li contenteditable="true">Sens de la pédagogie et démonstration claire pour valoriser les bénéfices concrets des produits et services.</li>
-                </ul>
-              </div>
+              <!-- CONTENU DYNAMIQUE DES EXPERIENCES -->
             </div>
           </section>
 
           <!-- FORMATION -->
           <section class="main-section">
-            <div class="main-section-title">Formation</div>
+            <div class="main-section-title">Formation & Parcours Académique</div>
             <div class="formation-list">
               <div class="formation-item">
                 <div class="formation-title" contenteditable="true">Master 1 en Informatique (Cursus Bac+5)</div>
@@ -1030,7 +991,7 @@ template = """<!DOCTYPE html>
               </div>
 
               <div class="formation-item">
-                <div class="formation-title" contenteditable="true">Licence en Génie Logiciel</div>
+                <div class="formation-title" contenteditable="true">Licence en Génie Logiciel (Mention Bien)</div>
                 <div class="formation-subrow">
                   <span contenteditable="true">IAI-TOGO (Institut Africain d'Informatique)</span>
                   <span contenteditable="true">2022 – 2025</span>
@@ -1038,7 +999,7 @@ template = """<!DOCTYPE html>
               </div>
 
               <div class="formation-item">
-                <div class="formation-title" contenteditable="true">Baccalauréat (BAC 2)</div>
+                <div class="formation-title" contenteditable="true">Baccalauréat Scientifique (BAC 2)</div>
                 <div class="formation-subrow">
                   <span contenteditable="true">LPL Le Rossignol</span>
                   <span contenteditable="true">2021 – 2022</span>
@@ -1049,22 +1010,22 @@ template = """<!DOCTYPE html>
 
           <!-- MOTS CLES -->
           <section class="main-section">
-            <div class="main-section-title" id="sec-keywords-title">Compétences Clés & Savoir-Faire Retail</div>
+            <div class="main-section-title" id="sec-keywords-title">Approche Pédagogique & Compétences</div>
             <div class="keywords-block" id="cv-keywords">
               <div class="keyword-line" id="kw-line-1" contenteditable="true">
-                <strong>Vente Conseil & Relation Client :</strong> Accueil haut de gamme, découverte des besoins, argumentation personnalisée, vente complémentaire, fidélisation
+                <strong>Mathématiques & Logique :</strong> Algèbre, calcul littéral, géométrie, trigonométrie, analyse, probabilités, raisonnement déductif
               </div>
               <div class="keyword-line" id="kw-line-2" contenteditable="true">
-                <strong>Opérations en Magasin :</strong> Tenue de caisse rapide & exacte, réassort, facing merchandising, gestion des livraisons, inventaire et réapprovisionnement
+                <strong>Numérique & Sciences :</strong> Initiation à la programmation (Python, Scratch, Web), NSI, sciences physiques collège, pensée algorithmique
               </div>
               <div class="keyword-line" id="kw-line-3" contenteditable="true">
-                <strong>Performance & Indicateurs Retail :</strong> Sensibilité aux KPI (panier moyen, taux de transformation, indice de vente), contribution aux objectifs d'équipe
+                <strong>Méthode de Travail :</strong> Organisation des devoirs, fiches de révision, gestion du stress aux examens, autonomie de l'élève
               </div>
               <div class="keyword-line" id="kw-line-4" contenteditable="true">
-                <strong>Esprit d'Équipe & Culture Retail :</strong> Collaboration active, communication constructive, respect de la diversité, dynamisme et culture du sport/lifestyle
+                <strong>Savoir-Être Pédagogique :</strong> Patience infinie, empathie, communication positive, pédagogie différenciée, écoute attentive des besoins
               </div>
               <div class="keyword-line" id="kw-line-5" contenteditable="true">
-                <strong>Flexibilité & Engagement :</strong> Disponibilité soirs, week-ends et temps plein/partiel, gestion efficace du stress en forte affluence, ponctualité exemplaire
+                <strong>Organisation & Flexibilité :</strong> Déplacements sur Lyon et agglomération (Villeurbanne, Part-Dieu, etc.) ou cours en visioconférence
               </div>
             </div>
           </section>
@@ -1081,15 +1042,326 @@ template = """<!DOCTYPE html>
   <script>
     const defaultPhoto = "data:image/jpeg;base64,__PHOTO_B64__";
 
+    // EXP TEMPLATES
+    const tutoratExpHTML = `
+      <div class="experience-item" id="exp-1">
+        <div class="item-title" id="exp-1-title" contenteditable="true">Tuteur Pédagogique & Accompagnement Individuel</div>
+        <div class="item-subrow">
+          <span id="exp-1-comp" contenteditable="true">Cours Particuliers & Tutorat Académique</span>
+          <span id="exp-1-date" contenteditable="true">2024 – 2026</span>
+        </div>
+        <ul class="item-bullets" id="exp-1-bullets">
+          <li contenteditable="true"><strong>Accompagnement en Mathématiques & Sciences :</strong> Suivi individuel d'élèves de la 6e à la Terminale ; consolidation des bases, révision des théorèmes et résolution méthodique d'exercices types.</li>
+          <li contenteditable="true"><strong>Méthodologie & Organisation :</strong> Apprentissage de la prise de notes efficace, gestion du temps lors des devoirs sur table, fiches de synthèse et techniques de mémorisation.</li>
+          <li contenteditable="true"><strong>Motivation & Confiance :</strong> Désamorçage des blocages psychologiques face aux matières scientifiques par une pédagogie de l'encouragement et des exemples concrets.</li>
+          <li contenteditable="true"><strong>Relation Parents :</strong> Restitution transparente des progrès de l'élève après chaque séance et ajustement du plan de travail.</li>
+        </ul>
+      </div>
+
+      <div class="experience-item" id="exp-2">
+        <div class="item-title" id="exp-2-title" contenteditable="true">Formateur & Chargé d'Onboarding Numérique</div>
+        <div class="item-subrow">
+          <span id="exp-2-comp" contenteditable="true">Nataan Group (ESN)</span>
+          <span id="exp-2-date" contenteditable="true">Juil. 2026 – Sept. 2026</span>
+        </div>
+        <ul class="item-bullets" id="exp-2-bullets">
+          <li contenteditable="true"><strong>Pédagogie & Formation Utilisateurs :</strong> Formation et accompagnement personnalisé de <strong>100 professionnels</strong> à la prise en main d'outils numériques ; explication pas à pas adaptée au niveau de chaque apprenant.</li>
+          <li contenteditable="true"><strong>Vulgarisation Technique :</strong> Traduction de fonctionnalités complexes en concepts simples, accessibles et intuitifs pour des publics non spécialistes.</li>
+        </ul>
+      </div>
+
+      <div class="experience-item" id="exp-3">
+        <div class="item-title" id="exp-3-title" contenteditable="true">Animateur d'Ateliers & Démonstrations Applicatives</div>
+        <div class="item-subrow">
+          <span id="exp-3-comp" contenteditable="true">Darollo Technologies & ATANYS</span>
+          <span id="exp-3-date" contenteditable="true">2025</span>
+        </div>
+        <ul class="item-bullets" id="exp-3-bullets">
+          <li contenteditable="true">Animation de sessions de démonstration auprès d'utilisateurs finaux ; écoute active, identification immédiate des incompréhensions et reformulation claire.</li>
+          <li contenteditable="true">Développement d'une grande patience et d'une posture d'écoute bienveillante et constructive.</li>
+        </ul>
+      </div>
+
+      <div class="experience-item" id="exp-4">
+        <div class="item-title" id="exp-4-title" contenteditable="true">Employé Polyvalent — Sens du Contact & Rigueur</div>
+        <div class="item-subrow">
+          <span id="exp-4-comp" contenteditable="true">Supermarché Champion</span>
+          <span id="exp-4-date" contenteditable="true">2024</span>
+        </div>
+        <ul class="item-bullets" id="exp-4-bullets">
+          <li contenteditable="true">Écoute, sens de l'accueil, ponctualité exemplaire et rigueur dans l'organisation quotidienne.</li>
+        </ul>
+      </div>
+    `;
+
+    const macdoExpHTML = `
+      <div class="experience-item" id="exp-1">
+        <div class="item-title" id="exp-1-title" contenteditable="true">Employé Commercial & Polyvalent — Caisse & Gestion des Flux</div>
+        <div class="item-subrow">
+          <span id="exp-1-comp" contenteditable="true">Supermarché Champion</span>
+          <span id="exp-1-date" contenteditable="true">2024</span>
+        </div>
+        <ul class="item-bullets" id="exp-1-bullets">
+          <li contenteditable="true"><strong>Encaissement en Pic de Rush :</strong> Enregistrement rapide et sans erreur des commandes en période de forte affluence ; tenue de caisse exacte et sens du sourire.</li>
+          <li contenteditable="true"><strong>Accueil & Orientation Client :</strong> Prise en charge bienveillante, écoute active des demandes et gestion fluide des réclamations avec calme et courtoisie.</li>
+          <li contenteditable="true"><strong>Entretien & Propreté :</strong> Maintien constant de la propreté des postes de travail et de l'espace de vente dans le respect des règles d'hygiène.</li>
+          <li contenteditable="true"><strong>Travail d'Équipe & Entraide :</strong> Coordination avec les équipiers pour fluidifier le passage des clients et limiter le temps d'attente.</li>
+        </ul>
+      </div>
+
+      <div class="experience-item" id="exp-2">
+        <div class="item-title" id="exp-2-title" contenteditable="true">Préparateur de Commandes — Cadence & Rigueur</div>
+        <div class="item-subrow">
+          <span id="exp-2-comp" contenteditable="true">Plateforme Logistique & Distribution</span>
+          <span id="exp-2-date" contenteditable="true">2025</span>
+        </div>
+        <ul class="item-bullets" id="exp-2-bullets">
+          <li contenteditable="true"><strong>Respect des Cadences :</strong> Préparation et conditionnement minutieux de commandes à rythme soutenu tout en maintenant un niveau de qualité constant.</li>
+          <li contenteditable="true"><strong>Hygiène & Sécurité :</strong> Application stricte des consignes de sécurité, de rangement et de manipulation des produits.</li>
+          <li contenteditable="true"><strong>Endurance & Réactivité :</strong> Aptitude physique au travail dynamique debout et esprit de cohésion collective.</li>
+        </ul>
+      </div>
+
+      <div class="experience-item" id="exp-3">
+        <div class="item-title" id="exp-3-title" contenteditable="true">Chargé de Prospection Commerciale & Déploiement POS</div>
+        <div class="item-subrow">
+          <span id="exp-3-comp" contenteditable="true">Nataan Group (ESN)</span>
+          <span id="exp-3-date" contenteditable="true">Juil. 2026 – Sept. 2026</span>
+        </div>
+        <ul class="item-bullets" id="exp-3-bullets">
+          <li contenteditable="true"><strong>Relationnel Client Terrain :</strong> Contact direct avec <strong>100 commerçants et restaurateurs</strong> ; écoute de leurs besoins et présentation de solutions de caisse.</li>
+          <li contenteditable="true"><strong>Rigueur Opérationnelle :</strong> Sens du détail, organisation des priorités et fiabilité dans l'exécution des missions.</li>
+        </ul>
+      </div>
+
+      <div class="experience-item" id="exp-4">
+        <div class="item-title" id="exp-4-title" contenteditable="true">Conseiller Utilisateurs & Sens du Service</div>
+        <div class="item-subrow">
+          <span id="exp-4-comp" contenteditable="true">Darollo Technologies & ATANYS</span>
+          <span id="exp-4-date" contenteditable="true">2025</span>
+        </div>
+        <ul class="item-bullets" id="exp-4-bullets">
+          <li contenteditable="true">Écoute attentive, sens du service et volonté constante de satisfaire l'utilisateur final.</li>
+        </ul>
+      </div>
+    `;
+
+    const retailExpHTML = `
+      <div class="experience-item" id="exp-1">
+        <div class="item-title" id="exp-1-title" contenteditable="true">Employé Commercial & Polyvalent — Vente & Relation Client</div>
+        <div class="item-subrow">
+          <span id="exp-1-comp" contenteditable="true">Supermarché Champion</span>
+          <span id="exp-1-date" contenteditable="true">2024</span>
+        </div>
+        <ul class="item-bullets" id="exp-1-bullets">
+          <li contenteditable="true"><strong>Accueil & Conseil Client :</strong> Accueil personnalisé des visiteurs, écoute attentive des besoins, orientation immédiate et valorisation des offres du magasin.</li>
+          <li contenteditable="true"><strong>Encaissement & Gestion d'Affluence :</strong> Gestion rapide et rigoureuse des encaissements lors des pics de forte affluence ; fidélisation et gestion bienveillante des réclamations.</li>
+          <li contenteditable="true"><strong>Tenue de Rayon & Merchandising :</strong> Réassort quotidien, respect des standards de facing et de propreté, contrôle minutieux des stocks et des dates de péremption.</li>
+          <li contenteditable="true"><strong>Travail d'Équipe & Polyvalence :</strong> Entraide active avec l'équipe pour garantir la fluidité opérationnelle et la satisfaction totale de chaque client.</li>
+        </ul>
+      </div>
+
+      <div class="experience-item" id="exp-2">
+        <div class="item-title" id="exp-2-title" contenteditable="true">Préparateur de Commandes & Relation Client</div>
+        <div class="item-subrow">
+          <span id="exp-2-comp" contenteditable="true">Plateforme Logistique & Distribution</span>
+          <span id="exp-2-date" contenteditable="true">2025</span>
+        </div>
+        <ul class="item-bullets" id="exp-2-bullets">
+          <li contenteditable="true"><strong>Rigueur Opérationnelle :</strong> Réception, contrôle conformité, préparation minutieuse et emballage des commandes selon les normes d'exigence et de sécurité.</li>
+          <li contenteditable="true"><strong>Gestion des Flux & Cadence :</strong> Coordination des flux de marchandises et respect strict des délais de livraison dans un environnement à haut rythme.</li>
+          <li contenteditable="true"><strong>Remise Client & Closing :</strong> Remise soignée des commandes aux clients, écoute des retours, résolution proactive des imprévus et fidélisation.</li>
+        </ul>
+      </div>
+
+      <div class="experience-item" id="exp-3">
+        <div class="item-title" id="exp-3-title" contenteditable="true">Chargé de Prospection Commerciale & Déploiement POS</div>
+        <div class="item-subrow">
+          <span id="exp-3-comp" contenteditable="true">Nataan Group (ESN) — Lomé, Togo</span>
+          <span id="exp-3-date" contenteditable="true">Juil. 2026 – Sept. 2026</span>
+        </div>
+        <ul class="item-bullets" id="exp-3-bullets">
+          <li contenteditable="true"><strong>Développement Commercial B2B :</strong> Prospection directe et qualification approfondie de <strong>100 commerçants et professionnels</strong> de proximité ; démonstration de valeur et closing d'offres.</li>
+          <li contenteditable="true"><strong>Solution d'Encaissement & Retail :</strong> Déploiement de l'application de caisse/point de vente <em>BoutiK</em> ; accompagnement des commerçants sur la gestion des encaissements et le suivi des stocks.</li>
+          <li contenteditable="true"><strong>Sensibilisation aux KPIs Retail :</strong> Analyse des leviers de vente (panier moyen, fréquence d'achat, rapidité d'encaissement) et optimisation des parcours clients.</li>
+          <li contenteditable="true"><strong>Service & Qualité :</strong> Écoute active des retours utilisateurs (103 tests fonctionnels exécutés) pour assurer une satisfaction et une adoption optimales.</li>
+        </ul>
+      </div>
+
+      <div class="experience-item" id="exp-4">
+        <div class="item-title" id="exp-4-title" contenteditable="true">Conseiller Utilisateurs & Analyse des Besoins</div>
+        <div class="item-subrow">
+          <span id="exp-4-comp" contenteditable="true">Darollo Technologies & ATANYS</span>
+          <span id="exp-4-date" contenteditable="true">2025</span>
+        </div>
+        <ul class="item-bullets" id="exp-4-bullets">
+          <li contenteditable="true">Écoute empathique, diagnostic précis des attentes utilisateurs et formulation de recommandations adaptées.</li>
+          <li contenteditable="true">Sens de la pédagogie et démonstration claire pour valoriser les bénéfices concrets des produits et services.</li>
+        </ul>
+      </div>
+    `;
+
+    const techExpHTML = `
+      <div class="experience-item" id="exp-1">
+        <div class="item-title" id="exp-1-title" contenteditable="true">Stagiaire — Développement Mobile, QA & Business Development</div>
+        <div class="item-subrow">
+          <span id="exp-1-comp" contenteditable="true">Nataan Group (ESN) — Lomé, Togo</span>
+          <span id="exp-1-date" contenteditable="true">Juil. 2026 – Sept. 2026</span>
+        </div>
+        <ul class="item-bullets" id="exp-1-bullets">
+          <li contenteditable="true"><strong>Application BoutiK :</strong> Co-développement d'une application mobile de gestion de boutique / POS sous <strong>Flutter</strong>, connectée à <strong>Firebase</strong> et intégrant la passerelle de paiement <strong>FedaPay</strong>.</li>
+          <li contenteditable="true"><strong>Portage & Release iOS :</strong> Portage iOS, mise en conformité avec les guidelines Apple, gestion de l'authentification OTP, push notifications <strong>APNs</strong> et publication en production via <strong>App Store Connect</strong>.</li>
+          <li contenteditable="true"><strong>Assurance Qualité & Web :</strong> Conduite de la recette fonctionnelle complète d'un site institutionnel (exécution de <strong>103 cas de test</strong>), audit ergonomique UI/UX et refonte web.</li>
+          <li contenteditable="true"><strong>Business Development & Données :</strong> Prospection commerciale B2B qualifiée (<strong>100 prospects ciblés</strong>) et réalisation de prestations d'archivage client.</li>
+        </ul>
+      </div>
+
+      <div class="experience-item" id="exp-2">
+        <div class="item-title" id="exp-2-title" contenteditable="true">Stagiaire en Développement Web</div>
+        <div class="item-subrow">
+          <span id="exp-2-comp" contenteditable="true">ATANYS — Lomé, Togo</span>
+          <span id="exp-2-date" contenteditable="true">Sept. 2025 – Déc. 2025</span>
+        </div>
+        <ul class="item-bullets" id="exp-2-bullets">
+          <li contenteditable="true">Conception et développement d'une plateforme web de gestion et de signalement des objets perdus et retrouvés.</li>
+          <li contenteditable="true">Participation à l'ensemble du cycle de développement : analyse des besoins, modélisation de la base de données relationnelle (MySQL), développement back/front et tests.</li>
+        </ul>
+      </div>
+
+      <div class="experience-item" id="exp-3">
+        <div class="item-title" id="exp-3-title" contenteditable="true">Stagiaire en Développement d'Applications</div>
+        <div class="item-subrow">
+          <span id="exp-3-comp" contenteditable="true">Darollo Technologies Corporation — Lomé, Togo</span>
+          <span id="exp-3-date" contenteditable="true">Juil. 2025 – Août 2025</span>
+        </div>
+        <ul class="item-bullets" id="exp-3-bullets">
+          <li contenteditable="true">Développement d'une application mobile Flutter dédiée aux tailleurs pour la gestion de leur activité (prise de mesures, suivi des commandes, notifications).</li>
+          <li contenteditable="true">Implémentation du fonctionnement hors ligne avec synchronisation automatique des données dès rétablissement de la connexion.</li>
+        </ul>
+      </div>
+
+      <div class="experience-item" id="exp-4">
+        <div class="item-title" id="exp-4-title" contenteditable="true">Stagiaire en Gestion de Données</div>
+        <div class="item-subrow">
+          <span id="exp-4-comp" contenteditable="true">ONG-CRISTO — Lomé, Togo</span>
+          <span id="exp-4-date" contenteditable="true">Juil. 2024 – Sept. 2024</span>
+        </div>
+        <ul class="item-bullets" id="exp-4-bullets">
+          <li contenteditable="true">Mise en place d'un système de gestion automatisée de la collecte d'informations pour un cabinet de recherche.</li>
+          <li contenteditable="true">Structuration et fiabilisation des données collectées sur le terrain.</li>
+        </ul>
+      </div>
+    `;
+
     // PRESETS FOR CV
     const cvPresets = {
+      soutien_scolaire: {
+        brand: "Acadomia / Complétude / Particuliers",
+        roleRef: "Tutorat Lyon",
+        jobRole: "Professeur Particulier & Tuteur Soutien Scolaire",
+        title: "Professeur Particulier & Tuteur de Soutien Scolaire — Maths & Sciences",
+        profile: "Étudiant en <strong>Master 1 à SUPINFO Lyon (Bac+5 en Informatique)</strong> et titulaire d'une <strong>Licence en Génie Logiciel</strong> avec un Baccalauréat Scientifique, je propose des cours de soutien scolaire et d'aide aux devoirs personnalisés pour élèves de collège et de lycée. Passionné par la transmission des savoirs, je m'appuie sur une démarche méthodique : diagnostic des lacunes, explication pas à pas des cours, exercices progressifs et techniques d'apprentissage concrètes pour redonner confiance et autonomie à l'élève. Patient, rigoureux et attentif, je veille à instaurer un climat d'échange bienveillant propice à la réussite et à l'obtention de résultats mesurables.",
+        expType: "tutorat",
+        dispo: "<strong>Tutorat & Soutien Scolaire</strong><br>Soirées semaine, mercredis après-midi, week-ends et vacances scolaires",
+        skillsTitle: "Atouts Pédagogiques",
+        skills: [
+          { strong: "Patience & Écoute Active", text: "Capacité à débloquer les difficultés sans jugement et redonner confiance" },
+          { strong: "Pédagogie Adaptative", text: "Explications imagées et vulgarisation des concepts abstraits" },
+          { strong: "Suivi & Communication", text: "Bilans réguliers avec les parents et fixation d'objectifs hebdomadaires" },
+          { strong: "Rigueur Scientifique", text: "Culture des mathématiques, logique algorithmique et sciences physiques" },
+          { strong: "Méthodologie d'Examen", text: "Préparation au Brevet des collèges et épreuves du Baccalauréat" }
+        ],
+        interests: ["Jeux de logique & Algorithmes", "Football & Esprit d'équipe", "Lecture & Vulgarisation scientifique"],
+        keywordsTitle: "Approche Pédagogique & Compétences",
+        kw1: "<strong>Mathématiques & Logique :</strong> Algèbre, calcul littéral, géométrie, trigonométrie, analyse, probabilités, raisonnement déductif",
+        kw2: "<strong>Numérique & Sciences :</strong> Initiation à la programmation (Python, Scratch, Web), NSI, sciences physiques collège, pensée algorithmique",
+        kw3: "<strong>Méthode de Travail :</strong> Organisation des devoirs, fiches de révision, gestion du stress aux examens, autonomie de l'élève",
+        kw4: "<strong>Savoir-Être Pédagogique :</strong> Patience infinie, empathie, communication positive, pédagogie différenciée, écoute attentive des besoins",
+        kw5: "<strong>Organisation & Flexibilité :</strong> Déplacements sur Lyon et agglomération (Villeurbanne, Part-Dieu, etc.) ou cours en visioconférence"
+      },
+
+      macdo: {
+        brand: "McDonald's",
+        roleRef: "Job Étudiant / Temps Partiel",
+        jobRole: "Équipier Polyvalent de Restauration Rapide",
+        title: "Équipier Polyvalent de Restauration Rapide — Job Étudiant (McDonald's Lyon)",
+        profile: "Étudiant en <strong>Master 1 à SUPINFO Lyon</strong>, dynamique, rigoureux et résistant au stress, je recherche un poste d'<strong>Équipier Polyvalent de Restauration Rapide</strong>. Fort d'une expérience concrète du contact client et de la gestion de caisse en période de forte affluence (Supermarché Champion en 2024) ainsi que de la logistique à cadence soutenue (préparation de commandes en 2025), j'ai développé une grande réactivité et le goût du travail en équipe rythmée. Rigoureux sur les normes d'hygiène (HACCP) et doté d'un relationnel chaleureux, je souhaite m'investir pleinement au sein de votre restaurant afin d'offrir un service rapide, impeccable et convivial à chaque client.",
+        expType: "macdo",
+        dispo: "<strong>Temps Partiel Restauration</strong><br>Soirées (rushs & fermetures), week-ends complets, jours fériés et vacances",
+        skillsTitle: "Atouts Opérationnels",
+        skills: [
+          { strong: "Gestion du Rythme & Rushs", text: "Sang-froid en pic d'affluence, rapidité d'exécution et dynamisme continu" },
+          { strong: "Hygiène & Sécurité (HACCP)", text: "Respect scrupuleux des normes sanitaires, propreté irréprochable et traçabilité" },
+          { strong: "Polyvalence Salle / Cuisine / Drive", text: "Assemblage sandwichs, friture, caisse, accueil bornes et propreté salle" },
+          { strong: "Esprit d'Équipe & Communication", text: "Coordination rapide, solidarité entre équipiers et sourire communicatif" },
+          { strong: "Rigueur & Exactitude", text: "Tenue de caisse sans écart et respect scrupuleux des fiches recettes" }
+        ],
+        interests: ["Football & Esprit d'équipe", "Course à pied & Endurance", "Cuisine & Gastronomie"],
+        keywordsTitle: "Compétences Clés Restauration Rapide",
+        kw1: "<strong>Service Client & Comptoir :</strong> Accueil chaleureux, prise de commande aux bornes/comptoir, encaissement rapide, service à table et Drive",
+        kw2: "<strong>Cuisine & Préparation :</strong> Assemblage sandwichs, cuisson/friture, garniture selon fiches techniques, respect des temps de conservation",
+        kw3: "<strong>Hygiène & Sécurité (HACCP) :</strong> Respect de la chaîne du chaud/froid, nettoyage méthodique des postes et de la salle, tri sélectif",
+        kw4: "<strong>Gestion du Rush & Collectif :</strong> Esprit d'équipe solidaire, rapidité d'exécution, gestion positive du stress, communication fluide",
+        kw5: "<strong>Disponibilité & Flexibilité :</strong> Adaptabilité immédiate aux plannings modulables (soirées, week-ends complets, fermetures)"
+      },
+
+      hote_caisse_rayon: {
+        brand: "Carrefour / Monoprix / Auchan",
+        roleRef: "Temps Partiel Étudiant",
+        jobRole: "Hôte de Caisse & Employé Commercial",
+        title: "Hôte de Caisse & Employé Commercial Polyvalent — Job Étudiant",
+        profile: "Étudiant sérieux et dynamique en <strong>Master 1 à SUPINFO Lyon</strong>, je recherche un poste d'<strong>Hôte de Caisse et Employé Commercial Polyvalent</strong>. Fort d'une expérience directe réussie au Supermarché Champion en 2024 (encaissement en pic d'affluence, réassort, facing et accueil client) et en préparation logistique en 2025, je suis immédiatement opérationnel. Ponctuel, rigoureux dans la tenue de caisse et doté d'un excellent sens du relationnel, je m'adapte avec aisance à vos flux clients et à vos contraintes de plannings (soirées et week-ends).",
+        expType: "retail",
+        dispo: "<strong>Grande Distribution & Caisse</strong><br>Soirées, samedis, dimanches matin et vacances scolaires",
+        skillsTitle: "Atouts Caisse & Magasin",
+        skills: [
+          { strong: "Rapidité & Exactitude de Caisse", text: "Saisie sans erreur, encaissements CB/espèces/chèques et fidélité" },
+          { strong: "Accueil & Sourire Client", text: "Politesse, écoute active, gestion courtoise des réclamations" },
+          { strong: "Mise en Rayon & Merchandising", text: "Réassort rapide, respect du facing, contrôle DLC et rotation stocks" },
+          { strong: "Polyvalence & Réactivité", text: "Passage fluide entre la caisse, les rayons et l'accueil magasin" },
+          { strong: "Ponctualité & Rigueur", text: "Assiduité exemplaire et respect des procédures de sécurité" }
+        ],
+        interests: ["Commerce & Relation Client", "Football & Esprit d'équipe", "Nouvelles technologies"],
+        keywordsTitle: "Compétences Clés Grande Distribution",
+        kw1: "<strong>Encaissement & Gestion de Caisse :</strong> Fluidité en forte affluence, ouverture/clôture de caisse, respect des procédures financières",
+        kw2: "<strong>Tenue de Magasin & Rayon :</strong> Réassort quotidien, facing soigné, contrôle des dates limites (DLC), étiquetage prix",
+        kw3: "<strong>Relation Clientèle :</strong> Accueil personnalisé, orientation des clients, information promotions, fidélisation",
+        kw4: "<strong>Organisation & Logistique :</strong> Déchargement des palettes, tri des marchandises, rangement en réserve",
+        kw5: "<strong>Flexibilité :</strong> Disponibilité immédiate pour contrats étudiants (soirées, fins de semaine, périodes de fêtes)"
+      },
+
+      agent_accueil: {
+        brand: "Cinéma UGC / Pathé / Événementiel",
+        roleRef: "Job Étudiant Soirs & WE",
+        jobRole: "Agent d'Accueil & de Service",
+        title: "Agent d'Accueil, de Billetterie & de Service — Job Étudiant",
+        profile: "Étudiant en <strong>Master 1 à SUPINFO Lyon</strong>, doté d'une excellente présentation et d'un sens naturel du service, je recherche un poste d'<strong>Agent d'Accueil, de Billetterie et de Service</strong> (cinémas, salons, structures culturelles ou événementielles). Fort de mes expériences au contact direct du public et de la gestion de caisse, j'accueille chaque visiteur avec courtoisie, sourire et efficacité. Dynamique, ponctuel et bilingue français/anglais, je veille au confort du public et à la bonne tenue des espaces.",
+        expType: "retail",
+        dispo: "<strong>Accueil & Événementiel</strong><br>Soirées, week-ends complets, jours fériés et vacances",
+        skillsTitle: "Atouts Accueil & Service",
+        skills: [
+          { strong: "Accueil d'Excellence & Sourire", text: "Prise en charge chaleureuse, orientation du public et renseignement" },
+          { strong: "Billetterie & Caisse Rapide", text: "Émission des tickets, vente de confiserie/snacks et encaissement" },
+          { strong: "Contrôle d'Accès & Sécurité", text: "Vérification des billets, régulation des flux et guidage des salles" },
+          { strong: "Tenue des Lieux & Propreté", text: "Entretien régulier des espaces d'accueil, salles et comptoirs" },
+          { strong: "Gestion des Imprévus", text: "Calme, diplomatie et sens de la médiation bienveillante" }
+        ],
+        interests: ["Cinéma & Culture", "Musique & Événements", "Football & Esprit d'équipe"],
+        keywordsTitle: "Compétences Clés Accueil & Billetterie",
+        kw1: "<strong>Accueil & Information :</strong> Accueil physique souriant, orientation du public, présentation de la programmation",
+        kw2: "<strong>Billetterie & Encaissement :</strong> Vente aux guichets et bornes, gestion de caisse, vente additionnelle (confiserie)",
+        kw3: "<strong>Régulation des Flux :</strong> Contrôle des accès, gestion des files d'attente lors des séances à forte affluence",
+        kw4: "<strong>Langues & Communication :</strong> Français soigné, Anglais professionnel pour visiteurs internationaux",
+        kw5: "<strong>Disponibilité :</strong> Parfaite adéquation avec les horaires de soirées, week-ends et vacances scolaires"
+      },
+
       adidas: {
         brand: "adidas",
         roleRef: "CDI 35H - Lyon Part Dieu",
         jobRole: "Vendeur Polyvalent",
         title: "Vendeur Polyvalent — adidas (CDI 35H - Lyon Part Dieu)",
         profile: "Étudiant en <strong>Master 1 à SUPINFO Lyon</strong>, doté d'une excellente énergie relationnelle et passionné par le contact humain et le commerce de détail. Fort d'expériences concrètes dans le commerce en magasin, la logistique de distribution et la prospection terrain, je maîtrise l'ensemble des étapes de l'acte de vente : accueil personnalisé, identification fine des attentes, conseil produit sur-mesure, gestion fluide de la caisse et fidélisation. Dynamique, curieux et résilient, je m'épanouis dans les environnements rythmés et valorise l'esprit d'équipe, l'inclusion et le dépassement de soi. Je souhaite m'investir pleinement comme ambassadeur de votre marque afin de délivrer une expérience client mémorable et contribuer aux objectifs commerciaux du magasin.",
-        isRetail: true,
+        expType: "retail",
         dispo: "<strong>Vente Polyvalente adidas</strong><br>Disponible immédiatement · CDI 35H · Flexibilité horaires magasin",
         skillsTitle: "Atouts & Savoir-Être adidas",
         skills: [
@@ -1114,7 +1386,7 @@ template = """<!DOCTYPE html>
         jobRole: "Spécialiste Apple Retail",
         title: "Spécialiste Apple Retail — Job Étudiant (Rôle #114438069)",
         profile: "Étudiant en <strong>Master 1 à SUPINFO Lyon</strong>, doté d'un excellent sens relationnel et passionné par les produits et l'écosystème Apple. Fort d'expériences réussies dans le commerce de proximité, la préparation logistique et la prospection B2B, je sais écouter avec bienveillance, cerner les attentes réelles de chaque personne et délivrer une expérience client humaine et personnalisée. Dynamique, curieux et rigoureux, je m'adapte avec aisance au rythme soutenu d'un espace de vente tout en gardant le sens de l'accueil. Je souhaite mettre mon enthousiasme, mon esprit d'équipe et mon sens du service au cœur de l'Apple Store pour fidéliser la clientèle et faire rayonner la marque.",
-        isRetail: true,
+        expType: "retail",
         dispo: "<strong>Job Étudiant Apple Store</strong><br>Soirées, week-ends, vacances scolaires & plannings flexibles Apple Store",
         skillsTitle: "Atouts & Savoir-Être Apple",
         skills: [
@@ -1139,7 +1411,7 @@ template = """<!DOCTYPE html>
         jobRole: "Conseiller de Vente & Vendeur Polyvalent",
         title: "Conseiller de Vente & Relation Client — Vendeur Polyvalent",
         profile: "Étudiant en <strong>Master 1 à SUPINFO Lyon</strong>, doté d'une excellente énergie relationnelle et passionné par le contact direct et l'expérience client. Fort d'expériences réussies en magasin, en logistique de distribution et en prospection commerciale, je maîtrise l'ensemble de la relation client : accueil personnalisé, écoute active, vente conseil, tenue soignée de l'espace de vente et encaissement en pic d'affluence. Polyvalent, ponctuel et motivé, je m'intègre immédiatement dans votre équipe pour atteindre vos objectifs de satisfaction et de performance commerciale.",
-        isRetail: true,
+        expType: "retail",
         dispo: "<strong>Vente & Relation Client</strong><br>Disponible immédiatement · Temps plein (35H) ou partiel · Soirs & Week-ends",
         skillsTitle: "Atouts & Savoir-Être Retail",
         skills: [
@@ -1164,7 +1436,7 @@ template = """<!DOCTYPE html>
         jobRole: "Conseiller de Vente & Beauté",
         title: "Conseiller de Vente & Expérience Client — Sephora Lyon",
         profile: "Dynamique, à l'écoute et passionné par l'univers de la beauté et de l'expérience client haut de gamme, je souhaite rejoindre l'équipe <strong>Sephora Lyon</strong>. Étudiant en <strong>Master 1 à SUPINFO Lyon</strong>, j'allie rigueur d'organisation, sens de l'accueil chaleureux et aisance relationnelle. Fort d'expériences réussies dans la vente en magasin (gestion de caisse en forte affluence, réassort soigné) et l'écoute client personnalisée, j'ai à cœur d'offrir à chaque visiteur un moment privilégié et de valoriser l'audace et l'énergie emblématiques de Sephora.",
-        isRetail: true,
+        expType: "retail",
         dispo: "<strong>Conseiller de Vente Sephora</strong><br>Disponible immédiatement · Plannings adaptables · Soirs & Week-ends",
         skillsTitle: "Atouts & Savoir-Être Sephora",
         skills: [
@@ -1189,7 +1461,7 @@ template = """<!DOCTYPE html>
         jobRole: "Conseiller de Vente & Expérience Client",
         title: "Conseiller de Vente & Expérience Client — Hermès Lyon",
         profile: "Animé par le sens du détail, l'excellence du service et l'art de recevoir propre aux grandes maisons de luxe, je souhaite mettre mon savoir-être et ma rigueur au service de la boutique <strong>Hermès Lyon</strong>. Étudiant en <strong>Master 1 à SUPINFO Lyon</strong>, je combine une présentation soignée, une discrétion irréprochable et une écoute bienveillante. Mon parcours en commerce de détail et en relation client m'a appris à créer un climat de confiance immédiat, à porter une attention minutieuse à chaque geste et à incarner avec fierté des standards d'élégance et d'artisanat d'exception.",
-        isRetail: true,
+        expType: "retail",
         dispo: "<strong>Maison de Luxe & Haute Vente</strong><br>Disponible immédiatement · Présentation soignée · Flexibilité horaire",
         skillsTitle: "Savoir-Être & Standards Luxe",
         skills: [
@@ -1214,7 +1486,7 @@ template = """<!DOCTYPE html>
         jobRole: "Développeur Logiciel",
         title: "Développeur Logiciel — Étudiant Master 1 (Cursus Bac+5)",
         profile: "Actuellement étudiant en <strong>Master 1 en Informatique à SUPINFO Lyon (cursus préparant au diplôme Bac+5)</strong> et titulaire d'une <strong>Licence en Génie Logiciel</strong> (IAI-TOGO), je dispose d'une solide expertise pratique en développement web et mobile (Flutter, iOS, Django, Laravel), en programmation orientée objet (Java, Python) et en gestion de bases de données (SQL). Mes expériences en ESN et en entreprise m'ont permis d'intervenir sur tout le cycle de vie applicatif : cadrage du besoin, architecture, développement hors ligne, recette fonctionnelle approfondie et publication sur les stores (App Store Connect). Rigoureux et adaptable, je recherche une <strong>alternance ou un stage</strong> à Lyon pour mettre mes compétences au service de projets innovants.",
-        isRetail: false,
+        expType: "tech",
         dispo: "<strong>Disponibilité Alternance / Stage</strong><br>Rythme école/entreprise ou stage temps plein · Lyon & Région",
         skillsTitle: "Compétences Techniques",
         skills: [
@@ -1239,7 +1511,7 @@ template = """<!DOCTYPE html>
         jobRole: "Développeur Mobile Flutter & iOS",
         title: "Développeur Mobile Flutter & iOS — Étudiant Master 1 (Bac+5)",
         profile: "Étudiant en <strong>Master 1 à SUPINFO Lyon (Bac+5)</strong> et passionné par le développement d'applications mobiles performantes et réactives, je maîtrise l'écosystème <strong>Flutter, Dart, Firebase</strong> ainsi que le portage et le cycle de release <strong>iOS (App Store Connect, APNs)</strong>. Fort d'expériences concrètes en ESN (co-développement de POS, intégration de passerelles de paiement FedaPay, mode offline-first), je recherche un <strong>stage ou une alternance</strong> en développement mobile pour concevoir des applications scalables et centrées sur l'expérience utilisateur.",
-        isRetail: false,
+        expType: "tech",
         dispo: "<strong>Disponibilité Mobile</strong><br>Stage ou Alternance · Lyon & Télétravail partiel possible",
         skillsTitle: "Compétences Mobile",
         skills: [
@@ -1264,7 +1536,7 @@ template = """<!DOCTYPE html>
         jobRole: "Ingénieur QA & Qualité Logicielle",
         title: "Ingénieur QA & Qualité Logicielle — Étudiant Master 1 (Bac+5)",
         profile: "Étudiant en <strong>Master 1 en Informatique à SUPINFO Lyon (Bac+5)</strong> avec une solide formation en génie logiciel, je combine compétences de développement (Java, Python, SQL) et expertise opérationnelle en <strong>Assurance Qualité (QA) et recette fonctionnelle</strong>. Ayant rédigé et exécuté plus d'une centaine de cas de test sur des plateformes web et mobiles, et maîtrisé les critères d'acceptation stricts d'Apple, je recherche une <strong>opportunité en alternance ou stage QA</strong> pour fiabiliser et automatiser vos processus de tests.",
-        isRetail: false,
+        expType: "tech",
         dispo: "<strong>Disponibilité QA</strong><br>Alternance ou Stage de fin d'études · Lyon & Région",
         skillsTitle: "Compétences QA & Tests",
         skills: [
@@ -1283,122 +1555,6 @@ template = """<!DOCTYPE html>
         kw5: "<strong>Méthodologie :</strong> Méthodes agiles (Scrum), Git/GitHub, documentation technique, rigueur d'analyse"
       }
     };
-
-    // EXP TEMPLATES (RETAIL VS TECH)
-    const retailExperiencesHTML = `
-      <!-- EXP 1: SUPERMARCHE CHAMPION -->
-      <div class="experience-item" id="exp-1">
-        <div class="item-title" id="exp-1-title" contenteditable="true">Employé Commercial & Polyvalent — Vente & Relation Client</div>
-        <div class="item-subrow">
-          <span id="exp-1-comp" contenteditable="true">Supermarché Champion</span>
-          <span id="exp-1-date" contenteditable="true">2024</span>
-        </div>
-        <ul class="item-bullets" id="exp-1-bullets">
-          <li contenteditable="true"><strong>Accueil & Conseil Client :</strong> Accueil personnalisé des visiteurs, écoute attentive des besoins, orientation immédiate et valorisation des offres du magasin.</li>
-          <li contenteditable="true"><strong>Encaissement & Gestion d'Affluence :</strong> Gestion rapide et rigoureuse des encaissements lors des pics de forte affluence ; fidélisation et gestion bienveillante des réclamations.</li>
-          <li contenteditable="true"><strong>Tenue de Rayon & Merchandising :</strong> Réassort quotidien, respect des standards de facing et de propreté, contrôle minutieux des stocks et des dates de péremption.</li>
-          <li contenteditable="true"><strong>Travail d'Équipe & Polyvalence :</strong> Entraide active avec l'équipe pour garantir la fluidité opérationnelle et la satisfaction totale de chaque client.</li>
-        </ul>
-      </div>
-
-      <!-- EXP 2: PREPARATEUR LOGISTIQUE -->
-      <div class="experience-item" id="exp-2">
-        <div class="item-title" id="exp-2-title" contenteditable="true">Préparateur de Commandes & Relation Client</div>
-        <div class="item-subrow">
-          <span id="exp-2-comp" contenteditable="true">Plateforme Logistique & Distribution</span>
-          <span id="exp-2-date" contenteditable="true">2025</span>
-        </div>
-        <ul class="item-bullets" id="exp-2-bullets">
-          <li contenteditable="true"><strong>Rigueur Opérationnelle :</strong> Réception, contrôle conformité, préparation minutieuse et emballage des commandes selon les normes d'exigence et de sécurité.</li>
-          <li contenteditable="true"><strong>Gestion des Flux & Cadence :</strong> Coordination des flux de marchandises et respect strict des délais de livraison dans un environnement à haut rythme.</li>
-          <li contenteditable="true"><strong>Remise Client & Closing :</strong> Remise soignée des commandes aux clients, écoute des retours, résolution proactive des imprévus et fidélisation.</li>
-        </ul>
-      </div>
-
-      <!-- EXP 3: NATAAN GROUP -->
-      <div class="experience-item" id="exp-3">
-        <div class="item-title" id="exp-3-title" contenteditable="true">Chargé de Prospection Commerciale & Déploiement POS</div>
-        <div class="item-subrow">
-          <span id="exp-3-comp" contenteditable="true">Nataan Group (ESN) — Lomé, Togo</span>
-          <span id="exp-3-date" contenteditable="true">Juil. 2026 – Sept. 2026</span>
-        </div>
-        <ul class="item-bullets" id="exp-3-bullets">
-          <li contenteditable="true"><strong>Développement Commercial B2B :</strong> Prospection directe et qualification approfondie de <strong>100 commerçants et professionnels</strong> de proximité ; démonstration de valeur et closing d'offres.</li>
-          <li contenteditable="true"><strong>Solution d'Encaissement & Retail :</strong> Déploiement de l'application de caisse/point de vente <em>BoutiK</em> ; accompagnement des commerçants sur la gestion des encaissements et le suivi des stocks.</li>
-          <li contenteditable="true"><strong>Sensibilisation aux KPIs Retail :</strong> Analyse des leviers de vente (panier moyen, fréquence d'achat, rapidité d'encaissement) et optimisation des parcours clients.</li>
-          <li contenteditable="true"><strong>Service & Qualité :</strong> Écoute active des retours utilisateurs (103 tests fonctionnels exécutés) pour assurer une satisfaction et une adoption optimales.</li>
-        </ul>
-      </div>
-
-      <!-- EXP 4: DAROLLO / ATANYS -->
-      <div class="experience-item" id="exp-4">
-        <div class="item-title" id="exp-4-title" contenteditable="true">Conseiller Utilisateurs & Analyse des Besoins</div>
-        <div class="item-subrow">
-          <span id="exp-4-comp" contenteditable="true">Darollo Technologies & ATANYS</span>
-          <span id="exp-4-date" contenteditable="true">2025</span>
-        </div>
-        <ul class="item-bullets" id="exp-4-bullets">
-          <li contenteditable="true">Écoute empathique, diagnostic précis des attentes utilisateurs et formulation de recommandations adaptées.</li>
-          <li contenteditable="true">Sens de la pédagogie et démonstration claire pour valoriser les bénéfices concrets des produits et services.</li>
-        </ul>
-      </div>
-    `;
-
-    const techExperiencesHTML = `
-      <!-- EXP 1: NATAAN GROUP TECH -->
-      <div class="experience-item" id="exp-1">
-        <div class="item-title" id="exp-1-title" contenteditable="true">Stagiaire — Développement Mobile, QA & Business Development</div>
-        <div class="item-subrow">
-          <span id="exp-1-comp" contenteditable="true">Nataan Group (ESN) — Lomé, Togo</span>
-          <span id="exp-1-date" contenteditable="true">Juil. 2026 – Sept. 2026</span>
-        </div>
-        <ul class="item-bullets" id="exp-1-bullets">
-          <li contenteditable="true"><strong>Application BoutiK :</strong> Co-développement d'une application mobile de gestion de boutique / POS sous <strong>Flutter</strong>, connectée à <strong>Firebase</strong> et intégrant la passerelle de paiement <strong>FedaPay</strong>.</li>
-          <li contenteditable="true"><strong>Portage & Release iOS :</strong> Portage iOS, mise en conformité avec les guidelines Apple, gestion de l'authentification OTP, push notifications <strong>APNs</strong> et publication en production via <strong>App Store Connect</strong>.</li>
-          <li contenteditable="true"><strong>Assurance Qualité & Web :</strong> Conduite de la recette fonctionnelle complète d'un site institutionnel (exécution de <strong>103 cas de test</strong>), audit ergonomique UI/UX et refonte web.</li>
-          <li contenteditable="true"><strong>Business Development & Données :</strong> Prospection commerciale B2B qualifiée (<strong>100 prospects ciblés</strong>) et réalisation de prestations d'archivage client.</li>
-        </ul>
-      </div>
-
-      <!-- EXP 2: ATANYS -->
-      <div class="experience-item" id="exp-2">
-        <div class="item-title" id="exp-2-title" contenteditable="true">Stagiaire en Développement Web</div>
-        <div class="item-subrow">
-          <span id="exp-2-comp" contenteditable="true">ATANYS — Lomé, Togo</span>
-          <span id="exp-2-date" contenteditable="true">Sept. 2025 – Déc. 2025</span>
-        </div>
-        <ul class="item-bullets" id="exp-2-bullets">
-          <li contenteditable="true">Conception et développement d'une plateforme web de gestion et de signalement des objets perdus et retrouvés.</li>
-          <li contenteditable="true">Participation à l'ensemble du cycle de développement : analyse des besoins, modélisation de la base de données relationnelle (MySQL), développement back/front et tests.</li>
-        </ul>
-      </div>
-
-      <!-- EXP 3: DAROLLO -->
-      <div class="experience-item" id="exp-3">
-        <div class="item-title" id="exp-3-title" contenteditable="true">Stagiaire en Développement d'Applications</div>
-        <div class="item-subrow">
-          <span id="exp-3-comp" contenteditable="true">Darollo Technologies Corporation — Lomé, Togo</span>
-          <span id="exp-3-date" contenteditable="true">Juil. 2025 – Août 2025</span>
-        </div>
-        <ul class="item-bullets" id="exp-3-bullets">
-          <li contenteditable="true">Développement d'une application mobile Flutter dédiée aux tailleurs pour la gestion de leur activité (prise de mesures, suivi des commandes, notifications).</li>
-          <li contenteditable="true">Implémentation du fonctionnement hors ligne avec synchronisation automatique des données dès rétablissement de la connexion.</li>
-        </ul>
-      </div>
-
-      <!-- EXP 4: ONG-CRISTO -->
-      <div class="experience-item" id="exp-4">
-        <div class="item-title" id="exp-4-title" contenteditable="true">Stagiaire en Gestion de Données</div>
-        <div class="item-subrow">
-          <span id="exp-4-comp" contenteditable="true">ONG-CRISTO — Lomé, Togo</span>
-          <span id="exp-4-date" contenteditable="true">Juil. 2024 – Sept. 2024</span>
-        </div>
-        <ul class="item-bullets" id="exp-4-bullets">
-          <li contenteditable="true">Mise en place d'un système de gestion automatisée de la collecte d'informations pour un cabinet de recherche.</li>
-          <li contenteditable="true">Structuration et fiabilisation des données collectées sur le terrain.</li>
-        </ul>
-      </div>
-    `;
 
     // UPDATE TITLE FROM HELPER INPUTS
     function updateCVTitleFromInputs() {
@@ -1475,10 +1631,14 @@ template = """<!DOCTYPE html>
 
       // Experiences Container
       const expContainer = document.getElementById('experiences-container');
-      if (data.isRetail) {
-        expContainer.innerHTML = retailExperiencesHTML;
+      if (data.expType === 'tutorat') {
+        expContainer.innerHTML = tutoratExpHTML;
+      } else if (data.expType === 'macdo') {
+        expContainer.innerHTML = macdoExpHTML;
+      } else if (data.expType === 'retail') {
+        expContainer.innerHTML = retailExpHTML;
       } else {
-        expContainer.innerHTML = techExperiencesHTML;
+        expContainer.innerHTML = techExpHTML;
       }
 
       // Keywords Title & Lines
@@ -1555,12 +1715,14 @@ template = """<!DOCTYPE html>
     }
 
     window.addEventListener('DOMContentLoaded', () => {
+      // Default load Soutien Scolaire
+      loadCVPreset('soutien_scolaire');
       bindEditableListeners();
     });
 
     function resetCVToDefault() {
       localStorage.removeItem('rodrigue_cv_saved');
-      loadCVPreset('adidas');
+      loadCVPreset('soutien_scolaire');
       resetPhoto();
       showToast("CV réinitialisé aux paramètres d'origine !");
     }
@@ -1575,4 +1737,4 @@ final_html = template.replace('__PHOTO_B64__', photo_b64)
 with open('editeur_cv.html', 'w', encoding='utf-8') as f:
     f.write(final_html)
 
-print("editeur_cv.html generated cleanly with retail + tech presets and role-association controls!")
+print("editeur_cv.html generated cleanly with full student job presets!")

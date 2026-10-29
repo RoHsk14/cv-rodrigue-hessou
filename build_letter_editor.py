@@ -1274,7 +1274,9 @@ html_content = """<!DOCTYPE html>
     }
 
     window.addEventListener('DOMContentLoaded', () => {
-      loadPreset('soutien_scolaire');
+      const urlParams = new URLSearchParams(window.location.search);
+      const preset = urlParams.get('preset') || 'soutien_scolaire';
+      loadPreset(preset);
       document.querySelectorAll('[contenteditable="true"]').forEach(el => {
         el.addEventListener('input', autoSaveLetter);
       });

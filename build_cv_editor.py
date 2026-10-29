@@ -1828,8 +1828,9 @@ template = """<!DOCTYPE html>
     }
 
     window.addEventListener('DOMContentLoaded', () => {
-      // Default load Soutien Scolaire
-      loadCVPreset('soutien_scolaire');
+      const urlParams = new URLSearchParams(window.location.search);
+      const preset = urlParams.get('preset') || 'soutien_scolaire';
+      loadCVPreset(preset);
       bindEditableListeners();
     });
 

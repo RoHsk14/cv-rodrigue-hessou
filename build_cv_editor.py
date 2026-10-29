@@ -786,13 +786,13 @@ template = """<!DOCTYPE html>
 
     <div class="nav-actions">
       <a id="btn-download-preset-pdf" href="CV_Rodrigue_HESSOU_Soutien_Scolaire.pdf" download class="btn btn-secondary" title="Télécharger directement le PDF officiel pré-généré avec le bandeau bleu">
-        ⚡ PDF Officiel Direct
+        PDF Officiel Direct
       </a>
       <button class="btn btn-secondary" onclick="exportCVText()">
-        📋 Copier le texte
+        Copier le texte
       </button>
       <button class="btn btn-primary" onclick="printCV()">
-        🖨️ Télécharger en PDF
+        Télécharger en PDF
       </button>
     </div>
   </header>
@@ -807,55 +807,55 @@ template = """<!DOCTYPE html>
         <!-- PRESETS DE PROFIL -->
         <div class="card">
           <div class="card-header">
-            <span class="card-title">⚡ Modèles Prédéfinis</span>
+            <span class="card-title">Modèles Prédéfinis</span>
             <span class="card-badge">1 clic</span>
           </div>
 
-          <div class="category-title">🎓 Jobs Étudiants Polyvalents</div>
+          <div class="category-title">Jobs Étudiants Polyvalents</div>
           <div class="preset-grid">
             <button class="btn-preset active" onclick="loadCVPreset('soutien_scolaire')">
-              <span>🎓 Soutien Scolaire & Tutorat (Maths / Sciences)</span>
+              <span>Soutien Scolaire & Tutorat (Maths / Sciences)</span>
             </button>
             <button class="btn-preset" onclick="loadCVPreset('macdo')">
-              <span>🍔 McDonald's & Fast-Food (Équipier Polyvalent)</span>
+              <span>McDonald's & Fast-Food (Équipier Polyvalent)</span>
             </button>
             <button class="btn-preset" onclick="loadCVPreset('hote_caisse_rayon')">
-              <span>🛒 Hôte de Caisse / Rayon (Grande Distribution)</span>
+              <span>Hôte de Caisse / Rayon (Grande Distribution)</span>
             </button>
             <button class="btn-preset" onclick="loadCVPreset('agent_accueil')">
-              <span>🎟️ Agent d'Accueil & Cinéma (UGC / Événements)</span>
+              <span>Agent d'Accueil & Cinéma (UGC / Événements)</span>
             </button>
           </div>
 
-          <div class="category-title" style="margin-top: 6px;">👟 Vente, Commerce & Marques</div>
+          <div class="category-title" style="margin-top: 6px;">Vente, Commerce & Marques</div>
           <div class="preset-grid">
             <button class="btn-preset" onclick="loadCVPreset('adidas')">
-              <span>👟 adidas Part-Dieu (Vendeur Polyvalent)</span>
+              <span>adidas Part-Dieu (Vendeur Polyvalent)</span>
             </button>
             <button class="btn-preset" onclick="loadCVPreset('apple')">
-              <span>🍏 Apple Retail (Spécialiste #114438069)</span>
+              <span>Apple Retail (Spécialiste #114438069)</span>
             </button>
             <button class="btn-preset" onclick="loadCVPreset('retail_polyvalent')">
-              <span>🛍️ Conseiller de Vente (Commerce Généraliste)</span>
+              <span>Conseiller de Vente (Commerce Généraliste)</span>
             </button>
             <button class="btn-preset" onclick="loadCVPreset('sephora')">
-              <span>💄 Sephora / Beauté & Cosmétiques</span>
+              <span>Sephora / Beauté & Cosmétiques</span>
             </button>
             <button class="btn-preset" onclick="loadCVPreset('hermes')">
-              <span>👜 Hermès / Luxe & Expérience Client</span>
+              <span>Hermès / Luxe & Expérience Client</span>
             </button>
           </div>
 
-          <div class="category-title" style="margin-top: 6px;">💼 Tech & Ingénierie Bac+5</div>
+          <div class="category-title" style="margin-top: 6px;">Tech & Ingénierie Bac+5</div>
           <div class="preset-grid">
             <button class="btn-preset" onclick="loadCVPreset('alternance_logiciel')">
-              <span>💻 Alternance Dév. Logiciel (Java/Python)</span>
+              <span>Alternance Dév. Logiciel (Java/Python)</span>
             </button>
             <button class="btn-preset" onclick="loadCVPreset('stage_mobile')">
-              <span>📱 Stage / Alt. Mobile (Flutter & iOS)</span>
+              <span>Stage / Alt. Mobile (Flutter & iOS)</span>
             </button>
             <button class="btn-preset" onclick="loadCVPreset('stage_qa')">
-              <span>🧪 Stage / Alt. QA & Recette Logicielle</span>
+              <span>Stage / Alt. QA & Recette Logicielle</span>
             </button>
           </div>
         </div>
@@ -863,7 +863,7 @@ template = """<!DOCTYPE html>
         <!-- ASSOCIER UNE OFFRE / NUMERO DE ROLE -->
         <div class="card">
           <div class="card-header">
-            <span class="card-title">🏷️ Offre, Marque & Rôle</span>
+            <span class="card-title">Offre, Marque & Rôle</span>
           </div>
           <div class="quick-helper-box">
             Associez le <strong>numéro de rôle</strong> ou la référence de l'offre et l'enseigne ciblée pour adapter le titre en direct.
@@ -887,7 +887,7 @@ template = """<!DOCTYPE html>
         <!-- TITRE & ACCROCHE PROFIL -->
         <div class="card">
           <div class="card-header">
-            <span class="card-title">🎯 Titre & Accroche</span>
+            <span class="card-title">Titre & Accroche</span>
           </div>
           <div class="form-group">
             <label>Titre Affiché sur le CV</label>
@@ -902,7 +902,7 @@ template = """<!DOCTYPE html>
         <!-- COORDONNEES -->
         <div class="card">
           <div class="card-header">
-            <span class="card-title">📍 Coordonnées & Contact</span>
+            <span class="card-title">Coordonnées & Contact</span>
           </div>
           <div class="form-group">
             <label>Adresse</label>
@@ -927,7 +927,7 @@ template = """<!DOCTYPE html>
         <!-- PHOTO -->
         <div class="card">
           <div class="card-header">
-            <span class="card-title">📷 Photo de profil</span>
+            <span class="card-title">Photo de profil</span>
           </div>
           <input type="file" id="photo-input" accept="image/*" style="display: none;" onchange="changePhoto(event)">
           <div style="display: flex; gap: 8px;">
@@ -943,10 +943,10 @@ template = """<!DOCTYPE html>
         <!-- ACTIONS -->
         <div style="display: flex; gap: 8px;">
           <button class="btn btn-outline" style="flex: 1;" onclick="resetCVToDefault()">
-            🔄 Rétablir défaut
+            Rétablir défaut
           </button>
           <button class="btn btn-primary" style="flex: 1;" onclick="printCV()">
-            📥 Télécharger PDF
+            Télécharger PDF
           </button>
         </div>
 
@@ -956,7 +956,7 @@ template = """<!DOCTYPE html>
     <!-- RIGHT CANVAS PREVIEW -->
     <main class="preview-panel">
       <div class="preview-notice">
-        <span>💡 <strong>Astuce Impression :</strong> En téléchargeant en PDF, vérifiez que l'option <strong>« Graphiques d'arrière-plan »</strong> (Background graphics) est cochée dans votre fenêtre d'impression pour conserver la colonne bleue nuit à gauche, ou utilisez le bouton direct <strong>« ⚡ PDF Officiel Direct »</strong> !</span>
+        <span><strong>Astuce Impression :</strong> En téléchargeant en PDF, vérifiez que l'option <strong>« Graphiques d'arrière-plan »</strong> (Background graphics) est cochée dans votre fenêtre d'impression pour conserver la colonne bleue nuit à gauche, ou utilisez le bouton direct <strong>« PDF Officiel Direct »</strong> !</span>
       </div>
 
       <!-- A4 PAPER SHEET -->
@@ -1790,7 +1790,7 @@ template = """<!DOCTYPE html>
 
     // PRINT / EXPORT
     function printCV() {
-      showToast("💡 Astuce : Dans la fenêtre d'impression, cochez 'Graphiques d'arrière-plan' pour garder le bandeau bleu !");
+      showToast("Astuce : Dans la fenêtre d'impression, cochez 'Graphiques d'arrière-plan' pour garder le bandeau bleu !");
       setTimeout(() => {
         window.print();
       }, 400);

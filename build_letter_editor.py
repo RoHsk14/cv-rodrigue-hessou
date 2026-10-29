@@ -616,13 +616,13 @@ html_content = """<!DOCTYPE html>
 
     <div class="nav-actions">
       <a id="btn-download-preset-pdf" href="Lettre_de_Motivation_Soutien_Scolaire_Rodrigue_HESSOU.pdf" download class="btn btn-secondary" title="Télécharger le fichier PDF officiel pré-généré">
-        ⚡ PDF Officiel Direct
+        PDF Officiel Direct
       </a>
       <button class="btn btn-secondary" onclick="copyLetterText()">
-        📋 Copier le texte
+        Copier le texte
       </button>
       <button class="btn btn-primary" onclick="printToPDF()">
-        🖨️ Télécharger en PDF
+        Télécharger en PDF
       </button>
     </div>
   </header>
@@ -637,58 +637,58 @@ html_content = """<!DOCTYPE html>
         <!-- PRESETS -->
         <div class="card">
           <div class="card-header">
-            <span class="card-title">⚡ Modèles Prédéfinis</span>
+            <span class="card-title">Modèles Prédéfinis</span>
             <span class="card-badge">1 clic</span>
           </div>
 
-          <div class="category-title">🎓 Jobs Étudiants Polyvalents</div>
+          <div class="category-title">Jobs Étudiants Polyvalents</div>
           <div class="preset-grid">
             <button class="btn-preset active" onclick="loadPreset('soutien_scolaire')">
-              <span>🎓 Soutien Scolaire & Tutorat (Maths / Sciences)</span>
+              <span>Soutien Scolaire & Tutorat (Maths / Sciences)</span>
             </button>
             <button class="btn-preset" onclick="loadPreset('macdo')">
-              <span>🍔 McDonald's & Fast-Food (Équipier Polyvalent)</span>
+              <span>McDonald's & Fast-Food (Équipier Polyvalent)</span>
             </button>
             <button class="btn-preset" onclick="loadPreset('hote_caisse')">
-              <span>🛒 Hôte de Caisse (Grande Distribution)</span>
+              <span>Hôte de Caisse (Grande Distribution)</span>
             </button>
             <button class="btn-preset" onclick="loadPreset('agent_accueil')">
-              <span>🎟️ Agent d'Accueil & Cinéma (UGC / Événements)</span>
+              <span>Agent d'Accueil & Cinéma (UGC / Événements)</span>
             </button>
           </div>
 
-          <div class="category-title" style="margin-top: 6px;">👟 Vente, Commerce & Marques</div>
+          <div class="category-title" style="margin-top: 6px;">Vente, Commerce & Marques</div>
           <div class="preset-grid">
             <button class="btn-preset" onclick="loadPreset('adidas')">
-              <span>👟 adidas Part-Dieu (Vendeur Polyvalent)</span>
+              <span>adidas Part-Dieu (Vendeur Polyvalent)</span>
             </button>
             <button class="btn-preset" onclick="loadPreset('apple')">
-              <span>🍏 Apple Retail (Spécialiste #114438069)</span>
+              <span>Apple Retail (Spécialiste #114438069)</span>
             </button>
             <button class="btn-preset" onclick="loadPreset('retail_polyvalent')">
-              <span>🛍️ Conseiller de Vente (Commerce Généraliste)</span>
+              <span>Conseiller de Vente (Commerce Généraliste)</span>
             </button>
             <button class="btn-preset" onclick="loadPreset('sephora')">
-              <span>💄 Sephora Lyon (Conseiller de Vente Beauté)</span>
+              <span>Sephora Lyon (Conseiller de Vente Beauté)</span>
             </button>
             <button class="btn-preset" onclick="loadPreset('hermes')">
-              <span>👜 Hermès Lyon (Luxe & Expérience Client)</span>
+              <span>Hermès Lyon (Luxe & Expérience Client)</span>
             </button>
           </div>
 
-          <div class="category-title" style="margin-top: 6px;">💼 Tech & Ingénierie Bac+5</div>
+          <div class="category-title" style="margin-top: 6px;">Tech & Ingénierie Bac+5</div>
           <div class="preset-grid">
             <button class="btn-preset" onclick="loadPreset('capgemini')">
-              <span>🏢 Capgemini Lyon (Java / PLM)</span>
+              <span>Capgemini Lyon (Java / PLM)</span>
             </button>
             <button class="btn-preset" onclick="loadPreset('mobile')">
-              <span>📱 Dév. Mobile (Flutter / iOS)</span>
+              <span>Dév. Mobile (Flutter / iOS)</span>
             </button>
             <button class="btn-preset" onclick="loadPreset('fullstack')">
-              <span>🌐 Dév. Web / Full-Stack</span>
+              <span>Dév. Web / Full-Stack</span>
             </button>
             <button class="btn-preset" onclick="loadPreset('qa')">
-              <span>🧪 QA & Recette Logicielle</span>
+              <span>QA & Recette Logicielle</span>
             </button>
           </div>
         </div>
@@ -696,7 +696,7 @@ html_content = """<!DOCTYPE html>
         <!-- ENTREPRISE, ROLE & CANDIDATURE -->
         <div class="card">
           <div class="card-header">
-            <span class="card-title">🏷️ Offre, Établissement & Rôle</span>
+            <span class="card-title">Offre, Établissement & Rôle</span>
           </div>
           <div class="quick-helper-box">
             Renseignez l'intitulé du poste et le <strong>numéro de rôle ou référence d'offre</strong> pour actualiser automatiquement l'objet et le destinataire.
@@ -734,7 +734,7 @@ html_content = """<!DOCTYPE html>
         <!-- OBJET & DATE -->
         <div class="card">
           <div class="card-header">
-            <span class="card-title">🎯 Objet & Lieu de Rédaction</span>
+            <span class="card-title">Objet & Lieu de Rédaction</span>
           </div>
           <div class="form-group">
             <label>Ligne d'Objet Complète</label>
@@ -755,7 +755,7 @@ html_content = """<!DOCTYPE html>
         <!-- SENDER DETAILS -->
         <div class="card">
           <div class="card-header">
-            <span class="card-title">👤 Mes Coordonnées</span>
+            <span class="card-title">Mes Coordonnées</span>
           </div>
           <div class="form-group">
             <label>Nom & Prénom</label>
@@ -790,10 +790,10 @@ html_content = """<!DOCTYPE html>
         <!-- ACTIONS & RESET -->
         <div style="display: flex; gap: 8px;">
           <button class="btn btn-outline" style="flex: 1;" onclick="resetToDefault()">
-            🔄 Réinitialiser
+            Réinitialiser
           </button>
           <button class="btn btn-secondary" style="flex: 1;" onclick="printToPDF()">
-            🖨️ Imprimer / PDF
+            Imprimer / PDF
           </button>
         </div>
 
@@ -803,7 +803,7 @@ html_content = """<!DOCTYPE html>
     <!-- RIGHT PREVIEW SHEET -->
     <main class="preview-panel">
       <div class="preview-notice">
-        <span>💡 <strong>Astuce :</strong> Vous pouvez modifier les textes <em>directement</em> sur la feuille en cliquant dessus, ou utiliser le formulaire à gauche.</span>
+        <span><strong>Astuce :</strong> Vous pouvez modifier les textes <em>directement</em> sur la feuille en cliquant dessus, ou utiliser le formulaire à gauche.</span>
       </div>
 
       <!-- A4 PAPER SHEET -->
@@ -1236,7 +1236,7 @@ html_content = """<!DOCTYPE html>
 
     // PRINT / EXPORT
     function printToPDF() {
-      showToast("💡 Astuce : Dans la fenêtre d'impression, vérifiez que 'Graphiques d'arrière-plan' est coché !");
+      showToast("Astuce : Dans la fenêtre d'impression, vérifiez que 'Graphiques d'arrière-plan' est coché !");
       setTimeout(() => {
         window.print();
       }, 350);

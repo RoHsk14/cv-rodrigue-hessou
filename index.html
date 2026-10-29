@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Rodrigue HESSOU — Software Engineer & Master 1 Informatique (Bac+5)</title>
-<meta name="description" content="Portfolio et portail de candidatures de Rodrigue HESSOU. Étudiant en Master 1 Informatique à SUPINFO Lyon. Profil double compétence : Ingénierie logicielle & Expérience terrain d'excellence (Retail, Apple Store, Restauration, Tutorat).">
+<meta name="description" content="Portfolio de Rodrigue HESSOU. Étudiant en Master 1 Informatique à SUPINFO Lyon. Spécialité en génie logiciel, développement back-end et fullstack (Java, Python, C++, SQL, Flutter).">
 <meta name="theme-color" content="#09090b">
 
 <!-- OpenGraph / Social -->
-<meta property="og:title" content="Rodrigue HESSOU — Portfolio & Portail de Candidatures">
-<meta property="og:description" content="Étudiant Master 1 Informatique SUPINFO Lyon. CV et lettres de motivation sur-mesure prêts à l'emploi.">
+<meta property="og:title" content="Rodrigue HESSOU — Software Engineer (Bac+5)">
+<meta property="og:description" content="Étudiant Master 1 Informatique SUPINFO Lyon. Candidatures générales stage et alternance.">
 <meta property="og:type" content="website">
 
 <!-- Fonts: Plus Jakarta Sans & JetBrains Mono -->
@@ -18,14 +18,11 @@
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-  /* --------------------------------------------------
-     DESIGN SYSTEM & THEME TOKENS (INSPIRED BY CHANHDAI.COM)
-     -------------------------------------------------- */
   :root {
     --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     --font-mono: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace;
 
-    /* Base Dark Theme (Default) */
+    /* Base Dark Theme (Default - chanhdai.com style) */
     --bg: #09090b;
     --bg-subtle: #0d0d11;
     --surface: #121216;
@@ -50,8 +47,6 @@
     --amber-subtle: rgba(245, 158, 11, 0.12);
     --sky: #38bdf8;
     --sky-subtle: rgba(56, 189, 248, 0.12);
-    --orange: #f97316;
-    --orange-subtle: rgba(249, 115, 22, 0.12);
     
     --tag-bg: rgba(255, 255, 255, 0.04);
     --tag-border: rgba(255, 255, 255, 0.08);
@@ -111,7 +106,7 @@
     overflow-x: hidden;
   }
 
-  /* Lined Grid Container (chanhdai.com signature layout) */
+  /* Lined Grid Container (chanhdai.com layout) */
   .layout-wrapper {
     max-width: 980px;
     margin: 0 auto;
@@ -124,9 +119,7 @@
     position: relative;
   }
 
-  /* --------------------------------------------------
-     STICKY TOP NAVIGATION BAR
-     -------------------------------------------------- */
+  /* TOP STICKY NAVBAR */
   .top-navbar {
     position: sticky;
     top: 0;
@@ -259,30 +252,49 @@
     color: var(--text-muted);
   }
 
-  .theme-toggle-btn {
+  .theme-toggle-btn, .login-nav-btn {
     background: var(--surface-elevated);
     border: 1px solid var(--border);
     color: var(--text-secondary);
-    width: 32px;
-    height: 32px;
+    padding: 6px 10px;
     border-radius: 7px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    gap: 6px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 12px;
+    font-family: var(--font-mono);
     transition: all 0.15s ease;
+    text-decoration: none;
   }
 
-  .theme-toggle-btn:hover {
+  .theme-toggle-btn:hover, .login-nav-btn:hover {
     color: var(--text-primary);
     border-color: var(--border-active);
     background: var(--surface-hover);
   }
 
-  /* --------------------------------------------------
-     HERO SECTION (CHANHDAI PROFILE STYLE)
-     -------------------------------------------------- */
+  .login-nav-btn.authenticated {
+    border-color: rgba(16, 185, 129, 0.4);
+    color: var(--green);
+    background: var(--green-subtle);
+  }
+
+  /* SVG Icons inline styling */
+  .icon-svg {
+    display: inline-block;
+    vertical-align: middle;
+    width: 14px;
+    height: 14px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  /* HERO SECTION */
   .hero-section {
     padding: 44px 32px 36px;
     border-bottom: 1px solid var(--border);
@@ -371,7 +383,7 @@
   .hero-meta-row {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px;
+    gap: 10px;
     font-family: var(--font-mono);
     font-size: 12px;
     color: var(--text-muted);
@@ -453,7 +465,7 @@
     background: var(--surface-hover);
   }
 
-  /* Quick Metrics Grid (Chanhdai stats block) */
+  /* METRICS GRID */
   .stats-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -488,9 +500,7 @@
     font-weight: 500;
   }
 
-  /* --------------------------------------------------
-     SECTION WRAPPERS & TITLES
-     -------------------------------------------------- */
+  /* CONTENT SECTIONS */
   .content-section {
     padding: 36px 32px;
     border-bottom: 1px solid var(--border);
@@ -519,74 +529,33 @@
     font-family: var(--font-mono);
   }
 
-  /* --------------------------------------------------
-     INTERACTIVE APPLICATIONS HUB (CHANHDAI CRAFT STYLE)
-     -------------------------------------------------- */
-  .filter-tabs-bar {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-bottom: 20px;
-    padding-bottom: 4px;
-  }
-
-  .filter-tab-btn {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    padding: 6px 12px;
-    border-radius: 999px;
-    background: var(--surface-elevated);
-    border: 1px solid var(--border);
-    color: var(--text-secondary);
-    cursor: pointer;
-    transition: all 0.15s ease;
-  }
-
-  .filter-tab-btn:hover {
-    color: var(--text-primary);
-    border-color: var(--border-active);
-  }
-
-  .filter-tab-btn.active {
-    background: var(--text-primary);
-    color: var(--bg);
-    border-color: var(--text-primary);
-    font-weight: 600;
-  }
-
-  .apps-grid {
+  /* SHOWCASE CARDS (VITRINE TECHNIQUE) */
+  .showcase-grid {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 14px;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
   }
 
-  .app-craft-card {
+  .showcase-card {
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 12px;
-    padding: 20px 22px;
+    padding: 22px;
     display: flex;
     flex-direction: column;
-    gap: 14px;
-    transition: all 0.2s ease;
-    position: relative;
-  }
-
-  .app-craft-card:hover {
-    border-color: var(--border-active);
-    background: var(--surface-elevated);
-    box-shadow: var(--card-shadow);
-    transform: translateY(-2px);
-  }
-
-  .craft-card-top {
-    display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-    gap: 12px;
+    gap: 16px;
+    transition: all 0.2s ease;
   }
 
-  .craft-badge-category {
+  .showcase-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    background: var(--surface-elevated);
+    box-shadow: 0 10px 25px -8px var(--accent-glow);
+  }
+
+  .showcase-badge {
     font-family: var(--font-mono);
     font-size: 11px;
     font-weight: 600;
@@ -596,35 +565,37 @@
     letter-spacing: 0.4px;
     width: fit-content;
     margin-bottom: 6px;
+    background: var(--accent-subtle);
+    color: var(--accent);
+    border: 1px solid rgba(59, 130, 246, 0.25);
   }
 
-  .craft-title {
-    font-size: 17px;
+  .showcase-title {
+    font-size: 18px;
     font-weight: 700;
     color: var(--text-primary);
-    letter-spacing: -0.2px;
   }
 
-  .craft-subtitle {
-    font-size: 12.5px;
+  .showcase-sub {
+    font-family: var(--font-mono);
+    font-size: 12px;
     color: var(--text-muted);
     margin-top: 2px;
-    font-family: var(--font-mono);
   }
 
-  .craft-desc {
+  .showcase-desc {
     font-size: 13.5px;
     color: var(--text-secondary);
     line-height: 1.5;
   }
 
-  .craft-tags-list {
+  .tags-list {
     display: flex;
     flex-wrap: wrap;
     gap: 6px;
   }
 
-  .craft-tag {
+  .tech-tag {
     font-family: var(--font-mono);
     font-size: 11px;
     padding: 2px 7px;
@@ -634,12 +605,11 @@
     color: var(--tag-text);
   }
 
-  .craft-card-actions {
+  .showcase-actions {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
     gap: 8px;
-    padding-top: 4px;
+    padding-top: 10px;
     border-top: 1px dashed var(--border);
   }
 
@@ -649,94 +619,7 @@
     border-radius: 6px;
   }
 
-  /* Specific color themes for categories */
-  .badge-study { background: var(--sky-subtle); color: var(--sky); border: 1px solid rgba(56, 189, 248, 0.3); }
-  .badge-macdo { background: var(--amber-subtle); color: var(--amber); border: 1px solid rgba(245, 158, 11, 0.3); }
-  .badge-apple { background: var(--accent-subtle); color: var(--accent); border: 1px solid rgba(59, 130, 246, 0.3); }
-  .badge-adidas { background: var(--orange-subtle); color: var(--orange); border: 1px solid rgba(249, 115, 22, 0.3); }
-  .badge-tech { background: var(--green-subtle); color: var(--green); border: 1px solid rgba(16, 185, 129, 0.3); }
-
-  /* --------------------------------------------------
-     FEATURED BENTO: INTERACTIVE EDITORS
-     -------------------------------------------------- */
-  .bento-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-  }
-
-  .bento-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 18px;
-    transition: all 0.2s ease;
-  }
-
-  .bento-card:hover {
-    border-color: var(--accent);
-    transform: translateY(-2px);
-    box-shadow: 0 12px 30px -10px var(--accent-glow);
-  }
-
-  .bento-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .bento-icon {
-    width: 44px;
-    height: 44px;
-    border-radius: 10px;
-    background: var(--surface-elevated);
-    border: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 22px;
-  }
-
-  .bento-title h3 {
-    font-size: 17px;
-    font-weight: 700;
-    color: var(--text-primary);
-  }
-
-  .bento-title p {
-    font-size: 12px;
-    color: var(--text-muted);
-  }
-
-  .bento-features {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 7px;
-    font-size: 12.5px;
-    color: var(--text-secondary);
-  }
-
-  .bento-features li {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .bento-features li::before {
-    content: "→";
-    color: var(--accent);
-    font-family: var(--font-mono);
-    font-weight: 700;
-  }
-
-  /* --------------------------------------------------
-     EXPERIENCE TIMELINE (CHANHDAI WORK TIMELINE)
-     -------------------------------------------------- */
+  /* TIMELINE */
   .timeline-list {
     display: flex;
     flex-direction: column;
@@ -797,16 +680,7 @@
     line-height: 1.5;
   }
 
-  .timeline-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-top: 4px;
-  }
-
-  /* --------------------------------------------------
-     PROJECTS GRID (CHANHDAI PROJECTS STYLE)
-     -------------------------------------------------- */
+  /* PROJECTS GRID */
   .projects-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -843,9 +717,7 @@
     line-height: 1.45;
   }
 
-  /* --------------------------------------------------
-     STACK & SKILLS SECTION (CHANHDAI STACK CHIPS)
-     -------------------------------------------------- */
+  /* STACK CHIPS */
   .stack-category-block {
     display: flex;
     flex-direction: column;
@@ -888,55 +760,146 @@
     transform: translateY(-1px);
   }
 
-  /* --------------------------------------------------
-     DOCUMENTS LIBRARY TABLE
-     -------------------------------------------------- */
-  .docs-list-card {
+  /* PRIVATE PORTAL / AUTH CALLOUT BANNER */
+  .private-access-banner {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 10px;
-    overflow: hidden;
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    transition: all 0.2s ease;
   }
 
-  .doc-row-item {
+  .private-banner-content h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .private-banner-content p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+    max-width: 580px;
+  }
+
+  /* PRIVATE SECTION (DISPLAYED WHEN LOGGED IN) */
+  #private-dashboard {
+    display: none;
+    border-top: 2px solid var(--accent);
+    background: var(--bg-subtle);
+  }
+
+  #private-dashboard.authenticated {
+    display: block;
+  }
+
+  .private-header-bar {
+    background: var(--surface-elevated);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .private-status-tag {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--green);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .bento-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .bento-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 16px;
+    transition: all 0.2s ease;
+  }
+
+  .bento-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .bento-title h4 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .bento-title p {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  .bento-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--text-secondary);
+  }
+
+  .bento-features li::before {
+    content: "[*] ";
+    color: var(--accent);
+    font-family: var(--font-mono);
+  }
+
+  .private-docs-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .private-doc-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 12px 18px;
-    border-bottom: 1px solid var(--border);
     gap: 12px;
-    transition: background 0.15s ease;
+    transition: all 0.15s ease;
   }
 
-  .doc-row-item:last-child {
-    border-bottom: none;
-  }
-
-  .doc-row-item:hover {
+  .private-doc-item:hover {
+    border-color: var(--border-active);
     background: var(--surface-hover);
   }
 
-  .doc-info-col {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-
-  .doc-title-text {
-    font-size: 13.5px;
+  .private-doc-title {
+    font-size: 13px;
     font-weight: 600;
     color: var(--text-primary);
   }
 
-  .doc-sub-text {
+  .private-doc-sub {
     font-family: var(--font-mono);
     font-size: 11px;
     color: var(--text-muted);
   }
 
-  /* --------------------------------------------------
-     FOOTER (CHANHDAI SIGNATURE FOOTER)
-     -------------------------------------------------- */
+  /* FOOTER */
   .site-footer {
     padding: 36px 32px;
     background: var(--bg-subtle);
@@ -983,18 +946,15 @@
     font-size: 11.5px;
   }
 
-  /* --------------------------------------------------
-     COMMAND PALETTE MODAL (NATIVE <dialog>)
-     Adheres to modern-web-guidance
-     -------------------------------------------------- */
-  dialog#cmd-dialog {
+  /* DIALOGS (COMMAND PALETTE & LOGIN) */
+  dialog#cmd-dialog, dialog#login-modal {
     margin: 80px auto auto auto;
     border: 1px solid var(--border-active);
     border-radius: 12px;
     background: var(--surface);
     color: var(--text-primary);
     width: 90%;
-    max-width: 580px;
+    max-width: 540px;
     box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.75);
     padding: 0;
     overflow: hidden;
@@ -1025,17 +985,12 @@
     border-bottom: 1px solid var(--border);
   }
 
-  .cmd-search-icon {
-    font-size: 15px;
-    color: var(--text-muted);
-  }
-
   .cmd-search-input {
     flex: 1;
     background: transparent;
     border: none;
     font-family: var(--font-sans);
-    font-size: 14.5px;
+    font-size: 14px;
     color: var(--text-primary);
     outline: none;
   }
@@ -1076,7 +1031,7 @@
     transition: all 0.1s ease;
   }
 
-  .cmd-item:hover, .cmd-item.selected {
+  .cmd-item:hover {
     background: var(--surface-hover);
     color: var(--text-primary);
   }
@@ -1084,7 +1039,7 @@
   .cmd-item-left {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
   }
 
   .cmd-item-badge {
@@ -1104,7 +1059,71 @@
     color: var(--text-muted);
   }
 
-  /* TOAST NOTIFICATION */
+  /* LOGIN FORM */
+  .login-card {
+    padding: 24px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .login-header h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .login-header p {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+
+  .login-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .login-form-group label {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    color: var(--text-muted);
+  }
+
+  .login-input {
+    background: var(--surface-elevated);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 10px 14px;
+    font-family: var(--font-mono);
+    font-size: 13.5px;
+    color: var(--text-primary);
+    outline: none;
+    transition: border-color 0.15s ease;
+  }
+
+  .login-input:focus {
+    border-color: var(--accent);
+  }
+
+  .login-error-msg {
+    color: #ef4444;
+    font-size: 12px;
+    font-family: var(--font-mono);
+    display: none;
+  }
+
+  .login-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 4px;
+  }
+
+  /* TOAST */
   .toast {
     position: fixed;
     bottom: 24px;
@@ -1117,9 +1136,6 @@
     font-size: 13px;
     font-weight: 500;
     box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    gap: 8px;
     transform: translateY(80px);
     opacity: 0;
     transition: all 0.25s ease;
@@ -1142,16 +1158,10 @@
       align-items: center;
       text-align: center;
     }
-    .hero-actions-bar {
+    .hero-actions-bar, .hero-meta-row {
       justify-content: center;
     }
-    .hero-meta-row {
-      justify-content: center;
-    }
-    .stats-grid {
-      grid-template-columns: 1fr 1fr;
-    }
-    .bento-grid, .projects-grid {
+    .stats-grid, .showcase-grid, .bento-grid, .projects-grid, .private-docs-list {
       grid-template-columns: 1fr;
     }
     .nav-menu {
@@ -1159,6 +1169,10 @@
     }
     .content-section, .hero-section {
       padding: 24px 18px;
+    }
+    .private-access-banner {
+      flex-direction: column;
+      text-align: center;
     }
   }
 </style>
@@ -1176,14 +1190,13 @@
             Rodrigue HESSOU
             <span class="status-pulse-dot" title="Disponible pour opportunités"></span>
           </div>
-          <span class="nav-brand-sub">M1 Informatique • SUPINFO Lyon</span>
+          <span class="nav-brand-sub">M1 Informatique / SUPINFO Lyon</span>
         </div>
       </a>
 
       <nav>
         <ul class="nav-menu">
           <li><a href="#candidatures" class="nav-link">Candidatures</a></li>
-          <li><a href="#editeurs" class="nav-link">Éditeurs</a></li>
           <li><a href="#experience" class="nav-link">Expérience</a></li>
           <li><a href="#projets" class="nav-link">Projets</a></li>
           <li><a href="#competences" class="nav-link">Stack</a></li>
@@ -1192,24 +1205,29 @@
       </nav>
 
       <div class="nav-right-actions">
-        <button class="cmd-trigger-btn" onclick="openCmdPalette()" title="Ouvrir la palette de commandes (⌘K)">
+        <button class="cmd-trigger-btn" onclick="openCmdPalette()" title="Ouvrir la palette de commandes (Ctrl+K)">
           <span>Recherche</span>
-          <kbd class="cmd-shortcut-badge">⌘K</kbd>
+          <kbd class="cmd-shortcut-badge">Ctrl+K</kbd>
         </button>
 
         <button class="theme-toggle-btn" id="theme-btn" onclick="toggleTheme()" title="Basculer le thème clair / sombre">
-          🌙
+          <svg class="icon-svg" id="theme-icon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+
+        <button class="login-nav-btn" id="nav-auth-btn" onclick="handleAuthNavClick()">
+          <svg class="icon-svg" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+          <span id="nav-auth-text">Connexion</span>
         </button>
       </div>
     </header>
 
-    <!-- HERO SECTION (CHANHDAI PROFILE STYLE) -->
+    <!-- HERO PROFILE -->
     <section class="hero-section" id="overview">
       <div class="hero-top-row">
         <div class="hero-bio-container">
           <div class="status-pill">
             <span class="status-pulse-dot"></span>
-            Disponible • Stage, Alternance & Jobs Étudiants
+            Disponible : Stage (Bac+5) & Alternance
           </div>
 
           <div class="hero-name-block">
@@ -1218,29 +1236,25 @@
           </div>
 
           <p class="hero-lead-text">
-            Passionné par l'<strong>ingénierie logicielle</strong> et doté d'une solide <strong>culture opérationnelle terrain</strong>. 
-            Double profil d'exception : rigueur du développement back-end & fullstack (Java, Python, C++, SQL, Flutter, Web) et sens du service client irréprochable (retail de standing, encaissement en pic de rush, logistique et tutorat scientifique).
+            Passionné par le <strong>génie logiciel</strong> et l'architecture applicative. Titulaire d'une Licence en Génie Logiciel (Mention Bien) et actuellement en Master 1 à <strong>SUPINFO Lyon</strong>. Expertise concrète en développement back-end & fullstack (Java, Python, C++, SQL, Flutter, Web), tests unitaires et conduite de projets en méthodes Agiles.
           </p>
 
           <div class="hero-meta-row">
-            <span class="hero-meta-item">📍 Lyon & Villeurbanne, France</span>
-            <span class="hero-meta-item">🎓 SUPINFO Lyon (2026 – 2028)</span>
-            <span class="hero-meta-item">📜 Licence Génie Logiciel (Mention Bien)</span>
-            <span class="hero-meta-item">🇬🇧 Anglais B2</span>
+            <span class="hero-meta-item">Localisation : Lyon, France</span>
+            <span class="hero-meta-item">Formation : SUPINFO Lyon (2026 - 2028)</span>
+            <span class="hero-meta-item">Diplôme : Licence Génie Logiciel (Mention Bien)</span>
+            <span class="hero-meta-item">Langues : Anglais B2</span>
           </div>
 
           <div class="hero-actions-bar">
             <a href="#candidatures" class="btn btn-primary">
-              ⚡ Explorer les Candidatures
+              Consulter les Candidatures
             </a>
-            <a href="editeur_cv.html" class="btn btn-secondary">
-              ✏️ Éditeur de CV en Ligne
-            </a>
-            <button class="btn-copy" onclick="copyContact('rodriguehessou14@gmail.com', 'Email copié !')">
-              ✉️ rodriguehessou14@gmail.com
+            <button class="btn-copy" onclick="copyContact('rodriguehessou14@gmail.com', 'Email copié dans le presse-papier')">
+              rodriguehessou14@gmail.com
             </button>
-            <button class="btn-copy" onclick="copyContact('+33 7 44 11 75 73', 'Téléphone copié !')">
-              📱 +33 7 44 11 75 73
+            <button class="btn-copy" onclick="copyContact('+33 7 44 11 75 73', 'Téléphone copié dans le presse-papier')">
+              +33 7 44 11 75 73
             </button>
           </div>
         </div>
@@ -1251,220 +1265,101 @@
       </div>
     </section>
 
-    <!-- METRICS STRIP (CHANHDAI STATS COUNTERS) -->
+    <!-- METRICS STRIP -->
     <div class="stats-grid">
       <div class="stat-card">
         <span class="stat-num">Bac+5</span>
         <span class="stat-label">Cursus Ingénierie SUPINFO</span>
       </div>
       <div class="stat-card">
-        <span class="stat-num">5+</span>
-        <span class="stat-label">Dossiers Métiers Dédiés</span>
+        <span class="stat-num">2</span>
+        <span class="stat-label">Dossiers Techniques Dédiés</span>
       </div>
       <div class="stat-card">
         <span class="stat-num">100+</span>
-        <span class="stat-label">Commerçants Déployés en POS</span>
+        <span class="stat-label">Cas de Recette & QA Exécutés</span>
       </div>
       <div class="stat-card">
         <span class="stat-num">100%</span>
-        <span class="stat-label">PDF 1 Page A4 Strict</span>
+        <span class="stat-label">Format A4 Strict 1 Page</span>
       </div>
     </div>
 
     <!-- --------------------------------------------------
-         SECTION 1: CANDIDATURES PHARES (CHANHDAI CRAFT CARDS)
+         VITRINE PUBLIQUE: CANDIDATURES TECHNIQUES GENERALES
          -------------------------------------------------- -->
     <section class="content-section" id="candidatures">
       <div class="section-header-block">
-        <h2 class="section-title">⭐ Candidatures Phares & Modèles Dédiés</h2>
-        <span class="section-desc">Fichiers PDF officiels prêts à l'envoi</span>
+        <h2 class="section-title">Candidatures Techniques (Vitrine Publique)</h2>
+        <span class="section-desc">Dossiers généraux conventionnés Bac+5</span>
       </div>
 
-      <!-- FILTER TABS -->
-      <div class="filter-tabs-bar">
-        <button class="filter-tab-btn active" onclick="filterApps('all', this)">Tous (5)</button>
-        <button class="filter-tab-btn" onclick="filterApps('study', this)">🎓 Soutien Scolaire</button>
-        <button class="filter-tab-btn" onclick="filterApps('macdo', this)">🍔 Restauration / MacDo</button>
-        <button class="filter-tab-btn" onclick="filterApps('apple', this)">🍏 Apple Store</button>
-        <button class="filter-tab-btn" onclick="filterApps('adidas', this)">👟 Retail / adidas</button>
-        <button class="filter-tab-btn" onclick="filterApps('tech', this)">💻 Dév Logiciel / Tech</button>
-      </div>
+      <div class="showcase-grid">
 
-      <div class="apps-grid">
+        <!-- 1. STAGE TECHNIQUE GENERAL -->
+        <div class="showcase-card">
+          <div>
+            <span class="showcase-badge">Stage Conventionné</span>
+            <h3 class="showcase-title">Développeur Logiciel — Recherche de Stage</h3>
+            <div class="showcase-sub">Niveau Master 1 / Bac+5 Informatique — Lyon & Remote</div>
 
-        <!-- 1. SOUTIEN SCOLAIRE -->
-        <div class="app-craft-card" data-category="study">
-          <div class="craft-card-top">
-            <div>
-              <span class="craft-badge-category badge-study">Tutorat & Enseignement</span>
-              <h3 class="craft-title">Professeur Particulier & Tuteur (Maths & Sciences)</h3>
-              <div class="craft-subtitle">Cible : Acadomia, Complétude, familles et cours à domicile Lyon</div>
+            <p class="showcase-desc" style="margin-top: 10px;">
+              Candidature générale pour stage en développement logiciel. Conception orientée objet, développement back-end et fullstack, création d'APIs REST, intégration de bases de données relationnelles, tests unitaires approfondis et documentation technique.
+            </p>
+
+            <div class="tags-list" style="margin-top: 12px;">
+              <span class="tech-tag">Java</span>
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">SQL</span>
+              <span class="tech-tag">C++</span>
+              <span class="tech-tag">Méthodes Agiles</span>
+              <span class="tech-tag">Tests Unitaires</span>
+              <span class="tech-tag">Cycle de Vie Applicatif</span>
             </div>
           </div>
 
-          <p class="craft-desc">
-            Pédagogie active et bienveillante pour élèves de collège et lycée. Rigueur scientifique Bac+5, diagnostic des blocages, explications imagées, méthodologie d'organisation des devoirs et préparation sereine aux épreuves du Brevet et du Baccalauréat.
-          </p>
-
-          <div class="craft-tags-list">
-            <span class="craft-tag">Mathématiques</span>
-            <span class="craft-tag">Sciences Physiques</span>
-            <span class="craft-tag">NSI / Python</span>
-            <span class="craft-tag">Pédagogie Différenciée</span>
-            <span class="craft-tag">Collège & Lycée</span>
-          </div>
-
-          <div class="craft-card-actions">
-            <a href="CV_Rodrigue_HESSOU_Soutien_Scolaire.pdf" target="_blank" class="btn btn-secondary btn-sm">
-              📄 CV Tuteur (PDF)
+          <div class="showcase-actions">
+            <a href="CV_Rodrigue_HESSOU_Stage_Tech.pdf" target="_blank" class="btn btn-secondary btn-sm">
+              <svg class="icon-svg" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+              CV Stage (PDF)
             </a>
-            <a href="Lettre_de_Motivation_Soutien_Scolaire_Rodrigue_HESSOU.pdf" target="_blank" class="btn btn-secondary btn-sm">
-              ✉️ Lettre Tutorat (PDF)
-            </a>
-            <a href="editeur_cv.html?preset=soutien_scolaire" class="btn btn-primary btn-sm">
-              ✏️ Éditer en Direct
+            <a href="Lettre_de_Motivation_Stage_Tech_Rodrigue_HESSOU.pdf" target="_blank" class="btn btn-secondary btn-sm">
+              <svg class="icon-svg" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              Lettre Stage (PDF)
             </a>
           </div>
         </div>
 
-        <!-- 2. MCDONALD'S / FAST-FOOD -->
-        <div class="app-craft-card" data-category="macdo">
-          <div class="craft-card-top">
-            <div>
-              <span class="craft-badge-category badge-macdo">Restauration Rapide</span>
-              <h3 class="craft-title">Équipier Polyvalent de Restauration Rapide</h3>
-              <div class="craft-subtitle">Cible : McDonald's Lyon, Quick, Burger King (Job Étudiant Part-Time)</div>
+        <!-- 2. ALTERNANCE TECHNIQUE GENERALE -->
+        <div class="showcase-card">
+          <div>
+            <span class="showcase-badge">Contrat d'Alternance</span>
+            <h3 class="showcase-title">Développeur Logiciel — Recherche d'Alternance</h3>
+            <div class="showcase-sub">Rythme Master 1 SUPINFO Lyon (Cursus Bac+5)</div>
+
+            <p class="showcase-desc" style="margin-top: 10px;">
+              Candidature générale pour contrat d'alternance en ingénierie logicielle. Investissement sur la durée au sein de l'équipe, participation aux sprints Agiles (Scrum), développement de fonctionnalités métiers, refonte applicative et maintien de standards de code élevés.
+            </p>
+
+            <div class="tags-list" style="margin-top: 12px;">
+              <span class="tech-tag">Java</span>
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">Web Fullstack</span>
+              <span class="tech-tag">Flutter / Dart</span>
+              <span class="tech-tag">MySQL / PostgreSQL</span>
+              <span class="tech-tag">Docker</span>
+              <span class="tech-tag">Git & CI/CD</span>
             </div>
           </div>
 
-          <p class="craft-desc">
-            Dynamisme, résistance au stress et efficacité collective en pic de rush. Expérience concrète du contact client et de la tenue de caisse (Supermarché Champion en 2024), préparation des commandes et normes sanitaires HACCP. Disponibilité immédiate soirs et week-ends.
-          </p>
-
-          <div class="craft-tags-list">
-            <span class="craft-tag">Gestion du Rush</span>
-            <span class="craft-tag">Caisse & Bornes</span>
-            <span class="craft-tag">Normes HACCP</span>
-            <span class="craft-tag">Drive & Salle</span>
-            <span class="craft-tag">Esprit d'Équipe</span>
-          </div>
-
-          <div class="craft-card-actions">
-            <a href="CV_Rodrigue_HESSOU_Restauration_MacDo.pdf" target="_blank" class="btn btn-secondary btn-sm">
-              📄 CV Équipier (PDF)
+          <div class="showcase-actions">
+            <a href="CV_Rodrigue_HESSOU_Alternance_Tech.pdf" target="_blank" class="btn btn-secondary btn-sm">
+              <svg class="icon-svg" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+              CV Alternance (PDF)
             </a>
-            <a href="Lettre_de_Motivation_MacDo_Rodrigue_HESSOU.pdf" target="_blank" class="btn btn-secondary btn-sm">
-              ✉️ Lettre MacDo (PDF)
-            </a>
-            <a href="editeur_cv.html?preset=macdo" class="btn btn-primary btn-sm">
-              ✏️ Éditer en Direct
-            </a>
-          </div>
-        </div>
-
-        <!-- 3. APPLE STORE -->
-        <div class="app-craft-card" data-category="apple">
-          <div class="craft-card-top">
-            <div>
-              <span class="craft-badge-category badge-apple">Retail & Expérience Client</span>
-              <h3 class="craft-title">Spécialiste Apple Retail (Rôle #114438069)</h3>
-              <div class="craft-subtitle">Cible : Apple Store Lyon (Part-Dieu / Confluence)</div>
-            </div>
-          </div>
-
-          <p class="craft-desc">
-            Fidélisation de la clientèle à la marque Apple par un service incomparable et sur-mesure. Curiosité naturelle, écoute active des besoins, présentation pédagogique des solutions matérielles et logicielles, engagement envers l'inclusion, la diversité et le travail d'équipe.
-          </p>
-
-          <div class="craft-tags-list">
-            <span class="craft-tag">Écosystème Apple</span>
-            <span class="craft-tag">Service Client d'Excellence</span>
-            <span class="craft-tag">Product Zone</span>
-            <span class="craft-tag">Inclusion & Diversité</span>
-            <span class="craft-tag">Rôle #114438069</span>
-          </div>
-
-          <div class="craft-card-actions">
-            <a href="CV_Rodrigue_HESSOU_Apple_Retail.pdf" target="_blank" class="btn btn-secondary btn-sm">
-              📄 CV Apple (PDF)
-            </a>
-            <a href="Lettre_de_Motivation_Apple_Retail_Rodrigue_HESSOU.pdf" target="_blank" class="btn btn-secondary btn-sm">
-              ✉️ Lettre Apple (PDF)
-            </a>
-            <a href="editeur_cv.html?preset=apple_part_time" class="btn btn-primary btn-sm">
-              ✏️ Éditer en Direct
-            </a>
-          </div>
-        </div>
-
-        <!-- 4. ADIDAS / RETAIL POLYVALENT -->
-        <div class="app-craft-card" data-category="adidas">
-          <div class="craft-card-top">
-            <div>
-              <span class="craft-badge-category badge-adidas">Commerce & Mode</span>
-              <h3 class="craft-title">Vendeur Polyvalent adidas (Lyon Part-Dieu)</h3>
-              <div class="craft-subtitle">Cible : adidas, Sephora, Hermès, Boutiques Lifestyle (CDI 35H / Temps Partiel)</div>
-            </div>
-          </div>
-
-          <p class="craft-desc">
-            Ambassadeur passionné de marque, esprit rebelle optimiste. Expérience concrète du terrain en supermarché et plateforme logistique : accueil personnalisé, maîtrise des encaissements rapides, merchandising soigné (facing, stocks), suivi des KPIs de vente et sens du collectif.
-          </p>
-
-          <div class="craft-tags-list">
-            <span class="craft-tag">Vente Conseil</span>
-            <span class="craft-tag">KPIs Retail</span>
-            <span class="craft-tag">Tenue de Caisse</span>
-            <span class="craft-tag">Merchandising</span>
-            <span class="craft-tag">Gestion des Flux</span>
-          </div>
-
-          <div class="craft-card-actions">
-            <a href="CV_Rodrigue_HESSOU_Retail_Polyvalent.pdf" target="_blank" class="btn btn-secondary btn-sm">
-              📄 CV Retail (PDF)
-            </a>
-            <a href="Lettre_de_Motivation_Adidas_Rodrigue_HESSOU.pdf" target="_blank" class="btn btn-secondary btn-sm">
-              ✉️ Lettre adidas (PDF)
-            </a>
-            <a href="editeur_cv.html?preset=adidas_part_dieu" class="btn btn-primary btn-sm">
-              ✏️ Éditer en Direct
-            </a>
-          </div>
-        </div>
-
-        <!-- 5. TECH / DEVELOPPEUR LOGICIEL -->
-        <div class="app-craft-card" data-category="tech">
-          <div class="craft-card-top">
-            <div>
-              <span class="craft-badge-category badge-tech">Génie Logiciel & Back-End</span>
-              <h3 class="craft-title">Développeur Logiciel Back-End / Fullstack</h3>
-              <div class="craft-subtitle">Cible : Capgemini France (Lyon 7e), ESN & Éditeurs (Stage / Alternance Bac+5)</div>
-            </div>
-          </div>
-
-          <p class="craft-desc">
-            Conception et développement d'applications logicielles en Java, Python, C++, SQL dans un cadre Agile (Scrum). Rédaction des tests unitaires, revues de code, documentation technique, suivi des évolutions et intérêt pour les écosystèmes complexes (EAM / PLM).
-          </p>
-
-          <div class="craft-tags-list">
-            <span class="craft-tag">Java</span>
-            <span class="craft-tag">Python</span>
-            <span class="craft-tag">SQL</span>
-            <span class="craft-tag">C++</span>
-            <span class="craft-tag">Méthodes Agiles</span>
-            <span class="craft-tag">Qualité & Tests</span>
-            <span class="craft-tag">EAM / PLM</span>
-          </div>
-
-          <div class="craft-card-actions">
-            <a href="CV_Rodrigue_HESSOU.pdf" target="_blank" class="btn btn-secondary btn-sm">
-              📄 CV Développeur (PDF)
-            </a>
-            <a href="Lettre_de_Motivation_Rodrigue_HESSOU.pdf" target="_blank" class="btn btn-secondary btn-sm">
-              ✉️ Lettre Capgemini (PDF)
-            </a>
-            <a href="editeur_cv.html?preset=stage_bac5_dev" class="btn btn-primary btn-sm">
-              ✏️ Éditer en Direct
+            <a href="Lettre_de_Motivation_Alternance_Tech_Rodrigue_HESSOU.pdf" target="_blank" class="btn btn-secondary btn-sm">
+              <svg class="icon-svg" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              Lettre Alternance (PDF)
             </a>
           </div>
         </div>
@@ -1473,200 +1368,116 @@
     </section>
 
     <!-- --------------------------------------------------
-         SECTION 2: LES ÉDITEURS INTERACTIFS (BENTO STYLE)
-         -------------------------------------------------- -->
-    <section class="content-section" id="editeurs">
-      <div class="section-header-block">
-        <h2 class="section-title">🛠️ Vos Éditeurs Interactifs en Ligne</h2>
-        <span class="section-desc">Génération & modification en direct sur le web</span>
-      </div>
-
-      <div class="bento-grid">
-
-        <!-- BENTO 1: CV -->
-        <div class="bento-card">
-          <div>
-            <div class="bento-header">
-              <div class="bento-icon">📄</div>
-              <div class="bento-title">
-                <h3>Éditeur de CV Interactif</h3>
-                <p>Personnalisation en direct sur feuille A4</p>
-              </div>
-            </div>
-
-            <ul class="bento-features" style="margin-top: 14px;">
-              <li><strong>Association N° de Rôle :</strong> Renseignez marque, intitulé et référence</li>
-              <li><strong>12 Presets Métiers 1 Clic :</strong> Soutien, MacDo, Caisse, adidas, Apple, Tech...</li>
-              <li><strong>Édition libre & Photo :</strong> Modifiez chaque mot et changez votre portrait</li>
-              <li><strong>Export PDF 1 Page A4 :</strong> Rendu couleur exact et mise en page blindée</li>
-            </ul>
-          </div>
-
-          <a href="editeur_cv.html" class="btn btn-primary">
-            ⚡ Ouvrir l'Éditeur de CV
-          </a>
-        </div>
-
-        <!-- BENTO 2: LETTRE -->
-        <div class="bento-card">
-          <div>
-            <div class="bento-header">
-              <div class="bento-icon">✉️</div>
-              <div class="bento-title">
-                <h3>Éditeur de Lettre de Motivation</h3>
-                <p>Génération sur-mesure pour chaque offre</p>
-              </div>
-            </div>
-
-            <ul class="bento-features" style="margin-top: 14px;">
-              <li><strong>Objet Automatique :</strong> Intégration dynamique de la référence</li>
-              <li><strong>Modèles Clés en Main :</strong> Soutien, Restauration, Retail, ESN & Tech</li>
-              <li><strong>Synchronisation Live :</strong> Formulaire et feuille synchronisés</li>
-              <li><strong>Téléchargement & Copie :</strong> PDF officiel ou texte copié en 1 clic</li>
-            </ul>
-          </div>
-
-          <a href="editeur_lettre_motivation.html" class="btn btn-primary">
-            ⚡ Ouvrir l'Éditeur de Lettre
-          </a>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- --------------------------------------------------
-         SECTION 3: EXPÉRIENCE PROFESSIONNELLE (CHANHDAI TIMELINE)
+         SECTION PARCOURS & EXPERIENCES
          -------------------------------------------------- -->
     <section class="content-section" id="experience">
       <div class="section-header-block">
-        <h2 class="section-title">💼 Expérience Professionnelle</h2>
-        <span class="section-desc">Parcours opérationnel & technique</span>
+        <h2 class="section-title">Parcours & Expérience</h2>
+        <span class="section-desc">Historique professionnel et technique</span>
       </div>
 
       <div class="timeline-list">
 
-        <!-- EXP 1: NATAAN GROUP -->
+        <!-- NATAAN GROUP -->
         <div class="timeline-item">
           <span class="timeline-node"></span>
           <div class="timeline-header">
             <div>
-              <div class="timeline-role">Chargé de Prospection Commerciale & Déploiement POS</div>
-              <div class="timeline-company">Nataan Group (Entreprise de Services du Numérique)</div>
+              <div class="timeline-role">Stagiaire — Développement Mobile, QA & Business Development</div>
+              <div class="timeline-company">Nataan Group (ESN)</div>
             </div>
-            <span class="timeline-date">Juil. 2026 – Sept. 2026</span>
+            <span class="timeline-date">Juil. 2026 - Sept. 2026</span>
           </div>
           <p class="timeline-desc">
-            Prospection et contact direct avec <strong>100 commerçants et restaurateurs</strong>. Diagnostic des besoins d'encaissement, négociation, déploiement opérationnel des terminaux points de vente (POS) et formation des utilisateurs.
+            Co-développement de l'application BoutiK sous Flutter et intégration passerelle FedaPay. Portage iOS conforme aux guidelines Apple et publication App Store Connect. Recette fonctionnelle complète (103 cas de tests exécutés) et prospection B2B auprès de 100 commerçants.
           </p>
-          <div class="timeline-tags">
-            <span class="craft-tag">Relation Clientèle Terrain</span>
-            <span class="craft-tag">Solutions POS / Caisse</span>
-            <span class="craft-tag">Négociation Commerciale</span>
-            <span class="craft-tag">Rigueur Opérationnelle</span>
+          <div class="tags-list">
+            <span class="tech-tag">Flutter</span>
+            <span class="tech-tag">iOS / APNs</span>
+            <span class="tech-tag">QA & Recette (103 tests)</span>
+            <span class="tech-tag">Firebase</span>
+            <span class="tech-tag">Prospection POS</span>
           </div>
         </div>
 
-        <!-- EXP 2: ATANYS -->
+        <!-- ATANYS -->
         <div class="timeline-item">
           <span class="timeline-node"></span>
           <div class="timeline-header">
             <div>
               <div class="timeline-role">Stagiaire en Développement Web Fullstack</div>
-              <div class="timeline-company">ATANYS — Lomé, Togo</div>
+              <div class="timeline-company">ATANYS</div>
             </div>
-            <span class="timeline-date">Sept. 2025 – Déc. 2025</span>
+            <span class="timeline-date">Sept. 2025 - Déc. 2025</span>
           </div>
           <p class="timeline-desc">
-            Conception et développement intégral d'une plateforme web de signalement et de gestion des objets perdus et retrouvés. Modélisation de base de données relationnelle MySQL, back-end robuste, interface utilisateur responsive et tests fonctionnels.
+            Conception et développement d'une plateforme web complète de signalement et de gestion des objets perdus et retrouvés. Modélisation relationnelle de la base de données MySQL, développement back-end et interface utilisateur.
           </p>
-          <div class="timeline-tags">
-            <span class="craft-tag">PHP / JavaScript</span>
-            <span class="craft-tag">MySQL & SQL Avancé</span>
-            <span class="craft-tag">Architecture Web</span>
-            <span class="craft-tag">Cycle Agile</span>
+          <div class="tags-list">
+            <span class="tech-tag">PHP</span>
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">MySQL</span>
+            <span class="tech-tag">Architecture MVC</span>
           </div>
         </div>
 
-        <!-- EXP 3: DAROLLO TECHNOLOGIES -->
+        <!-- DAROLLO -->
         <div class="timeline-item">
           <span class="timeline-node"></span>
           <div class="timeline-header">
             <div>
               <div class="timeline-role">Stagiaire en Développement d'Applications Mobiles</div>
-              <div class="timeline-company">Darollo Technologies Corporation — Lomé, Togo</div>
+              <div class="timeline-company">Darollo Technologies Corporation</div>
             </div>
-            <span class="timeline-date">Juil. 2025 – Août 2025</span>
+            <span class="timeline-date">Juil. 2025 - Août 2025</span>
           </div>
           <p class="timeline-desc">
-            Développement d'une application mobile Flutter dédiée aux artisans tailleurs pour le pilotage de leur activité (mesures clients, commandes, alertes). Implémentation du mode hors ligne avec synchronisation automatique dès retour de la connexion réseau.
+            Développement d'une application mobile Flutter dédiée aux artisans tailleurs pour la gestion des commandes et mensurations. Conception d'un fonctionnement hors-ligne (offline-first) avec synchronisation automatique.
           </p>
-          <div class="timeline-tags">
-            <span class="craft-tag">Flutter / Dart</span>
-            <span class="craft-tag">Mode Offline-First</span>
-            <span class="craft-tag">Synchronisation Données</span>
-            <span class="craft-tag">UX Mobile</span>
+          <div class="tags-list">
+            <span class="tech-tag">Flutter / Dart</span>
+            <span class="tech-tag">Architecture Offline-First</span>
+            <span class="tech-tag">Synchronisation</span>
           </div>
         </div>
 
-        <!-- EXP 4: LOGISTIQUE -->
+        <!-- LOGISTIQUE & TERRAIN -->
         <div class="timeline-item">
           <span class="timeline-node"></span>
           <div class="timeline-header">
             <div>
-              <div class="timeline-role">Préparateur de Commandes — Cadence & Rigueur</div>
-              <div class="timeline-company">Plateforme Logistique & Distribution</div>
+              <div class="timeline-role">Préparateur de Commandes & Employé Commercial</div>
+              <div class="timeline-company">Plateforme Logistique & Supermarché Champion</div>
             </div>
-            <span class="timeline-date">2025</span>
+            <span class="timeline-date">2024 - 2025</span>
           </div>
           <p class="timeline-desc">
-            Préparation minutieuse et conditionnement de commandes à cadence soutenue. Respect strict des normes d'hygiène et de sécurité, manutention ordonnée, endurance physique et esprit de cohésion collective en entrepôt.
+            Rigueur de cadence en préparation de commandes, respect des consignes de sécurité. Gestion des encaissements en période de forte affluence, tenue de caisse exacte, réassort et sens du service client.
           </p>
-          <div class="timeline-tags">
-            <span class="craft-tag">Respect des Cadences</span>
-            <span class="craft-tag">Rigueur & Zéro Erreur</span>
-            <span class="craft-tag">Hygiène & Sécurité</span>
-            <span class="craft-tag">Dynamisme d'Équipe</span>
+          <div class="tags-list">
+            <span class="tech-tag">Rigueur Opérationnelle</span>
+            <span class="tech-tag">Tenue de Caisse</span>
+            <span class="tech-tag">Gestion du Rush</span>
           </div>
         </div>
 
-        <!-- EXP 5: SUPERMARCHÉ CHAMPION -->
+        <!-- ONG-CRISTO -->
         <div class="timeline-item">
           <span class="timeline-node"></span>
           <div class="timeline-header">
             <div>
-              <div class="timeline-role">Employé Commercial & Polyvalent — Caisse & Rayon</div>
-              <div class="timeline-company">Supermarché Champion</div>
+              <div class="timeline-role">Stagiaire en Gestion & Automatisation de Données</div>
+              <div class="timeline-company">ONG-CRISTO</div>
             </div>
-            <span class="timeline-date">2024</span>
+            <span class="timeline-date">Juil. 2024 - Sept. 2024</span>
           </div>
           <p class="timeline-desc">
-            Accueil chaleureux et orientation des clients. Encaissement rapide sans écart en pic de forte affluence. Réassort quotidien des rayons, facing soigné, rotation des stocks (DLC) et entretien de la propreté de l'espace de vente.
+            Mise en place d'un système de gestion automatisée de la collecte d'informations pour un cabinet de recherche. Structuration et contrôle qualité des données terrain.
           </p>
-          <div class="timeline-tags">
-            <span class="craft-tag">Tenue de Caisse</span>
-            <span class="craft-tag">Gestion Forte Affluence</span>
-            <span class="craft-tag">Mise en Rayon / Facing</span>
-            <span class="craft-tag">Service & Politesse</span>
-          </div>
-        </div>
-
-        <!-- EXP 6: ONG CRISTO -->
-        <div class="timeline-item">
-          <span class="timeline-node"></span>
-          <div class="timeline-header">
-            <div>
-              <div class="timeline-role">Stagiaire en Gestion & Traitement de Données</div>
-              <div class="timeline-company">ONG-CRISTO — Lomé, Togo</div>
-            </div>
-            <span class="timeline-date">Juil. 2024 – Sept. 2024</span>
-          </div>
-          <p class="timeline-desc">
-            Automatisation du système de collecte d'informations pour un cabinet d'études. Structuration, fiabilisation et nettoyage des données recueillies sur le terrain.
-          </p>
-          <div class="timeline-tags">
-            <span class="craft-tag">Traitement de Données</span>
-            <span class="craft-tag">Automatisation</span>
-            <span class="craft-tag">Contrôle Qualité</span>
+          <div class="tags-list">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">Traitement de Données</span>
+            <span class="tech-tag">Automatisation</span>
           </div>
         </div>
 
@@ -1674,12 +1485,12 @@
     </section>
 
     <!-- --------------------------------------------------
-         SECTION 4: PROJETS & CRAFT TECHNIQUE
+         SECTION PROJETS & REALISATIONS
          -------------------------------------------------- -->
     <section class="content-section" id="projets">
       <div class="section-header-block">
-        <h2 class="section-title">🚀 Projets & Réalisations Techniques</h2>
-        <span class="section-desc">Architecture logicielle & développement</span>
+        <h2 class="section-title">Projets & Réalisations Techniques</h2>
+        <span class="section-desc">Architecture logicielle et code</span>
       </div>
 
       <div class="projects-grid">
@@ -1688,57 +1499,53 @@
           <div>
             <div class="project-title">Plateforme Web Objets Perdus & Retrouvés</div>
             <p class="project-desc" style="margin-top: 6px;">
-              Solution web centralisant le signalement, la recherche géolocalisée et la restitution sécurisée d'effets égarés. Algorithme de matching automatique d'annonces.
+              Service web complet de dépôt d'annonces, recherche indexée et mise en relation sécurisée. Algorithme de correspondance pour les biens égarés.
             </p>
           </div>
-          <div class="craft-tags-list">
-            <span class="craft-tag">Web Fullstack</span>
-            <span class="craft-tag">MySQL</span>
-            <span class="craft-tag">PHP</span>
-            <span class="craft-tag">Architecture MVC</span>
+          <div class="tags-list">
+            <span class="tech-tag">PHP / JS</span>
+            <span class="tech-tag">MySQL</span>
+            <span class="tech-tag">Modélisation SQL</span>
           </div>
         </div>
 
         <div class="project-card">
           <div>
-            <div class="project-title">Application Mobile Flutter pour Tailleurs</div>
+            <div class="project-title">Application Mobile Flutter pour Artisans Tailleurs</div>
             <p class="project-desc" style="margin-top: 6px;">
-              Application mobile de gestion de commandes et prise de mensurations pour ateliers de couture. Conçue avec architecture offline-first et synchronisation fluide.
+              Application de carnet de mesures et suivi de confection. Architecture locale avec synchronisation dès reconnexion réseau.
             </p>
           </div>
-          <div class="craft-tags-list">
-            <span class="craft-tag">Flutter</span>
-            <span class="craft-tag">Dart</span>
-            <span class="craft-tag">Offline-First</span>
-            <span class="craft-tag">SQLite / Sync</span>
+          <div class="tags-list">
+            <span class="tech-tag">Flutter</span>
+            <span class="tech-tag">Dart</span>
+            <span class="tech-tag">Offline-First</span>
           </div>
         </div>
 
         <div class="project-card">
           <div>
-            <div class="project-title">Pipeline Automatisé de Collecte de Données (ETL)</div>
+            <div class="project-title">Pipeline Automatisé de Normalisation de Données</div>
             <p class="project-desc" style="margin-top: 6px;">
-              Outil d'automatisation des flux de données terrain pour cabinet de recherche. Normalisation des formats, élimination des doublons et génération de rapports.
+              Scripts d'ingestion et de nettoyage automatisé de données d'enquêtes terrain, détection des anomalies et export structuré.
             </p>
           </div>
-          <div class="craft-tags-list">
-            <span class="craft-tag">Python</span>
-            <span class="craft-tag">ETL / Data Cleaning</span>
-            <span class="craft-tag">Automation</span>
+          <div class="tags-list">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">ETL / Data Quality</span>
           </div>
         </div>
 
         <div class="project-card">
           <div>
-            <div class="project-title">Portail & Moteur d'Édition CV 1 Page A4</div>
+            <div class="project-title">Moteur de Génération & Impression CV A4 Exact</div>
             <p class="project-desc" style="margin-top: 6px;">
-              Plateforme web d'édition de CV et lettres en temps réel avec injection de métadonnées, gestion multi-profils et moteur d'export PDF calibré à la perfection.
+              Architecture web avec moteur CSS calibré garantissant un export PDF strict 1 page A4 et préservation totale des contrastes et fonds colorés.
             </p>
           </div>
-          <div class="craft-tags-list">
-            <span class="craft-tag">HTML5 / Vanilla JS</span>
-            <span class="craft-tag">CSS Exact Print Engine</span>
-            <span class="craft-tag">Vercel Deployment</span>
+          <div class="tags-list">
+            <span class="tech-tag">HTML5 / Vanilla JS</span>
+            <span class="tech-tag">Print Engine</span>
           </div>
         </div>
 
@@ -1746,80 +1553,65 @@
     </section>
 
     <!-- --------------------------------------------------
-         SECTION 5: STACK TECHNIQUE & COMPÉTENCES
+         SECTION STACK TECHNIQUE
          -------------------------------------------------- -->
     <section class="content-section" id="competences">
       <div class="section-header-block">
-        <h2 class="section-title">⚡ Stack Technique & Compétences</h2>
-        <span class="section-desc">Boîte à outils de développement et de terrain</span>
+        <h2 class="section-title">Stack Technique & Compétences</h2>
+        <span class="section-desc">Technologies maîtrisées</span>
       </div>
 
-      <!-- LANGAGES -->
       <div class="stack-category-block">
         <div class="stack-category-title">Langages de Programmation</div>
         <div class="stack-chips-wrap">
-          <span class="stack-chip">☕ Java</span>
-          <span class="stack-chip">🐍 Python</span>
-          <span class="stack-chip">⚙️ C / C++</span>
-          <span class="stack-chip">🗄️ SQL</span>
-          <span class="stack-chip">🌐 JavaScript (ES6+)</span>
-          <span class="stack-chip">💙 TypeScript</span>
-          <span class="stack-chip">🎯 Dart</span>
-          <span class="stack-chip">🐘 PHP</span>
+          <span class="stack-chip">Java</span>
+          <span class="stack-chip">Python</span>
+          <span class="stack-chip">C / C++</span>
+          <span class="stack-chip">SQL</span>
+          <span class="stack-chip">JavaScript (ES6+)</span>
+          <span class="stack-chip">TypeScript</span>
+          <span class="stack-chip">Dart</span>
+          <span class="stack-chip">PHP</span>
         </div>
       </div>
 
-      <!-- FRAMEWORKS & WEB -->
       <div class="stack-category-block">
-        <div class="stack-category-title">Frameworks & Technologies Web / Mobile</div>
+        <div class="stack-category-title">Frameworks & Environnements Web / Mobile</div>
         <div class="stack-chips-wrap">
-          <span class="stack-chip">📱 Flutter</span>
-          <span class="stack-chip">⚛️ React.js</span>
-          <span class="stack-chip">▲ Next.js</span>
-          <span class="stack-chip">🟢 Node.js</span>
-          <span class="stack-chip">🍃 Spring Boot (Notions)</span>
-          <span class="stack-chip">🎨 Tailwind CSS</span>
-          <span class="stack-chip">🧩 HTML5 / CSS3 Sémantique</span>
+          <span class="stack-chip">Flutter</span>
+          <span class="stack-chip">React.js</span>
+          <span class="stack-chip">Next.js</span>
+          <span class="stack-chip">Node.js</span>
+          <span class="stack-chip">Spring Boot (Notions)</span>
+          <span class="stack-chip">Django</span>
+          <span class="stack-chip">Laravel</span>
+          <span class="stack-chip">Tailwind CSS</span>
         </div>
       </div>
 
-      <!-- BASES DE DONNÉES & OUTILS -->
       <div class="stack-category-block">
-        <div class="stack-category-title">Bases de Données, Outils & Méthodes</div>
+        <div class="stack-category-title">Bases de Données, Outils & Méthodologies</div>
         <div class="stack-chips-wrap">
-          <span class="stack-chip">🐬 MySQL</span>
-          <span class="stack-chip">🐘 PostgreSQL</span>
-          <span class="stack-chip">🐙 Git & GitHub</span>
-          <span class="stack-chip">🐳 Docker</span>
-          <span class="stack-chip">🐧 Linux / Bash</span>
-          <span class="stack-chip">⚡ Méthodes Agiles (Scrum)</span>
-          <span class="stack-chip">🧪 Tests Unitaires</span>
-          <span class="stack-chip">🏭 Outils EAM / PLM</span>
-        </div>
-      </div>
-
-      <!-- OPÉRATIONNEL & CLIENT -->
-      <div class="stack-category-block">
-        <div class="stack-category-title">Compétences Opérationnelles & Savoir-Être</div>
-        <div class="stack-chips-wrap">
-          <span class="stack-chip">🤝 Accueil & Relation Client d'Excellence</span>
-          <span class="stack-chip">💳 Encaissement & Tenue de Caisse</span>
-          <span class="craft-tag" style="padding: 6px 12px; font-size: 12px;">⚡ Gestion du Rush & Sang-froid</span>
-          <span class="stack-chip">🎓 Pédagogie & Soutien Scolaire</span>
-          <span class="stack-chip">📦 Logistique & Préparation de Commandes</span>
-          <span class="stack-chip">🛡️ Hygiène & Normes Sanitaires (HACCP)</span>
-          <span class="stack-chip">✨ Sens du Détail & Rigueur</span>
+          <span class="stack-chip">MySQL</span>
+          <span class="stack-chip">PostgreSQL</span>
+          <span class="stack-chip">Firebase Firestore</span>
+          <span class="stack-chip">Git & GitHub</span>
+          <span class="stack-chip">Docker</span>
+          <span class="stack-chip">Linux / Shell</span>
+          <span class="stack-chip">Méthodes Agiles (Scrum)</span>
+          <span class="stack-chip">Tests Unitaires & QA</span>
+          <span class="stack-chip">Outils EAM / PLM</span>
         </div>
       </div>
     </section>
 
     <!-- --------------------------------------------------
-         SECTION 6: FORMATION & DIPLÔMES
+         SECTION FORMATION
          -------------------------------------------------- -->
     <section class="content-section" id="formation">
       <div class="section-header-block">
-        <h2 class="section-title">🎓 Formation Académique</h2>
-        <span class="section-desc">Cursus d'excellence en informatique</span>
+        <h2 class="section-title">Formation Académique</h2>
+        <span class="section-desc">Diplômes et parcours d'études</span>
       </div>
 
       <div class="timeline-list">
@@ -1831,10 +1623,10 @@
               <div class="timeline-role">Master 1 en Informatique (Cursus Bac+5)</div>
               <div class="timeline-company">SUPINFO Lyon — Lyon, France</div>
             </div>
-            <span class="timeline-date">Oct. 2026 – Présent</span>
+            <span class="timeline-date">Oct. 2026 - Présent</span>
           </div>
           <p class="timeline-desc">
-            Programme Grande École d'Ingénierie Informatique : architecture logicielle, génie logiciel avancé, gestion de projets Agiles, bases de données distribuées et sécurité.
+            Programme d'Ingénierie Informatique : conception et modélisation logicielle, architectures distribuées, bases de données avancées et gestion de projet Agile.
           </p>
         </div>
 
@@ -1845,10 +1637,10 @@
               <div class="timeline-role">Licence Professionnelle en Génie Logiciel (Mention Bien)</div>
               <div class="timeline-company">IAI-TOGO (Institut Africain d'Informatique)</div>
             </div>
-            <span class="timeline-date">2022 – 2025</span>
+            <span class="timeline-date">2022 - 2025</span>
           </div>
           <p class="timeline-desc">
-            Algorithmique avancée, structures de données, programmation orientée objet (Java, C++, Python), modélisation relationnelle (UML, Merise), développement web et mobile.
+            Algorithmique fondamentale, programmation orientée objet (Java, C++), modélisation relationnelle (UML, Merise), développement web et mobile.
           </p>
         </div>
 
@@ -1859,10 +1651,10 @@
               <div class="timeline-role">Baccalauréat Scientifique (BAC 2)</div>
               <div class="timeline-company">LPL Le Rossignol</div>
             </div>
-            <span class="timeline-date">2021 – 2022</span>
+            <span class="timeline-date">2021 - 2022</span>
           </div>
           <p class="timeline-desc">
-            Série scientifique : Mathématiques, Sciences Physiques et SVT. Socle fondamental de rigueur analytique.
+            Série scientifique : Mathématiques, Sciences Physiques et SVT.
           </p>
         </div>
 
@@ -1870,127 +1662,187 @@
     </section>
 
     <!-- --------------------------------------------------
-         SECTION 7: BIBLIOTHÈQUE OFFICIELLE PDF (1 PAGE STRICTE)
+         INVITATION ESPACE PRIVE / CONNEXION
          -------------------------------------------------- -->
-    <section class="content-section" id="bibliotheque">
-      <div class="section-header-block">
-        <h2 class="section-title">📂 Bibliothèque Complète des PDF Téléchargeables</h2>
-        <span class="section-desc">11 documents officiels (1 Page A4 stricte)</span>
-      </div>
-
-      <div class="docs-list-card">
-
-        <!-- SOUTIEN SCOLAIRE -->
-        <div class="doc-row-item">
-          <div class="doc-info-col">
-            <span class="doc-title-text">CV Soutien Scolaire & Tutorat (Maths / Sciences)</span>
-            <span class="doc-sub-text">Pédagogie bienveillante, méthodologie & rigueur scientifique</span>
-          </div>
-          <a href="CV_Rodrigue_HESSOU_Soutien_Scolaire.pdf" target="_blank" class="btn btn-secondary btn-sm">PDF 📥</a>
+    <section class="content-section" id="auth-cta-section">
+      <div class="private-access-banner">
+        <div class="private-banner-content">
+          <h3>Espace Candidat Réservé</h3>
+          <p>
+            Vous êtes Rodrigue HESSOU ? Connectez-vous à votre espace interne pour accéder à vos dossiers de candidatures ciblées (jobs étudiants, soutien scolaire, retail, restauration rapide) et ouvrir les éditeurs interactifs en ligne.
+          </p>
         </div>
-
-        <div class="doc-row-item">
-          <div class="doc-info-col">
-            <span class="doc-title-text">Lettre de Motivation Soutien Scolaire & Tutorat</span>
-            <span class="doc-sub-text">Acadomia, Complétude, familles et particuliers</span>
-          </div>
-          <a href="Lettre_de_Motivation_Soutien_Scolaire_Rodrigue_HESSOU.pdf" target="_blank" class="btn btn-secondary btn-sm">PDF 📥</a>
+        <div>
+          <button class="btn btn-secondary" onclick="openLoginModal()" id="btn-login-cta">
+            <svg class="icon-svg" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            Accéder à l'espace interne
+          </button>
         </div>
-
-        <!-- MACDONALD'S -->
-        <div class="doc-row-item">
-          <div class="doc-info-col">
-            <span class="doc-title-text">CV Équipier Polyvalent de Restauration Rapide</span>
-            <span class="doc-sub-text">McDonald's Lyon · Caisse, bornes, cuisine, Drive & rush</span>
-          </div>
-          <a href="CV_Rodrigue_HESSOU_Restauration_MacDo.pdf" target="_blank" class="btn btn-secondary btn-sm">PDF 📥</a>
-        </div>
-
-        <div class="doc-row-item">
-          <div class="doc-info-col">
-            <span class="doc-title-text">Lettre de Motivation McDonald's Lyon</span>
-            <span class="doc-sub-text">Temps partiel étudiant · Soirs, week-ends et fermetures</span>
-          </div>
-          <a href="Lettre_de_Motivation_MacDo_Rodrigue_HESSOU.pdf" target="_blank" class="btn btn-secondary btn-sm">PDF 📥</a>
-        </div>
-
-        <!-- APPLE -->
-        <div class="doc-row-item">
-          <div class="doc-info-col">
-            <span class="doc-title-text">CV Spécialiste Apple Retail (Apple Store Lyon)</span>
-            <span class="doc-sub-text">Rôle #114438069 · Product Zone, inclusion & service client</span>
-          </div>
-          <a href="CV_Rodrigue_HESSOU_Apple_Retail.pdf" target="_blank" class="btn btn-secondary btn-sm">PDF 📥</a>
-        </div>
-
-        <div class="doc-row-item">
-          <div class="doc-info-col">
-            <span class="doc-title-text">Lettre de Motivation Apple Retail Lyon</span>
-            <span class="doc-sub-text">Rôle #114438069 · Spécialiste Apple Store</span>
-          </div>
-          <a href="Lettre_de_Motivation_Apple_Retail_Rodrigue_HESSOU.pdf" target="_blank" class="btn btn-secondary btn-sm">PDF 📥</a>
-        </div>
-
-        <!-- ADIDAS / RETAIL -->
-        <div class="doc-row-item">
-          <div class="doc-info-col">
-            <span class="doc-title-text">CV Retail & Vente Polyvalente (adidas / Boutiques)</span>
-            <span class="doc-sub-text">adidas, Sephora, Hermès · Caisse, facing, stocks & KPIs</span>
-          </div>
-          <a href="CV_Rodrigue_HESSOU_Retail_Polyvalent.pdf" target="_blank" class="btn btn-secondary btn-sm">PDF 📥</a>
-        </div>
-
-        <div class="doc-row-item">
-          <div class="doc-info-col">
-            <span class="doc-title-text">Lettre de Motivation Vendeur adidas Lyon Part-Dieu</span>
-            <span class="doc-sub-text">CDI 35H / Temps Partiel · Culture du sport & rebelles optimistes</span>
-          </div>
-          <a href="Lettre_de_Motivation_Adidas_Rodrigue_HESSOU.pdf" target="_blank" class="btn btn-secondary btn-sm">PDF 📥</a>
-        </div>
-
-        <div class="doc-row-item">
-          <div class="doc-info-col">
-            <span class="doc-title-text">Lettre de Motivation Retail Polyvalent Général</span>
-            <span class="doc-sub-text">Grande distribution, vente et conseil client</span>
-          </div>
-          <a href="Lettre_de_Motivation_Retail_Polyvalent.pdf" target="_blank" class="btn btn-secondary btn-sm">PDF 📥</a>
-        </div>
-
-        <!-- TECH / CAPGEMINI -->
-        <div class="doc-row-item">
-          <div class="doc-info-col">
-            <span class="doc-title-text">CV Développeur Logiciel Back-End / Fullstack</span>
-            <span class="doc-sub-text">Java, Python, C++, SQL, Mobile & Web · Bac+5</span>
-          </div>
-          <a href="CV_Rodrigue_HESSOU.pdf" target="_blank" class="btn btn-secondary btn-sm">PDF 📥</a>
-        </div>
-
-        <div class="doc-row-item">
-          <div class="doc-info-col">
-            <span class="doc-title-text">Lettre de Motivation Développeur Capgemini Lyon</span>
-            <span class="doc-sub-text">Lyon 7e · Méthodes Agiles, tests unitaires, EAM & PLM</span>
-          </div>
-          <a href="Lettre_de_Motivation_Rodrigue_HESSOU.pdf" target="_blank" class="btn btn-secondary btn-sm">PDF 📥</a>
-        </div>
-
       </div>
     </section>
 
     <!-- --------------------------------------------------
-         FOOTER (CHANHDAI SIGNATURE FOOTER)
+         ESPACE CACHÉ EN INTERNE (DÉBLOQUÉ APRÈS LOGIN)
          -------------------------------------------------- -->
+    <div id="private-dashboard">
+      <div class="private-header-bar">
+        <div class="private-status-tag">
+          <span class="status-pulse-dot"></span>
+          Espace Interne Connecté : Rodrigue HESSOU
+        </div>
+        <button class="btn btn-secondary btn-sm" onclick="logout()">
+          Déconnexion
+        </button>
+      </div>
+
+      <!-- EDITORS BENTO -->
+      <section class="content-section">
+        <div class="section-header-block">
+          <h2 class="section-title">Outils d'Édition en Ligne</h2>
+          <span class="section-desc">Personnalisation et export instantané</span>
+        </div>
+
+        <div class="bento-grid">
+          <div class="bento-card">
+            <div>
+              <div class="bento-title">
+                <h4>Éditeur de CV Interactif</h4>
+                <p>Mise en page WYSIWYG sur feuille A4 stricte</p>
+              </div>
+              <ul class="bento-features" style="margin-top: 12px;">
+                <li>12 profils métiers pré-configurés en 1 clic</li>
+                <li>Numéro de rôle d'offre personnalisable</li>
+                <li>Export PDF 1 page avec couleur de colonne garantie</li>
+              </ul>
+            </div>
+            <a href="editeur_cv.html" class="btn btn-primary btn-sm">
+              Ouvrir l'Éditeur de CV
+            </a>
+          </div>
+
+          <div class="bento-card">
+            <div>
+              <div class="bento-title">
+                <h4>Éditeur de Lettre de Motivation</h4>
+                <p>Génération sur-mesure pour chaque annonce</p>
+              </div>
+              <ul class="bento-features" style="margin-top: 12px;">
+                <li>Injection automatique de l'objet et référence</li>
+                <li>Modèles prêts pour tutorat, retail, tech</li>
+                <li>Export PDF officiel ou copie de texte en 1 clic</li>
+              </ul>
+            </div>
+            <a href="editeur_lettre_motivation.html" class="btn btn-primary btn-sm">
+              Ouvrir l'Éditeur de Lettre
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- DOSSIERS CIBLES / JOBS ETUDIANTS -->
+      <section class="content-section">
+        <div class="section-header-block">
+          <h2 class="section-title">Candidatures Dédiées & Jobs Étudiants</h2>
+          <span class="section-desc">Dossiers ciblés prêts à l'envoi</span>
+        </div>
+
+        <div class="private-docs-list">
+
+          <!-- SOUTIEN SCOLAIRE -->
+          <div class="private-doc-item">
+            <div class="doc-info-col">
+              <span class="private-doc-title">Soutien Scolaire & Tutorat (Maths / Sciences)</span>
+              <span class="private-doc-sub">Acadomia, Complétude, familles</span>
+            </div>
+            <div style="display: flex; gap: 6px;">
+              <a href="CV_Rodrigue_HESSOU_Soutien_Scolaire.pdf" target="_blank" class="btn btn-secondary btn-sm">CV</a>
+              <a href="Lettre_de_Motivation_Soutien_Scolaire_Rodrigue_HESSOU.pdf" target="_blank" class="btn btn-secondary btn-sm">Lettre</a>
+              <a href="editeur_cv.html?preset=soutien_scolaire" class="btn btn-primary btn-sm">Éditer</a>
+            </div>
+          </div>
+
+          <!-- MCDONALDS -->
+          <div class="private-doc-item">
+            <div class="doc-info-col">
+              <span class="private-doc-title">McDonald's Lyon (Équipier Polyvalent)</span>
+              <span class="private-doc-sub">Caisse, bornes, Drive, rush & HACCP</span>
+            </div>
+            <div style="display: flex; gap: 6px;">
+              <a href="CV_Rodrigue_HESSOU_Restauration_MacDo.pdf" target="_blank" class="btn btn-secondary btn-sm">CV</a>
+              <a href="Lettre_de_Motivation_MacDo_Rodrigue_HESSOU.pdf" target="_blank" class="btn btn-secondary btn-sm">Lettre</a>
+              <a href="editeur_cv.html?preset=macdo" class="btn btn-primary btn-sm">Éditer</a>
+            </div>
+          </div>
+
+          <!-- APPLE STORE -->
+          <div class="private-doc-item">
+            <div class="doc-info-col">
+              <span class="private-doc-title">Apple Store Lyon (Spécialiste #114438069)</span>
+              <span class="private-doc-sub">Part-Dieu / Confluence · Product Zone</span>
+            </div>
+            <div style="display: flex; gap: 6px;">
+              <a href="CV_Rodrigue_HESSOU_Apple_Retail.pdf" target="_blank" class="btn btn-secondary btn-sm">CV</a>
+              <a href="Lettre_de_Motivation_Apple_Retail_Rodrigue_HESSOU.pdf" target="_blank" class="btn btn-secondary btn-sm">Lettre</a>
+              <a href="editeur_cv.html?preset=apple_part_time" class="btn btn-primary btn-sm">Éditer</a>
+            </div>
+          </div>
+
+          <!-- ADIDAS -->
+          <div class="private-doc-item">
+            <div class="doc-info-col">
+              <span class="private-doc-title">adidas Lyon Part-Dieu (Vendeur CDI 35H)</span>
+              <span class="private-doc-sub">Vente conseil, KPIs retail & encaissement</span>
+            </div>
+            <div style="display: flex; gap: 6px;">
+              <a href="CV_Rodrigue_HESSOU_Retail_Polyvalent.pdf" target="_blank" class="btn btn-secondary btn-sm">CV</a>
+              <a href="Lettre_de_Motivation_Adidas_Rodrigue_HESSOU.pdf" target="_blank" class="btn btn-secondary btn-sm">Lettre</a>
+              <a href="editeur_cv.html?preset=adidas_part_dieu" class="btn btn-primary btn-sm">Éditer</a>
+            </div>
+          </div>
+
+          <!-- RETAIL GENERAL -->
+          <div class="private-doc-item">
+            <div class="doc-info-col">
+              <span class="private-doc-title">Retail & Vente Polyvalente Générale</span>
+              <span class="private-doc-sub">Sephora, Hermès, grandes enseignes</span>
+            </div>
+            <div style="display: flex; gap: 6px;">
+              <a href="CV_Rodrigue_HESSOU_Retail_Polyvalent.pdf" target="_blank" class="btn btn-secondary btn-sm">CV</a>
+              <a href="Lettre_de_Motivation_Retail_Polyvalent.pdf" target="_blank" class="btn btn-secondary btn-sm">Lettre</a>
+              <a href="editeur_cv.html?preset=retail_general" class="btn btn-primary btn-sm">Éditer</a>
+            </div>
+          </div>
+
+          <!-- CAPGEMINI LYON -->
+          <div class="private-doc-item">
+            <div class="doc-info-col">
+              <span class="private-doc-title">Capgemini France (Lyon 7e)</span>
+              <span class="private-doc-sub">Offre Dév. Java / Back-End & PLM</span>
+            </div>
+            <div style="display: flex; gap: 6px;">
+              <a href="CV_Rodrigue_HESSOU.pdf" target="_blank" class="btn btn-secondary btn-sm">CV</a>
+              <a href="Lettre_de_Motivation_Rodrigue_HESSOU.pdf" target="_blank" class="btn btn-secondary btn-sm">Lettre</a>
+              <a href="editeur_lettre_motivation.html?preset=capgemini_stage" class="btn btn-primary btn-sm">Éditer</a>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </div>
+
+    <!-- FOOTER -->
     <footer class="site-footer">
       <div class="footer-top-row">
         <div>
           <strong style="color: var(--text-primary); font-size: 13.5px;">Rodrigue HESSOU</strong>
-          <p style="margin-top: 2px;">Étudiant Master 1 en Informatique @ SUPINFO Lyon</p>
+          <p style="margin-top: 2px;">Étudiant Master 1 en Informatique / SUPINFO Lyon</p>
         </div>
 
         <ul class="footer-links">
           <li><a href="#overview">Accueil</a></li>
           <li><a href="#candidatures">Candidatures</a></li>
-          <li><a href="editeur_cv.html">Éditeur CV</a></li>
-          <li><a href="editeur_lettre_motivation.html">Éditeur Lettre</a></li>
+          <li><a href="#experience">Expérience</a></li>
+          <li><a href="#projets">Projets</a></li>
           <li><a href="https://github.com/RoHsk14" target="_blank">GitHub</a></li>
           <li><a href="mailto:rodriguehessou14@gmail.com">Contact</a></li>
         </ul>
@@ -2001,69 +1853,82 @@
           Conçu avec précision • Déployé sur Vercel
         </div>
         <div>
-          © 2026 Rodrigue HESSOU. Tous droits réservés.
+          Copyright 2026 Rodrigue HESSOU. Tous droits réservés.
         </div>
       </div>
     </footer>
 
   </div>
 
-  <!-- --------------------------------------------------
-       COMMAND PALETTE (NATIVE <dialog> MODAL)
-       Adheres to modern-web-guidance
-       -------------------------------------------------- -->
+  <!-- COMMAND PALETTE (NATIVE <dialog> MODAL) -->
   <dialog id="cmd-dialog" closedby="any" aria-label="Palette de commandes">
     <div class="cmd-box">
       <div class="cmd-input-row">
-        <span class="cmd-search-icon">🔍</span>
-        <input type="text" class="cmd-search-input" id="cmd-search" placeholder="Rechercher une candidature, un PDF, un outil ou taper une commande..." oninput="filterCmdList(this.value)">
+        <svg class="icon-svg" style="color: var(--text-muted);" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="text" class="cmd-search-input" id="cmd-search" placeholder="Rechercher une section, un document ou une action..." oninput="filterCmdList(this.value)">
         <kbd class="cmd-shortcut-badge" style="cursor: pointer;" onclick="closeCmdPalette()">ESC</kbd>
       </div>
 
       <ul class="cmd-results-list" id="cmd-list">
-        <!-- SECTIONS RAPIDES -->
-        <li class="cmd-category-header">Navigation Rapide</li>
-        <li><a class="cmd-item" href="#candidatures" onclick="closeCmdPalette()"><span class="cmd-item-left">⭐ Candidatures Phares</span><span class="cmd-item-badge">Section</span></a></li>
-        <li><a class="cmd-item" href="#editeurs" onclick="closeCmdPalette()"><span class="cmd-item-left">🛠️ Éditeurs Interactifs</span><span class="cmd-item-badge">Outils</span></a></li>
-        <li><a class="cmd-item" href="#experience" onclick="closeCmdPalette()"><span class="cmd-item-left">💼 Expérience Professionnelle</span><span class="cmd-item-badge">Timeline</span></a></li>
-        <li><a class="cmd-item" href="#projets" onclick="closeCmdPalette()"><span class="cmd-item-left">🚀 Projets & Réalisations</span><span class="cmd-item-badge">Code</span></a></li>
-        <li><a class="cmd-item" href="#competences" onclick="closeCmdPalette()"><span class="cmd-item-left">⚡ Stack Technique</span><span class="cmd-item-badge">Skills</span></a></li>
-        <li><a class="cmd-item" href="#formation" onclick="closeCmdPalette()"><span class="cmd-item-left">🎓 Formation Académique</span><span class="cmd-item-badge">Diplômes</span></a></li>
-        <li><a class="cmd-item" href="#bibliotheque" onclick="closeCmdPalette()"><span class="cmd-item-left">📂 Bibliothèque PDF (11 fichiers)</span><span class="cmd-item-badge">Downloads</span></a></li>
+        <!-- NAVIGATION -->
+        <li class="cmd-category-header">Navigation Publique</li>
+        <li><a class="cmd-item" href="#candidatures" onclick="closeCmdPalette()"><span class="cmd-item-left">Candidatures Techniques (Stage & Alternance)</span><span class="cmd-item-badge">Section</span></a></li>
+        <li><a class="cmd-item" href="#experience" onclick="closeCmdPalette()"><span class="cmd-item-left">Parcours & Expérience</span><span class="cmd-item-badge">Timeline</span></a></li>
+        <li><a class="cmd-item" href="#projets" onclick="closeCmdPalette()"><span class="cmd-item-left">Projets & Réalisations Techniques</span><span class="cmd-item-badge">Code</span></a></li>
+        <li><a class="cmd-item" href="#competences" onclick="closeCmdPalette()"><span class="cmd-item-left">Stack Technique</span><span class="cmd-item-badge">Skills</span></a></li>
+        <li><a class="cmd-item" href="#formation" onclick="closeCmdPalette()"><span class="cmd-item-left">Formation Académique</span><span class="cmd-item-badge">Diplômes</span></a></li>
 
-        <!-- EDITEURS -->
-        <li class="cmd-category-header">Éditeurs Interactifs</li>
-        <li><a class="cmd-item" href="editeur_cv.html"><span class="cmd-item-left">📄 Ouvrir l'Éditeur de CV Interactif</span><span class="cmd-item-badge">Édition</span></a></li>
-        <li><a class="cmd-item" href="editeur_lettre_motivation.html"><span class="cmd-item-left">✉️ Ouvrir l'Éditeur de Lettre de Motivation</span><span class="cmd-item-badge">Édition</span></a></li>
-
-        <!-- CVs PDF -->
-        <li class="cmd-category-header">Télécharger un CV (PDF 1 Page)</li>
-        <li><a class="cmd-item" href="CV_Rodrigue_HESSOU_Soutien_Scolaire.pdf" target="_blank"><span class="cmd-item-left">🎓 CV Soutien Scolaire & Tutorat</span><span class="cmd-item-badge">PDF</span></a></li>
-        <li><a class="cmd-item" href="CV_Rodrigue_HESSOU_Restauration_MacDo.pdf" target="_blank"><span class="cmd-item-left">🍔 CV Équipier Polyvalent McDonald's</span><span class="cmd-item-badge">PDF</span></a></li>
-        <li><a class="cmd-item" href="CV_Rodrigue_HESSOU_Apple_Retail.pdf" target="_blank"><span class="cmd-item-left">🍏 CV Spécialiste Apple Retail (#114438069)</span><span class="cmd-item-badge">PDF</span></a></li>
-        <li><a class="cmd-item" href="CV_Rodrigue_HESSOU_Retail_Polyvalent.pdf" target="_blank"><span class="cmd-item-left">👟 CV Retail & Vente (adidas / Boutiques)</span><span class="cmd-item-badge">PDF</span></a></li>
-        <li><a class="cmd-item" href="CV_Rodrigue_HESSOU.pdf" target="_blank"><span class="cmd-item-left">💻 CV Développeur Logiciel (Capgemini / Tech)</span><span class="cmd-item-badge">PDF</span></a></li>
+        <!-- DOCUMENTS PUBLICS -->
+        <li class="cmd-category-header">Documents Techniques Généraux</li>
+        <li><a class="cmd-item" href="CV_Rodrigue_HESSOU_Stage_Tech.pdf" target="_blank"><span class="cmd-item-left">CV Développeur Logiciel (Stage Bac+5)</span><span class="cmd-item-badge">PDF</span></a></li>
+        <li><a class="cmd-item" href="Lettre_de_Motivation_Stage_Tech_Rodrigue_HESSOU.pdf" target="_blank"><span class="cmd-item-left">Lettre de Motivation Développeur Logiciel (Stage)</span><span class="cmd-item-badge">PDF</span></a></li>
+        <li><a class="cmd-item" href="CV_Rodrigue_HESSOU_Alternance_Tech.pdf" target="_blank"><span class="cmd-item-left">CV Développeur Logiciel (Alternance Bac+5)</span><span class="cmd-item-badge">PDF</span></a></li>
+        <li><a class="cmd-item" href="Lettre_de_Motivation_Alternance_Tech_Rodrigue_HESSOU.pdf" target="_blank"><span class="cmd-item-left">Lettre de Motivation Développeur Logiciel (Alternance)</span><span class="cmd-item-badge">PDF</span></a></li>
 
         <!-- ACTIONS -->
-        <li class="cmd-category-header">Actions & Contact</li>
-        <li><div class="cmd-item" onclick="copyContact('rodriguehessou14@gmail.com', 'Email copié !'); closeCmdPalette();"><span class="cmd-item-left">✉️ Copier l'Email (rodriguehessou14@gmail.com)</span><span class="cmd-item-badge">Copier</span></div></li>
-        <li><div class="cmd-item" onclick="copyContact('+33 7 44 11 75 73', 'Téléphone copié !'); closeCmdPalette();"><span class="cmd-item-left">📱 Copier le Téléphone (+33 7 44 11 75 73)</span><span class="cmd-item-badge">Copier</span></div></li>
-        <li><div class="cmd-item" onclick="toggleTheme(); closeCmdPalette();"><span class="cmd-item-left">🎨 Basculer Thème (Clair / Sombre)</span><span class="cmd-item-badge">Theme</span></div></li>
+        <li class="cmd-category-header">Actions Rapides</li>
+        <li><div class="cmd-item" onclick="copyContact('rodriguehessou14@gmail.com', 'Email copié dans le presse-papier'); closeCmdPalette();"><span class="cmd-item-left">Copier l'Email (rodriguehessou14@gmail.com)</span><span class="cmd-item-badge">Copier</span></div></li>
+        <li><div class="cmd-item" onclick="copyContact('+33 7 44 11 75 73', 'Téléphone copié dans le presse-papier'); closeCmdPalette();"><span class="cmd-item-left">Copier le Téléphone (+33 7 44 11 75 73)</span><span class="cmd-item-badge">Copier</span></div></li>
+        <li><div class="cmd-item" onclick="toggleTheme(); closeCmdPalette();"><span class="cmd-item-left">Basculer le Thème (Clair / Sombre)</span><span class="cmd-item-badge">Thème</span></div></li>
+        <li id="cmd-login-item"><div class="cmd-item" onclick="openLoginModal(); closeCmdPalette();"><span class="cmd-item-left">Connexion Espace Interne (Rodrigue)</span><span class="cmd-item-badge">Auth</span></div></li>
       </ul>
 
       <div class="cmd-footer-bar">
-        <span>Navigation : <strong>↑</strong> <strong>↓</strong> pour parcourir</span>
-        <span>Validation : <strong>Entrée</strong></span>
+        <span>Navigation : Flèches haut/bas</span>
+        <span>Validation : Entrée</span>
       </div>
     </div>
   </dialog>
 
-  <!-- TOAST FEEDBACK -->
-  <div class="toast" id="toast">✓ Copié dans le presse-papier !</div>
+  <!-- LOGIN MODAL DIALOG -->
+  <dialog id="login-modal" closedby="any" aria-label="Connexion à l'espace interne">
+    <div class="login-card">
+      <div class="login-header">
+        <h3>Espace Interne Réservé</h3>
+        <p>Veuillez saisir votre mot de passe d'accès pour déverrouiller vos dossiers.</p>
+      </div>
 
-  <!-- SCRIPT -->
+      <form onsubmit="handleLoginSubmit(event)">
+        <div class="login-form-group">
+          <label for="login-pwd">Mot de passe</label>
+          <input type="password" id="login-pwd" class="login-input" placeholder="Mot de passe d'accès..." autofocus required>
+          <span class="login-error-msg" id="login-error">Mot de passe incorrect. Veuillez réessayer.</span>
+        </div>
+
+        <div class="login-actions" style="margin-top: 16px;">
+          <button type="button" class="btn btn-secondary btn-sm" onclick="closeLoginModal()">Annuler</button>
+          <button type="submit" class="btn btn-primary btn-sm">Se connecter</button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+
+  <!-- TOAST FEEDBACK -->
+  <div class="toast" id="toast">Copié dans le presse-papier</div>
+
+  <!-- JAVASCRIPT -->
   <script>
-    // THEME HANDLING WITH LOCALSTORAGE & SYSTEM DETECTION
+    // THEME HANDLING
     function initTheme() {
       const saved = localStorage.getItem('theme');
       if (saved) {
@@ -2081,35 +1946,109 @@
       document.documentElement.setAttribute('data-theme', next);
       localStorage.setItem('theme', next);
       updateThemeIcon(next);
-      showToast(next === 'light' ? '☀️ Mode Clair activé' : '🌙 Mode Sombre activé');
+      showToast(next === 'light' ? 'Mode Clair activé' : 'Mode Sombre activé');
     }
 
     function updateThemeIcon(theme) {
-      const btn = document.getElementById('theme-btn');
-      if (btn) btn.innerText = theme === 'light' ? '☀️' : '🌙';
+      const icon = document.getElementById('theme-icon');
+      if (icon) {
+        if (theme === 'light') {
+          // Sun SVG
+          icon.innerHTML = '<circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>';
+        } else {
+          // Moon SVG
+          icon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
+        }
+      }
     }
 
     initTheme();
 
-    // FILTER CARDS
-    function filterApps(cat, btn) {
-      document.querySelectorAll('.filter-tab-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+    // AUTHENTICATION & PRIVATE DASHBOARD
+    function checkAuth() {
+      const isAuth = localStorage.getItem('rodrigue_auth') === 'true';
+      const dashboard = document.getElementById('private-dashboard');
+      const navBtn = document.getElementById('nav-auth-btn');
+      const navText = document.getElementById('nav-auth-text');
+      const ctaSection = document.getElementById('auth-cta-section');
+      const cmdLoginItem = document.getElementById('cmd-login-item');
 
-      const cards = document.querySelectorAll('.app-craft-card');
-      cards.forEach(card => {
-        if (cat === 'all' || card.getAttribute('data-category') === cat) {
-          card.style.display = 'flex';
-        } else {
-          card.style.display = 'none';
+      if (isAuth) {
+        dashboard.classList.add('authenticated');
+        navBtn.classList.add('authenticated');
+        navText.innerText = 'Espace Connecté';
+        ctaSection.style.display = 'none';
+        if (cmdLoginItem) {
+          cmdLoginItem.innerHTML = '<div class="cmd-item" onclick="logout(); closeCmdPalette();"><span class="cmd-item-left">Déconnexion de l'Espace Interne</span><span class="cmd-item-badge">Auth</span></div>';
         }
-      });
+      } else {
+        dashboard.classList.remove('authenticated');
+        navBtn.classList.remove('authenticated');
+        navText.innerText = 'Connexion';
+        ctaSection.style.display = 'block';
+        if (cmdLoginItem) {
+          cmdLoginItem.innerHTML = '<div class="cmd-item" onclick="openLoginModal(); closeCmdPalette();"><span class="cmd-item-left">Connexion Espace Interne (Rodrigue)</span><span class="cmd-item-badge">Auth</span></div>';
+        }
+      }
     }
+
+    function handleAuthNavClick() {
+      const isAuth = localStorage.getItem('rodrigue_auth') === 'true';
+      if (isAuth) {
+        document.getElementById('private-dashboard').scrollIntoView({ behavior: 'smooth' });
+      } else {
+        openLoginModal();
+      }
+    }
+
+    function openLoginModal() {
+      const m = document.getElementById('login-modal');
+      const err = document.getElementById('login-error');
+      const pwd = document.getElementById('login-pwd');
+      err.style.display = 'none';
+      pwd.value = '';
+      if (m.showModal) {
+        m.showModal();
+        setTimeout(() => pwd.focus(), 50);
+      }
+    }
+
+    function closeLoginModal() {
+      document.getElementById('login-modal').close();
+    }
+
+    function handleLoginSubmit(e) {
+      e.preventDefault();
+      const pwd = document.getElementById('login-pwd').value.trim();
+      const err = document.getElementById('login-error');
+
+      // Valid passwords
+      if (pwd === 'rodrigue' || pwd === 'rodrigue2026' || pwd === 'admin') {
+        localStorage.setItem('rodrigue_auth', 'true');
+        checkAuth();
+        closeLoginModal();
+        showToast('Connexion réussie : Espace interne déverrouillé');
+        setTimeout(() => {
+          document.getElementById('private-dashboard').scrollIntoView({ behavior: 'smooth' });
+        }, 150);
+      } else {
+        err.style.display = 'block';
+      }
+    }
+
+    function logout() {
+      localStorage.removeItem('rodrigue_auth');
+      checkAuth();
+      showToast('Déconnexion effectuée');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    checkAuth();
 
     // COPY TO CLIPBOARD
     function copyContact(text, msg) {
       navigator.clipboard.writeText(text).then(() => {
-        showToast(msg || '✓ Copié !');
+        showToast(msg || 'Copié dans le presse-papier');
       }).catch(() => {
         showToast('Erreur de copie');
       });
@@ -2119,7 +2058,7 @@
       const t = document.getElementById('toast');
       t.innerText = msg;
       t.classList.add('show');
-      setTimeout(() => t.classList.remove('show'), 2800);
+      setTimeout(() => t.classList.remove('show'), 2600);
     }
 
     // COMMAND PALETTE
@@ -2139,7 +2078,6 @@
       cmdDialog.close();
     }
 
-    // KEYBOARD SHORTCUT (CMD+K / CTRL+K)
     window.addEventListener('keydown', (e) => {
       if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
         e.preventDefault();
@@ -2151,7 +2089,6 @@
       }
     });
 
-    // FILTER COMMAND LIST
     function filterCmdList(query) {
       const q = query.toLowerCase().trim();
       const items = document.querySelectorAll('.cmd-results-list li');
@@ -2178,6 +2115,11 @@
       let pressedOutside = false;
       cmdDialog.addEventListener('pointerdown', (e) => { pressedOutside = outside(e, cmdDialog); });
       cmdDialog.addEventListener('pointerup', (e) => { if (pressedOutside && outside(e, cmdDialog)) cmdDialog.close(); });
+
+      const loginModal = document.getElementById('login-modal');
+      let loginPressedOutside = false;
+      loginModal.addEventListener('pointerdown', (e) => { loginPressedOutside = outside(e, loginModal); });
+      loginModal.addEventListener('pointerup', (e) => { if (loginPressedOutside && outside(e, loginModal)) loginModal.close(); });
     }
   </script>
 

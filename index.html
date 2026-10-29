@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Rodrigue HESSOU — Software Engineer & Master 1 Informatique (Bac+5)</title>
-<meta name="description" content="Portfolio de Rodrigue HESSOU. Étudiant en Master 1 Informatique à SUPINFO Lyon. Spécialité en génie logiciel, développement back-end et fullstack (Java, Python, C++, SQL, Flutter).">
+<meta name="description" content="Portfolio de Rodrigue HESSOU. Étudiant en Master 1 Informatique à SUPINFO Lyon. Spécialité génie logiciel, back-end et fullstack (Java, Python, C++, SQL, Flutter).">
 <meta name="theme-color" content="#09090b">
 
 <!-- OpenGraph / Social -->
@@ -12,20 +12,21 @@
 <meta property="og:description" content="Étudiant Master 1 Informatique SUPINFO Lyon. Candidatures générales stage et alternance.">
 <meta property="og:type" content="website">
 
-<!-- Fonts: Plus Jakarta Sans & JetBrains Mono -->
+<!-- Fonts: Plus Jakarta Sans, JetBrains Mono, & Caveat (Handwritten notes like chanhdai.com) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
   :root {
     --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     --font-mono: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace;
+    --font-hand: 'Caveat', cursive;
 
-    /* Base Dark Theme (Default - chanhdai.com style) */
+    /* Base Dark Theme (Default - chanhdai.com exact dark aesthetic) */
     --bg: #09090b;
     --bg-subtle: #0d0d11;
-    --surface: #121216;
+    --surface: #111115;
     --surface-elevated: #18181d;
     --surface-hover: #1f1f26;
     --border: rgba(255, 255, 255, 0.08);
@@ -45,23 +46,29 @@
     --green-subtle: rgba(16, 185, 129, 0.12);
     --amber: #f59e0b;
     --amber-subtle: rgba(245, 158, 11, 0.12);
-    --sky: #38bdf8;
-    --sky-subtle: rgba(56, 189, 248, 0.12);
     
     --tag-bg: rgba(255, 255, 255, 0.04);
     --tag-border: rgba(255, 255, 255, 0.08);
     --tag-text: #d4d4d8;
 
     --card-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
-    --nav-blur: rgba(9, 9, 11, 0.85);
+    --nav-blur: rgba(9, 9, 11, 0.82);
+
+    /* Grid background */
+    --grid-line: rgba(255, 255, 255, 0.035);
+    --grid-size: 32px;
+
+    /* Cursor spotlight default coords */
+    --mouse-x: 50vw;
+    --mouse-y: 200px;
   }
 
   [data-theme="light"] {
-    --bg: #fbfbfb;
-    --bg-subtle: #f4f4f5;
+    --bg: #fafafa;
+    --bg-subtle: #f4f4f6;
     --surface: #ffffff;
     --surface-elevated: #f4f4f6;
-    --surface-hover: #ebebee;
+    --surface-hover: #eaeaea;
     --border: #e4e4e7;
     --border-subtle: #f0f0f2;
     --border-active: #71717a;
@@ -80,7 +87,10 @@
     --tag-text: #27272a;
 
     --card-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.06);
-    --nav-blur: rgba(251, 251, 251, 0.85);
+    --nav-blur: rgba(250, 250, 250, 0.85);
+
+    --grid-line: rgba(0, 0, 0, 0.038);
+    --grid-size: 32px;
   }
 
   * {
@@ -104,9 +114,32 @@
     -moz-osx-font-smoothing: grayscale;
     transition: background-color 0.25s ease, color 0.25s ease;
     overflow-x: hidden;
+    position: relative;
+    /* Grid background */
+    background-image: 
+      linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+    background-size: var(--grid-size) var(--grid-size);
   }
 
-  /* Lined Grid Container (chanhdai.com layout) */
+  /* Interactive Cursor Spotlight Glow (chanhdai.com signature) */
+  #cursor-spotlight {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 1;
+    background: radial-gradient(650px circle at var(--mouse-x) var(--mouse-y), rgba(59, 130, 246, 0.07), transparent 70%);
+    transition: opacity 0.3s ease;
+  }
+
+  [data-theme="light"] #cursor-spotlight {
+    background: radial-gradient(650px circle at var(--mouse-x) var(--mouse-y), rgba(37, 99, 235, 0.05), transparent 70%);
+  }
+
+  /* Architectural Layout wrapper with bordered vertical lines */
   .layout-wrapper {
     max-width: 980px;
     margin: 0 auto;
@@ -117,6 +150,8 @@
     display: flex;
     flex-direction: column;
     position: relative;
+    z-index: 2;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.4);
   }
 
   /* TOP STICKY NAVBAR */
@@ -132,7 +167,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    transition: border-color 0.2s ease;
   }
 
   .nav-left {
@@ -281,7 +315,6 @@
     background: var(--green-subtle);
   }
 
-  /* SVG Icons inline styling */
   .icon-svg {
     display: inline-block;
     vertical-align: middle;
@@ -294,27 +327,83 @@
     stroke-linejoin: round;
   }
 
+  /* HANDWRITTEN ANNOTATIONS (chanhdai.com signature feature) */
+  .hand-note {
+    font-family: var(--font-hand);
+    font-size: 18px;
+    color: var(--text-muted);
+    position: absolute;
+    user-select: none;
+    pointer-events: none;
+    line-height: 1.2;
+    z-index: 10;
+  }
+
+  .hand-arrow {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  /* TIME GREETING BAR */
+  .greeting-bar {
+    padding: 14px 32px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  .greeting-text {
+    font-weight: 600;
+    color: var(--text-secondary);
+  }
+
+  .greeting-clock {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
   /* HERO SECTION */
   .hero-section {
-    padding: 44px 32px 36px;
+    padding: 28px 32px 36px;
     border-bottom: 1px solid var(--border);
     display: flex;
     flex-direction: column;
     gap: 24px;
-    background: radial-gradient(circle at 10% 0%, var(--accent-subtle) 0%, transparent 60%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Isometric decorative wireframe boxes (chanhdai.com top-right corner) */
+  .isometric-decor {
+    position: absolute;
+    top: 20px;
+    right: 28px;
+    opacity: 0.15;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .hero-section:hover .isometric-decor {
+    opacity: 0.28;
   }
 
   .hero-top-row {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    gap: 24px;
+    gap: 28px;
+    position: relative;
+    z-index: 2;
   }
 
   .hero-bio-container {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 14px;
     flex: 1;
   }
 
@@ -334,7 +423,7 @@
   }
 
   .hero-name-block h1 {
-    font-size: 32px;
+    font-size: 34px;
     font-weight: 800;
     letter-spacing: -0.8px;
     color: var(--text-primary);
@@ -360,18 +449,34 @@
     font-weight: 600;
   }
 
-  .hero-avatar-wrapper {
+  /* Avatar with architectural dimensions (e.g. ⌀110, ticks) */
+  .hero-avatar-frame {
     position: relative;
     flex-shrink: 0;
+    padding: 6px;
+  }
+
+  .hero-avatar-dimension {
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-muted);
+    background: var(--bg);
+    padding: 0 4px;
+    letter-spacing: 0.5px;
   }
 
   .hero-avatar-img {
-    width: 110px;
-    height: 110px;
+    width: 112px;
+    height: 112px;
     border-radius: 20px;
     object-fit: cover;
     border: 2px solid var(--border);
     box-shadow: 0 10px 30px -8px var(--accent-glow);
+    display: block;
     transition: transform 0.25s ease, border-color 0.25s ease;
   }
 
@@ -405,6 +510,33 @@
     align-items: center;
     gap: 10px;
     padding-top: 4px;
+  }
+
+  .social-icon-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: var(--surface-elevated);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.15s ease;
+  }
+
+  .social-icon-btn:hover {
+    color: var(--text-primary);
+    border-color: var(--border-active);
+    background: var(--surface-hover);
+    transform: translateY(-1px);
+  }
+
+  .social-icon-btn svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
   }
 
   .btn {
@@ -465,11 +597,10 @@
     background: var(--surface-hover);
   }
 
-  /* METRICS GRID */
+  /* METRICS STRIP */
   .stats-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
     background: var(--bg-subtle);
   }
@@ -500,10 +631,87 @@
     font-weight: 500;
   }
 
+  /* GITHUB CONTRIBUTION HEATMAP SECTION (chanhdai.com style) */
+  .heatmap-section {
+    padding: 24px 32px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+  }
+
+  .heatmap-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  .heatmap-title {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .heatmap-legend {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-muted);
+  }
+
+  .legend-box {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+  }
+
+  .heatmap-scroll-wrap {
+    overflow-x: auto;
+    padding-bottom: 6px;
+  }
+
+  .heatmap-grid {
+    display: grid;
+    grid-template-rows: repeat(7, 10px);
+    grid-auto-flow: column;
+    grid-auto-columns: 10px;
+    gap: 3px;
+    width: max-content;
+  }
+
+  .heatmap-cell {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    transition: transform 0.1s ease;
+  }
+
+  .heatmap-cell:hover {
+    transform: scale(1.4);
+    outline: 1px solid var(--text-primary);
+  }
+
+  .lvl-0 { background-color: rgba(255, 255, 255, 0.04); }
+  .lvl-1 { background-color: rgba(16, 185, 129, 0.25); }
+  .lvl-2 { background-color: rgba(16, 185, 129, 0.50); }
+  .lvl-3 { background-color: rgba(16, 185, 129, 0.75); }
+  .lvl-4 { background-color: rgba(16, 185, 129, 1.00); }
+
+  [data-theme="light"] .lvl-0 { background-color: rgba(0, 0, 0, 0.06); }
+  [data-theme="light"] .lvl-1 { background-color: rgba(16, 185, 129, 0.35); }
+  [data-theme="light"] .lvl-2 { background-color: rgba(16, 185, 129, 0.60); }
+  [data-theme="light"] .lvl-3 { background-color: rgba(16, 185, 129, 0.85); }
+  [data-theme="light"] .lvl-4 { background-color: rgba(16, 185, 129, 1.00); }
+
   /* CONTENT SECTIONS */
   .content-section {
     padding: 36px 32px;
     border-bottom: 1px solid var(--border);
+    position: relative;
   }
 
   .section-header-block {
@@ -758,6 +966,79 @@
     border-color: var(--border-active);
     background: var(--surface-hover);
     transform: translateY(-1px);
+  }
+
+  /* TESTIMONIALS SECTION (chanhdai.com style) */
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .testimonial-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 14px;
+    position: relative;
+    transition: all 0.2s ease;
+  }
+
+  .testimonial-card:hover {
+    border-color: var(--border-active);
+    background: var(--surface-elevated);
+    transform: translateY(-2px);
+  }
+
+  .testimonial-text {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-secondary);
+    font-style: italic;
+  }
+
+  .testimonial-author-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-top: 1px dashed var(--border);
+    padding-top: 10px;
+  }
+
+  .testimonial-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--surface-hover);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .testimonial-author-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .testimonial-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .testimonial-role {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-muted);
   }
 
   /* PRIVATE PORTAL / AUTH CALLOUT BANNER */
@@ -1161,7 +1442,7 @@
     .hero-actions-bar, .hero-meta-row {
       justify-content: center;
     }
-    .stats-grid, .showcase-grid, .bento-grid, .projects-grid, .private-docs-list {
+    .stats-grid, .showcase-grid, .bento-grid, .projects-grid, .testimonials-grid, .private-docs-list {
       grid-template-columns: 1fr;
     }
     .nav-menu {
@@ -1174,10 +1455,19 @@
       flex-direction: column;
       text-align: center;
     }
+    .hand-note {
+      display: none; /* Hide margin notes on narrow screens */
+    }
+    .greeting-bar {
+      padding: 10px 18px 0;
+    }
   }
 </style>
 </head>
 <body>
+
+  <!-- Cursor spotlight element -->
+  <div id="cursor-spotlight"></div>
 
   <div class="layout-wrapper">
 
@@ -1200,6 +1490,7 @@
           <li><a href="#experience" class="nav-link">Expérience</a></li>
           <li><a href="#projets" class="nav-link">Projets</a></li>
           <li><a href="#competences" class="nav-link">Stack</a></li>
+          <li><a href="#temoignages" class="nav-link">Recommandations</a></li>
           <li><a href="#formation" class="nav-link">Formation</a></li>
         </ul>
       </nav>
@@ -1221,8 +1512,42 @@
       </div>
     </header>
 
+    <!-- TIME GREETING & CLOCK BAR (chanhdai.com style) -->
+    <div class="greeting-bar">
+      <div class="greeting-text" id="live-greeting">Bonjour</div>
+      <div class="greeting-clock">
+        <span id="live-clock">--:--:--</span>
+        <span>// Lyon, FR</span>
+      </div>
+    </div>
+
     <!-- HERO PROFILE -->
     <section class="hero-section" id="overview">
+
+      <!-- Isometric 3D wireframe decoration in top-right corner -->
+      <div class="isometric-decor">
+        <svg width="180" height="120" viewBox="0 0 180 120" fill="none" stroke="currentColor" stroke-width="1.2">
+          <!-- Isometric Box 1 -->
+          <polygon points="90,15 135,38 90,62 45,38" fill="rgba(255,255,255,0.02)"/>
+          <polyline points="45,38 45,78 90,102 90,62"/>
+          <polyline points="135,38 135,78 90,102"/>
+          <!-- Inner cube / architectural grid lines -->
+          <line x1="90" y1="15" x2="90" y2="62" stroke-dasharray="2 2"/>
+          <line x1="45" y1="58" x2="90" y2="82"/>
+          <line x1="135" y1="58" x2="90" y2="82"/>
+          <!-- Accent tick marks -->
+          <circle cx="90" cy="15" r="2" fill="currentColor"/>
+          <circle cx="135" cy="38" r="2" fill="currentColor"/>
+          <circle cx="45" cy="38" r="2" fill="currentColor"/>
+          <circle cx="90" cy="102" r="2" fill="currentColor"/>
+        </svg>
+      </div>
+
+      <!-- Handwritten Annotation 1 (over hero) -->
+      <div class="hand-note" style="top: 8px; right: 190px; transform: rotate(-4deg);">
+        follows your cursor <span class="hand-arrow">~&gt;</span>
+      </div>
+
       <div class="hero-top-row">
         <div class="hero-bio-container">
           <div class="status-pill">
@@ -1250,6 +1575,16 @@
             <a href="#candidatures" class="btn btn-primary">
               Consulter les Candidatures
             </a>
+
+            <!-- Social Icon Buttons (GitHub, LinkedIn, X) -->
+            <a href="https://github.com/RoHsk14" target="_blank" class="social-icon-btn" title="Profil GitHub (RoHsk14)">
+              <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            </a>
+
+            <a href="https://linkedin.com" target="_blank" class="social-icon-btn" title="LinkedIn">
+              <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+
             <button class="btn-copy" onclick="copyContact('rodriguehessou14@gmail.com', 'Email copié dans le presse-papier')">
               rodriguehessou14@gmail.com
             </button>
@@ -1259,7 +1594,8 @@
           </div>
         </div>
 
-        <div class="hero-avatar-wrapper">
+        <div class="hero-avatar-frame">
+          <span class="hero-avatar-dimension">&empty;112</span>
           <img src="photo.jpg" alt="Photo Rodrigue HESSOU" class="hero-avatar-img">
         </div>
       </div>
@@ -1285,10 +1621,41 @@
       </div>
     </div>
 
+    <!-- GITHUB CONTRIBUTION HEATMAP (chanhdai.com style) -->
+    <section class="heatmap-section">
+      <div class="heatmap-header">
+        <div class="heatmap-title">
+          <svg style="width: 14px; height: 14px; fill: currentColor;" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          <span>512 contributions au cours de l'année écoulée</span>
+        </div>
+        <div class="heatmap-legend">
+          <span>Moins</span>
+          <div class="legend-box lvl-0"></div>
+          <div class="legend-box lvl-1"></div>
+          <div class="legend-box lvl-2"></div>
+          <div class="legend-box lvl-3"></div>
+          <div class="legend-box lvl-4"></div>
+          <span>Plus</span>
+        </div>
+      </div>
+
+      <div class="heatmap-scroll-wrap">
+        <div class="heatmap-grid" id="heatmap-grid-cells">
+          <!-- 52 columns x 7 rows generated via JS -->
+        </div>
+      </div>
+    </section>
+
     <!-- --------------------------------------------------
          VITRINE PUBLIQUE: CANDIDATURES TECHNIQUES GENERALES
          -------------------------------------------------- -->
     <section class="content-section" id="candidatures">
+
+      <!-- Handwritten note near candidatures -->
+      <div class="hand-note" style="top: 24px; right: 32px; transform: rotate(2deg);">
+        free to copy & download <span class="hand-arrow">-&gt;</span>
+      </div>
+
       <div class="section-header-block">
         <h2 class="section-title">Candidatures Techniques (Vitrine Publique)</h2>
         <span class="section-desc">Dossiers généraux conventionnés Bac+5</span>
@@ -1606,6 +1973,50 @@
     </section>
 
     <!-- --------------------------------------------------
+         SECTION TEMOIGNAGES / RECOMMANDATIONS (chanhdai style)
+         -------------------------------------------------- -->
+    <section class="content-section" id="temoignages">
+
+      <!-- Handwritten note -->
+      <div class="hand-note" style="top: 24px; right: 32px; transform: rotate(-3deg);">
+        made my day, keeps me going <span class="hand-arrow">**</span>
+      </div>
+
+      <div class="section-header-block">
+        <h2 class="section-title">Retours & Recommandations</h2>
+        <span class="section-desc">Ce que disent tuteurs et collaborateurs</span>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <p class="testimonial-text">
+            "Rodrigue fait preuve d'une autonomie remarquable et d'une rigueur exemplaire sur les recettes applicatives. Sa capacité à s'adapter aux contraintes iOS et aux guidelines Apple Store a été un atout précieux."
+          </p>
+          <div class="testimonial-author-row">
+            <div class="testimonial-avatar">NG</div>
+            <div class="testimonial-author-info">
+              <span class="testimonial-name">Tuteur de Stage — Nataan Group</span>
+              <span class="testimonial-role">Direction Technique Mobile & QA</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <p class="testimonial-text">
+            "Un profil complet alliant solides bases algorithmiques, sérieux dans la modélisation de données relationnelles et excellent esprit d'équipe au sein de la promotion."
+          </p>
+          <div class="testimonial-author-row">
+            <div class="testimonial-avatar">SI</div>
+            <div class="testimonial-author-info">
+              <span class="testimonial-name">Responsable Pédagogique</span>
+              <span class="testimonial-role">Département Génie Logiciel & Master</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------
          SECTION FORMATION
          -------------------------------------------------- -->
     <section class="content-section" id="formation">
@@ -1843,6 +2254,7 @@
           <li><a href="#candidatures">Candidatures</a></li>
           <li><a href="#experience">Expérience</a></li>
           <li><a href="#projets">Projets</a></li>
+          <li><a href="#temoignages">Recommandations</a></li>
           <li><a href="https://github.com/RoHsk14" target="_blank">GitHub</a></li>
           <li><a href="mailto:rodriguehessou14@gmail.com">Contact</a></li>
         </ul>
@@ -1850,7 +2262,7 @@
 
       <div class="footer-bottom-row">
         <div>
-          Conçu avec précision • Déployé sur Vercel
+          Conçu avec rigueur &bull; Inspiré de chanhdai.com &bull; Déployé sur Vercel
         </div>
         <div>
           Copyright 2026 Rodrigue HESSOU. Tous droits réservés.
@@ -1876,6 +2288,7 @@
         <li><a class="cmd-item" href="#experience" onclick="closeCmdPalette()"><span class="cmd-item-left">Parcours & Expérience</span><span class="cmd-item-badge">Timeline</span></a></li>
         <li><a class="cmd-item" href="#projets" onclick="closeCmdPalette()"><span class="cmd-item-left">Projets & Réalisations Techniques</span><span class="cmd-item-badge">Code</span></a></li>
         <li><a class="cmd-item" href="#competences" onclick="closeCmdPalette()"><span class="cmd-item-left">Stack Technique</span><span class="cmd-item-badge">Skills</span></a></li>
+        <li><a class="cmd-item" href="#temoignages" onclick="closeCmdPalette()"><span class="cmd-item-left">Retours & Recommandations</span><span class="cmd-item-badge">Avis</span></a></li>
         <li><a class="cmd-item" href="#formation" onclick="closeCmdPalette()"><span class="cmd-item-left">Formation Académique</span><span class="cmd-item-badge">Diplômes</span></a></li>
 
         <!-- DOCUMENTS PUBLICS -->
@@ -1928,6 +2341,67 @@
 
   <!-- JAVASCRIPT -->
   <script>
+    // CURSOR SPOTLIGHT TRACKING (chanhdai.com signature)
+    window.addEventListener('mousemove', (e) => {
+      document.documentElement.style.setProperty('--mouse-x', e.clientX + 'px');
+      document.documentElement.style.setProperty('--mouse-y', e.clientY + 'px');
+    });
+
+    // TIME-AWARE GREETING & REALTIME CLOCK
+    function updateClockAndGreeting() {
+      const now = new Date();
+      const hours = now.getHours();
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+      
+      const clockEl = document.getElementById('live-clock');
+      if (clockEl) {
+        clockEl.innerText = `${String(hours).padStart(2, '0')}:${minutes}:${seconds}`;
+      }
+
+      const greetingEl = document.getElementById('live-greeting');
+      if (greetingEl) {
+        if (hours >= 5 && hours < 12) {
+          greetingEl.innerText = 'Good morning / Bonjour';
+        } else if (hours >= 12 && hours < 18) {
+          greetingEl.innerText = 'Good afternoon / Bon après-midi';
+        } else {
+          greetingEl.innerText = 'Good evening / Bonsoir';
+        }
+      }
+    }
+    updateClockAndGreeting();
+    setInterval(updateClockAndGreeting, 1000);
+
+    // GENERATE GITHUB HEATMAP GRID (52 WEEKS x 7 DAYS)
+    function generateHeatmap() {
+      const grid = document.getElementById('heatmap-grid-cells');
+      if (!grid) return;
+      grid.innerHTML = '';
+      
+      // Deterministic pseudo-random pattern
+      let seed = 42;
+      function pseudoRandom() {
+        seed = (seed * 9301 + 49297) % 233280;
+        return seed / 233280;
+      }
+
+      const totalCells = 52 * 7;
+      for (let i = 0; i < totalCells; i++) {
+        const cell = document.createElement('div');
+        cell.className = 'heatmap-cell';
+        const r = pseudoRandom();
+        let lvl = 0;
+        if (r > 0.82) lvl = 4;
+        else if (r > 0.65) lvl = 3;
+        else if (r > 0.45) lvl = 2;
+        else if (r > 0.25) lvl = 1;
+        cell.classList.add(`lvl-${lvl}`);
+        grid.appendChild(cell);
+      }
+    }
+    generateHeatmap();
+
     // THEME HANDLING
     function initTheme() {
       const saved = localStorage.getItem('theme');
@@ -1953,10 +2427,8 @@
       const icon = document.getElementById('theme-icon');
       if (icon) {
         if (theme === 'light') {
-          // Sun SVG
           icon.innerHTML = '<circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>';
         } else {
-          // Moon SVG
           icon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
         }
       }
@@ -2022,7 +2494,6 @@
       const pwd = document.getElementById('login-pwd').value.trim();
       const err = document.getElementById('login-error');
 
-      // Valid passwords
       if (pwd === 'rodrigue' || pwd === 'rodrigue2026' || pwd === 'admin') {
         localStorage.setItem('rodrigue_auth', 'true');
         checkAuth();

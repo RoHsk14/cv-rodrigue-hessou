@@ -28,7 +28,7 @@
     --header-h: 57px;
     --radius: 12px;
 
-    /* Base Dark Theme (Default - chanhdai.com exact dark aesthetic) */
+    /* Base Dark Theme */
     --bg: #09090b;
     --bg-subtle: #0d0d11;
     --surface: #111115;
@@ -157,7 +157,7 @@
     background-size: var(--grid-size) var(--grid-size);
   }
 
-  /* Interactive Cursor Spotlight Glow (chanhdai.com signature) */
+  /* Interactive Cursor Spotlight Glow */
   #cursor-spotlight {
     position: fixed;
     top: 0;
@@ -174,7 +174,7 @@
     background: radial-gradient(650px circle at var(--mouse-x) var(--mouse-y), rgba(37, 99, 235, 0.05), transparent 70%);
   }
 
-  /* Film grain overlay (chanhdai.com texture) */
+  /* Film grain overlay */
   #grain-overlay {
     position: fixed;
     inset: 0;
@@ -541,7 +541,7 @@
     .nav-brand-text { display: none; }
   }
 
-  /* HANDWRITTEN ANNOTATIONS (chanhdai.com signature feature) */
+  /* Handwritten Annotations */
   .hand-note {
     font-family: var(--font-hand);
     font-size: 18px;
@@ -1079,7 +1079,7 @@
     font-weight: 500;
   }
 
-  /* GITHUB CONTRIBUTION HEATMAP SECTION (chanhdai.com style) */
+  /* GitHub Contribution Heatmap */
   .heatmap-section {
     padding: 24px 32px;
     border-bottom: 1px solid var(--border);
@@ -1423,7 +1423,7 @@
     transform: translateY(-1px);
   }
 
-  /* TESTIMONIALS SECTION (chanhdai.com style) */
+  /* Testimonials Section */
   .testimonials-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -2376,6 +2376,174 @@
       padding: 10px 18px 0;
     }
   }
+
+  /* PROJECT CARDS ENHANCED */
+  .project-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+
+  .project-status-badge {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 7px;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(16, 185, 129, 0.12);
+    color: #10b981;
+    border: 1px solid rgba(16, 185, 129, 0.25);
+    white-space: nowrap;
+  }
+
+  .project-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed var(--border);
+  }
+
+  .btn-project {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 11.5px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    border: 1px solid var(--border);
+    background: var(--surface-elevated);
+    color: var(--text-primary);
+  }
+
+  .btn-project:hover {
+    background: var(--surface-hover);
+    border-color: var(--border-active);
+    color: var(--text-primary);
+    transform: translateY(-1px);
+  }
+
+  .btn-project.primary {
+    background: var(--accent);
+    color: #ffffff;
+    border-color: var(--accent);
+  }
+
+  .btn-project.primary:hover {
+    opacity: 0.92;
+  }
+
+  /* PROJECT PREVIEW MODAL */
+  dialog#project-preview-modal {
+    margin: 40px auto auto auto;
+    border: 1px solid var(--border-active);
+    border-radius: 14px;
+    background: var(--surface);
+    color: var(--text-primary);
+    width: 92%;
+    max-width: 980px;
+    height: 82vh;
+    box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.85);
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  dialog#project-preview-modal:not([open]) {
+    display: none;
+  }
+
+  .preview-modal-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 18px;
+    background: var(--surface-elevated);
+    border-bottom: 1px solid var(--border);
+    gap: 12px;
+  }
+
+  .preview-modal-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+  }
+
+  .preview-modal-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .preview-modal-url {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    color: var(--text-muted);
+    background: var(--tag-bg);
+    padding: 3px 8px;
+    border-radius: 5px;
+    border: 1px solid var(--border);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .preview-modal-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .preview-iframe-container {
+    flex: 1;
+    position: relative;
+    background: #09090b;
+  }
+
+  .preview-iframe-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+    background: #ffffff;
+  }
+
+  .preview-fallback-banner {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(17, 17, 21, 0.92);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(8px);
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 11.5px;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 5;
+  }
+
 </style>
 </head>
 <body>
@@ -2472,7 +2640,7 @@
       </div>
     </nav>
 
-    <!-- TIME GREETING & CLOCK BAR (chanhdai.com style) -->
+    <!-- Time Greeting & Clock Bar -->
     <div class="greeting-bar">
       <div class="greeting-text" id="live-greeting">Bonjour</div>
       <div class="greeting-clock">
@@ -2661,7 +2829,7 @@
       </div>
     </div>
 
-    <!-- GITHUB CONTRIBUTION HEATMAP (chanhdai.com style) -->
+    <!-- GitHub Contribution Heatmap -->
     <section class="heatmap-section" aria-label="Activité GitHub">
       <div class="heatmap-header">
         <div class="heatmap-title">
@@ -2907,57 +3075,193 @@
 
       <div class="projects-grid">
 
+        <!-- 1. AFROSPY -->
         <div class="project-card">
           <div>
-            <div class="project-title">Plateforme Web Objets Perdus & Retrouvés</div>
-            <p class="project-desc" style="margin-top: 6px;">
-              Service web complet de dépôt d'annonces, recherche indexée et mise en relation sécurisée. Algorithme de correspondance pour les biens égarés.
+            <div class="project-card-header">
+              <div class="project-title">AfroSpy — E-Commerce Ad & Product Intelligence</div>
+              <span class="project-status-badge">
+                <span class="status-pulse-dot" style="width:5px;height:5px;"></span>
+                En ligne
+              </span>
+            </div>
+            <p class="project-desc">
+              Plateforme d'intelligence publicitaire et de détection de produits gagnants (winning products) pour le e-commerce africain et international. Suivi des campagnes d'annonces, métriques d'engagement et analyse de tendances en temps réel.
             </p>
+            <div class="tags-list" style="margin-top: 10px;">
+              <span class="tech-tag">Next.js</span>
+              <span class="tech-tag">React</span>
+              <span class="tech-tag">PostgreSQL (Neon)</span>
+              <span class="tech-tag">Web Scraping</span>
+              <span class="tech-tag">Analytics</span>
+            </div>
           </div>
-          <div class="tags-list">
-            <span class="tech-tag">PHP / JS</span>
-            <span class="tech-tag">MySQL</span>
-            <span class="tech-tag">Modélisation SQL</span>
+          <div class="project-actions">
+            <button class="btn-project primary" onclick="openProjectPreview('AfroSpy — E-Commerce Intelligence', 'https://afro-spy.com')">
+              <svg class="icon-svg" style="width:12px;height:12px;" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+              Prévisualiser
+            </button>
+            <a href="https://afro-spy.com" target="_blank" class="btn-project">
+              <svg class="icon-svg" style="width:12px;height:12px;" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              afro-spy.com
+            </a>
           </div>
         </div>
 
+        <!-- 2. SHOPEAZY -->
         <div class="project-card">
           <div>
-            <div class="project-title">Application Mobile Flutter pour Artisans Tailleurs</div>
-            <p class="project-desc" style="margin-top: 6px;">
-              Application de carnet de mesures et suivi de confection. Architecture locale avec synchronisation dès reconnexion réseau.
+            <div class="project-card-header">
+              <div class="project-title">ShopEazy — Plateforme E-Commerce Moderne</div>
+              <span class="project-status-badge">
+                <span class="status-pulse-dot" style="width:5px;height:5px;"></span>
+                Déployé
+              </span>
+            </div>
+            <p class="project-desc">
+              Solution complète de commerce électronique : catalogue interactif de produits, panier d'achat dynamique, tunnel de conversion optimisé et design responsive taillé pour les taux de conversion élevés.
             </p>
+            <div class="tags-list" style="margin-top: 10px;">
+              <span class="tech-tag">E-Commerce</span>
+              <span class="tech-tag">JavaScript / React</span>
+              <span class="tech-tag">CSS3 / Motion</span>
+              <span class="tech-tag">Vercel</span>
+              <span class="tech-tag">Responsive UI</span>
+            </div>
           </div>
-          <div class="tags-list">
-            <span class="tech-tag">Flutter</span>
-            <span class="tech-tag">Dart</span>
-            <span class="tech-tag">Offline-First</span>
+          <div class="project-actions">
+            <button class="btn-project primary" onclick="openProjectPreview('ShopEazy — Boutique E-Commerce', 'https://shop-six-azure.vercel.app')">
+              <svg class="icon-svg" style="width:12px;height:12px;" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+              Prévisualiser
+            </button>
+            <a href="https://shop-six-azure.vercel.app" target="_blank" class="btn-project">
+              <svg class="icon-svg" style="width:12px;height:12px;" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              Voir le site
+            </a>
+            <a href="https://github.com/RoHsk14/SHOP" target="_blank" class="btn-project">
+              <svg class="icon-svg" style="width:12px;height:12px;" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+              Code
+            </a>
           </div>
         </div>
 
+        <!-- 3. OBJETS PERDUS (LOSTFOUND) -->
         <div class="project-card">
           <div>
-            <div class="project-title">Pipeline Automatisé de Normalisation de Données</div>
-            <p class="project-desc" style="margin-top: 6px;">
-              Scripts d'ingestion et de nettoyage automatisé de données d'enquêtes terrain, détection des anomalies et export structuré.
+            <div class="project-card-header">
+              <div class="project-title">Plateforme Objets Perdus & Retrouvés (LostFound)</div>
+              <span class="project-status-badge">
+                <span class="status-pulse-dot" style="width:5px;height:5px;"></span>
+                Déployé
+              </span>
+            </div>
+            <p class="project-desc">
+              Service web complet de dépôt d'annonces, recherche indexée et mise en relation sécurisée pour biens égarés. Algorithme de correspondance spatio-temporelle et gestion administrative des déclarations.
             </p>
+            <div class="tags-list" style="margin-top: 10px;">
+              <span class="tech-tag">PHP / JS</span>
+              <span class="tech-tag">MySQL</span>
+              <span class="tech-tag">Modélisation SQL</span>
+              <span class="tech-tag">Architecture MVC</span>
+              <span class="tech-tag">Vercel</span>
+            </div>
           </div>
-          <div class="tags-list">
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">ETL / Data Quality</span>
+          <div class="project-actions">
+            <button class="btn-project primary" onclick="openProjectPreview('LostFound — Objets Perdus & Retrouvés', 'https://lost-mu.vercel.app')">
+              <svg class="icon-svg" style="width:12px;height:12px;" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+              Prévisualiser
+            </button>
+            <a href="https://lost-mu.vercel.app" target="_blank" class="btn-project">
+              <svg class="icon-svg" style="width:12px;height:12px;" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              lost-mu.vercel.app
+            </a>
+            <a href="https://github.com/RoHsk14/Lost" target="_blank" class="btn-project">
+              <svg class="icon-svg" style="width:12px;height:12px;" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+              Code
+            </a>
           </div>
         </div>
 
+        <!-- 4. AFROCODEURS (COMMUNAUTE MAKERS TECH) -->
         <div class="project-card">
           <div>
-            <div class="project-title">Moteur de Génération & Impression CV A4 Exact</div>
-            <p class="project-desc" style="margin-top: 6px;">
-              Architecture web avec moteur CSS calibré garantissant un export PDF strict 1 page A4 et préservation totale des contrastes et fonds colorés.
+            <div class="project-card-header">
+              <div class="project-title">AfroCodeurs — Panafrican Tech Community</div>
+              <span class="project-status-badge">
+                <span class="status-pulse-dot" style="width:5px;height:5px;"></span>
+                Open Source
+              </span>
+            </div>
+            <p class="project-desc">
+              Plateforme communautaire open source réunissant développeurs et makers tech panafricains. Partage de ressources techniques, projets collaboratifs et émulation "Build Before Consume".
             </p>
+            <div class="tags-list" style="margin-top: 10px;">
+              <span class="tech-tag">Open Source</span>
+              <span class="tech-tag">Community Platform</span>
+              <span class="tech-tag">Fullstack</span>
+              <span class="tech-tag">Git Collaboration</span>
+            </div>
           </div>
-          <div class="tags-list">
-            <span class="tech-tag">HTML5 / Vanilla JS</span>
-            <span class="tech-tag">Print Engine</span>
+          <div class="project-actions">
+            <a href="https://github.com/RoHsk14/afrocodeurs" target="_blank" class="btn-project primary">
+              <svg class="icon-svg" style="width:12px;height:12px;" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+              Voir le Dépôt GitHub
+            </a>
+          </div>
+        </div>
+
+        <!-- 5. MIAB TELA (APPLICATION ARTISANS TAILLEURS) -->
+        <div class="project-card">
+          <div>
+            <div class="project-card-header">
+              <div class="project-title">Miab Tela — Application Mobile Artisans Tailleurs</div>
+              <span class="project-status-badge" style="color:#38bdf8;background:rgba(56,189,248,0.12);border-color:rgba(56,189,248,0.25);">
+                Mobile App
+              </span>
+            </div>
+            <p class="project-desc">
+              Application de carnet de mesures, gestion des commandes sur-mesure et calendrier de confection. Architecture Offline-First garantissant le fonctionnement continu en atelier avec synchronisation cloud différée.
+            </p>
+            <div class="tags-list" style="margin-top: 10px;">
+              <span class="tech-tag">Flutter</span>
+              <span class="tech-tag">Dart</span>
+              <span class="tech-tag">SQLite</span>
+              <span class="tech-tag">Offline-First</span>
+              <span class="tech-tag">Firebase</span>
+            </div>
+          </div>
+          <div class="project-actions">
+            <a href="https://github.com/RoHsk14/Miab_tela_v2" target="_blank" class="btn-project">
+              <svg class="icon-svg" style="width:12px;height:12px;" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+              Code (v2)
+            </a>
+          </div>
+        </div>
+
+        <!-- 6. ENGINE CV & PRINT EXACT -->
+        <div class="project-card">
+          <div>
+            <div class="project-card-header">
+              <div class="project-title">Moteur de Génération & Impression CV A4 Exact</div>
+              <span class="project-status-badge">
+                Système
+              </span>
+            </div>
+            <p class="project-desc">
+              Moteur web avec calibration CSS et orchestration headless Chrome assurant un rendu A4 1 page strict, préservation totale des contrastes chromatiques et génération PDF vectorielle de haute fidélité.
+            </p>
+            <div class="tags-list" style="margin-top: 10px;">
+              <span class="tech-tag">HTML5 / Vanilla JS</span>
+              <span class="tech-tag">Print Engine</span>
+              <span class="tech-tag">Headless Chrome</span>
+              <span class="tech-tag">PyMuPDF QA</span>
+            </div>
+          </div>
+          <div class="project-actions">
+            <a href="CV_Rodrigue_HESSOU_Stage_Tech.pdf" target="_blank" class="btn-project primary">
+              <svg class="icon-svg" style="width:12px;height:12px;" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+              Voir un Export PDF
+            </a>
           </div>
         </div>
 
@@ -3018,7 +3322,7 @@
     </section>
 
     <!-- --------------------------------------------------
-         SECTION TEMOIGNAGES / RECOMMANDATIONS (chanhdai style)
+         SECTION TEMOIGNAGES / RECOMMANDATIONS
          -------------------------------------------------- -->
     <section class="content-section" id="temoignages">
 
@@ -3343,11 +3647,40 @@
 
       <div class="footer-bottom-row">
         <div>&copy; 2026 Rodrigue HESSOU. Tous droits réservés.</div>
-        <div>Design inspiré de chanhdai.com &bull; Codé à la main &bull; Déployé sur Vercel</div>
+        <div>Conçu et développé par Rodrigue HESSOU &bull; Déployé sur Vercel</div>
       </div>
     </footer>
 
   </div>
+
+  
+  <!-- PROJECT PREVIEW MODAL -->
+  <dialog id="project-preview-modal" closedby="any" aria-label="Prévisualisation du projet en direct">
+    <div class="preview-modal-bar">
+      <div class="preview-modal-info">
+        <svg class="icon-svg" style="color: var(--accent); flex-shrink: 0;" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+        <span class="preview-modal-title" id="preview-title">Prévisualisation du projet</span>
+        <span class="preview-modal-url" id="preview-url-badge">https://...</span>
+      </div>
+      <div class="preview-modal-actions">
+        <a id="preview-external-link" href="#" target="_blank" class="btn btn-secondary btn-sm" title="Ouvrir dans un nouvel onglet">
+          <svg class="icon-svg" style="width:12px;height:12px;" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          Plein écran
+        </a>
+        <button type="button" class="btn btn-secondary btn-sm" onclick="closeProjectPreview()">
+          Fermer (ESC)
+        </button>
+      </div>
+    </div>
+    <div class="preview-iframe-container">
+      <iframe id="preview-iframe" src="about:blank" title="Aperçu live du projet"></iframe>
+      <div class="preview-fallback-banner">
+        <span>Aperçu interactif direct</span>
+        <span style="opacity: 0.6;">&bull;</span>
+        <a id="preview-fallback-link" href="#" target="_blank" style="color: var(--accent); text-decoration: underline;">Ouvrir l'application si l'affichage est restreint</a>
+      </div>
+    </div>
+  </dialog>
 
   <!-- COMMAND PALETTE (NATIVE <dialog> MODAL) -->
   <dialog id="cmd-dialog" closedby="any" aria-label="Palette de commandes">
@@ -3368,6 +3701,13 @@
         <li><a class="cmd-item" href="#temoignages" onclick="closeCmdPalette()"><span class="cmd-item-left">Retours & Recommandations</span><span class="cmd-item-badge">Avis</span></a></li>
         <li><a class="cmd-item" href="#formation" onclick="closeCmdPalette()"><span class="cmd-item-left">Formation Académique</span><span class="cmd-item-badge">Diplômes</span></a></li>
 
+                <!-- PROJETS EN LIGNE -->
+        <li class="cmd-category-header">Projets Déployés & Réalisations</li>
+        <li><div class="cmd-item" onclick="openProjectPreview('AfroSpy — E-Commerce Intelligence', 'https://afro-spy.com'); closeCmdPalette();"><span class="cmd-item-left">AfroSpy (Intelligence Publicitaire E-Com)</span><span class="cmd-item-badge">Live App</span></div></li>
+        <li><div class="cmd-item" onclick="openProjectPreview('ShopEazy — Boutique E-Commerce', 'https://shop-six-azure.vercel.app'); closeCmdPalette();"><span class="cmd-item-left">ShopEazy (Plateforme E-Commerce)</span><span class="cmd-item-badge">Live App</span></div></li>
+        <li><div class="cmd-item" onclick="openProjectPreview('LostFound — Objets Perdus', 'https://lost-mu.vercel.app'); closeCmdPalette();"><span class="cmd-item-left">LostFound (Plateforme Objets Perdus)</span><span class="cmd-item-badge">Live App</span></div></li>
+        <li><a class="cmd-item" href="https://github.com/RoHsk14/afrocodeurs" target="_blank" onclick="closeCmdPalette()"><span class="cmd-item-left">AfroCodeurs (Panafrican Tech Community)</span><span class="cmd-item-badge">GitHub</span></a></li>
+        <li><a class="cmd-item" href="https://github.com/RoHsk14/Miab_tela_v2" target="_blank" onclick="closeCmdPalette()"><span class="cmd-item-left">Miab Tela (Application Mobile Tailleurs)</span><span class="cmd-item-badge">Mobile App</span></a></li>
         <!-- DOCUMENTS PUBLICS -->
         <li class="cmd-category-header">Documents Techniques Généraux</li>
         <li><a class="cmd-item" href="CV_Rodrigue_HESSOU_Stage_Tech.pdf" target="_blank"><span class="cmd-item-left">CV Développeur Logiciel (Stage Bac+5)</span><span class="cmd-item-badge">PDF</span></a></li>
@@ -3421,7 +3761,7 @@
   <script>
     document.documentElement.classList.add('js');
 
-    // CURSOR SPOTLIGHT TRACKING (chanhdai.com signature)
+    // Cursor Spotlight Tracking
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (!reduceMotion) {
       window.addEventListener('mousemove', (e) => {
@@ -3584,6 +3924,34 @@
     }
 
     initTheme();
+
+    
+    // PROJECT LIVE PREVIEW MODAL
+    const previewModal = document.getElementById('project-preview-modal');
+    const previewIframe = document.getElementById('preview-iframe');
+    const previewTitle = document.getElementById('preview-title');
+    const previewUrlBadge = document.getElementById('preview-url-badge');
+    const previewExternalLink = document.getElementById('preview-external-link');
+    const previewFallbackLink = document.getElementById('preview-fallback-link');
+
+    function openProjectPreview(title, url) {
+      if (!previewModal) return;
+      if (previewTitle) previewTitle.textContent = title;
+      if (previewUrlBadge) previewUrlBadge.textContent = url;
+      if (previewExternalLink) previewExternalLink.href = url;
+      if (previewFallbackLink) previewFallbackLink.href = url;
+      if (previewIframe) previewIframe.src = url;
+
+      if (previewModal.showModal) {
+        previewModal.showModal();
+      }
+    }
+
+    function closeProjectPreview() {
+      if (!previewModal) return;
+      if (previewIframe) previewIframe.src = 'about:blank';
+      previewModal.close();
+    }
 
     // AUTHENTICATION & PRIVATE DASHBOARD
     function checkAuth() {
@@ -3959,7 +4327,7 @@
         const r = dialog.getBoundingClientRect();
         return e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom;
       };
-      [cmdDialog, document.getElementById('login-modal')].forEach((dialog) => {
+      [cmdDialog, document.getElementById('login-modal'), document.getElementById('project-preview-modal')].forEach((dialog) => {
         if (!dialog) return;
         let pressedOutside = false;
         dialog.addEventListener('pointerdown', (e) => { pressedOutside = outside(e, dialog); });

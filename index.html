@@ -3097,7 +3097,7 @@
             </div>
           </div>
           <div class="project-actions">
-            <button class="btn-project primary" onclick="openProjectPreview('AfroSpy — E-Commerce Intelligence', 'https://afro-spy.com')">
+            <button class="btn-project primary" onclick="openProjectPreview('AfroSpy — E-Commerce Intelligence', 'https://afro-spy.com', 'afrospy_preview.png')">
               <svg class="icon-svg" style="width:12px;height:12px;" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
               Prévisualiser
             </button>
@@ -3130,7 +3130,7 @@
             </div>
           </div>
           <div class="project-actions">
-            <button class="btn-project primary" onclick="openProjectPreview('ShopEazy — Boutique E-Commerce', 'https://shopeazy-five.vercel.app')">
+            <button class="btn-project primary" onclick="openProjectPreview('ShopEazy — Boutique E-Commerce', 'https://shopeazy-five.vercel.app', 'shopeazy_preview.png')">
               <svg class="icon-svg" style="width:12px;height:12px;" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
               Prévisualiser
             </button>
@@ -3167,7 +3167,7 @@
             </div>
           </div>
           <div class="project-actions">
-            <button class="btn-project primary" onclick="openProjectPreview('LostFound — Objets Perdus & Retrouvés', 'https://lost-mu.vercel.app')">
+            <button class="btn-project primary" onclick="openProjectPreview('LostFound — Objets Perdus & Retrouvés', 'https://lost-mu.vercel.app', 'lost_preview.png')">
               <svg class="icon-svg" style="width:12px;height:12px;" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
               Prévisualiser
             </button>
@@ -3655,7 +3655,7 @@
 
   
   <!-- PROJECT PREVIEW MODAL -->
-  <dialog id="project-preview-modal" closedby="any" aria-label="Prévisualisation du projet en direct">
+  <dialog id="project-preview-modal" closedby="any" aria-label="Prévisualisation du projet">
     <div class="preview-modal-bar">
       <div class="preview-modal-info">
         <svg class="icon-svg" style="color: var(--accent); flex-shrink: 0;" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
@@ -3663,9 +3663,9 @@
         <span class="preview-modal-url" id="preview-url-badge">https://...</span>
       </div>
       <div class="preview-modal-actions">
-        <a id="preview-external-link" href="#" target="_blank" class="btn btn-secondary btn-sm" title="Ouvrir dans un nouvel onglet">
+        <a id="preview-external-link" href="#" target="_blank" class="btn btn-primary btn-sm" title="Ouvrir dans un nouvel onglet">
           <svg class="icon-svg" style="width:12px;height:12px;" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-          Plein écran
+          Ouvrir l'application
         </a>
         <button type="button" class="btn btn-secondary btn-sm" onclick="closeProjectPreview()">
           Fermer (ESC)
@@ -3673,11 +3673,26 @@
       </div>
     </div>
     <div class="preview-iframe-container">
+      <!-- Screenshot presentation container for sites with iframe security restrictions (CSP/X-Frame-Options) -->
+      <div id="preview-screenshot-wrap" style="display:none; width:100%; height:100%; overflow:auto; background:#09090b; padding:16px; text-align:center;">
+        <div style="max-width:960px; margin:0 auto; background:#121216; border:1px solid var(--border); border-radius:10px; overflow:hidden; box-shadow:0 12px 30px rgba(0,0,0,0.6);">
+          <div style="background:#18181d; border-bottom:1px solid var(--border); padding:8px 14px; display:flex; align-items:center; justify-content:space-between; font-family:var(--font-mono); font-size:11px; color:var(--text-muted);">
+            <div style="display:flex; align-items:center; gap:6px;">
+              <span style="width:8px;height:8px;border-radius:50%;background:#ef4444;display:inline-block;"></span>
+              <span style="width:8px;height:8px;border-radius:50%;background:#f59e0b;display:inline-block;"></span>
+              <span style="width:8px;height:8px;border-radius:50%;background:#10b981;display:inline-block;"></span>
+              <span style="margin-left:8px;" id="preview-mockup-url">https://...</span>
+            </div>
+            <span style="color:var(--green);">Capture haute fidélité</span>
+          </div>
+          <img id="preview-img" src="" alt="Capture d'écran du projet" style="width:100%; height:auto; display:block;">
+        </div>
+      </div>
       <iframe id="preview-iframe" src="about:blank" title="Aperçu live du projet"></iframe>
       <div class="preview-fallback-banner">
-        <span>Aperçu interactif direct</span>
+        <span id="preview-banner-text">Aperçu interactif direct</span>
         <span style="opacity: 0.6;">&bull;</span>
-        <a id="preview-fallback-link" href="#" target="_blank" style="color: var(--accent); text-decoration: underline;">Ouvrir l'application si l'affichage est restreint</a>
+        <a id="preview-fallback-link" href="#" target="_blank" style="color: var(--accent); text-decoration: underline; font-weight:600;">Accéder au site officiel en plein écran</a>
       </div>
     </div>
   </dialog>
@@ -3703,9 +3718,9 @@
 
                 <!-- PROJETS EN LIGNE -->
         <li class="cmd-category-header">Projets Déployés & Réalisations</li>
-        <li><div class="cmd-item" onclick="openProjectPreview('AfroSpy — E-Commerce Intelligence', 'https://afro-spy.com'); closeCmdPalette();"><span class="cmd-item-left">AfroSpy (Intelligence Publicitaire E-Com)</span><span class="cmd-item-badge">Live App</span></div></li>
-        <li><div class="cmd-item" onclick="openProjectPreview('ShopEazy — Boutique E-Commerce', 'https://shopeazy-five.vercel.app'); closeCmdPalette();"><span class="cmd-item-left">ShopEazy (Plateforme E-Commerce)</span><span class="cmd-item-badge">Live App</span></div></li>
-        <li><div class="cmd-item" onclick="openProjectPreview('LostFound — Objets Perdus', 'https://lost-mu.vercel.app'); closeCmdPalette();"><span class="cmd-item-left">LostFound (Plateforme Objets Perdus)</span><span class="cmd-item-badge">Live App</span></div></li>
+        <li><div class="cmd-item" onclick="openProjectPreview('AfroSpy — E-Commerce Intelligence', 'https://afro-spy.com', 'afrospy_preview.png'); closeCmdPalette();"><span class="cmd-item-left">AfroSpy (Intelligence Publicitaire E-Com)</span><span class="cmd-item-badge">Live App</span></div></li>
+        <li><div class="cmd-item" onclick="openProjectPreview('ShopEazy — Boutique E-Commerce', 'https://shopeazy-five.vercel.app', 'shopeazy_preview.png'); closeCmdPalette();"><span class="cmd-item-left">ShopEazy (Plateforme E-Commerce)</span><span class="cmd-item-badge">Live App</span></div></li>
+        <li><div class="cmd-item" onclick="openProjectPreview('LostFound — Objets Perdus & Retrouvés', 'https://lost-mu.vercel.app', 'lost_preview.png'); closeCmdPalette();"><span class="cmd-item-left">LostFound (Plateforme Objets Perdus)</span><span class="cmd-item-badge">Live App</span></div></li>
         <li><a class="cmd-item" href="https://github.com/RoHsk14/afrocodeurs" target="_blank" onclick="closeCmdPalette()"><span class="cmd-item-left">AfroCodeurs (Panafrican Tech Community)</span><span class="cmd-item-badge">GitHub</span></a></li>
         <li><a class="cmd-item" href="https://github.com/RoHsk14/Miab_tela_v2" target="_blank" onclick="closeCmdPalette()"><span class="cmd-item-left">Miab Tela (Application Mobile Tailleurs)</span><span class="cmd-item-badge">Mobile App</span></a></li>
         <!-- DOCUMENTS PUBLICS -->
@@ -3929,18 +3944,46 @@
     // PROJECT LIVE PREVIEW MODAL
     const previewModal = document.getElementById('project-preview-modal');
     const previewIframe = document.getElementById('preview-iframe');
+    const previewScreenshotWrap = document.getElementById('preview-screenshot-wrap');
+    const previewImg = document.getElementById('preview-img');
+    const previewMockupUrl = document.getElementById('preview-mockup-url');
     const previewTitle = document.getElementById('preview-title');
     const previewUrlBadge = document.getElementById('preview-url-badge');
     const previewExternalLink = document.getElementById('preview-external-link');
     const previewFallbackLink = document.getElementById('preview-fallback-link');
+    const previewBannerText = document.getElementById('preview-banner-text');
 
-    function openProjectPreview(title, url) {
+    function openProjectPreview(title, url, screenshot) {
       if (!previewModal) return;
       if (previewTitle) previewTitle.textContent = title;
       if (previewUrlBadge) previewUrlBadge.textContent = url;
+      if (previewMockupUrl) previewMockupUrl.textContent = url;
       if (previewExternalLink) previewExternalLink.href = url;
       if (previewFallbackLink) previewFallbackLink.href = url;
-      if (previewIframe) previewIframe.src = url;
+
+      // If screenshot provided (e.g. for sites blocking iframe via CSP frame-ancestors like AfroSpy), show crisp screenshot
+      if (screenshot) {
+        if (previewIframe) {
+          previewIframe.style.display = 'none';
+          previewIframe.src = 'about:blank';
+        }
+        if (previewScreenshotWrap && previewImg) {
+          previewImg.src = screenshot;
+          previewScreenshotWrap.style.display = 'block';
+        }
+        if (previewBannerText) {
+          previewBannerText.textContent = 'Capture haute fidélité du projet';
+        }
+      } else {
+        if (previewScreenshotWrap) previewScreenshotWrap.style.display = 'none';
+        if (previewIframe) {
+          previewIframe.style.display = 'block';
+          previewIframe.src = url;
+        }
+        if (previewBannerText) {
+          previewBannerText.textContent = 'Aperçu interactif direct';
+        }
+      }
 
       if (previewModal.showModal) {
         previewModal.showModal();
@@ -3950,6 +3993,7 @@
     function closeProjectPreview() {
       if (!previewModal) return;
       if (previewIframe) previewIframe.src = 'about:blank';
+      if (previewScreenshotWrap) previewScreenshotWrap.style.display = 'none';
       previewModal.close();
     }
 

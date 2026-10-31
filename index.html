@@ -2445,106 +2445,7 @@
     opacity: 0.92;
   }
 
-  /* PROJECT PREVIEW MODAL */
-  dialog#project-preview-modal {
-    margin: 40px auto auto auto;
-    border: 1px solid var(--border-active);
-    border-radius: 14px;
-    background: var(--surface);
-    color: var(--text-primary);
-    width: 92%;
-    max-width: 980px;
-    height: 82vh;
-    box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.85);
-    padding: 0;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-  }
-
-  dialog#project-preview-modal:not([open]) {
-    display: none;
-  }
-
-  .preview-modal-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 18px;
-    background: var(--surface-elevated);
-    border-bottom: 1px solid var(--border);
-    gap: 12px;
-  }
-
-  .preview-modal-info {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    min-width: 0;
-  }
-
-  .preview-modal-title {
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--text-primary);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .preview-modal-url {
-    font-family: var(--font-mono);
-    font-size: 11.5px;
-    color: var(--text-muted);
-    background: var(--tag-bg);
-    padding: 3px 8px;
-    border-radius: 5px;
-    border: 1px solid var(--border);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .preview-modal-actions {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-shrink: 0;
-  }
-
-  .preview-iframe-container {
-    flex: 1;
-    position: relative;
-    background: #09090b;
-  }
-
-  .preview-iframe-container iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-    display: block;
-    background: #ffffff;
-  }
-
-  .preview-fallback-banner {
-    position: absolute;
-    bottom: 12px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(17, 17, 21, 0.92);
-    border: 1px solid var(--border);
-    backdrop-filter: blur(8px);
-    padding: 6px 14px;
-    border-radius: 999px;
-    font-size: 11.5px;
-    color: var(--text-secondary);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    z-index: 5;
-  }
-
-</style>
+  </style>
 </head>
 <body>
 
@@ -3086,7 +2987,7 @@
               </span>
             </div>
             <p class="project-desc">
-              Plateforme d'intelligence publicitaire et de détection de produits gagnants (winning products) pour le e-commerce africain et international. Suivi des campagnes d'annonces, métriques d'engagement et analyse de tendances en temps réel.
+              Plateforme d'intelligence publicitaire et de détection de produits gagnants pour le e-commerce africain et international. Suivi des campagnes de vente, analyse des métriques d'engagement et détection de tendances en temps réel.
             </p>
             <div class="tags-list" style="margin-top: 10px;">
               <span class="tech-tag">Next.js</span>
@@ -3097,13 +2998,9 @@
             </div>
           </div>
           <div class="project-actions">
-            <button class="btn-project primary" onclick="openProjectPreview('AfroSpy — E-Commerce Intelligence', 'https://afro-spy.com', 'afrospy_preview.png')">
-              <svg class="icon-svg" style="width:12px;height:12px;" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-              Prévisualiser
-            </button>
-            <a href="https://afro-spy.com" target="_blank" class="btn-project">
+            <a href="https://afro-spy.com" target="_blank" class="btn-project primary">
               <svg class="icon-svg" style="width:12px;height:12px;" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-              afro-spy.com
+              Visiter afro-spy.com
             </a>
           </div>
         </div>
@@ -3115,7 +3012,7 @@
               <div class="project-title">ShopEazy — Plateforme E-Commerce Moderne</div>
               <span class="project-status-badge">
                 <span class="status-pulse-dot" style="width:5px;height:5px;"></span>
-                Déployé
+                En ligne
               </span>
             </div>
             <p class="project-desc">
@@ -3130,17 +3027,13 @@
             </div>
           </div>
           <div class="project-actions">
-            <button class="btn-project primary" onclick="openProjectPreview('ShopEazy — Boutique E-Commerce', 'https://shopeazy-five.vercel.app', 'shopeazy_preview.png')">
-              <svg class="icon-svg" style="width:12px;height:12px;" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-              Prévisualiser
-            </button>
-            <a href="https://shopeazy-five.vercel.app" target="_blank" class="btn-project">
+            <a href="https://shopeazy-five.vercel.app" target="_blank" class="btn-project primary">
               <svg class="icon-svg" style="width:12px;height:12px;" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-              Voir le site
+              Visiter shopeazy-five.vercel.app
             </a>
             <a href="https://github.com/RoHsk14/SHOP" target="_blank" class="btn-project">
               <svg class="icon-svg" style="width:12px;height:12px;" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-              Code
+              Code Source
             </a>
           </div>
         </div>
@@ -3152,7 +3045,7 @@
               <div class="project-title">Plateforme Objets Perdus & Retrouvés (LostFound)</div>
               <span class="project-status-badge">
                 <span class="status-pulse-dot" style="width:5px;height:5px;"></span>
-                Déployé
+                En ligne
               </span>
             </div>
             <p class="project-desc">
@@ -3167,17 +3060,13 @@
             </div>
           </div>
           <div class="project-actions">
-            <button class="btn-project primary" onclick="openProjectPreview('LostFound — Objets Perdus & Retrouvés', 'https://lost-mu.vercel.app', 'lost_preview.png')">
-              <svg class="icon-svg" style="width:12px;height:12px;" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-              Prévisualiser
-            </button>
-            <a href="https://lost-mu.vercel.app" target="_blank" class="btn-project">
+            <a href="https://lost-mu.vercel.app" target="_blank" class="btn-project primary">
               <svg class="icon-svg" style="width:12px;height:12px;" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-              lost-mu.vercel.app
+              Visiter lost-mu.vercel.app
             </a>
             <a href="https://github.com/RoHsk14/Lost" target="_blank" class="btn-project">
               <svg class="icon-svg" style="width:12px;height:12px;" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-              Code
+              Code Source
             </a>
           </div>
         </div>
@@ -3205,7 +3094,7 @@
           <div class="project-actions">
             <a href="https://github.com/RoHsk14/afrocodeurs" target="_blank" class="btn-project primary">
               <svg class="icon-svg" style="width:12px;height:12px;" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-              Voir le Dépôt GitHub
+              Dépôt GitHub
             </a>
           </div>
         </div>
@@ -3231,9 +3120,9 @@
             </div>
           </div>
           <div class="project-actions">
-            <a href="https://github.com/RoHsk14/Miab_tela_v2" target="_blank" class="btn-project">
+            <a href="https://github.com/RoHsk14/Miab_tela_v2" target="_blank" class="btn-project primary">
               <svg class="icon-svg" style="width:12px;height:12px;" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-              Code (v2)
+              Dépôt GitHub (v2)
             </a>
           </div>
         </div>
@@ -3260,13 +3149,14 @@
           <div class="project-actions">
             <a href="CV_Rodrigue_HESSOU_Stage_Tech.pdf" target="_blank" class="btn-project primary">
               <svg class="icon-svg" style="width:12px;height:12px;" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
-              Voir un Export PDF
+              Export PDF (Exemple)
             </a>
           </div>
         </div>
 
       </div>
     </section>
+
 
     <!-- --------------------------------------------------
          SECTION STACK TECHNIQUE
@@ -3654,49 +3544,6 @@
   </div>
 
   
-  <!-- PROJECT PREVIEW MODAL -->
-  <dialog id="project-preview-modal" closedby="any" aria-label="Prévisualisation du projet">
-    <div class="preview-modal-bar">
-      <div class="preview-modal-info">
-        <svg class="icon-svg" style="color: var(--accent); flex-shrink: 0;" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
-        <span class="preview-modal-title" id="preview-title">Prévisualisation du projet</span>
-        <span class="preview-modal-url" id="preview-url-badge">https://...</span>
-      </div>
-      <div class="preview-modal-actions">
-        <a id="preview-external-link" href="#" target="_blank" class="btn btn-primary btn-sm" title="Ouvrir dans un nouvel onglet">
-          <svg class="icon-svg" style="width:12px;height:12px;" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-          Ouvrir l'application
-        </a>
-        <button type="button" class="btn btn-secondary btn-sm" onclick="closeProjectPreview()">
-          Fermer (ESC)
-        </button>
-      </div>
-    </div>
-    <div class="preview-iframe-container">
-      <!-- Screenshot presentation container for sites with iframe security restrictions (CSP/X-Frame-Options) -->
-      <div id="preview-screenshot-wrap" style="display:none; width:100%; height:100%; overflow:auto; background:#09090b; padding:16px; text-align:center;">
-        <div style="max-width:960px; margin:0 auto; background:#121216; border:1px solid var(--border); border-radius:10px; overflow:hidden; box-shadow:0 12px 30px rgba(0,0,0,0.6);">
-          <div style="background:#18181d; border-bottom:1px solid var(--border); padding:8px 14px; display:flex; align-items:center; justify-content:space-between; font-family:var(--font-mono); font-size:11px; color:var(--text-muted);">
-            <div style="display:flex; align-items:center; gap:6px;">
-              <span style="width:8px;height:8px;border-radius:50%;background:#ef4444;display:inline-block;"></span>
-              <span style="width:8px;height:8px;border-radius:50%;background:#f59e0b;display:inline-block;"></span>
-              <span style="width:8px;height:8px;border-radius:50%;background:#10b981;display:inline-block;"></span>
-              <span style="margin-left:8px;" id="preview-mockup-url">https://...</span>
-            </div>
-            <span style="color:var(--green);">Capture haute fidélité</span>
-          </div>
-          <img id="preview-img" src="" alt="Capture d'écran du projet" style="width:100%; height:auto; display:block;">
-        </div>
-      </div>
-      <iframe id="preview-iframe" src="about:blank" title="Aperçu live du projet"></iframe>
-      <div class="preview-fallback-banner">
-        <span id="preview-banner-text">Aperçu interactif direct</span>
-        <span style="opacity: 0.6;">&bull;</span>
-        <a id="preview-fallback-link" href="#" target="_blank" style="color: var(--accent); text-decoration: underline; font-weight:600;">Accéder au site officiel en plein écran</a>
-      </div>
-    </div>
-  </dialog>
-
   <!-- COMMAND PALETTE (NATIVE <dialog> MODAL) -->
   <dialog id="cmd-dialog" closedby="any" aria-label="Palette de commandes">
     <div class="cmd-box">
@@ -3716,11 +3563,11 @@
         <li><a class="cmd-item" href="#temoignages" onclick="closeCmdPalette()"><span class="cmd-item-left">Retours & Recommandations</span><span class="cmd-item-badge">Avis</span></a></li>
         <li><a class="cmd-item" href="#formation" onclick="closeCmdPalette()"><span class="cmd-item-left">Formation Académique</span><span class="cmd-item-badge">Diplômes</span></a></li>
 
-                <!-- PROJETS EN LIGNE -->
+                        <!-- PROJETS EN LIGNE -->
         <li class="cmd-category-header">Projets Déployés & Réalisations</li>
-        <li><div class="cmd-item" onclick="openProjectPreview('AfroSpy — E-Commerce Intelligence', 'https://afro-spy.com', 'afrospy_preview.png'); closeCmdPalette();"><span class="cmd-item-left">AfroSpy (Intelligence Publicitaire E-Com)</span><span class="cmd-item-badge">Live App</span></div></li>
-        <li><div class="cmd-item" onclick="openProjectPreview('ShopEazy — Boutique E-Commerce', 'https://shopeazy-five.vercel.app', 'shopeazy_preview.png'); closeCmdPalette();"><span class="cmd-item-left">ShopEazy (Plateforme E-Commerce)</span><span class="cmd-item-badge">Live App</span></div></li>
-        <li><div class="cmd-item" onclick="openProjectPreview('LostFound — Objets Perdus & Retrouvés', 'https://lost-mu.vercel.app', 'lost_preview.png'); closeCmdPalette();"><span class="cmd-item-left">LostFound (Plateforme Objets Perdus)</span><span class="cmd-item-badge">Live App</span></div></li>
+        <li><a class="cmd-item" href="https://afro-spy.com" target="_blank" onclick="closeCmdPalette()"><span class="cmd-item-left">AfroSpy (Intelligence Publicitaire E-Com)</span><span class="cmd-item-badge">Site Web</span></a></li>
+        <li><a class="cmd-item" href="https://shopeazy-five.vercel.app" target="_blank" onclick="closeCmdPalette()"><span class="cmd-item-left">ShopEazy (Plateforme E-Commerce)</span><span class="cmd-item-badge">Site Web</span></a></li>
+        <li><a class="cmd-item" href="https://lost-mu.vercel.app" target="_blank" onclick="closeCmdPalette()"><span class="cmd-item-left">LostFound (Plateforme Objets Perdus)</span><span class="cmd-item-badge">Site Web</span></a></li>
         <li><a class="cmd-item" href="https://github.com/RoHsk14/afrocodeurs" target="_blank" onclick="closeCmdPalette()"><span class="cmd-item-left">AfroCodeurs (Panafrican Tech Community)</span><span class="cmd-item-badge">GitHub</span></a></li>
         <li><a class="cmd-item" href="https://github.com/RoHsk14/Miab_tela_v2" target="_blank" onclick="closeCmdPalette()"><span class="cmd-item-left">Miab Tela (Application Mobile Tailleurs)</span><span class="cmd-item-badge">Mobile App</span></a></li>
         <!-- DOCUMENTS PUBLICS -->
@@ -3941,62 +3788,6 @@
     initTheme();
 
     
-    // PROJECT LIVE PREVIEW MODAL
-    const previewModal = document.getElementById('project-preview-modal');
-    const previewIframe = document.getElementById('preview-iframe');
-    const previewScreenshotWrap = document.getElementById('preview-screenshot-wrap');
-    const previewImg = document.getElementById('preview-img');
-    const previewMockupUrl = document.getElementById('preview-mockup-url');
-    const previewTitle = document.getElementById('preview-title');
-    const previewUrlBadge = document.getElementById('preview-url-badge');
-    const previewExternalLink = document.getElementById('preview-external-link');
-    const previewFallbackLink = document.getElementById('preview-fallback-link');
-    const previewBannerText = document.getElementById('preview-banner-text');
-
-    function openProjectPreview(title, url, screenshot) {
-      if (!previewModal) return;
-      if (previewTitle) previewTitle.textContent = title;
-      if (previewUrlBadge) previewUrlBadge.textContent = url;
-      if (previewMockupUrl) previewMockupUrl.textContent = url;
-      if (previewExternalLink) previewExternalLink.href = url;
-      if (previewFallbackLink) previewFallbackLink.href = url;
-
-      // If screenshot provided (e.g. for sites blocking iframe via CSP frame-ancestors like AfroSpy), show crisp screenshot
-      if (screenshot) {
-        if (previewIframe) {
-          previewIframe.style.display = 'none';
-          previewIframe.src = 'about:blank';
-        }
-        if (previewScreenshotWrap && previewImg) {
-          previewImg.src = screenshot;
-          previewScreenshotWrap.style.display = 'block';
-        }
-        if (previewBannerText) {
-          previewBannerText.textContent = 'Capture haute fidélité du projet';
-        }
-      } else {
-        if (previewScreenshotWrap) previewScreenshotWrap.style.display = 'none';
-        if (previewIframe) {
-          previewIframe.style.display = 'block';
-          previewIframe.src = url;
-        }
-        if (previewBannerText) {
-          previewBannerText.textContent = 'Aperçu interactif direct';
-        }
-      }
-
-      if (previewModal.showModal) {
-        previewModal.showModal();
-      }
-    }
-
-    function closeProjectPreview() {
-      if (!previewModal) return;
-      if (previewIframe) previewIframe.src = 'about:blank';
-      if (previewScreenshotWrap) previewScreenshotWrap.style.display = 'none';
-      previewModal.close();
-    }
-
     // AUTHENTICATION & PRIVATE DASHBOARD
     function checkAuth() {
       const isAuth = localStorage.getItem('rodrigue_auth') === 'true';
@@ -4371,7 +4162,7 @@
         const r = dialog.getBoundingClientRect();
         return e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom;
       };
-      [cmdDialog, document.getElementById('login-modal'), document.getElementById('project-preview-modal')].forEach((dialog) => {
+      [cmdDialog, document.getElementById('login-modal')].forEach((dialog) => {
         if (!dialog) return;
         let pressedOutside = false;
         dialog.addEventListener('pointerdown', (e) => { pressedOutside = outside(e, dialog); });

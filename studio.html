@@ -59,6 +59,175 @@
     background-size: var(--grid-size) var(--grid-size);
   }
 
+  /* THEME & LANG SWITCHER IN NAVBAR */
+  .nav-actions-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .lang-switcher {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    background: var(--surface-elevated);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 2px 6px;
+  }
+
+  .lang-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 11.5px;
+    font-weight: 700;
+    font-family: var(--font-mono);
+    cursor: pointer;
+    padding: 3px 5px;
+    border-radius: 4px;
+    transition: all 0.15s ease;
+    outline: none;
+  }
+
+  .lang-btn:hover {
+    color: var(--text-primary);
+  }
+
+  .lang-btn.active {
+    color: var(--accent);
+    background: rgba(59, 130, 246, 0.12);
+  }
+
+  .theme-toggle-btn {
+    width: 32px;
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--surface-elevated);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    outline: none;
+  }
+
+  .theme-toggle-btn:hover {
+    background: var(--surface-hover);
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+
+  /* LIGHT THEME STYLES */
+  [data-theme="light"] {
+    --bg: #f8fafc;
+    --bg-subtle: #f1f5f9;
+    --surface: #ffffff;
+    --surface-elevated: #f8fafc;
+    --surface-hover: #e2e8f0;
+    --border: #e2e8f0;
+    --border-active: rgba(37, 99, 235, 0.4);
+    
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #64748b;
+    
+    --accent: #2563eb;
+    --accent-glow: rgba(37, 99, 235, 0.15);
+    --tag-bg: #f1f5f9;
+
+    --grid-line: rgba(0, 0, 0, 0.04);
+  }
+
+  [data-theme="light"] .studio-nav {
+    background: rgba(255, 255, 255, 0.94);
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  [data-theme="light"] .theme-toggle-btn:hover {
+    border-color: rgba(0, 0, 0, 0.2);
+  }
+
+  [data-theme="light"] .preview-stage {
+    background: #e2e8f0;
+  }
+
+  [data-theme="light"] .preview-top-toolbar {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: #cbd5e1;
+  }
+
+  [data-theme="light"] .smart-generator-card {
+    background: linear-gradient(145deg, #eff6ff, #f8fafc);
+    border-color: rgba(37, 99, 235, 0.25);
+    box-shadow: 0 4px 16px -2px rgba(37, 99, 235, 0.1);
+  }
+
+  [data-theme="light"] .smart-icon-badge {
+    background: rgba(37, 99, 235, 0.1);
+    border-color: rgba(37, 99, 235, 0.25);
+    color: #2563eb;
+  }
+
+  [data-theme="light"] .form-input,
+  [data-theme="light"] .form-textarea,
+  [data-theme="light"] .form-select {
+    background: #ffffff;
+    border-color: #cbd5e1;
+    color: #0f172a;
+  }
+
+  [data-theme="light"] .form-input:focus,
+  [data-theme="light"] .form-textarea:focus,
+  [data-theme="light"] .form-select:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+  }
+
+  [data-theme="light"] .skills-tags-wrap {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+  }
+
+  [data-theme="light"] .editor-skill-badge {
+    background: #ffffff;
+    border-color: #cbd5e1;
+    color: #1e293b;
+  }
+
+  [data-theme="light"] .btn-remove-skill {
+    background: #f1f5f9;
+    color: #64748b;
+  }
+
+  [data-theme="light"] .skill-quick-chip {
+    background: #ffffff;
+    border-color: #cbd5e1;
+    color: #475569;
+  }
+
+  [data-theme="light"] .dynamic-item-card {
+    background: #ffffff;
+    border-color: #e2e8f0;
+  }
+
+  [data-theme="light"] .photo-upload-box {
+    background: #ffffff;
+    border-color: #e2e8f0;
+  }
+
+  [data-theme="light"] .photo-preview-thumb {
+    background: #e2e8f0;
+  }
+
+  [data-theme="light"] .toast {
+    background: #ffffff;
+    border-color: #cbd5e1;
+    color: #0f172a;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  }
+
   /* TOP NAVBAR */
   .studio-nav {
     position: sticky;
@@ -1110,19 +1279,32 @@
       <a href="index.html" class="nav-brand">
         <div class="nav-logo-box">RH</div>
         <div style="display: flex; flex-direction: column;">
-          <span style="font-weight: 700; font-size: 14px; letter-spacing: -0.2px;">Studio Étudiant</span>
-          <span style="font-size: 11px; color: var(--text-muted);">Générateur A4 1 Page &bull; Zero Server Trace</span>
+          <span style="font-weight: 700; font-size: 14px; letter-spacing: -0.2px;" data-i18n="nav_title">Studio &Eacute;tudiant</span>
+          <span style="font-size: 11px; color: var(--text-muted);" data-i18n="nav_sub">G&eacute;n&eacute;rateur A4 1 Page &bull; Zero Server Trace</span>
         </div>
       </a>
       <span class="brand-badge">Client-Side Only</span>
     </div>
 
-    <div style="display: flex; align-items: center; gap: 12px;">
+    <div class="nav-actions-group">
       <div class="privacy-indicator">
         <span class="pulse-dot"></span>
-        <span id="privacy-status-text">Mode Invité (Éphémère)</span>
+        <span id="privacy-status-text" data-i18n="guest_status">Mode Invit&eacute; (&Eacute;ph&eacute;m&egrave;re)</span>
       </div>
-      <a href="index.html" class="btn btn-secondary" style="font-size: 12px; padding: 6px 12px;">
+
+      <!-- LANG SWITCHER -->
+      <div class="lang-switcher">
+        <button type="button" class="lang-btn active" id="lang-fr-btn" onclick="setLanguage('fr')">FR</button>
+        <span style="color: var(--border);">|</span>
+        <button type="button" class="lang-btn" id="lang-en-btn" onclick="setLanguage('en')">EN</button>
+      </div>
+
+      <!-- THEME TOGGLE -->
+      <button type="button" class="theme-toggle-btn" id="theme-btn" onclick="toggleTheme()" title="Basculer le th&egrave;me clair / sombre" aria-label="Basculer le th&egrave;me">
+        <svg class="icon-svg" id="theme-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
+
+      <a href="index.html" class="btn btn-secondary" style="font-size: 12px; padding: 6px 12px;" data-i18n="nav_back">
         &larr; Retour au Portfolio
       </a>
     </div>
@@ -1136,15 +1318,15 @@
 
       <!-- DOCUMENT TYPE SWITCHER -->
       <div class="sidebar-section">
-        <div class="form-section-title">Document actif</div>
+        <div class="form-section-title" data-i18n="sec_doc">Document actif</div>
         <div class="doc-selector-tabs">
           <button type="button" class="doc-tab-btn active" id="tab-doc-cv" onclick="switchDoc('cv')">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
-            Mon CV (A4)
+            <span data-i18n="doc_cv">Mon CV (A4)</span>
           </button>
           <button type="button" class="doc-tab-btn" id="tab-doc-letter" onclick="switchDoc('letter')">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-            Ma Lettre (A4)
+            <span data-i18n="doc_letter">Ma Lettre (A4)</span>
           </button>
         </div>
       </div>
@@ -1217,13 +1399,13 @@
 
       <!-- MODE SELECTION -->
       <div class="sidebar-section">
-        <div class="form-section-title">Confidentialité &amp; Sauvegarde</div>
+        <div class="form-section-title" data-i18n="sec_privacy">Confidentialit&eacute; &amp; Sauvegarde</div>
         <div class="mode-selector-tabs">
           <button type="button" class="mode-tab-btn active" id="btn-mode-guest" onclick="setMode('guest')">
-            Invité (Éphémère)
+            <span data-i18n="mode_guest">Invit&eacute; (&Eacute;ph&eacute;m&egrave;re)</span>
           </button>
           <button type="button" class="mode-tab-btn" id="btn-mode-local" onclick="setMode('local')">
-            Sauvegarde Locale
+            <span data-i18n="mode_local">Sauvegarde Locale</span>
           </button>
         </div>
         <p id="mode-desc" style="font-size: 11.5px; color: var(--text-muted); margin-top: 4px;">
@@ -1233,20 +1415,20 @@
 
       <!-- SHARED IDENTITY -->
       <div class="sidebar-section">
-        <div class="form-section-title">Identité &amp; Coordonnées</div>
+        <div class="form-section-title" data-i18n="sec_identity">Identit&eacute; &amp; Coordonn&eacute;es</div>
         <div class="row-2">
           <div class="form-group">
-            <label>Nom &amp; Prénom</label>
+            <label data-i18n="lbl_name">Nom &amp; Pr&eacute;nom</label>
             <input type="text" id="inp-name" class="form-input" value="Alexandre DUPONT" oninput="updateCV()">
           </div>
           <div class="form-group">
-            <label>Ville &amp; Pays</label>
+            <label data-i18n="lbl_city">Ville &amp; Pays</label>
             <input type="text" id="inp-city" class="form-input" value="Lyon (69000), France" oninput="updateCV()">
           </div>
         </div>
         <div class="row-2">
           <div class="form-group">
-            <label>Téléphone</label>
+            <label data-i18n="lbl_phone">T&eacute;l&eacute;phone</label>
             <input type="text" id="inp-phone" class="form-input" value="+33 6 12 34 56 78" oninput="updateCV()">
           </div>
           <div class="form-group">
@@ -1266,7 +1448,7 @@
           </div>
         </div>
         <div class="form-group">
-          <label>Titre visé / Intitulé</label>
+          <label data-i18n="lbl_title">Titre vis&eacute; / Intitul&eacute;</label>
           <input type="text" id="inp-title" class="form-input" value="Étudiant Master 1 Informatique — Recherche de Stage" oninput="updateCV()">
         </div>
       </div>
@@ -1276,7 +1458,7 @@
 
         <!-- PRESET TEMPLATES -->
         <div class="sidebar-section">
-          <div class="form-section-title">Modèles Métiers Étudiants</div>
+          <div class="form-section-title" data-i18n="sec_presets_cv">Mod&egrave;les M&eacute;tiers &Eacute;tudiants</div>
           <div class="preset-chips-wrap">
             <button type="button" class="preset-chip active" onclick="applyPreset('stage_dev')">Stage Dév / Bac+5</button>
             <button type="button" class="preset-chip" onclick="applyPreset('alternance_tech')">Alternance Tech</button>
@@ -1289,7 +1471,7 @@
 
         <!-- PROFIL & ACCROCHE -->
         <div class="sidebar-section">
-          <div class="form-section-title">Profil &amp; Accroche</div>
+          <div class="form-section-title" data-i18n="sec_summary">Profil &amp; Accroche</div>
           <div class="form-group">
             <textarea id="inp-summary" class="form-textarea" rows="3" oninput="updateCV()">Passionné par le génie logiciel, le développement web et les architectures modernes. Actuellement en Master 1 informatique, je recherche un stage conventionné de 4 à 6 mois pour mettre en pratique mes compétences au sein d'une équipe technique dynamique.</textarea>
           </div>
@@ -1309,7 +1491,7 @@
         <!-- EXPERIENCES DYNAMIQUES -->
         <div class="sidebar-section" id="cv-sidebar-block-exp">
           <div class="form-section-title">
-            <span>Expériences Professionnelles</span>
+            <span data-i18n="sec_exp">Exp&eacute;riences Professionnelles</span>
             <button type="button" class="btn btn-secondary" style="font-size: 11px; padding: 4px 8px;" onclick="addExperience()">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
               Ajouter
@@ -1341,7 +1523,7 @@
         <!-- FORMATIONS DYNAMIQUES -->
         <div class="sidebar-section" id="cv-sidebar-block-edu">
           <div class="form-section-title">
-            <span>Formations &amp; Diplômes</span>
+            <span data-i18n="sec_edu">Formations &amp; Dipl&ocirc;mes</span>
             <button type="button" class="btn btn-secondary" style="font-size: 11px; padding: 4px 8px;" onclick="addEducation()">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
               Ajouter
@@ -1352,7 +1534,7 @@
 
         <!-- COMPETENCES DYNAMIQUES -->
         <div class="sidebar-section">
-          <div class="form-section-title">Compétences Techniques &amp; Humaines</div>
+          <div class="form-section-title" data-i18n="sec_skills">Comp&eacute;tences Techniques &amp; Humaines</div>
           <div style="display: flex; gap: 6px; margin-bottom: 6px;">
             <input type="text" id="inp-new-skill" class="form-input" placeholder="Ajouter une compétence (ex: React, SQL, Rigueur...)" onkeydown="if(event.key === 'Enter'){ event.preventDefault(); addSkillFromInput(); }">
             <button type="button" class="btn btn-primary" style="font-size: 12px; padding: 6px 12px; white-space: nowrap;" onclick="addSkillFromInput()">
@@ -1480,14 +1662,14 @@
 
       <!-- ACTIONS & EXPORT -->
       <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 10px; padding-top: 16px; border-top: 1px solid var(--border);">
-        <button type="button" class="btn btn-primary" onclick="printA4()">
+        <button type="button" class="btn btn-primary" onclick="printA4()" data-i18n="btn_export_pdf">
           Exporter en PDF (A4 1 Page Strict)
         </button>
-        <button type="button" class="btn btn-secondary" onclick="exportDataJSON()">
-          Télécharger le Dossier Complet (JSON)
+        <button type="button" class="btn btn-secondary" onclick="exportDataJSON()" data-i18n="btn_export_json">
+          T&eacute;l&eacute;charger le Dossier Complet (JSON)
         </button>
-        <button type="button" class="btn btn-danger" onclick="clearAllData()">
-          Effacer toutes mes données
+        <button type="button" class="btn btn-danger" onclick="clearAllData()" data-i18n="btn_clear">
+          Effacer toutes mes donn&eacute;es
         </button>
       </div>
 
@@ -1627,7 +1809,389 @@
 
   <!-- JS LOGIC -->
   <script>
-    let currentDoc = 'cv';
+    let currentLang = 'fr';
+
+    const translations = {
+      fr: {
+        nav_title: "Studio Étudiant",
+        nav_sub: "Générateur A4 1 Page • Zero Server Trace",
+        nav_back: "← Retour au Portfolio",
+        guest_status: "Mode Invité (Éphémère)",
+        local_status: "Sauvegarde Locale Active",
+        sec_doc: "Document actif",
+        doc_cv: "Mon CV (A4)",
+        doc_letter: "Ma Lettre (A4)",
+        sec_privacy: "Confidentialité & Sauvegarde",
+        mode_guest: "Invité (Éphémère)",
+        mode_local: "Sauvegarde Locale",
+        sec_identity: "Identité & Coordonnées",
+        lbl_name: "Nom & Prénom",
+        lbl_city: "Ville & Pays",
+        lbl_phone: "Téléphone",
+        lbl_title: "Titre visé / Intitulé",
+        sec_presets_cv: "Modèles Métiers Étudiants",
+        sec_summary: "Profil & Accroche",
+        sec_exp: "Expériences Professionnelles",
+        sec_edu: "Formations & Diplômes",
+        sec_skills: "Compétences Techniques & Humaines",
+        btn_export_pdf: "Exporter en PDF (A4 1 Page Strict)",
+        btn_export_json: "Télécharger le Dossier Complet (JSON)",
+        btn_clear: "Effacer toutes mes données",
+        sheet_pill: "Feuille A4 stricte (210 × 297 mm)",
+        sheet_print_btn: "Imprimer / Enregistrer en PDF",
+        sheet_side_contact: "Coordonnées",
+        sheet_side_skills: "Compétences Clés",
+        sheet_main_exp: "Expériences Professionnelles",
+        sheet_main_edu: "Formation & Diplômes",
+        sheet_footer_cv: "Curriculum Vitæ",
+        sheet_sig_prompt: "Bien cordialement,"
+      },
+      en: {
+        nav_title: "Student Studio",
+        nav_sub: "1-Page A4 Resume & Cover Letter Generator • Zero Server Trace",
+        nav_back: "← Back to Portfolio",
+        guest_status: "Guest Mode (Ephemeral)",
+        local_status: "Local Save Active",
+        sec_doc: "Active Document",
+        doc_cv: "My Resume (A4)",
+        doc_letter: "My Cover Letter (A4)",
+        sec_privacy: "Privacy & Data Storage",
+        mode_guest: "Guest (Ephemeral)",
+        mode_local: "Local Save",
+        sec_identity: "Identity & Contact Details",
+        lbl_name: "Full Name",
+        lbl_city: "City & Country",
+        lbl_phone: "Phone Number",
+        lbl_title: "Target Role / Headline",
+        sec_presets_cv: "Student Job Templates",
+        sec_summary: "Professional Summary",
+        sec_exp: "Work Experience",
+        sec_edu: "Education & Qualifications",
+        sec_skills: "Skills & Core Competencies",
+        btn_export_pdf: "Export to PDF (Strict 1-Page A4)",
+        btn_export_json: "Download Complete Profile (JSON)",
+        btn_clear: "Reset All Data",
+        sheet_pill: "Strict A4 Sheet (210 × 297 mm)",
+        sheet_print_btn: "Print / Save as PDF",
+        sheet_side_contact: "Contact Details",
+        sheet_side_skills: "Key Skills",
+        sheet_main_exp: "Professional Experience",
+        sheet_main_edu: "Education & Qualifications",
+        sheet_footer_cv: "Curriculum Vitae / Resume",
+        sheet_sig_prompt: "Sincerely,"
+      }
+    };
+
+    const presetsEn = {
+      stage_dev: {
+        title: "Computer Science MSc Student — Seeking Software Engineering Internship",
+        summary: "Passionate about software architecture, back-end development, and REST APIs. Currently pursuing an MSc in Computer Science. Seeking a 4 to 6-month internship starting in 2026 to contribute to scalable engineering projects within an Agile team.",
+        experiences: [
+          {
+            title: "Junior Web & Back-End Intern — Digital Agency (2026)",
+            desc: "Designed and built robust RESTful APIs using Python & Django. Integrated PostgreSQL databases and automated unit testing suites."
+          },
+          {
+            title: "Mobile App Developer (Academic Project) — (2025)",
+            desc: "Developed a cross-platform Flutter application with offline-first local cache and cloud data synchronization."
+          }
+        ],
+        educations: [
+          {
+            title: "MSc in Computer Science & Software Engineering (2026 - Present)",
+            sub: "Distributed systems, cloud architectures, and Agile methodologies"
+          },
+          {
+            title: "BSc in Computer Science — Honors (2023 - 2026)",
+            sub: "Algorithms, databases, network protocols, and object-oriented programming"
+          }
+        ],
+        skills: ["Java", "Python", "C++", "SQL", "PostgreSQL", "Flutter", "Docker", "Git", "Scrum", "English C1"]
+      },
+      alternance_tech: {
+        title: "Software Engineer — Seeking Apprenticeship / Work-Study",
+        summary: "Rigorous and proactive computer engineering student looking for a 12 to 24-month work-study program. Experienced with modern full-stack frameworks, clean code practices, and continuous delivery.",
+        experiences: [
+          {
+            title: "Fullstack & QA Intern — IT Services Group (2026)",
+            desc: "Participated in daily Scrum standups, resolved production defects, and automated functional integration test cases."
+          },
+          {
+            title: "Collaborative Web Platform Project — (2025)",
+            desc: "Designed relational database schemas in MySQL, built secure authentication middleware, and implemented responsive frontend components."
+          }
+        ],
+        educations: [
+          {
+            title: "Master of Science in Software Engineering (2026 - 2028)",
+            sub: "Alternating work-study schedule"
+          },
+          {
+            title: "Bachelor of Technology in Application Development (2023 - 2026)",
+            sub: "Software design, architecture patterns, and DevOps"
+          }
+        ],
+        skills: ["Java", "Spring Boot", "React", "TypeScript", "MySQL", "Git & CI/CD", "Unit Testing", "Linux"]
+      },
+      job_etudiant: {
+        title: "Versatile Student Assistant — Seeking Part-Time Student Job",
+        summary: "Assiduous, punctual, and customer-oriented university student available for evening shifts, weekends, and holiday periods. Adaptable and enthusiastic team player with strong interpersonal communication skills.",
+        experiences: [
+          {
+            title: "Retail Cashier & Customer Service — Supermarket (2025)",
+            desc: "Processed transactions accurately, welcomed shoppers warmly, replenished shelves, and maintained clean checkout aisles."
+          },
+          {
+            title: "Logistics Order Picker — Distribution Warehouse (2024)",
+            desc: "Sorted inventory parcels carefully, met quality and safety targets, and assisted inventory audit teams."
+          }
+        ],
+        educations: [
+          {
+            title: "Higher Education Undergraduate Degree (2026 - Present)",
+            sub: "University of Lyon"
+          },
+          {
+            title: "High School Diploma / Baccalaureate (2023)",
+            sub: "Scientific & General stream"
+          }
+        ],
+        skills: ["Customer Service", "Cash Register", "Organization", "Punctuality", "Teamwork", "Adaptability"]
+      },
+      tutorat: {
+        title: "Academic Tutor & Teaching Assistant (Mathematics & Computer Science)",
+        summary: "Passionate university student offering tutoring and homework guidance for secondary and high school students. Patient, pedagogical, and dedicated to building student confidence and rigorous problem-solving habits.",
+        experiences: [
+          {
+            title: "Private Academic Tutor — In-Home & Online (2025 - 2026)",
+            desc: "Mentored 6 students weekly in mathematics and physics. Tailored revision worksheets and prepared students for national examinations."
+          },
+          {
+            title: "Youth Study Group Mentor — Community Center (2024)",
+            desc: "Supervised group study sessions, provided clear conceptual explanations, and maintained constructive parent communication."
+          }
+        ],
+        educations: [
+          {
+            title: "Graduate Science & Engineering Curriculum (2026 - Present)",
+            sub: "Higher Education"
+          },
+          {
+            title: "High School Scientific Diploma — Honors",
+            sub: "Mathematics & Physics specialization"
+          }
+        ],
+        skills: ["Active Pedagogy", "Clear Communication", "Mathematics", "Science", "Patience", "Empathy"]
+      },
+      restauration: {
+        title: "Food Service Crew Member & Barista (Part-Time)",
+        summary: "Energetic and quick-learning student skilled at fast-paced teamwork during peak rush hours. Strictly attentive to food safety (HACCP) standards, hygiene, and delivering warm, efficient guest service.",
+        experiences: [
+          {
+            title: "Team Member — Fast Food & Counter Service (2025)",
+            desc: "Welcomed customers, operated POS kiosks, prepared meal orders swiftly, and ensured immaculate dining area cleanliness."
+          },
+          {
+            title: "Kitchen Porter & Maintenance — Restaurant (2024)",
+            desc: "Sanitized prep counters and cookware meticulously, managed dishwasher station, and complied with safety protocols."
+          }
+        ],
+        educations: [
+          {
+            title: "University Student (2026 - Present)",
+            sub: "Flexible evening and weekend availability"
+          },
+          {
+            title: "High School Diploma",
+            sub: "Secondary education"
+          }
+        ],
+        skills: ["HACCP Standards", "Speed of Execution", "Cash Handling", "Rush Management", "Team Spirit"]
+      },
+      vente: {
+        title: "Retail Sales Associate & Customer Advisor",
+        summary: "Enthusiastic and well-presented student passionate about retail and customer loyalty. Strong active listening skills to identify client needs, recommend appropriate products, and support store sales targets.",
+        experiences: [
+          {
+            title: "Sales & Stock Associate — Apparel Store (2025)",
+            desc: "Assisted shoppers with sizing and style advice, handled cash and card payments, and organized visual merchandising displays."
+          },
+          {
+            title: "Event Host & Information Assistant — Trade Shows (2024)",
+            desc: "Greeted visitors at entrance gates, answered inquiries courteously, and directed attendees across exhibition booths."
+          }
+        ],
+        educations: [
+          {
+            title: "Higher Education Program (2026 - Present)",
+            sub: "Business & Humanities"
+          },
+          {
+            title: "High School Diploma",
+            sub: "Secondary education"
+          }
+        ],
+        skills: ["Sales Techniques", "Customer Experience", "Merchandising", "POS Systems", "Reliability", "Dynamism"]
+      }
+    };
+
+    const letterPresetsEn = {
+      stage_dev: {
+        company: "TechSolutions International",
+        recipient: "To the Attention of the Engineering Hiring Team",
+        compAddr: "12 Innovation Avenue",
+        compCity: "London / Remote",
+        subject: "Application for Software Engineering Internship (4 to 6 months)",
+        salutation: "Dear Hiring Team,",
+        p1: "Currently pursuing a Master's degree in Computer Science, I am writing to express my strong interest in joining TechSolutions International for a 4 to 6-month software engineering internship starting in 2026. Impressed by your software excellence and technological innovation, I would be thrilled to contribute to your engineering roadmaps.",
+        p2: "Throughout my academic curriculum and hands-on projects, I have developed solid expertise in backend development (Python, Java, Node.js) and RESTful API architecture paired with relational databases (PostgreSQL). Rigorous, proactive, and proficient with Git and Agile Scrum methodologies, I integrate smoothly into collaborative teams to deliver clean, documented, and thoroughly tested code.",
+        p3: "Joining your team would provide the ideal opportunity to deepen my engineering craft while delivering immediate, reliable value to your development sprints. Curious, perseverant, and committed to high code quality, I am eager to tackle challenging technical milestones with your developers.",
+        closing: "Thank you for your time and consideration. I welcome the opportunity to discuss my application further in an interview. Sincerely,"
+      },
+      alternance_tech: {
+        company: "Global Digital Systems",
+        recipient: "To the Attention of the Technical Talent Lead",
+        compAddr: "25 Tech Boulevard",
+        compCity: "London / Remote",
+        subject: "Application for Software Developer Apprenticeship (12 to 24 months)",
+        salutation: "Dear Hiring Manager,",
+        p1: "Admitted into a graduate software engineering degree program for the 2026 academic year, I am seeking a 12 to 24-month work-study apprenticeship. Your company's reputation for scalable digital products and engineering best practices perfectly aligns with where I wish to invest my energy and grow long-term.",
+        p2: "Equipped with strong foundations in full-stack programming, relational data modeling, and automated testing, I prioritize writing maintainable and resilient software. Autonomous and detail-oriented, I thrive in feedback-driven environments where business requirements translate into high-performance code.",
+        p3: "With a structured work-study rhythm, I will be fully committed to supporting your project sprints, shipping reliable features, and easing team bandwidth. My curiosity, fast learning curve, and dedication will make me a dependable contributor within your organization.",
+        closing: "I would be delighted to discuss how my profile matches your requirements during an interview. Sincerely,"
+      },
+      job_etudiant: {
+        company: "Commercial & Retail Enterprise",
+        recipient: "To the Attention of the Hiring Manager",
+        compAddr: "Central Commercial Plaza",
+        compCity: "City Center",
+        subject: "Application for Part-Time Student Associate Position",
+        salutation: "Dear Hiring Manager,",
+        p1: "Currently enrolled in higher education, I am seeking a part-time student position that fits my university timetable (available evenings, weekends, and holidays). Your establishment's dedication to outstanding customer service has caught my full attention.",
+        p2: "Reliable, punctual, and in great physical condition, I quickly adapt to multifaceted duties: cashier duties, shelf stocking, customer reception, and order fulfillment. Accustomed to teamwork, I adhere strictly to safety rules and care deeply about ensuring a welcoming customer journey.",
+        p3: "Eager and proactive, I am immediately operational to reinforce your shifts during peak hours. My sense of accountability and consistent work ethic will make me an associate your team can depend upon daily.",
+        closing: "Thank you for reviewing my application. I look forward to the opportunity of meeting with you for an interview. Best regards,"
+      },
+      tutorat: {
+        company: "Academic Mentoring Center",
+        recipient: "To the Attention of the Academic Director",
+        compAddr: "8 University Lane",
+        compCity: "University District",
+        subject: "Application for Academic Tutor & Science Mentor",
+        salutation: "Dear Academic Team,",
+        p1: "Pursuing higher scientific studies, I would like to offer my academic knowledge and pedagogical skills to your students. Sharing your institution's dedication to student growth and academic rigor, I submit my application for tutoring and homework coaching positions.",
+        p2: "Passionate about exact sciences and endowed with patience, I have already guided several students toward academic success. My approach focuses on active listening, identifying conceptual roadblocks, and rebuilding self-confidence through structured exercises.",
+        p3: "Joining your teaching community would allow me to support families seeking serious, personalized educational mentorship. Punctual, empathetic, and organized, I will build constructive, motivating relationships with students and parents alike.",
+        closing: "I am available at your convenience to discuss my teaching philosophy in an interview. Sincerely,"
+      },
+      restauration: {
+        company: "Quick Service Restaurant & Cafe",
+        recipient: "To the Attention of the Store Manager",
+        compAddr: "High Street Plaza",
+        compCity: "City Center",
+        subject: "Application for Food Service Crew Member (Part-Time)",
+        salutation: "Dear Restaurant Manager,",
+        p1: "Motivated, hardworking, and punctual, I am looking for a part-time student contract to support my university studies. With flexible availability including evenings, weekends, and closing shifts, I wish to join your crew as a team member.",
+        p2: "Quick-thinking and calm under the pressure of rush hours, I am equally comfortable at counter service, drive-thru, and dining room maintenance. I place the highest priority on food hygiene (HACCP) standards, speed of execution, and friendly customer reception.",
+        p3: "Joining your brand will allow me to thrive in a structured, fast-paced kitchen where coordination and positivity are paramount. Adaptable and eager to learn, I will quickly meet your operational standards.",
+        closing: "Thank you for your consideration. I remain at your disposal for an interview or trial shift. Best regards,"
+      },
+      vente: {
+        company: "Retail Store & Boutique",
+        recipient: "To the Attention of the Store Manager",
+        compAddr: "Shopping Boulevard",
+        compCity: "City Center",
+        subject: "Application for Retail Sales Associate (Student Contract)",
+        salutation: "Dear Store Manager,",
+        p1: "Passionate about retail and client relations, I am applying for a sales associate position within your store. Your brand's visual identity and customer-first values resonate deeply with my professional aspirations.",
+        p2: "Approachable, communicative, and observant, I enjoy guiding visitors, identifying their style preferences, and presenting products effectively to drive sales and customer loyalty. Diligent and proactive, I happily assist with deliveries, merchandising, and register operations.",
+        p3: "Energetic and reliable, I will integrate smoothly into your sales team to help achieve store revenue and satisfaction targets. My positive mindset and steady dedication will make me an enthusiastic brand ambassador.",
+        closing: "Thank you for your time. I am eager to discuss my motivation in a personal meeting. Sincerely,"
+      }
+    };
+
+    function initTheme() {
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      updateThemeIcon(savedTheme);
+    }
+
+    function toggleTheme() {
+      const cur = document.documentElement.getAttribute('data-theme') || 'dark';
+      const next = cur === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      updateThemeIcon(next);
+      showToast(next === 'light' ? (currentLang === 'fr' ? 'Thème clair activé' : 'Light theme enabled') : (currentLang === 'fr' ? 'Thème sombre activé' : 'Dark theme enabled'));
+    }
+
+    function updateThemeIcon(t) {
+      const icon = document.getElementById('theme-icon');
+      if (!icon) return;
+      if (t === 'light') {
+        icon.innerHTML = '<circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>';
+      } else {
+        icon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
+      }
+    }
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      localStorage.setItem('studio_lang', lang);
+      document.documentElement.setAttribute('lang', lang);
+
+      const btnFr = document.getElementById('lang-fr-btn');
+      const btnEn = document.getElementById('lang-en-btn');
+      if (btnFr && btnEn) {
+        if (lang === 'en') {
+          btnEn.classList.add('active');
+          btnFr.classList.remove('active');
+        } else {
+          btnFr.classList.add('active');
+          btnEn.classList.remove('active');
+        }
+      }
+
+      // Update text nodes with data-i18n
+      const dict = translations[lang] || translations.fr;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key]) {
+          el.innerText = dict[key];
+        }
+      });
+
+      // Update date format
+      const dateInp = document.getElementById('inp-let-date');
+      if (dateInp) {
+        dateInp.value = getDateForLang(lang);
+      }
+
+      // Update preview headers
+      const cvSideContact = document.querySelector('.sheet-sidebar .sheet-side-title');
+      if (cvSideContact) cvSideContact.innerText = dict.sheet_side_contact;
+
+      const cvFooterRight = document.getElementById('out-footer-right');
+      if (cvFooterRight) cvFooterRight.innerText = dict.sheet_footer_cv;
+
+      const letPrompt = document.querySelector('.letter-sig-prompt');
+      if (letPrompt) letPrompt.innerText = dict.sheet_sig_prompt;
+
+      // Update toast
+      showToast(lang === 'en' ? 'Language switched to English' : 'Langue basculée en Français');
+    }
+
+    function getDateForLang(lang) {
+      const now = new Date();
+      if (lang === 'en') {
+        const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        return `${months[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}`;
+      } else {
+        return getTodayFrenchDate();
+      }
+    }
+
+        let currentDoc = 'cv';
     let candidateGender = 'M';
     let recipientSalutation = 'Madame, Monsieur,';
     let smartAssistantCollapsed = false;
@@ -2818,6 +3382,9 @@
 
     // INIT
     window.addEventListener('DOMContentLoaded', () => {
+      initTheme();
+      const savedLang = localStorage.getItem('studio_lang') || 'fr';
+      if (savedLang === 'en') setLanguage('en');
       document.getElementById('inp-let-date').value = getTodayFrenchDate();
       applyLetterPreset('stage_dev');
       loadLocal();

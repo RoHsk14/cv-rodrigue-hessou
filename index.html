@@ -223,6 +223,13 @@
     gap: 16px;
   }
 
+  .top-navbar > nav {
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: center;
+    min-width: 0;
+  }
+
   .nav-left {
     display: flex;
     align-items: center;
@@ -230,6 +237,7 @@
     text-decoration: none;
     color: inherit;
     flex-shrink: 0;
+    min-width: max-content;
     z-index: 2;
   }
 
@@ -518,13 +526,17 @@
     stroke-linejoin: round;
   }
 
-  @media (max-width: 1180px) {
+  .nav-right-actions {
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 1240px) {
     .nav-brand-sub { display: none; }
     .nav-menu { gap: 12px; }
     .cmd-trigger-btn kbd { display: none; }
   }
 
-  @media (max-width: 1040px) {
+  @media (max-width: 1140px) {
     .top-navbar { padding: 0 16px; gap: 10px; }
     .top-navbar > nav { display: none; }
     .nav-menu { display: none; }

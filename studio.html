@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Studio Étudiant — Générateur de CV & Lettres A4 (Gratuit & Sans Trace)</title>
+<meta name="description" content="Espace Étudiant gratuit pour créer et exporter des CVs et lettres de motivation professionnels au format A4 strict 1 page. Respect absolu de la vie privée : zéro serveur, aucune donnée stockée.">
+<meta name="theme-color" content="#09090b">
+
+<!-- Fonts: Plus Jakarta Sans, JetBrains Mono, Carlito -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-mono: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace;
+    --font-cv: 'Carlito', 'Calibri', 'Segoe UI', Arial, sans-serif;
+
+    --bg: #09090b;
+    --bg-subtle: #0d0d11;
+    --surface: #111115;
+    --surface-elevated: #18181d;
+    --surface-hover: #1f1f26;
+    --border: rgba(255, 255, 255, 0.08);
+    --border-active: rgba(255, 255, 255, 0.22);
+    
+    --text-primary: #f4f4f5;
+    --text-secondary: #a1a1aa;
+    --text-muted: #71717a;
+    
+    --accent: #3b82f6;
+    --green: #10b981;
+    --amber: #f59e0b;
+    --tag-bg: rgba(255, 255, 255, 0.04);
+
+    --grid-line: rgba(255, 255, 255, 0.035);
+    --grid-size: 32px;
+  }
+
+  [data-theme="light"] {
+    --bg: #fafafa;
+    --bg-subtle: #f4f4f6;
+    --surface: #ffffff;
+    --surface-elevated: #f4f4f6;
+    --surface-hover: #eaeaea;
+    --border: #e4e4e7;
+    --border-active: #71717a;
+    
+    --text-primary: #09090b;
+    --text-secondary: #52525b;
+    --text-muted: #71717a;
+    
+    --accent: #2563eb;
+    --tag-bg: #f4f4f5;
+
+    --grid-line: rgba(0, 0, 0, 0.038);
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--bg);
+    color: var(--text-primary);
+    min-height: 100vh;
+    line-height: 1.5;
+    background-image: 
+      linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+    background-size: var(--grid-size) var(--grid-size);
+  }
+
+  /* TOP NAVBAR */
+  .studio-nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(9, 9, 11, 0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .brand-badge {
+    background: rgba(59, 130, 246, 0.15);
+    color: var(--accent);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 4px;
+  }
+
+  .privacy-indicator {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    color: var(--green);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.25);
+    padding: 4px 10px;
+    border-radius: 999px;
+  }
+
+  .pulse-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--green);
+    display: inline-block;
+  }
+
+  /* MAIN LAYOUT (SPLIT SCREEN: CONTROLS & A4 LIVE PREVIEW) */
+  .studio-container {
+    display: grid;
+    grid-template-columns: 480px 1fr;
+    min-height: calc(100vh - 58px);
+  }
+
+  /* LEFT SIDEBAR CONTROLS */
+  .editor-sidebar {
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow-y: auto;
+    max-height: calc(100vh - 58px);
+  }
+
+  .mode-selector-tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 3px;
+    gap: 4px;
+  }
+
+  .mode-tab-btn {
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-family: var(--font-sans);
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .mode-tab-btn.active {
+    background: var(--surface-elevated);
+    color: var(--text-primary);
+    border: 1px solid var(--border-active);
+  }
+
+  .form-section-title {
+    font-size: 13.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 12px;
+  }
+
+  .form-group label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-secondary);
+  }
+
+  .form-input, .form-textarea, .form-select {
+    background: var(--surface-elevated);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 8px 11px;
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    font-size: 13px;
+    outline: none;
+    transition: border-color 0.15s ease;
+  }
+
+  .form-input:focus, .form-textarea:focus, .form-select:focus {
+    border-color: var(--accent);
+  }
+
+  .form-textarea {
+    resize: vertical;
+    min-height: 70px;
+    line-height: 1.4;
+  }
+
+  .row-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 9px 14px;
+    border-radius: 7px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    border: 1px solid transparent;
+    text-decoration: none;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #ffffff;
+  }
+
+  .btn-primary:hover {
+    opacity: 0.92;
+  }
+
+  .btn-secondary {
+    background: var(--surface-elevated);
+    border-color: var(--border);
+    color: var(--text-primary);
+  }
+
+  .btn-secondary:hover {
+    background: var(--surface-hover);
+    border-color: var(--border-active);
+  }
+
+  .btn-danger {
+    background: rgba(239, 68, 68, 0.1);
+    border-color: rgba(239, 68, 68, 0.3);
+    color: #ef4444;
+  }
+
+  .btn-danger:hover {
+    background: rgba(239, 68, 68, 0.2);
+  }
+
+  /* PRESET BUTTONS WRAP */
+  .preset-chips-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 12px;
+  }
+
+  .preset-chip {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    background: var(--tag-bg);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .preset-chip:hover, .preset-chip.active {
+    background: var(--surface-hover);
+    color: var(--text-primary);
+    border-color: var(--accent);
+  }
+
+  /* RIGHT LIVE PREVIEW CANVAS (SCALED A4) */
+  .preview-stage {
+    background: #050507;
+    padding: 30px;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+
+  .preview-top-toolbar {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 210mm;
+  }
+
+  .a4-notice-pill {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* A4 SHEET EXACT (210mm x 297mm) */
+  .a4-sheet {
+    width: 210mm;
+    min-height: 297mm;
+    height: 297mm;
+    background: #ffffff;
+    color: #262626;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+    border-radius: 2px;
+    padding: 7.5mm 8mm;
+    display: flex;
+    flex-direction: row;
+    gap: 5.5mm;
+    overflow: hidden;
+    font-family: var(--font-cv);
+    transform-origin: top center;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* A4 PRINT SIDEBAR */
+  .sheet-sidebar {
+    width: 63mm;
+    background-color: #1e293b;
+    border-radius: 4px;
+    padding: 5mm 4.5mm;
+    color: #f1f5f9;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 8.5pt;
+    line-height: 1.25;
+  }
+
+  .sheet-sidebar h3 {
+    font-size: 9.5pt;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #38bdf8;
+    border-bottom: 1px solid #475569;
+    padding-bottom: 1mm;
+    margin-top: 2.5mm;
+    margin-bottom: 2mm;
+    font-weight: 700;
+  }
+
+  .sheet-contact-item {
+    margin-bottom: 1.2mm;
+    word-break: break-all;
+    font-size: 8.5pt;
+  }
+
+  .sheet-contact-item strong {
+    color: #cbd5e1;
+    display: block;
+    font-size: 7.8pt;
+    text-transform: uppercase;
+  }
+
+  .sheet-skill-badge {
+    display: inline-block;
+    background: #334155;
+    color: #f8fafc;
+    padding: 1.1mm 2.2mm;
+    border-radius: 3px;
+    margin: 0.7mm 0.7mm 0.7mm 0;
+    font-size: 8pt;
+  }
+
+  /* A4 MAIN BODY */
+  .sheet-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .sheet-header {
+    border-bottom: 2px solid #0284c7;
+    padding-bottom: 2mm;
+    margin-bottom: 1.5mm;
+  }
+
+  .sheet-name {
+    font-size: 19pt;
+    font-weight: 700;
+    color: #0f172a;
+    letter-spacing: -0.3px;
+    line-height: 1.1;
+  }
+
+  .sheet-title {
+    font-size: 10.8pt;
+    font-weight: 700;
+    color: #0284c7;
+    text-transform: uppercase;
+    margin-top: 1mm;
+    letter-spacing: 0.3px;
+  }
+
+  .sheet-summary {
+    font-size: 8.6pt;
+    line-height: 1.28;
+    color: #334155;
+    margin-top: 1.5mm;
+    text-align: justify;
+  }
+
+  .sheet-section-title {
+    font-size: 10.2pt;
+    font-weight: 700;
+    color: #0f172a;
+    text-transform: uppercase;
+    border-bottom: 1.2px solid #e2e8f0;
+    padding-bottom: 0.8mm;
+    margin-top: 2mm;
+    margin-bottom: 1.6mm;
+    letter-spacing: 0.4px;
+    display: flex;
+    align-items: center;
+    gap: 1.5mm;
+  }
+
+  .sheet-section-title::before {
+    content: "";
+    display: inline-block;
+    width: 3.5mm;
+    height: 3.5mm;
+    background-color: #0284c7;
+    border-radius: 1px;
+  }
+
+  .sheet-item {
+    margin-bottom: 2mm;
+  }
+
+  .sheet-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 9pt;
+  }
+
+  .sheet-role {
+    font-weight: 700;
+    color: #0f172a;
+  }
+
+  .sheet-org {
+    color: #0284c7;
+    font-weight: 700;
+  }
+
+  .sheet-date {
+    font-size: 8.2pt;
+    color: #64748b;
+    font-style: italic;
+  }
+
+  .sheet-desc {
+    font-size: 8.3pt;
+    line-height: 1.24;
+    color: #334155;
+    margin-top: 0.8mm;
+    padding-left: 2.8mm;
+  }
+
+  .sheet-desc li {
+    margin-bottom: 0.5mm;
+    list-style-type: square;
+  }
+
+  .sheet-desc li::marker {
+    color: #0284c7;
+    font-size: 0.75em;
+  }
+
+  /* PRINT MEDIA: EXACT 1 PAGE A4 */
+  @media print {
+    @page {
+      size: A4 portrait;
+      margin: 0;
+    }
+    body * {
+      visibility: hidden;
+    }
+    .a4-sheet, .a4-sheet * {
+      visibility: visible;
+    }
+    .a4-sheet {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 210mm !important;
+      height: 297mm !important;
+      margin: 0 !important;
+      padding: 7.5mm 8mm !important;
+      box-shadow: none !important;
+      border-radius: 0 !important;
+    }
+    .studio-nav, .editor-sidebar, .preview-top-toolbar {
+      display: none !important;
+    }
+  }
+
+  /* TOAST */
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: var(--surface-elevated);
+    border: 1px solid var(--border-active);
+    color: var(--text-primary);
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+    transform: translateY(80px);
+    opacity: 0;
+    transition: all 0.25s ease;
+    z-index: 1000;
+  }
+
+  .toast.show {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  @media (max-width: 1024px) {
+    .studio-container {
+      grid-template-columns: 1fr;
+    }
+    .editor-sidebar {
+      max-height: none;
+    }
+    .a4-sheet {
+      transform: scale(0.85);
+    }
+  }
+</style>
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <header class="studio-nav">
+    <div style="display: flex; align-items: center; gap: 14px;">
+      <a href="index.html" class="nav-brand">
+        <span style="font-weight: 800; letter-spacing: -0.3px;">Rodrigue HESSOU</span>
+        <span class="brand-badge">STUDIO ÉTUDIANT</span>
+      </a>
+      <a href="index.html" class="btn btn-secondary" style="font-size: 12px; padding: 4px 8px;">
+        &larr; Retour Portfolio
+      </a>
+    </div>
+
+    <div class="privacy-indicator" title="Garantie zéro serveur : toutes vos données restent uniquement dans votre navigateur">
+      <span class="pulse-dot"></span>
+      <span>100% Client-Side &bull; Confidentialité & Zéro Stockage Distant</span>
+    </div>
+  </header>
+
+  <!-- SPLIT SCREEN -->
+  <div class="studio-container">
+
+    <!-- LEFT SIDEBAR -->
+    <aside class="editor-sidebar">
+
+      <!-- MODE SELECTION -->
+      <div>
+        <div class="form-section-title">Mode d'Utilisation</div>
+        <div class="mode-selector-tabs">
+          <button class="mode-tab-btn active" id="btn-mode-guest" onclick="setMode('guest')">
+            Invité (Éphémère)
+          </button>
+          <button class="mode-tab-btn" id="btn-mode-local" onclick="setMode('local')">
+            Sauvegarde Locale
+          </button>
+        </div>
+        <p id="mode-desc" style="font-size: 11.5px; color: var(--text-muted); margin-top: 6px;">
+          Toutes vos modifications disparaîtront dès la fermeture de la page. Zéro trace conservée.
+        </p>
+      </div>
+
+      <!-- PRESET TEMPLATES -->
+      <div>
+        <div class="form-section-title">Modèles Métiers Étudiants</div>
+        <div class="preset-chips-wrap">
+          <button class="preset-chip active" onclick="applyPreset('stage_dev')">Stage Dév / Bac+5</button>
+          <button class="preset-chip" onclick="applyPreset('alternance_tech')">Alternance Tech</button>
+          <button class="preset-chip" onclick="applyPreset('job_etudiant')">Job Étudiant Général</button>
+          <button class="preset-chip" onclick="applyPreset('tutorat')">Tutorat / Soutien</button>
+          <button class="preset-chip" onclick="applyPreset('restauration')">Restauration Rapide</button>
+          <button class="preset-chip" onclick="applyPreset('vente')">Vente & Retail</button>
+        </div>
+      </div>
+
+      <!-- FORM FIELDS -->
+      <div>
+        <div class="form-section-title">Identité & Coordonnées</div>
+        <div class="form-group">
+          <label>Nom & Prénom</label>
+          <input type="text" id="inp-name" class="form-input" value="Alexandre DUPONT" oninput="updateCV()">
+        </div>
+        <div class="form-group">
+          <label>Titre Visé (Poste ou Recherche)</label>
+          <input type="text" id="inp-title" class="form-input" value="Étudiant en Informatique — Recherche de Stage" oninput="updateCV()">
+        </div>
+        <div class="row-2">
+          <div class="form-group">
+            <label>Ville & Code Postal</label>
+            <input type="text" id="inp-city" class="form-input" value="Lyon (69000), France" oninput="updateCV()">
+          </div>
+          <div class="form-group">
+            <label>Téléphone</label>
+            <input type="text" id="inp-phone" class="form-input" value="+33 6 12 34 56 78" oninput="updateCV()">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="inp-email" class="form-input" value="alexandre.dupont@email.fr" oninput="updateCV()">
+        </div>
+      </div>
+
+      <!-- PROFILE RESUME -->
+      <div>
+        <div class="form-section-title">Profil & Accroche</div>
+        <div class="form-group">
+          <textarea id="inp-summary" class="form-textarea" oninput="updateCV()">Étudiant motivé et rigoureux en cursus d'ingénierie logicielle. Passionné par le développement d'applications fiables et le travail en équipe, je recherche un stage conventionné pour mettre en pratique mes compétences et contribuer activement à vos projets.</textarea>
+        </div>
+      </div>
+
+      <!-- EXPERIENCES -->
+      <div>
+        <div class="form-section-title">Expériences Clés</div>
+        <div class="form-group">
+          <label>Expérience 1 (Poste, Entreprise, Dates)</label>
+          <input type="text" id="inp-exp1-title" class="form-input" value="Stagiaire Développeur Mobile & QA — StartUp Labs (2026)" oninput="updateCV()">
+          <textarea id="inp-exp1-desc" class="form-textarea" style="margin-top: 4px;" oninput="updateCV()">Développement de modules sous Flutter et tests fonctionnels. Rédaction des cahiers de recette et participation active aux réunions Agiles.</textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Expérience 2 (Poste, Entreprise, Dates)</label>
+          <input type="text" id="inp-exp2-title" class="form-input" value="Employé Polyvalent & Logistique — Grande Distribution (2025)" oninput="updateCV()">
+          <textarea id="inp-exp2-desc" class="form-textarea" style="margin-top: 4px;" oninput="updateCV()">Gestion des stocks, vérification rigoureuse des livraisons, accueil courtois et respect des cadences de travail.</textarea>
+        </div>
+      </div>
+
+      <!-- FORMATIONS -->
+      <div>
+        <div class="form-section-title">Formations & Diplômes</div>
+        <div class="form-group">
+          <label>Formation Principale</label>
+          <input type="text" id="inp-edu1" class="form-input" value="Master 1 en Informatique — Cursus Bac+5 (2026 - Présent)" oninput="updateCV()">
+          <input type="text" id="inp-edu1-sub" class="form-input" style="margin-top: 4px;" value="Campus Universitaire de Lyon · Spécialité Ingénierie Logicielle" oninput="updateCV()">
+        </div>
+        <div class="form-group">
+          <label>Formation Précédente</label>
+          <input type="text" id="inp-edu2" class="form-input" value="Licence Professionnelle Informatique / Bac+3 (2023 - 2026)" oninput="updateCV()">
+        </div>
+      </div>
+
+      <!-- SKILLS -->
+      <div>
+        <div class="form-section-title">Compétences (Séparées par des virgules)</div>
+        <div class="form-group">
+          <input type="text" id="inp-skills" class="form-input" value="Java, Python, SQL, Git & GitHub, Méthodes Agiles, Travail en équipe, Anglais B2" oninput="updateCV()">
+        </div>
+      </div>
+
+      <!-- ACTIONS BAR -->
+      <div style="display: flex; flex-direction: column; gap: 8px; padding-top: 10px; border-top: 1px solid var(--border);">
+        <button class="btn btn-primary" onclick="printA4()">
+          Exporter en PDF (A4 1 Page Strict)
+        </button>
+        <button class="btn btn-secondary" onclick="exportDataJSON()">
+          Télécharger ma sauvegarde locale (JSON)
+        </button>
+        <button class="btn btn-danger" onclick="clearAllData()">
+          Effacer toutes mes données
+        </button>
+      </div>
+
+    </aside>
+
+    <!-- RIGHT A4 LIVE CANVAS -->
+    <main class="preview-stage">
+      <div class="preview-top-toolbar">
+        <div class="a4-notice-pill">
+          <span>Feuille A4 stricte (210 &times; 297 mm)</span>
+          <span>&bull;</span>
+          <span style="color: var(--green);">Moteur de mise en page calibré</span>
+        </div>
+        <div>
+          <button class="btn btn-primary" style="font-size: 12px; padding: 6px 14px;" onclick="printA4()">
+            Imprimer / Enregistrer en PDF
+          </button>
+        </div>
+      </div>
+
+      <!-- PRINTABLE A4 SHEET -->
+      <div class="a4-sheet" id="printable-cv">
+        <!-- SIDEBAR GAUCHE -->
+        <aside class="sheet-sidebar">
+          <div>
+            <div style="font-size: 13pt; font-weight: 700; color: #ffffff; letter-spacing: -0.3px; margin-bottom: 2mm;" id="out-side-name">
+              A. DUPONT
+            </div>
+
+            <h3>Contact</h3>
+            <div class="sheet-contact-item">
+              <strong>Adresse</strong>
+              <span id="out-city">Lyon (69000), France</span>
+            </div>
+            <div class="sheet-contact-item">
+              <strong>Téléphone</strong>
+              <span id="out-phone">+33 6 12 34 56 78</span>
+            </div>
+            <div class="sheet-contact-item">
+              <strong>Email</strong>
+              <span id="out-email">alexandre.dupont@email.fr</span>
+            </div>
+            <div class="sheet-contact-item">
+              <strong>Disponibilité</strong>
+              <span>Immédiate</span>
+            </div>
+
+            <h3>Compétences</h3>
+            <div id="out-skills-wrap">
+              <span class="sheet-skill-badge">Java</span>
+              <span class="sheet-skill-badge">Python</span>
+              <span class="sheet-skill-badge">SQL</span>
+              <span class="sheet-skill-badge">Git</span>
+            </div>
+
+            <h3>Qualités</h3>
+            <div style="font-size: 8.2pt; color: #cbd5e1; line-height: 1.35; margin-top: 1mm;">
+              &bull; Rigueur et ponctualité<br>
+              &bull; Esprit d'équipe et écoute<br>
+              &bull; Capacité d'apprentissage rapide<br>
+              &bull; Sens des responsabilités
+            </div>
+          </div>
+
+          <div style="font-size: 7.8pt; color: #94a3b8; border-top: 1px solid #475569; padding-top: 2mm;">
+            Document généré via le Studio Étudiant &bull; Format officiel A4
+          </div>
+        </aside>
+
+        <!-- CONTENU PRINCIPAL -->
+        <section class="sheet-main">
+          <div>
+            <header class="sheet-header">
+              <h1 class="sheet-name" id="out-name">Alexandre DUPONT</h1>
+              <h2 class="sheet-title" id="out-title">Étudiant en Informatique — Recherche de Stage</h2>
+              <p class="sheet-summary" id="out-summary">
+                Étudiant motivé et rigoureux en cursus d'ingénierie logicielle. Passionné par le développement d'applications fiables et le travail en équipe, je recherche un stage conventionné pour mettre en pratique mes compétences et contribuer activement à vos projets.
+              </p>
+            </header>
+
+            <!-- SECTION EXPERIENCES -->
+            <div>
+              <h3 class="sheet-section-title">Expériences Professionnelles</h3>
+
+              <div class="sheet-item">
+                <div class="sheet-item-header">
+                  <span class="sheet-role" id="out-exp1-title">Stagiaire Développeur Mobile & QA — StartUp Labs (2026)</span>
+                </div>
+                <div class="sheet-desc" id="out-exp1-desc">
+                  Développement de modules sous Flutter et tests fonctionnels. Rédaction des cahiers de recette et participation active aux réunions Agiles.
+                </div>
+              </div>
+
+              <div class="sheet-item">
+                <div class="sheet-item-header">
+                  <span class="sheet-role" id="out-exp2-title">Employé Polyvalent & Logistique — Grande Distribution (2025)</span>
+                </div>
+                <div class="sheet-desc" id="out-exp2-desc">
+                  Gestion des stocks, vérification rigoureuse des livraisons, accueil courtois et respect des cadences de travail.
+                </div>
+              </div>
+            </div>
+
+            <!-- SECTION FORMATION -->
+            <div>
+              <h3 class="sheet-section-title">Formation & Diplômes</h3>
+
+              <div class="sheet-item">
+                <div class="sheet-item-header">
+                  <span class="sheet-role" id="out-edu1">Master 1 en Informatique — Cursus Bac+5 (2026 - Présent)</span>
+                </div>
+                <div style="font-size: 8.2pt; color: #475569;" id="out-edu1-sub">
+                  Campus Universitaire de Lyon · Spécialité Ingénierie Logicielle
+                </div>
+              </div>
+
+              <div class="sheet-item">
+                <div class="sheet-item-header">
+                  <span class="sheet-role" id="out-edu2">Licence Professionnelle Informatique / Bac+3 (2023 - 2026)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- FOOTER -->
+          <div style="border-top: 1px solid #e2e8f0; padding-top: 1.5mm; font-size: 7.8pt; color: #64748b; display: flex; justify-content: space-between;">
+            <span>Candidature Étudiante &bull; Format A4 Strict 1 Page</span>
+            <span>Permis B &bull; Mobilité Régionale</span>
+          </div>
+        </section>
+      </div>
+    </main>
+
+  </div>
+
+  <div class="toast" id="toast">Données mises à jour</div>
+
+  <!-- JS LOGIC -->
+  <script>
+    let currentMode = 'guest';
+
+    const presets = {
+      stage_dev: {
+        title: "Étudiant Master 1 Informatique — Recherche de Stage Bac+5",
+        summary: "Passionné par l'architecture logicielle, le développement back-end et les APIs REST. Titulaire d'une Licence en Informatique et actuellement en Master 1. Recherche d'un stage conventionné de 4 à 6 mois pour intégrer une équipe de développement et contribuer activement à des projets d'envergure.",
+        exp1_title: "Stagiaire Développeur Web & Back-End — Agence Numérique (2026)",
+        exp1_desc: "Conception et développement d'APIs RESTful sous Python / Django. Intégration de bases de données relationnelles PostgreSQL et mise en place de tests unitaires systématiques.",
+        exp2_title: "Développeur d'Application Mobile (Projet Académique) — (2025)",
+        exp2_desc: "Développement d'une application Flutter avec architecture Offline-First et synchronisation cloud dès détection du réseau.",
+        edu1: "Master 1 en Informatique — Cursus Bac+5 (2026 - Présent)",
+        edu1_sub: "Spécialité Génie Logiciel, architectures distribuées et méthodes Agiles",
+        edu2: "Licence en Informatique / Génie Logiciel — Mention Bien (2023 - 2026)",
+        skills: "Java, Python, C++, SQL, PostgreSQL, Flutter, Docker, Git, Scrum, Anglais B2"
+      },
+      alternance_tech: {
+        title: "Développeur Logiciel — Recherche de Contrat d'Alternance",
+        summary: "Étudiant en école d'ingénierie informatique disponible pour un contrat d'alternance. Rigoureux, autonome et force de proposition, je souhaite m'investir sur le long terme au sein de votre équipe technique pour participer aux sprints, à la refonte de fonctionnalités et au maintien de standards élevés de code.",
+        exp1_title: "Stagiaire Fullstack & Recette QA — Entreprise de Services Numériques (2026)",
+        exp1_desc: "Participation aux cérémonies Scrum quotidiennes, correction de bugs et exécution de plus de 100 cas de tests fonctionnels avant mise en production.",
+        exp2_title: "Conception de Plateforme Web Collaborative — (2025)",
+        exp2_desc: "Modélisation relationnelle de la base de données MySQL, développement back-end et sécurisation des accès utilisateurs.",
+        edu1: "Cursus d'Ingénierie Informatique / Bac+5 en Alternance (2026 - 2028)",
+        edu1_sub: "Rythme alternance adapté entreprise / école",
+        edu2: "Licence Professionnelle en Développement Applicatif (2023 - 2026)",
+        skills: "Java, Spring Boot, React, TypeScript, MySQL, Git & CI/CD, Tests unitaires, Linux"
+      },
+      job_etudiant: {
+        title: "Étudiant Polyvalent — Recherche de Job Étudiant (Temps Partiel)",
+        summary: "Étudiant dynamique, assidu et ponctuel, disponible les soirs, week-ends et vacances universitaires. Doté d'une excellente présentation, d'un grand sens du service client et d'une bonne condition physique, je m'adapte rapidement aux consignes et au travail en équipe.",
+        exp1_title: "Employé Commercial & Encaissement — Supermarché (2025)",
+        exp1_desc: "Tenue de caisse avec exactitude, accueil chaleureux des usagers, réassort des rayons et respect des règles de sécurité.",
+        exp2_title: "Préparateur de Commandes — Entrepôt Logistique (2024)",
+        exp2_desc: "Respect rigoureux des cadences, tri minutieux des colis et tenue irréprochable des zones de stockage.",
+        edu1: "Étudiant en Enseignement Supérieur (2026 - Présent)",
+        edu1_sub: "Université / École supérieure de Lyon",
+        edu2: "Baccalauréat Général / Scientifique (2023)",
+        skills: "Sens du service client, Tenue de caisse, Rigueur, Ponctualité, Esprit d'équipe, Polyvalence"
+      },
+      tutorat: {
+        title: "Tuteur Pédagogique & Soutien Scolaire (Mathématiques / Sciences)",
+        summary: "Étudiant en Master scientifique proposant des cours de soutien scolaire et d'aide aux devoirs du primaire au lycée. Pédagogue, patient et à l'écoute, je valorise la compréhension méthodique, la reprise de confiance et l'autonomie de travail de l'élève.",
+        exp1_title: "Professeur Particulier — Acadomia & Cours à Domicile (2025 - 2026)",
+        exp1_desc: "Accompagnement hebdomadaire de 6 élèves de collège et lycée. Remise à niveau, révision méthodique des notions clés et entraînement aux examens.",
+        exp2_title: "Animateur en Aide aux Devoirs — Association de Quartier (2024)",
+        exp2_desc: "Gestion de groupes d'enfants, encadrement bienveillant et communication régulière avec les familles.",
+        edu1: "Cursus Scientifique Supérieur Bac+4 / Bac+5 (2026 - Présent)",
+        edu1_sub: "Enseignement supérieur",
+        edu2: "Baccalauréat Scientifique — Mention Bien",
+        skills: "Pédagogie active, Écoute bienveillante, Mathématiques, Sciences, Rigueur, Patience"
+      },
+      restauration: {
+        title: "Équipier Polyvalent de Restauration Rapide & Service",
+        summary: "Étudiant énergique, réactif et résistant au stress des pics d'affluence. Habitué au travail en équipe et au respect strict des normes d'hygiène alimentaire (HACCP), je m'engage à garantir un service rapide, agréable et irréprochable.",
+        exp1_title: "Équipier Polyvalent — Restauration & Service (2025)",
+        exp1_desc: "Accueil souriant au comptoir et aux bornes, prise de commande rapide, encaissement et préparation soignée des plateaux.",
+        exp2_title: "Entretien des Locaux & Plonge — Établissement de Restauration (2024)",
+        exp2_desc: "Désinfection méticuleuse des surfaces de préparation, plonge batterie et maintien permanent d'un environnement propre.",
+        edu1: "Étudiant Universitaire (2026 - Présent)",
+        edu1_sub: "Disponibilité soirées, week-ends et fermetures",
+        edu2: "Baccalauréat",
+        skills: "Normes HACCP, Rapidité d'exécution, Tenue de caisse, Gestion du rush, Esprit d'équipe"
+      },
+      vente: {
+        title: "Conseiller de Vente & Vendeur Polyvalent Retail",
+        summary: "Étudiant passionné par le commerce et le contact client. Excellent sens relationnel, force d'écoute et capacité à conseiller avec pertinence pour fidéliser la clientèle et atteindre les objectifs de vente du magasin.",
+        exp1_title: "Vendeur & Réassort — Boutique Prêt-à-Porter / Sport (2025)",
+        exp1_desc: "Accueil et accompagnement personnalisé des clients, encaissement, traitement des livraisons et valorisation des rayons (merchandising).",
+        exp2_title: "Hôte d'Accueil Événementiel — Salons & Événements (2024)",
+        exp2_desc: "Orientation du public, contrôle des accès et réponse courtoise aux demandes des visiteurs.",
+        edu1: "Enseignement Supérieur (2026 - Présent)",
+        edu1_sub: "Formation supérieure",
+        edu2: "Baccalauréat",
+        skills: "Techniques de vente, Conseil client, Merchandising, Tenue de caisse, Dynamisme, Rigueur"
+      }
+    };
+
+    function updateCV() {
+      const name = document.getElementById('inp-name').value;
+      const title = document.getElementById('inp-title').value;
+      const city = document.getElementById('inp-city').value;
+      const phone = document.getElementById('inp-phone').value;
+      const email = document.getElementById('inp-email').value;
+      const summary = document.getElementById('inp-summary').value;
+      const exp1Title = document.getElementById('inp-exp1-title').value;
+      const exp1Desc = document.getElementById('inp-exp1-desc').value;
+      const exp2Title = document.getElementById('inp-exp2-title').value;
+      const exp2Desc = document.getElementById('inp-exp2-desc').value;
+      const edu1 = document.getElementById('inp-edu1').value;
+      const edu1Sub = document.getElementById('inp-edu1-sub').value;
+      const edu2 = document.getElementById('inp-edu2').value;
+      const skillsStr = document.getElementById('inp-skills').value;
+
+      document.getElementById('out-name').innerText = name || 'VOTRE NOM';
+      document.getElementById('out-side-name').innerText = name ? name.split(' ').map((n, i) => i === 0 ? n[0] + '.' : n).join(' ') : 'VOTRE NOM';
+      document.getElementById('out-title').innerText = title || 'TITRE VISÉ';
+      document.getElementById('out-city').innerText = city;
+      document.getElementById('out-phone').innerText = phone;
+      document.getElementById('out-email').innerText = email;
+      document.getElementById('out-summary').innerText = summary;
+      document.getElementById('out-exp1-title').innerText = exp1Title;
+      document.getElementById('out-exp1-desc').innerText = exp1Desc;
+      document.getElementById('out-exp2-title').innerText = exp2Title;
+      document.getElementById('out-exp2-desc').innerText = exp2Desc;
+      document.getElementById('out-edu1').innerText = edu1;
+      document.getElementById('out-edu1-sub').innerText = edu1Sub;
+      document.getElementById('out-edu2').innerText = edu2;
+
+      // Render skill badges
+      const wrap = document.getElementById('out-skills-wrap');
+      wrap.innerHTML = '';
+      skillsStr.split(',').map(s => s.trim()).filter(Boolean).forEach(skill => {
+        const span = document.createElement('span');
+        span.className = 'sheet-skill-badge';
+        span.innerText = skill;
+        wrap.appendChild(span);
+      });
+
+      if (currentMode === 'local') {
+        saveLocal();
+      }
+    }
+
+    function applyPreset(key) {
+      const p = presets[key];
+      if (!p) return;
+      document.getElementById('inp-title').value = p.title;
+      document.getElementById('inp-summary').value = p.summary;
+      document.getElementById('inp-exp1-title').value = p.exp1_title;
+      document.getElementById('inp-exp1-desc').value = p.exp1_desc;
+      document.getElementById('inp-exp2-title').value = p.exp2_title;
+      document.getElementById('inp-exp2-desc').value = p.exp2_desc;
+      document.getElementById('inp-edu1').value = p.edu1;
+      document.getElementById('inp-edu1-sub').value = p.edu1_sub;
+      document.getElementById('inp-edu2').value = p.edu2;
+      document.getElementById('inp-skills').value = p.skills;
+
+      document.querySelectorAll('.preset-chip').forEach(c => c.classList.remove('active'));
+      event.target.classList.add('active');
+
+      updateCV();
+      showToast('Modèle ' + key.replace('_', ' ') + ' chargé !');
+    }
+
+    function setMode(mode) {
+      currentMode = mode;
+      const bGuest = document.getElementById('btn-mode-guest');
+      const bLocal = document.getElementById('btn-mode-local');
+      const desc = document.getElementById('mode-desc');
+
+      if (mode === 'guest') {
+        bGuest.classList.add('active');
+        bLocal.classList.remove('active');
+        desc.innerText = "Mode Invité actif : Toutes vos modifications disparaîtront dès la fermeture de la page. Zéro trace conservée.";
+        showToast('Mode Invité (Éphémère sans trace) activé');
+      } else {
+        bLocal.classList.add('active');
+        bGuest.classList.remove('active');
+        desc.innerText = "Sauvegarde Locale active : Vos données sont conservées uniquement dans le stockage sécurisé de votre navigateur sur cet appareil.";
+        saveLocal();
+        showToast('Sauvegarde locale activée');
+      }
+    }
+
+    function saveLocal() {
+      const data = {
+        name: document.getElementById('inp-name').value,
+        title: document.getElementById('inp-title').value,
+        city: document.getElementById('inp-city').value,
+        phone: document.getElementById('inp-phone').value,
+        email: document.getElementById('inp-email').value,
+        summary: document.getElementById('inp-summary').value,
+        exp1Title: document.getElementById('inp-exp1-title').value,
+        exp1Desc: document.getElementById('inp-exp1-desc').value,
+        exp2Title: document.getElementById('inp-exp2-title').value,
+        exp2Desc: document.getElementById('inp-exp2-desc').value,
+        edu1: document.getElementById('inp-edu1').value,
+        edu1Sub: document.getElementById('inp-edu1-sub').value,
+        edu2: document.getElementById('inp-edu2').value,
+        skills: document.getElementById('inp-skills').value,
+      };
+      try {
+        localStorage.setItem('studio_etudiant_cv', JSON.stringify(data));
+      } catch(e) {}
+    }
+
+    function loadLocal() {
+      try {
+        const saved = localStorage.getItem('studio_etudiant_cv');
+        if (saved) {
+          const d = JSON.parse(saved);
+          if (d.name) document.getElementById('inp-name').value = d.name;
+          if (d.title) document.getElementById('inp-title').value = d.title;
+          if (d.city) document.getElementById('inp-city').value = d.city;
+          if (d.phone) document.getElementById('inp-phone').value = d.phone;
+          if (d.email) document.getElementById('inp-email').value = d.email;
+          if (d.summary) document.getElementById('inp-summary').value = d.summary;
+          if (d.exp1Title) document.getElementById('inp-exp1-title').value = d.exp1Title;
+          if (d.exp1Desc) document.getElementById('inp-exp1-desc').value = d.exp1Desc;
+          if (d.exp2Title) document.getElementById('inp-exp2-title').value = d.exp2Title;
+          if (d.exp2Desc) document.getElementById('inp-exp2-desc').value = d.exp2Desc;
+          if (d.edu1) document.getElementById('inp-edu1').value = d.edu1;
+          if (d.edu1Sub) document.getElementById('inp-edu1-sub').value = d.edu1Sub;
+          if (d.edu2) document.getElementById('inp-edu2').value = d.edu2;
+          if (d.skills) document.getElementById('inp-skills').value = d.skills;
+          setMode('local');
+        }
+      } catch(e) {}
+    }
+
+    function clearAllData() {
+      if (confirm('Voulez-vous réinitialiser le formulaire et effacer toutes vos données de ce navigateur ?')) {
+        localStorage.removeItem('studio_etudiant_cv');
+        applyPreset('stage_dev');
+        document.getElementById('inp-name').value = '';
+        document.getElementById('inp-phone').value = '';
+        document.getElementById('inp-email').value = '';
+        updateCV();
+        showToast('Toutes les données ont été effacées.');
+      }
+    }
+
+    function exportDataJSON() {
+      const data = {
+        name: document.getElementById('inp-name').value,
+        title: document.getElementById('inp-title').value,
+        city: document.getElementById('inp-city').value,
+        phone: document.getElementById('inp-phone').value,
+        email: document.getElementById('inp-email').value,
+        summary: document.getElementById('inp-summary').value,
+        exp1Title: document.getElementById('inp-exp1-title').value,
+        exp1Desc: document.getElementById('inp-exp1-desc').value,
+        exp2Title: document.getElementById('inp-exp2-title').value,
+        exp2Desc: document.getElementById('inp-exp2-desc').value,
+        edu1: document.getElementById('inp-edu1').value,
+        edu1Sub: document.getElementById('inp-edu1-sub').value,
+        edu2: document.getElementById('inp-edu2').value,
+        skills: document.getElementById('inp-skills').value,
+        exportDate: new Date().toISOString()
+      };
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'mon-profil-cv.json';
+      a.click();
+      showToast('Fichier JSON téléchargé !');
+    }
+
+    function printA4() {
+      showToast("Conseil : Dans la boîte d'impression, cochez 'Graphiques d'arrière-plan'.");
+      setTimeout(() => {
+        window.print();
+      }, 350);
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.innerText = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 3000);
+    }
+
+    // INIT
+    window.addEventListener('DOMContentLoaded', () => {
+      loadLocal();
+      updateCV();
+    });
+  </script>
+
+</body>
+</html>

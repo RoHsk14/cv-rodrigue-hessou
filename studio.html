@@ -733,27 +733,23 @@
         </div>
       </div>
 
-      <!-- EXPERIENCES -->
+      <!-- EXPERIENCES DYNAMIQUES -->
       <div>
-        <div class="form-section-title">Expériences Clés</div>
-        <div class="form-group">
-          <label>Expérience 1 (Poste, Entreprise, Dates)</label>
-          <input type="text" id="inp-exp1-title" class="form-input" value="Stagiaire Développeur Mobile & QA — StartUp Labs (2026)" oninput="updateCV()">
-          <textarea id="inp-exp1-desc" class="form-textarea" style="margin-top: 4px;" oninput="updateCV()">Développement de modules sous Flutter et tests fonctionnels. Rédaction des cahiers de recette et participation active aux réunions Agiles.</textarea>
+        <div class="form-section-title" style="display: flex; justify-content: space-between; align-items: center;">
+          <span>Exp&eacute;riences Professionnelles</span>
+          <button type="button" class="btn btn-secondary" style="font-size: 11px; padding: 4px 8px; text-transform: none; letter-spacing: normal;" onclick="addExperience()">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            Ajouter
+          </button>
         </div>
-
-        <div class="form-group">
-          <label>Expérience 2 (Poste, Entreprise, Dates)</label>
-          <input type="text" id="inp-exp2-title" class="form-input" value="Employé Polyvalent & Logistique — Grande Distribution (2025)" oninput="updateCV()">
-          <textarea id="inp-exp2-desc" class="form-textarea" style="margin-top: 4px;" oninput="updateCV()">Gestion des stocks, vérification rigoureuse des livraisons, accueil courtois et respect des cadences de travail.</textarea>
-        </div>
+        <div id="experiences-editor-list" style="display: flex; flex-direction: column; gap: 10px;"></div>
       </div>
 
-            <!-- PHOTO OPTIONNELLE -->
+      <!-- PHOTO OPTIONNELLE -->
       <div>
         <div class="form-section-title">Photo de Profil (Optionnelle)</div>
         <div class="photo-upload-box">
-          <img id="thumb-preview" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2364748b'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" alt="Aperçu" class="photo-preview-thumb">
+          <img id="thumb-preview" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2364748b'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" alt="Aper&ccedil;u" class="photo-preview-thumb">
           <div style="flex:1;">
             <input type="file" id="inp-photo" accept="image/*" style="display:none;" onchange="handlePhotoUpload(event)">
             <div style="display:flex; gap:6px;">
@@ -769,25 +765,45 @@
         </div>
       </div>
 
-      <!-- FORMATIONS -->
+      <!-- FORMATIONS DYNAMIQUES -->
       <div>
-        <div class="form-section-title">Formations & Diplômes</div>
-        <div class="form-group">
-          <label>Formation Principale</label>
-          <input type="text" id="inp-edu1" class="form-input" value="Master 1 en Informatique — Cursus Bac+5 (2026 - Présent)" oninput="updateCV()">
-          <input type="text" id="inp-edu1-sub" class="form-input" style="margin-top: 4px;" value="Campus Universitaire de Lyon · Spécialité Ingénierie Logicielle" oninput="updateCV()">
+        <div class="form-section-title" style="display: flex; justify-content: space-between; align-items: center;">
+          <span>Formations &amp; Dipl&ocirc;mes</span>
+          <button type="button" class="btn btn-secondary" style="font-size: 11px; padding: 4px 8px; text-transform: none; letter-spacing: normal;" onclick="addEducation()">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            Ajouter
+          </button>
         </div>
-        <div class="form-group">
-          <label>Formation Précédente</label>
-          <input type="text" id="inp-edu2" class="form-input" value="Licence Professionnelle Informatique / Bac+3 (2023 - 2026)" oninput="updateCV()">
-        </div>
+        <div id="educations-editor-list" style="display: flex; flex-direction: column; gap: 10px;"></div>
       </div>
 
-      <!-- SKILLS -->
+      <!-- COMPETENCES DYNAMIQUES -->
       <div>
-        <div class="form-section-title">Compétences (Séparées par des virgules)</div>
-        <div class="form-group">
-          <input type="text" id="inp-skills" class="form-input" value="Java, Python, SQL, Git & GitHub, Méthodes Agiles, Travail en équipe, Anglais B2" oninput="updateCV()">
+        <div class="form-section-title">Comp&eacute;tences Techniques &amp; Humaines</div>
+        <div style="display: flex; gap: 6px; margin-bottom: 8px;">
+          <input type="text" id="inp-new-skill" class="form-input" placeholder="Ajouter une comp&eacute;tence (ex: React, SQL, Rigueur...)" onkeydown="if(event.key === 'Enter'){ event.preventDefault(); addSkillFromInput(); }">
+          <button type="button" class="btn btn-primary" style="font-size: 12px; padding: 6px 12px; white-space: nowrap;" onclick="addSkillFromInput()">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            Ajouter
+          </button>
+        </div>
+
+        <div id="skills-tags-container" class="skills-tags-wrap"></div>
+
+        <div style="margin-top: 8px;">
+          <div style="font-size: 10.5px; color: var(--text-muted); margin-bottom: 5px;">Suggestions rapides (cliquer pour ajouter) :</div>
+          <div class="skill-quick-chips">
+            <span class="skill-quick-chip" onclick="addSkill('Java')">+ Java</span>
+            <span class="skill-quick-chip" onclick="addSkill('Python')">+ Python</span>
+            <span class="skill-quick-chip" onclick="addSkill('React')">+ React</span>
+            <span class="skill-quick-chip" onclick="addSkill('SQL')">+ SQL</span>
+            <span class="skill-quick-chip" onclick="addSkill('Docker')">+ Docker</span>
+            <span class="skill-quick-chip" onclick="addSkill('Git &amp; GitHub')">+ Git</span>
+            <span class="skill-quick-chip" onclick="addSkill('M&eacute;thodes Agiles')">+ Agile</span>
+            <span class="skill-quick-chip" onclick="addSkill('Anglais B2')">+ Anglais</span>
+            <span class="skill-quick-chip" onclick="addSkill('Sens du service')">+ Service client</span>
+            <span class="skill-quick-chip" onclick="addSkill('Rigueur')">+ Rigueur</span>
+          </div>
         </div>
       </div>
 
@@ -972,45 +988,14 @@
 
             <!-- SECTION EXPERIENCES -->
             <div>
-              <h3 class="sheet-section-title">Expériences Professionnelles</h3>
-
-              <div class="sheet-item">
-                <div class="sheet-item-header">
-                  <span class="sheet-role" id="out-exp1-title">Stagiaire Développeur Mobile & QA — StartUp Labs (2026)</span>
-                </div>
-                <div class="sheet-desc" id="out-exp1-desc">
-                  Développement de modules sous Flutter et tests fonctionnels. Rédaction des cahiers de recette et participation active aux réunions Agiles.
-                </div>
-              </div>
-
-              <div class="sheet-item">
-                <div class="sheet-item-header">
-                  <span class="sheet-role" id="out-exp2-title">Employé Polyvalent & Logistique — Grande Distribution (2025)</span>
-                </div>
-                <div class="sheet-desc" id="out-exp2-desc">
-                  Gestion des stocks, vérification rigoureuse des livraisons, accueil courtois et respect des cadences de travail.
-                </div>
-              </div>
+              <h3 class="sheet-section-title">Exp&eacute;riences Professionnelles</h3>
+              <div id="out-experiences-list"></div>
             </div>
 
             <!-- SECTION FORMATION -->
             <div>
-              <h3 class="sheet-section-title">Formation & Diplômes</h3>
-
-              <div class="sheet-item">
-                <div class="sheet-item-header">
-                  <span class="sheet-role" id="out-edu1">Master 1 en Informatique — Cursus Bac+5 (2026 - Présent)</span>
-                </div>
-                <div style="font-size: 8.2pt; color: #475569;" id="out-edu1-sub">
-                  Campus Universitaire de Lyon · Spécialité Ingénierie Logicielle
-                </div>
-              </div>
-
-              <div class="sheet-item">
-                <div class="sheet-item-header">
-                  <span class="sheet-role" id="out-edu2">Licence Professionnelle Informatique / Bac+3 (2023 - 2026)</span>
-                </div>
-              </div>
+              <h3 class="sheet-section-title">Formation &amp; Dipl&ocirc;mes</h3>
+              <div id="out-educations-list"></div>
             </div>
           </div>
 
@@ -1301,80 +1286,436 @@
       showToast('Lettre : Modèle ' + key.replace('_', ' ') + ' chargé !');
     }
 
+    let currentExperiences = [
+      {
+        title: "Stagiaire Développeur Web & Back-End — Agence Numérique (2026)",
+        desc: "Conception et développement d'APIs RESTful sous Python / Django. Intégration de bases de données relationnelles PostgreSQL et tests unitaires systématiques."
+      },
+      {
+        title: "Développeur d'Application Mobile (Projet Académique) — (2025)",
+        desc: "Développement d'une application Flutter avec architecture Offline-First et synchronisation cloud dès détection du réseau."
+      }
+    ];
+
+    let currentEducations = [
+      {
+        title: "Master 1 en Informatique — Cursus Bac+5 (2026 - Présent)",
+        sub: "Spécialité Génie Logiciel, architectures distribuées et méthodes Agiles"
+      },
+      {
+        title: "Licence en Informatique / Génie Logiciel — Mention Bien (2023 - 2026)",
+        sub: "Université Claude Bernard Lyon 1"
+      }
+    ];
+
+    let currentSkills = [
+      "Java", "Python", "C++", "SQL", "PostgreSQL", "Flutter", "Docker", "Git", "Scrum", "Anglais B2"
+    ];
+
+    function escapeHtml(text) {
+      if (!text) return '';
+      return String(text)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
     const presets = {
       stage_dev: {
         title: "Étudiant Master 1 Informatique — Recherche de Stage Bac+5",
         summary: "Passionné par l'architecture logicielle, le développement back-end et les APIs REST. Titulaire d'une Licence en Informatique et actuellement en Master 1. Recherche d'un stage conventionné de 4 à 6 mois pour intégrer une équipe de développement et contribuer activement à des projets d'envergure.",
-        exp1_title: "Stagiaire Développeur Web & Back-End — Agence Numérique (2026)",
-        exp1_desc: "Conception et développement d'APIs RESTful sous Python / Django. Intégration de bases de données relationnelles PostgreSQL et mise en place de tests unitaires systématiques.",
-        exp2_title: "Développeur d'Application Mobile (Projet Académique) — (2025)",
-        exp2_desc: "Développement d'une application Flutter avec architecture Offline-First et synchronisation cloud dès détection du réseau.",
-        edu1: "Master 1 en Informatique — Cursus Bac+5 (2026 - Présent)",
-        edu1_sub: "Spécialité Génie Logiciel, architectures distribuées et méthodes Agiles",
-        edu2: "Licence en Informatique / Génie Logiciel — Mention Bien (2023 - 2026)",
-        skills: "Java, Python, C++, SQL, PostgreSQL, Flutter, Docker, Git, Scrum, Anglais B2"
+        experiences: [
+          {
+            title: "Stagiaire Développeur Web & Back-End — Agence Numérique (2026)",
+            desc: "Conception et développement d'APIs RESTful sous Python / Django. Intégration de bases de données relationnelles PostgreSQL et mise en place de tests unitaires systématiques."
+          },
+          {
+            title: "Développeur d'Application Mobile (Projet Académique) — (2025)",
+            desc: "Développement d'une application Flutter avec architecture Offline-First et synchronisation cloud dès détection du réseau."
+          }
+        ],
+        educations: [
+          {
+            title: "Master 1 en Informatique — Cursus Bac+5 (2026 - Présent)",
+            sub: "Spécialité Génie Logiciel, architectures distribuées et méthodes Agiles"
+          },
+          {
+            title: "Licence en Informatique / Génie Logiciel — Mention Bien (2023 - 2026)",
+            sub: "Université Claude Bernard Lyon 1"
+          }
+        ],
+        skills: ["Java", "Python", "C++", "SQL", "PostgreSQL", "Flutter", "Docker", "Git", "Scrum", "Anglais B2"]
       },
       alternance_tech: {
         title: "Développeur Logiciel — Recherche de Contrat d'Alternance",
         summary: "Étudiant en école d'ingénierie informatique disponible pour un contrat d'alternance. Rigoureux, autonome et force de proposition, je souhaite m'investir sur le long terme au sein de votre équipe technique pour participer aux sprints, à la refonte de fonctionnalités et au maintien de standards élevés de code.",
-        exp1_title: "Stagiaire Fullstack & Recette QA — Entreprise de Services Numériques (2026)",
-        exp1_desc: "Participation aux cérémonies Scrum quotidiennes, correction de bugs et exécution de plus de 100 cas de tests fonctionnels avant mise en production.",
-        exp2_title: "Conception de Plateforme Web Collaborative — (2025)",
-        exp2_desc: "Modélisation relationnelle de la base de données MySQL, développement back-end et sécurisation des accès utilisateurs.",
-        edu1: "Cursus d'Ingénierie Informatique / Bac+5 en Alternance (2026 - 2028)",
-        edu1_sub: "Rythme alternance adapté entreprise / école",
-        edu2: "Licence Professionnelle en Développement Applicatif (2023 - 2026)",
-        skills: "Java, Spring Boot, React, TypeScript, MySQL, Git & CI/CD, Tests unitaires, Linux"
+        experiences: [
+          {
+            title: "Stagiaire Fullstack & Recette QA — Entreprise de Services Numériques (2026)",
+            desc: "Participation aux cérémonies Scrum quotidiennes, correction de bugs et exécution de plus de 100 cas de tests fonctionnels avant mise en production."
+          },
+          {
+            title: "Conception de Plateforme Web Collaborative — (2025)",
+            desc: "Modélisation relationnelle de la base de données MySQL, développement back-end et sécurisation des accès utilisateurs."
+          }
+        ],
+        educations: [
+          {
+            title: "Cursus d'Ingénierie Informatique / Bac+5 en Alternance (2026 - 2028)",
+            sub: "Rythme alternance adapté entreprise / école"
+          },
+          {
+            title: "Licence Professionnelle en Développement Applicatif (2023 - 2026)",
+            sub: "Enseignement supérieur"
+          }
+        ],
+        skills: ["Java", "Spring Boot", "React", "TypeScript", "MySQL", "Git & CI/CD", "Tests unitaires", "Linux"]
       },
       job_etudiant: {
         title: "Étudiant Polyvalent — Recherche de Job Étudiant (Temps Partiel)",
         summary: "Étudiant dynamique, assidu et ponctuel, disponible les soirs, week-ends et vacances universitaires. Doté d'une excellente présentation, d'un grand sens du service client et d'une bonne condition physique, je m'adapte rapidement aux consignes et au travail en équipe.",
-        exp1_title: "Employé Commercial & Encaissement — Supermarché (2025)",
-        exp1_desc: "Tenue de caisse avec exactitude, accueil chaleureux des usagers, réassort des rayons et respect des règles de sécurité.",
-        exp2_title: "Préparateur de Commandes — Entrepôt Logistique (2024)",
-        exp2_desc: "Respect rigoureux des cadences, tri minutieux des colis et tenue irréprochable des zones de stockage.",
-        edu1: "Étudiant en Enseignement Supérieur (2026 - Présent)",
-        edu1_sub: "Université / École supérieure de Lyon",
-        edu2: "Baccalauréat Général / Scientifique (2023)",
-        skills: "Sens du service client, Tenue de caisse, Rigueur, Ponctualité, Esprit d'équipe, Polyvalence"
+        experiences: [
+          {
+            title: "Employé Commercial & Encaissement — Supermarché (2025)",
+            desc: "Tenue de caisse avec exactitude, accueil chaleureux des usagers, réassort des rayons et respect des règles de sécurité."
+          },
+          {
+            title: "Préparateur de Commandes — Entrepôt Logistique (2024)",
+            desc: "Respect rigoureux des cadences, tri minutieux des colis et tenue irréprochable des zones de stockage."
+          }
+        ],
+        educations: [
+          {
+            title: "Étudiant en Enseignement Supérieur (2026 - Présent)",
+            sub: "Université / École supérieure de Lyon"
+          },
+          {
+            title: "Baccalauréat Général / Scientifique (2023)",
+            sub: "Mention Assez Bien"
+          }
+        ],
+        skills: ["Sens du service client", "Tenue de caisse", "Rigueur", "Ponctualité", "Esprit d'équipe", "Polyvalence"]
       },
       tutorat: {
         title: "Tuteur Pédagogique & Soutien Scolaire (Mathématiques / Sciences)",
         summary: "Étudiant en Master scientifique proposant des cours de soutien scolaire et d'aide aux devoirs du primaire au lycée. Pédagogue, patient et à l'écoute, je valorise la compréhension méthodique, la reprise de confiance et l'autonomie de travail de l'élève.",
-        exp1_title: "Professeur Particulier — Acadomia & Cours à Domicile (2025 - 2026)",
-        exp1_desc: "Accompagnement hebdomadaire de 6 élèves de collège et lycée. Remise à niveau, révision méthodique des notions clés et entraînement aux examens.",
-        exp2_title: "Animateur en Aide aux Devoirs — Association de Quartier (2024)",
-        exp2_desc: "Gestion de groupes d'enfants, encadrement bienveillant et communication régulière avec les familles.",
-        edu1: "Cursus Scientifique Supérieur Bac+4 / Bac+5 (2026 - Présent)",
-        edu1_sub: "Enseignement supérieur",
-        edu2: "Baccalauréat Scientifique — Mention Bien",
-        skills: "Pédagogie active, Écoute bienveillante, Mathématiques, Sciences, Rigueur, Patience"
+        experiences: [
+          {
+            title: "Professeur Particulier — Acadomia & Cours à Domicile (2025 - 2026)",
+            desc: "Accompagnement hebdomadaire de 6 élèves de collège et lycée. Remise à niveau, révision méthodique des notions clés et entraînement aux examens."
+          },
+          {
+            title: "Animateur en Aide aux Devoirs — Association de Quartier (2024)",
+            desc: "Gestion de groupes d'enfants, encadrement bienveillant et communication régulière avec les familles."
+          }
+        ],
+        educations: [
+          {
+            title: "Cursus Scientifique Supérieur Bac+4 / Bac+5 (2026 - Présent)",
+            sub: "Enseignement supérieur scientifique"
+          },
+          {
+            title: "Baccalauréat Scientifique — Mention Bien (2023)",
+            sub: "Lycée Général"
+          }
+        ],
+        skills: ["Pédagogie active", "Écoute bienveillante", "Mathématiques", "Sciences", "Rigueur", "Patience"]
       },
       restauration: {
         title: "Équipier Polyvalent de Restauration Rapide & Service",
         summary: "Étudiant énergique, réactif et résistant au stress des pics d'affluence. Habitué au travail en équipe et au respect strict des normes d'hygiène alimentaire (HACCP), je m'engage à garantir un service rapide, agréable et irréprochable.",
-        exp1_title: "Équipier Polyvalent — Restauration & Service (2025)",
-        exp1_desc: "Accueil souriant au comptoir et aux bornes, prise de commande rapide, encaissement et préparation soignée des plateaux.",
-        exp2_title: "Entretien des Locaux & Plonge — Établissement de Restauration (2024)",
-        exp2_desc: "Désinfection méticuleuse des surfaces de préparation, plonge batterie et maintien permanent d'un environnement propre.",
-        edu1: "Étudiant Universitaire (2026 - Présent)",
-        edu1_sub: "Disponibilité soirées, week-ends et fermetures",
-        edu2: "Baccalauréat",
-        skills: "Normes HACCP, Rapidité d'exécution, Tenue de caisse, Gestion du rush, Esprit d'équipe"
+        experiences: [
+          {
+            title: "Équipier Polyvalent — Restauration & Service (2025)",
+            desc: "Accueil souriant au comptoir et aux bornes, prise de commande rapide, encaissement et préparation soignée des plateaux."
+          },
+          {
+            title: "Entretien des Locaux & Plonge — Établissement de Restauration (2024)",
+            desc: "Désinfection méticuleuse des surfaces de préparation, plonge batterie et maintien permanent d'un environnement propre."
+          }
+        ],
+        educations: [
+          {
+            title: "Étudiant Universitaire (2026 - Présent)",
+            sub: "Disponibilité soirées, week-ends et fermetures"
+          },
+          {
+            title: "Baccalauréat (2023)",
+            sub: "Enseignement secondaire"
+          }
+        ],
+        skills: ["Normes HACCP", "Rapidité d'exécution", "Tenue de caisse", "Gestion du rush", "Esprit d'équipe"]
       },
       vente: {
         title: "Conseiller de Vente & Vendeur Polyvalent Retail",
         summary: "Étudiant passionné par le commerce et le contact client. Excellent sens relationnel, force d'écoute et capacité à conseiller avec pertinence pour fidéliser la clientèle et atteindre les objectifs de vente du magasin.",
-        exp1_title: "Vendeur & Réassort — Boutique Prêt-à-Porter / Sport (2025)",
-        exp1_desc: "Accueil et accompagnement personnalisé des clients, encaissement, traitement des livraisons et valorisation des rayons (merchandising).",
-        exp2_title: "Hôte d'Accueil Événementiel — Salons & Événements (2024)",
-        exp2_desc: "Orientation du public, contrôle des accès et réponse courtoise aux demandes des visiteurs.",
-        edu1: "Enseignement Supérieur (2026 - Présent)",
-        edu1_sub: "Formation supérieure",
-        edu2: "Baccalauréat",
-        skills: "Techniques de vente, Conseil client, Merchandising, Tenue de caisse, Dynamisme, Rigueur"
+        experiences: [
+          {
+            title: "Vendeur & Réassort — Boutique Prêt-à-Porter / Sport (2025)",
+            desc: "Accueil et accompagnement personnalisé des clients, encaissement, traitement des livraisons et valorisation des rayons (merchandising)."
+          },
+          {
+            title: "Hôte d'Accueil Événementiel — Salons & Événements (2024)",
+            desc: "Orientation du public, contrôle des accès et réponse courtoise aux demandes des visiteurs."
+          }
+        ],
+        educations: [
+          {
+            title: "Enseignement Supérieur (2026 - Présent)",
+            sub: "Formation supérieure"
+          },
+          {
+            title: "Baccalauréat (2023)",
+            sub: "Enseignement secondaire"
+          }
+        ],
+        skills: ["Techniques de vente", "Conseil client", "Merchandising", "Tenue de caisse", "Dynamisme", "Rigueur"]
       }
     };
+
+    // DYNAMIC EXPERIENCES MANAGEMENT
+    function renderExperiencesEditor() {
+      const container = document.getElementById('experiences-editor-list');
+      if (!container) return;
+      container.innerHTML = '';
+      if (currentExperiences.length === 0) {
+        container.innerHTML = '<div style="font-size: 11.5px; color: var(--text-muted); font-style: italic; padding: 6px 0;">Aucune expérience ajoutée. Cliquez sur "Ajouter" pour en créer une.</div>';
+        return;
+      }
+      currentExperiences.forEach((exp, idx) => {
+        const card = document.createElement('div');
+        card.className = 'dynamic-item-card';
+        card.innerHTML = `
+          <div class="dynamic-item-header">
+            <span class="dynamic-item-label">Expérience ${idx + 1}</span>
+            <button type="button" class="btn-item-delete" onclick="removeExperience(${idx})" title="Supprimer cette expérience">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+              Supprimer
+            </button>
+          </div>
+          <div class="form-group" style="margin-bottom: 6px;">
+            <label>Poste, Entreprise, Dates</label>
+            <input type="text" class="form-input" value="${escapeHtml(exp.title || '')}" oninput="updateExperienceTitle(${idx}, this.value)">
+          </div>
+          <div class="form-group" style="margin-bottom: 0;">
+            <label>Missions & Réalisations</label>
+            <textarea class="form-textarea" rows="2" oninput="updateExperienceDesc(${idx}, this.value)">${escapeHtml(exp.desc || '')}</textarea>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function addExperience() {
+      currentExperiences.push({
+        title: "Nouveau Poste — Entreprise / Organisation (Dates)",
+        desc: "Description synthétique de vos missions réalisées et résultats obtenus."
+      });
+      renderExperiencesEditor();
+      renderExperiencesPreview();
+      showToast("Nouvelle expérience ajoutée !");
+      if (currentMode === 'local') saveLocal();
+    }
+
+    function removeExperience(idx) {
+      currentExperiences.splice(idx, 1);
+      renderExperiencesEditor();
+      renderExperiencesPreview();
+      showToast("Expérience retirée.");
+      if (currentMode === 'local') saveLocal();
+    }
+
+    function updateExperienceTitle(idx, val) {
+      if (currentExperiences[idx]) {
+        currentExperiences[idx].title = val;
+        renderExperiencesPreview();
+        if (currentMode === 'local') saveLocal();
+      }
+    }
+
+    function updateExperienceDesc(idx, val) {
+      if (currentExperiences[idx]) {
+        currentExperiences[idx].desc = val;
+        renderExperiencesPreview();
+        if (currentMode === 'local') saveLocal();
+      }
+    }
+
+    function renderExperiencesPreview() {
+      const previewWrap = document.getElementById('out-experiences-list');
+      if (!previewWrap) return;
+      previewWrap.innerHTML = '';
+      currentExperiences.forEach(exp => {
+        const item = document.createElement('div');
+        item.className = 'sheet-item';
+        item.innerHTML = `
+          <div class="sheet-item-header">
+            <span class="sheet-role">${escapeHtml(exp.title || 'Poste occupé')}</span>
+          </div>
+          <div class="sheet-desc">${escapeHtml(exp.desc || '')}</div>
+        `;
+        previewWrap.appendChild(item);
+      });
+    }
+
+    // DYNAMIC FORMATIONS MANAGEMENT
+    function renderEducationsEditor() {
+      const container = document.getElementById('educations-editor-list');
+      if (!container) return;
+      container.innerHTML = '';
+      if (currentEducations.length === 0) {
+        container.innerHTML = '<div style="font-size: 11.5px; color: var(--text-muted); font-style: italic; padding: 6px 0;">Aucune formation ajoutée. Cliquez sur "Ajouter" pour en créer une.</div>';
+        return;
+      }
+      currentEducations.forEach((edu, idx) => {
+        const card = document.createElement('div');
+        card.className = 'dynamic-item-card';
+        card.innerHTML = `
+          <div class="dynamic-item-header">
+            <span class="dynamic-item-label">Formation ${idx + 1}</span>
+            <button type="button" class="btn-item-delete" onclick="removeEducation(${idx})" title="Supprimer cette formation">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+              Supprimer
+            </button>
+          </div>
+          <div class="form-group" style="margin-bottom: 6px;">
+            <label>Diplôme, Cursus & Année</label>
+            <input type="text" class="form-input" value="${escapeHtml(edu.title || '')}" oninput="updateEducationTitle(${idx}, this.value)">
+          </div>
+          <div class="form-group" style="margin-bottom: 0;">
+            <label>Établissement & Spécialité (Optionnel)</label>
+            <input type="text" class="form-input" value="${escapeHtml(edu.sub || '')}" oninput="updateEducationSub(${idx}, this.value)">
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function addEducation() {
+      currentEducations.push({
+        title: "Nouveau Diplôme / Cursus (Dates)",
+        sub: "Établissement d'enseignement · Spécialité"
+      });
+      renderEducationsEditor();
+      renderEducationsPreview();
+      showToast("Nouvelle formation ajoutée !");
+      if (currentMode === 'local') saveLocal();
+    }
+
+    function removeEducation(idx) {
+      currentEducations.splice(idx, 1);
+      renderEducationsEditor();
+      renderEducationsPreview();
+      showToast("Formation retirée.");
+      if (currentMode === 'local') saveLocal();
+    }
+
+    function updateEducationTitle(idx, val) {
+      if (currentEducations[idx]) {
+        currentEducations[idx].title = val;
+        renderEducationsPreview();
+        if (currentMode === 'local') saveLocal();
+      }
+    }
+
+    function updateEducationSub(idx, val) {
+      if (currentEducations[idx]) {
+        currentEducations[idx].sub = val;
+        renderEducationsPreview();
+        if (currentMode === 'local') saveLocal();
+      }
+    }
+
+    function renderEducationsPreview() {
+      const previewWrap = document.getElementById('out-educations-list');
+      if (!previewWrap) return;
+      previewWrap.innerHTML = '';
+      currentEducations.forEach(edu => {
+        const item = document.createElement('div');
+        item.className = 'sheet-item';
+        item.innerHTML = `
+          <div class="sheet-item-header">
+            <span class="sheet-role">${escapeHtml(edu.title || 'Diplôme')}</span>
+          </div>
+          ${edu.sub ? `<div style="font-size: 8.2pt; color: #475569;">${escapeHtml(edu.sub)}</div>` : ''}
+        `;
+        previewWrap.appendChild(item);
+      });
+    }
+
+    // DYNAMIC SKILLS MANAGEMENT
+    function renderSkillsEditor() {
+      const container = document.getElementById('skills-tags-container');
+      if (!container) return;
+      container.innerHTML = '';
+      if (currentSkills.length === 0) {
+        container.innerHTML = '<span style="font-size: 11px; color: var(--text-muted); font-style: italic; padding: 2px 4px;">Aucune compétence pour le moment.</span>';
+        return;
+      }
+      currentSkills.forEach((skill, idx) => {
+        const tag = document.createElement('span');
+        tag.className = 'editor-skill-badge';
+        tag.innerHTML = `
+          <span>${escapeHtml(skill)}</span>
+          <button type="button" class="btn-remove-skill" onclick="removeSkill(${idx})" title="Retirer ${escapeHtml(skill)}">&times;</button>
+        `;
+        container.appendChild(tag);
+      });
+    }
+
+    function renderSkillsPreview() {
+      const wrap = document.getElementById('out-skills-wrap');
+      if (!wrap) return;
+      wrap.innerHTML = '';
+      currentSkills.forEach(skill => {
+        const span = document.createElement('span');
+        span.className = 'sheet-skill-badge';
+        span.innerText = skill;
+        wrap.appendChild(span);
+      });
+    }
+
+    function addSkill(skillName) {
+      const clean = (skillName || '').trim();
+      if (!clean) return;
+      if (!currentSkills.includes(clean)) {
+        currentSkills.push(clean);
+        renderSkillsEditor();
+        renderSkillsPreview();
+        showToast('Compétence "' + clean + '" ajoutée');
+        if (currentMode === 'local') saveLocal();
+      } else {
+        showToast('"' + clean + '" est déjà dans vos compétences');
+      }
+    }
+
+    function addSkillFromInput() {
+      const inp = document.getElementById('inp-new-skill');
+      if (!inp) return;
+      const val = inp.value;
+      if (!val.trim()) return;
+      const parts = val.split(',').map(s => s.trim()).filter(Boolean);
+      parts.forEach(p => {
+        if (!currentSkills.includes(p)) currentSkills.push(p);
+      });
+      inp.value = '';
+      renderSkillsEditor();
+      renderSkillsPreview();
+      showToast("Compétence(s) ajoutée(s) !");
+      if (currentMode === 'local') saveLocal();
+    }
+
+    function removeSkill(idx) {
+      const removed = currentSkills.splice(idx, 1);
+      renderSkillsEditor();
+      renderSkillsPreview();
+      if (removed.length > 0) {
+        showToast('"' + removed[0] + '" retiré');
+      }
+      if (currentMode === 'local') saveLocal();
+    }
 
     function updateCV() {
       const name = document.getElementById('inp-name').value;
@@ -1383,14 +1724,6 @@
       const phone = document.getElementById('inp-phone').value;
       const email = document.getElementById('inp-email').value;
       const summary = document.getElementById('inp-summary').value;
-      const exp1Title = document.getElementById('inp-exp1-title').value;
-      const exp1Desc = document.getElementById('inp-exp1-desc').value;
-      const exp2Title = document.getElementById('inp-exp2-title').value;
-      const exp2Desc = document.getElementById('inp-exp2-desc').value;
-      const edu1 = document.getElementById('inp-edu1').value;
-      const edu1Sub = document.getElementById('inp-edu1-sub').value;
-      const edu2 = document.getElementById('inp-edu2').value;
-      const skillsStr = document.getElementById('inp-skills').value;
 
       const displayName = name ? name.trim() : 'VOTRE NOM';
       document.getElementById('out-name').innerText = displayName;
@@ -1406,25 +1739,13 @@
       document.getElementById('out-phone').innerText = phone;
       document.getElementById('out-email').innerText = email;
       document.getElementById('out-summary').innerText = summary;
-      document.getElementById('out-exp1-title').innerText = exp1Title;
-      document.getElementById('out-exp1-desc').innerText = exp1Desc;
-      document.getElementById('out-exp2-title').innerText = exp2Title;
-      document.getElementById('out-exp2-desc').innerText = exp2Desc;
-      document.getElementById('out-edu1').innerText = edu1;
-      document.getElementById('out-edu1-sub').innerText = edu1Sub;
-      document.getElementById('out-edu2').innerText = edu2;
 
-      // Render skill badges
-      const wrap = document.getElementById('out-skills-wrap');
-      wrap.innerHTML = '';
-      skillsStr.split(',').map(s => s.trim()).filter(Boolean).forEach(skill => {
-        const span = document.createElement('span');
-        span.className = 'sheet-skill-badge';
-        span.innerText = skill;
-        wrap.appendChild(span);
-      });
+      renderExperiencesPreview();
+      renderEducationsPreview();
+      renderSkillsPreview();
 
       updateLetter();
+
       if (currentMode === 'local') {
         saveLocal();
       }
@@ -1435,18 +1756,20 @@
       if (!p) return;
       document.getElementById('inp-title').value = p.title;
       document.getElementById('inp-summary').value = p.summary;
-      document.getElementById('inp-exp1-title').value = p.exp1_title;
-      document.getElementById('inp-exp1-desc').value = p.exp1_desc;
-      document.getElementById('inp-exp2-title').value = p.exp2_title;
-      document.getElementById('inp-exp2-desc').value = p.exp2_desc;
-      document.getElementById('inp-edu1').value = p.edu1;
-      document.getElementById('inp-edu1-sub').value = p.edu1_sub;
-      document.getElementById('inp-edu2').value = p.edu2;
-      document.getElementById('inp-skills').value = p.skills;
 
-      document.querySelectorAll('.preset-chip').forEach(c => c.classList.remove('active'));
-      event.target.classList.add('active');
+      currentExperiences = JSON.parse(JSON.stringify(p.experiences || []));
+      currentEducations = JSON.parse(JSON.stringify(p.educations || []));
+      currentSkills = [...(p.skills || [])];
 
+      document.querySelectorAll('#cv-form-controls .preset-chip').forEach(c => c.classList.remove('active'));
+      if (window.event && window.event.target) {
+        const chip = window.event.target.closest('.preset-chip');
+        if (chip) chip.classList.add('active');
+      }
+
+      renderExperiencesEditor();
+      renderEducationsEditor();
+      renderSkillsEditor();
       updateCV();
       showToast('Modèle ' + key.replace('_', ' ') + ' chargé !');
     }
@@ -1479,14 +1802,9 @@
         phone: document.getElementById('inp-phone').value,
         email: document.getElementById('inp-email').value,
         summary: document.getElementById('inp-summary').value,
-        exp1Title: document.getElementById('inp-exp1-title').value,
-        exp1Desc: document.getElementById('inp-exp1-desc').value,
-        exp2Title: document.getElementById('inp-exp2-title').value,
-        exp2Desc: document.getElementById('inp-exp2-desc').value,
-        edu1: document.getElementById('inp-edu1').value,
-        edu1Sub: document.getElementById('inp-edu1-sub').value,
-        edu2: document.getElementById('inp-edu2').value,
-        skills: document.getElementById('inp-skills').value,
+        experiences: currentExperiences,
+        educations: currentEducations,
+        skills: currentSkills,
         photo: currentPhotoB64,
         letCompany: document.getElementById('inp-let-company').value,
         letRecipient: document.getElementById('inp-let-recipient').value,
@@ -1517,14 +1835,35 @@
           if (d.phone) document.getElementById('inp-phone').value = d.phone;
           if (d.email) document.getElementById('inp-email').value = d.email;
           if (d.summary) document.getElementById('inp-summary').value = d.summary;
-          if (d.exp1Title) document.getElementById('inp-exp1-title').value = d.exp1Title;
-          if (d.exp1Desc) document.getElementById('inp-exp1-desc').value = d.exp1Desc;
-          if (d.exp2Title) document.getElementById('inp-exp2-title').value = d.exp2Title;
-          if (d.exp2Desc) document.getElementById('inp-exp2-desc').value = d.exp2Desc;
-          if (d.edu1) document.getElementById('inp-edu1').value = d.edu1;
-          if (d.edu1Sub) document.getElementById('inp-edu1-sub').value = d.edu1Sub;
-          if (d.edu2) document.getElementById('inp-edu2').value = d.edu2;
-          if (d.skills) document.getElementById('inp-skills').value = d.skills;
+          
+          if (Array.isArray(d.experiences)) {
+            currentExperiences = d.experiences;
+          } else if (d.exp1Title) {
+            currentExperiences = [
+              { title: d.exp1Title, desc: d.exp1Desc || '' }
+            ];
+            if (d.exp2Title) {
+              currentExperiences.push({ title: d.exp2Title, desc: d.exp2Desc || '' });
+            }
+          }
+
+          if (Array.isArray(d.educations)) {
+            currentEducations = d.educations;
+          } else if (d.edu1) {
+            currentEducations = [
+              { title: d.edu1, sub: d.edu1Sub || '' }
+            ];
+            if (d.edu2) {
+              currentEducations.push({ title: d.edu2, sub: '' });
+            }
+          }
+
+          if (Array.isArray(d.skills)) {
+            currentSkills = d.skills;
+          } else if (typeof d.skills === 'string') {
+            currentSkills = d.skills.split(',').map(s => s.trim()).filter(Boolean);
+          }
+
           if (d.photo) {
             currentPhotoB64 = d.photo;
             document.getElementById('out-photo').src = currentPhotoB64;
@@ -1557,6 +1896,9 @@
         document.getElementById('inp-phone').value = '';
         document.getElementById('inp-email').value = '';
         removePhoto();
+        renderExperiencesEditor();
+        renderEducationsEditor();
+        renderSkillsEditor();
         updateCV();
         updateLetter();
         showToast('Toutes les données ont été effacées.');
@@ -1571,14 +1913,9 @@
         phone: document.getElementById('inp-phone').value,
         email: document.getElementById('inp-email').value,
         summary: document.getElementById('inp-summary').value,
-        exp1Title: document.getElementById('inp-exp1-title').value,
-        exp1Desc: document.getElementById('inp-exp1-desc').value,
-        exp2Title: document.getElementById('inp-exp2-title').value,
-        exp2Desc: document.getElementById('inp-exp2-desc').value,
-        edu1: document.getElementById('inp-edu1').value,
-        edu1Sub: document.getElementById('inp-edu1-sub').value,
-        edu2: document.getElementById('inp-edu2').value,
-        skills: document.getElementById('inp-skills').value,
+        experiences: currentExperiences,
+        educations: currentEducations,
+        skills: currentSkills,
         photo: currentPhotoB64,
         letCompany: document.getElementById('inp-let-company').value,
         letRecipient: document.getElementById('inp-let-recipient').value,
@@ -1621,6 +1958,9 @@
       document.getElementById('inp-let-date').value = getTodayFrenchDate();
       applyLetterPreset('stage_dev');
       loadLocal();
+      renderExperiencesEditor();
+      renderEducationsEditor();
+      renderSkillsEditor();
       updateCV();
       updateLetter();
     });

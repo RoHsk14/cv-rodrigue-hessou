@@ -560,19 +560,29 @@
     body * {
       visibility: hidden;
     }
-    .a4-sheet, .a4-sheet * {
+    body[data-active-doc="cv"] #printable-cv,
+    body[data-active-doc="cv"] #printable-cv * {
       visibility: visible;
     }
-    .a4-sheet {
+    body[data-active-doc="letter"] #printable-letter,
+    body[data-active-doc="letter"] #printable-letter * {
+      visibility: visible;
+    }
+    .a4-sheet, .a4-sheet-letter {
       position: absolute;
       left: 0;
       top: 0;
       width: 210mm !important;
       height: 297mm !important;
       margin: 0 !important;
-      padding: 7.5mm 8mm !important;
       box-shadow: none !important;
       border-radius: 0 !important;
+    }
+    #printable-cv {
+      padding: 7.5mm 8mm !important;
+    }
+    #printable-letter {
+      padding: 16mm 18mm !important;
     }
     .studio-nav, .editor-sidebar, .preview-top-toolbar {
       display: none !important;
@@ -616,7 +626,7 @@
   }
 </style>
 </head>
-<body>
+<body data-active-doc="cv">
 
   <!-- TOP BAR -->
   <header class="studio-nav">
@@ -642,6 +652,21 @@
     <!-- LEFT SIDEBAR -->
     <aside class="editor-sidebar">
 
+      <!-- DOCUMENT TYPE SWITCHER -->
+      <div>
+        <div class="form-section-title">Document &agrave; &eacute;diter</div>
+        <div class="doc-selector-tabs">
+          <button class="doc-tab-btn active" id="tab-doc-cv" onclick="switchDoc('cv')">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+            Mon CV (A4)
+          </button>
+          <button class="doc-tab-btn" id="tab-doc-letter" onclick="switchDoc('letter')">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            Ma Lettre (A4)
+          </button>
+        </div>
+      </div>
+
       <!-- MODE SELECTION -->
       <div>
         <div class="form-section-title">Mode d'Utilisation</div>
@@ -658,9 +683,11 @@
         </p>
       </div>
 
-      <!-- PRESET TEMPLATES -->
-      <div>
-        <div class="form-section-title">Modèles Métiers Étudiants</div>
+      <!-- CV CONTROLS WRAPPER -->
+      <div id="cv-form-controls">
+        <!-- PRESET TEMPLATES -->
+        <div>
+          <div class="form-section-title">Mod&egrave;les M&eacute;tiers &Eacute;tudiants</div>
         <div class="preset-chips-wrap">
           <button class="preset-chip active" onclick="applyPreset('stage_dev')">Stage Dév / Bac+5</button>
           <button class="preset-chip" onclick="applyPreset('alternance_tech')">Alternance Tech</button>
@@ -764,7 +791,92 @@
         </div>
       </div>
 
-      <!-- ACTIONS BAR -->
+      </div> <!-- END #cv-form-controls -->
+
+      <!-- LETTER CONTROLS WRAPPER -->
+      <div id="letter-form-controls" style="display: none;">
+        <!-- PRESET TEMPLATES FOR LETTER -->
+        <div>
+          <div class="form-section-title">Modèles de Lettre Étudiante</div>
+          <div class="preset-chips-wrap">
+            <button type="button" class="preset-chip active" id="chip-let-stage_dev" onclick="applyLetterPreset('stage_dev')">Stage Dév / Bac+5</button>
+            <button type="button" class="preset-chip" id="chip-let-alternance_tech" onclick="applyLetterPreset('alternance_tech')">Alternance Tech</button>
+            <button type="button" class="preset-chip" id="chip-let-job_etudiant" onclick="applyLetterPreset('job_etudiant')">Job Étudiant Général</button>
+            <button type="button" class="preset-chip" id="chip-let-tutorat" onclick="applyLetterPreset('tutorat')">Tutorat / Soutien</button>
+            <button type="button" class="preset-chip" id="chip-let-restauration" onclick="applyLetterPreset('restauration')">Restauration Rapide</button>
+            <button type="button" class="preset-chip" id="chip-let-vente" onclick="applyLetterPreset('vente')">Vente & Retail</button>
+          </div>
+        </div>
+
+        <!-- ENTREPRISE & DESTINATAIRE -->
+        <div>
+          <div class="form-section-title">Destinataire & Entreprise</div>
+          <div class="form-group">
+            <label>Entreprise / Organisme</label>
+            <input type="text" class="form-input" id="inp-let-company" value="TechSolutions France" oninput="updateLetter()">
+          </div>
+          <div class="form-group">
+            <label>Service ou Recruteur visé</label>
+            <input type="text" class="form-input" id="inp-let-recipient" value="À l'attention de la Direction des Ressources Humaines" oninput="updateLetter()">
+          </div>
+          <div class="row-2">
+            <div class="form-group">
+              <label>Adresse Entreprise</label>
+              <input type="text" class="form-input" id="inp-let-comp-addr" value="12 Avenue de l'Innovation" oninput="updateLetter()">
+            </div>
+            <div class="form-group">
+              <label>Ville & Code Postal</label>
+              <input type="text" class="form-input" id="inp-let-comp-city" value="69007 Lyon" oninput="updateLetter()">
+            </div>
+          </div>
+        </div>
+
+        <!-- DATE & OBJET -->
+        <div>
+          <div class="form-section-title">Date & Objet de la Candidature</div>
+          <div class="row-2">
+            <div class="form-group">
+              <label>Ville d'envoi</label>
+              <input type="text" class="form-input" id="inp-let-city" value="Lyon" oninput="updateLetter()">
+            </div>
+            <div class="form-group">
+              <label>Date</label>
+              <input type="text" class="form-input" id="inp-let-date" value="" oninput="updateLetter()">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Objet officiel</label>
+            <input type="text" class="form-input" id="inp-let-subject" value="Candidature pour un stage conventionné de Développeur Web / Logiciel (4 à 6 mois)" oninput="updateLetter()">
+          </div>
+          <div class="form-group">
+            <label>Formule d'appel</label>
+            <input type="text" class="form-input" id="inp-let-salutation" value="Madame, Monsieur," oninput="updateLetter()">
+          </div>
+        </div>
+
+        <!-- CORPS DE LA LETTRE (3 PARAGRAPHES + POLITESSE) -->
+        <div>
+          <div class="form-section-title">Contenu de la Lettre</div>
+          <div class="form-group">
+            <label>Paragraphe 1 : L'Entreprise & L'Accroche</label>
+            <textarea class="form-textarea" id="inp-let-p1" rows="3" oninput="updateLetter()"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Paragraphe 2 : Mon Parcours & Mes Compétences</label>
+            <textarea class="form-textarea" id="inp-let-p2" rows="4" oninput="updateLetter()"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Paragraphe 3 : Notre Collaboration Future</label>
+            <textarea class="form-textarea" id="inp-let-p3" rows="3" oninput="updateLetter()"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Formule de politesse & Disponibilité</label>
+            <textarea class="form-textarea" id="inp-let-closing" rows="2" oninput="updateLetter()"></textarea>
+          </div>
+        </div>
+      </div> <!-- END #letter-form-controls -->
+
+            <!-- ACTIONS BAR -->
       <div style="display: flex; flex-direction: column; gap: 8px; padding-top: 10px; border-top: 1px solid var(--border);">
         <button class="btn btn-primary" onclick="printA4()">
           Exporter en PDF (A4 1 Page Strict)
@@ -785,7 +897,7 @@
         <div class="a4-notice-pill">
           <span>Feuille A4 stricte (210 &times; 297 mm)</span>
           <span>&bull;</span>
-          <span style="color: var(--green);">Moteur de mise en page calibré</span>
+          <span style="color: var(--green);" id="active-doc-badge">Mod&egrave;le CV A4 Actif</span>
         </div>
         <div>
           <button class="btn btn-primary" style="font-size: 12px; padding: 6px 14px;" onclick="printA4()">
@@ -909,6 +1021,58 @@
           </div>
         </section>
       </div>
+
+      <!-- PRINTABLE A4 LETTER SHEET -->
+      <div class="a4-sheet-letter" id="printable-letter">
+        <!-- HEADER (EXPEDITEUR & DESTINATAIRE) -->
+        <div class="letter-header">
+          <div class="letter-sender">
+            <div class="letter-sender-name" id="let-out-name">VOTRE NOM</div>
+            <div class="letter-sender-title" id="let-out-title">&Eacute;tudiant Master 1 Informatique &mdash; Recherche de Stage</div>
+            <div class="letter-sender-contact">
+              <span id="let-out-phone">06 00 00 00 00</span><br>
+              <span id="let-out-email">etudiant@email.fr</span><br>
+              <span id="let-out-city">Lyon, France</span>
+            </div>
+          </div>
+          <div class="letter-recipient">
+            <div class="letter-recip-company" id="let-out-company">TechSolutions France</div>
+            <div class="letter-recip-atten" id="let-out-recipient">&Agrave; l'attention de la Direction des Ressources Humaines</div>
+            <div class="letter-recip-addr" id="let-out-comp-addr">12 Avenue de l'Innovation</div>
+            <div class="letter-recip-city" id="let-out-comp-city">69007 Lyon</div>
+          </div>
+        </div>
+
+        <!-- DATE LINE -->
+        <div class="letter-date-line" id="let-out-date-line">
+          Lyon, le 1er novembre 2026
+        </div>
+
+        <!-- OBJECT -->
+        <div class="letter-subject">
+          <strong>Objet :</strong> <span id="let-out-subject">Candidature pour un stage conventionn&eacute; de D&eacute;veloppeur Web / Logiciel (4 &agrave; 6 mois)</span>
+        </div>
+
+        <!-- SALUTATION -->
+        <div class="letter-salutation" id="let-out-salutation">
+          Madame, Monsieur,
+        </div>
+
+        <!-- BODY PARAGRAPHS -->
+        <div class="letter-body">
+          <p class="letter-p" id="let-out-p1"></p>
+          <p class="letter-p" id="let-out-p2"></p>
+          <p class="letter-p" id="let-out-p3"></p>
+          <p class="letter-p" id="let-out-closing"></p>
+        </div>
+
+        <!-- SIGNATURE BLOCK -->
+        <div class="letter-signature-block">
+          <div class="letter-sig-prompt">Bien cordialement,</div>
+          <div class="letter-sig-name" id="let-out-sig-name">VOTRE NOM</div>
+        </div>
+      </div>
+
     </main>
 
   </div>
@@ -947,6 +1111,195 @@
       if (currentMode === 'local') saveLocal();
     }
 
+
+    let currentDoc = 'cv';
+
+    function getTodayFrenchDate() {
+      const now = new Date();
+      const day = now.getDate();
+      const months = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
+      const formattedDay = day === 1 ? '1er' : day;
+      return `${formattedDay} ${months[now.getMonth()]} ${now.getFullYear()}`;
+    }
+
+    const letterPresets = {
+      stage_dev: {
+        company: "TechSolutions France",
+        recipient: "À l'attention de la Direction des Ressources Humaines",
+        compAddr: "12 Avenue de l'Innovation",
+        compCity: "69007 Lyon",
+        subject: "Candidature pour un stage conventionné de Développeur Web / Logiciel (4 à 6 mois)",
+        salutation: "Madame, Monsieur,",
+        p1: "Actuellement étudiant en Master 1 Informatique, je suis à la recherche d'un stage conventionné d'une durée de 4 à 6 mois à compter de mars 2026. Attentif à la qualité de vos réalisations logicielles et à votre dynamisme technologique, je souhaite vivement rejoindre vos équipes pour contribuer activement au développement de vos projets numériques.",
+        p2: "Au cours de mon cursus académique et de mes projets personnels, j'ai développé de solides compétences en développement back-end (Python, Java, Node.js) et en conception d'APIs RESTful avec bases de données relationnelles (PostgreSQL, MySQL). Mon sens de la rigueur et ma maîtrise de Git et des méthodes Agiles (Scrum) me permettent de m'intégrer rapidement dans un environnement collaboratif et de produire du code propre, documenté et testé.",
+        p3: "Intégrer votre structure représenterait pour moi l'opportunité idéale d'approfondir mes compétences techniques tout en apportant une réelle valeur ajoutée à votre équipe de développement. Curieux, persévérant et force de proposition, je saurai m'investir pleinement pour relever vos défis techniques au quotidien.",
+        closing: "Restant à votre entière disposition pour tout échange ou entretien à votre convenance, je vous prie d'agréer, Madame, Monsieur, l'expression de mes salutations distinguées."
+      },
+      alternance_tech: {
+        company: "Groupe Digital & Services",
+        recipient: "À l'attention du Responsable des Recrutements IT",
+        compAddr: "25 Boulevard des Technologies",
+        compCity: "69003 Lyon",
+        subject: "Candidature pour un contrat d'alternance — Développeur d'Applications (12 à 24 mois)",
+        salutation: "Madame, Monsieur,",
+        p1: "Admis en cursus d'ingénierie informatique / Master pour la rentrée 2026, je recherche une entreprise d'accueil dans le cadre d'un contrat d'alternance de 12 à 24 mois. Votre entreprise, reconnue pour ses solutions logicielles innovantes et son exigence d'ingénierie, correspond exactement à l'environnement dans lequel je souhaite m'investir et progresser durablement.",
+        p2: "Fort d'un socle solide acquis lors de mes formations antérieures et projets pratiques, je maîtrise les fondamentaux du développement full-stack, de la modélisation relationnelle et des cycles d'intégration continue. Autonome et rigoureux, j'ai à cœur d'écrire un code performant et maintenable, tout en restant toujours à l'écoute des retours d'équipe et des exigences métier.",
+        p3: "Grâce à mon rythme d'alternance adapté, je serai pleinement disponible pour m'impliquer sur vos projets en cours, participer aux sprints de livraison et soulager la charge opérationnelle de l'équipe. Mon enthousiasme et ma capacité d'apprentissage rapide seront des atouts immédiats au sein de votre organisation.",
+        closing: "Je me tiens à votre disposition pour vous exposer plus en détail mes motivations lors d'un entretien. Je vous prie d'agréer, Madame, Monsieur, l'expression de ma considération distinguée."
+      },
+      job_etudiant: {
+        company: "Établissement Commercial & Distribution",
+        recipient: "À l'attention du Responsable des Ressources Humaines",
+        compAddr: "Zone Commerciale du Grand Large",
+        compCity: "69330 Meyzieu",
+        subject: "Candidature pour un emploi étudiant polyvalent à temps partiel (soirs, week-ends et vacances)",
+        salutation: "Madame, Monsieur,",
+        p1: "Actuellement étudiant dans l'enseignement supérieur à Lyon, je recherche activement un emploi étudiant à temps partiel compatible avec mon emploi du temps universitaire (disponible les soirs, samedis et périodes de vacances). Votre enseigne, réputée pour son exigence d'accueil et son dynamisme, a tout particulièrement retenu mon attention.",
+        p2: "Sérieux, ponctuel et doté d'une excellente condition physique, je m'adapte avec aisance à des missions diversifiées : tenue de caisse avec exactitude, mise en rayon, réassort, accueil et orientation des clients, ou préparation de commandes. Habitué à travailler en équipe, j'applique scrupuleusement les consignes de sécurité et accorde une grande importance à la satisfaction de chaque visiteur.",
+        p3: "Volontaire et réactif, je suis immédiatement opérationnel et prêt à m'investir avec énergie pour renforcer vos équipes lors des pics d'activité. Mon sens des responsabilités et mon assiduité feront de moi un collaborateur fiable sur lequel vous pourrez compter au quotidien.",
+        closing: "Dans l'attente d'une réponse de votre part et restant disponible pour un entretien, je vous prie d'agréer, Madame, Monsieur, mes salutations les plus respectueuses."
+      },
+      tutorat: {
+        company: "Centre Pédagogique & Réussite Scolaire",
+        recipient: "À l'attention de la Coordination Pédagogique",
+        compAddr: "8 Rue de l'Université",
+        compCity: "69007 Lyon",
+        subject: "Candidature pour un poste de Tuteur / Enseignant en Soutien Scolaire (Mathématiques & Sciences)",
+        salutation: "Madame, Monsieur,",
+        p1: "Poursuivant un cursus scientifique supérieur à Lyon, je souhaite mettre mes compétences académiques et mon sens de la transmission au service de vos élèves. Partageant pleinement les valeurs de bienveillance et d'exigence de votre organisme, je vous propose ma candidature pour des missions de soutien scolaire et d'aide aux devoirs du primaire au lycée.",
+        p2: "Passionné par les sciences et doté d'une grande patience, j'ai déjà eu l'opportunité d'accompagner des élèves vers la réussite. Ma démarche repose sur l'écoute active, le repérage précis des blocages méthodologiques et la reconstruction progressive de la confiance en soi. J'adapte mes explications au rythme et au profil de chaque apprenant pour rendre l'apprentissage clair et motivant.",
+        p3: "Rejoindre votre équipe d'enseignants me permettrait de m'engager auprès de familles désireuses d'un accompagnement sérieux et personnalisé. Rigoureux dans mon suivi et ponctuel, je veillerai à entretenir un lien de confiance constructif avec les élèves et leurs parents.",
+        closing: "Je me tiens à votre disposition pour convenir d'un échange afin de vous détailler mon approche pédagogique. Je vous prie d'agréer, Madame, Monsieur, l'expression de mes salutations distinguées."
+      },
+      restauration: {
+        company: "Enseigne de Restauration Rapide & Service",
+        recipient: "À l'attention de la Direction du Restaurant",
+        compAddr: "Centre Commercial Part-Dieu",
+        compCity: "69003 Lyon",
+        subject: "Candidature pour un poste d'Équipier Polyvalent de Restauration (Temps partiel)",
+        salutation: "Madame, Monsieur,",
+        p1: "Étudiant sérieux et dynamique, je suis à la recherche d'un contrat étudiant à temps partiel pour financer mes études. Disponible sur des plages horaires flexibles incluant les soirées, les week-ends et les fermetures, je souhaite intégrer votre équipe en qualité d'équipier polyvalent.",
+        p2: "Doté d'une grande réactivité et d'une bonne résistance au stress des périodes d'affluence, je suis à l'aise aussi bien en salle qu'au comptoir ou en cuisine. J'ai le sens de l'accueil, le sourire facile et j'accorde une vigilance absolue au respect scrupuleux des normes d'hygiène et de sécurité alimentaire (HACCP) ainsi qu'à la propreté irréprochable des espaces.",
+        p3: "Intégrer votre établissement me permettra de m'investir au sein d'une équipe rythmée où l'esprit d'entraide et la coordination sont primordiaux. Polyvalent et travailleur, je m'adapterai rapidement à vos standards de service pour assurer une expérience client irréprochable.",
+        closing: "Espérant que ma candidature retiendra votre attention, je reste disponible pour un entretien ou un essai. Je vous prie d'agréer, Madame, Monsieur, mes sincères salutations."
+      },
+      vente: {
+        company: "Boutique Retail & Prêt-à-Porter",
+        recipient: "À l'attention du Responsable de Magasin",
+        compAddr: "Rue de la République",
+        compCity: "69002 Lyon",
+        subject: "Candidature au poste de Conseiller de Vente / Vendeur Polyvalent (Contrat Étudiant)",
+        salutation: "Madame, Monsieur,",
+        p1: "Passionné par l'univers du commerce et de la relation client, je vous soumets ma candidature pour un poste de conseiller de vente au sein de votre point de vente. L'image de marque de votre boutique et l'attention que vous portez à l'accueil client correspondent parfaitement à mes aspirations professionnelles.",
+        p2: "Avenant, souriant et doté d'une écoute attentive, j'aime guider la clientèle, comprendre ses besoins et valoriser les produits pour concrétiser les ventes et fidéliser les visiteurs. Rigoureux, je participe volontiers au réassort des rayons, au respect du merchandising visuel, à la gestion des cabines et à la tenue irréprochable de la caisse.",
+        p3: "Dynamique et doté d'une bonne endurance, je m'intègre avec enthousiasme dans votre équipe pour atteindre ensemble les objectifs commerciaux du magasin. Mon sens du service et ma motivation constante feront de moi un ambassadeur investi de votre enseigne.",
+        closing: "Restant à votre disposition pour convenir d'un rendez-vous, je vous prie d'agréer, Madame, Monsieur, l'expression de mes salutations distinguées."
+      }
+    };
+
+    function switchDoc(doc) {
+      currentDoc = doc;
+      document.body.setAttribute('data-active-doc', doc);
+      const btnCv = document.getElementById('tab-doc-cv');
+      const btnLet = document.getElementById('tab-doc-letter');
+      const cvControls = document.getElementById('cv-form-controls');
+      const letControls = document.getElementById('letter-form-controls');
+      const cvSheet = document.getElementById('printable-cv');
+      const letSheet = document.getElementById('printable-letter');
+      const badge = document.getElementById('active-doc-badge');
+
+      if (doc === 'cv') {
+        btnCv.classList.add('active');
+        btnLet.classList.remove('active');
+        cvControls.style.display = 'block';
+        letControls.style.display = 'none';
+        cvSheet.style.display = 'flex';
+        letSheet.style.display = 'none';
+        if (badge) badge.innerText = "Modèle CV A4 Actif";
+        updateCV();
+      } else {
+        btnLet.classList.add('active');
+        btnCv.classList.remove('active');
+        letControls.style.display = 'block';
+        cvControls.style.display = 'none';
+        letSheet.style.display = 'flex';
+        cvSheet.style.display = 'none';
+        if (badge) badge.innerText = "Modèle Lettre A4 Actif";
+        updateLetter();
+      }
+    }
+
+    function updateLetter() {
+      const name = document.getElementById('inp-name').value;
+      const title = document.getElementById('inp-title').value;
+      const city = document.getElementById('inp-city').value;
+      const phone = document.getElementById('inp-phone').value;
+      const email = document.getElementById('inp-email').value;
+
+      const comp = document.getElementById('inp-let-company').value;
+      const recip = document.getElementById('inp-let-recipient').value;
+      const compAddr = document.getElementById('inp-let-comp-addr').value;
+      const compCity = document.getElementById('inp-let-comp-city').value;
+
+      const letCity = document.getElementById('inp-let-city').value || city || 'Lyon';
+      const letDate = document.getElementById('inp-let-date').value || getTodayFrenchDate();
+
+      const subject = document.getElementById('inp-let-subject').value;
+      const salutation = document.getElementById('inp-let-salutation').value;
+      const p1 = document.getElementById('inp-let-p1').value;
+      const p2 = document.getElementById('inp-let-p2').value;
+      const p3 = document.getElementById('inp-let-p3').value;
+      const closing = document.getElementById('inp-let-closing').value;
+
+      const displayName = name ? name.trim() : 'VOTRE NOM';
+      document.getElementById('let-out-name').innerText = displayName;
+      document.getElementById('let-out-sig-name').innerText = displayName;
+      document.getElementById('let-out-title').innerText = title || 'Candidature Étudiante';
+      document.getElementById('let-out-phone').innerText = phone || '06 00 00 00 00';
+      document.getElementById('let-out-email').innerText = email || 'etudiant@email.fr';
+      document.getElementById('let-out-city').innerText = city || 'Lyon, France';
+
+      document.getElementById('let-out-company').innerText = comp;
+      document.getElementById('let-out-recipient').innerText = recip;
+      document.getElementById('let-out-comp-addr').innerText = compAddr;
+      document.getElementById('let-out-comp-city').innerText = compCity;
+
+      document.getElementById('let-out-date-line').innerText = letCity + ", le " + letDate;
+      document.getElementById('let-out-subject').innerText = subject;
+      document.getElementById('let-out-salutation').innerText = salutation;
+
+      document.getElementById('let-out-p1').innerText = p1;
+      document.getElementById('let-out-p2').innerText = p2;
+      document.getElementById('let-out-p3').innerText = p3;
+      document.getElementById('let-out-closing').innerText = closing;
+
+      updateLetter();
+      if (currentMode === 'local') {
+        saveLocal();
+      }
+    }
+
+    function applyLetterPreset(key) {
+      const p = letterPresets[key];
+      if (!p) return;
+      document.getElementById('inp-let-company').value = p.company;
+      document.getElementById('inp-let-recipient').value = p.recipient;
+      document.getElementById('inp-let-comp-addr').value = p.compAddr;
+      document.getElementById('inp-let-comp-city').value = p.compCity;
+      document.getElementById('inp-let-subject').value = p.subject;
+      document.getElementById('inp-let-salutation').value = p.salutation;
+      document.getElementById('inp-let-p1').value = p.p1;
+      document.getElementById('inp-let-p2').value = p.p2;
+      document.getElementById('inp-let-p3').value = p.p3;
+      document.getElementById('inp-let-closing').value = p.closing;
+
+      document.querySelectorAll('#letter-form-controls .preset-chip').forEach(c => c.classList.remove('active'));
+      const activeChip = document.getElementById('chip-let-' + key);
+      if (activeChip) activeChip.classList.add('active');
+
+      updateLetter();
+      showToast('Lettre : Modèle ' + key.replace('_', ' ') + ' chargé !');
+    }
 
     const presets = {
       stage_dev: {
@@ -1071,6 +1424,7 @@
         wrap.appendChild(span);
       });
 
+      updateLetter();
       if (currentMode === 'local') {
         saveLocal();
       }
@@ -1134,6 +1488,18 @@
         edu2: document.getElementById('inp-edu2').value,
         skills: document.getElementById('inp-skills').value,
         photo: currentPhotoB64,
+        letCompany: document.getElementById('inp-let-company').value,
+        letRecipient: document.getElementById('inp-let-recipient').value,
+        letCompAddr: document.getElementById('inp-let-comp-addr').value,
+        letCompCity: document.getElementById('inp-let-comp-city').value,
+        letCity: document.getElementById('inp-let-city').value,
+        letDate: document.getElementById('inp-let-date').value,
+        letSubject: document.getElementById('inp-let-subject').value,
+        letSalutation: document.getElementById('inp-let-salutation').value,
+        letP1: document.getElementById('inp-let-p1').value,
+        letP2: document.getElementById('inp-let-p2').value,
+        letP3: document.getElementById('inp-let-p3').value,
+        letClosing: document.getElementById('inp-let-closing').value,
       };
       try {
         localStorage.setItem('studio_etudiant_cv', JSON.stringify(data));
@@ -1165,6 +1531,18 @@
             document.getElementById('thumb-preview').src = currentPhotoB64;
             document.getElementById('btn-remove-photo').style.display = 'inline-flex';
           }
+          if (d.letCompany) document.getElementById('inp-let-company').value = d.letCompany;
+          if (d.letRecipient) document.getElementById('inp-let-recipient').value = d.letRecipient;
+          if (d.letCompAddr) document.getElementById('inp-let-comp-addr').value = d.letCompAddr;
+          if (d.letCompCity) document.getElementById('inp-let-comp-city').value = d.letCompCity;
+          if (d.letCity) document.getElementById('inp-let-city').value = d.letCity;
+          if (d.letDate) document.getElementById('inp-let-date').value = d.letDate;
+          if (d.letSubject) document.getElementById('inp-let-subject').value = d.letSubject;
+          if (d.letSalutation) document.getElementById('inp-let-salutation').value = d.letSalutation;
+          if (d.letP1) document.getElementById('inp-let-p1').value = d.letP1;
+          if (d.letP2) document.getElementById('inp-let-p2').value = d.letP2;
+          if (d.letP3) document.getElementById('inp-let-p3').value = d.letP3;
+          if (d.letClosing) document.getElementById('inp-let-closing').value = d.letClosing;
           setMode('local');
         }
       } catch(e) {}
@@ -1174,10 +1552,13 @@
       if (confirm('Voulez-vous réinitialiser le formulaire et effacer toutes vos données de ce navigateur ?')) {
         localStorage.removeItem('studio_etudiant_cv');
         applyPreset('stage_dev');
+        applyLetterPreset('stage_dev');
         document.getElementById('inp-name').value = '';
         document.getElementById('inp-phone').value = '';
         document.getElementById('inp-email').value = '';
+        removePhoto();
         updateCV();
+        updateLetter();
         showToast('Toutes les données ont été effacées.');
       }
     }
@@ -1199,14 +1580,26 @@
         edu2: document.getElementById('inp-edu2').value,
         skills: document.getElementById('inp-skills').value,
         photo: currentPhotoB64,
+        letCompany: document.getElementById('inp-let-company').value,
+        letRecipient: document.getElementById('inp-let-recipient').value,
+        letCompAddr: document.getElementById('inp-let-comp-addr').value,
+        letCompCity: document.getElementById('inp-let-comp-city').value,
+        letCity: document.getElementById('inp-let-city').value,
+        letDate: document.getElementById('inp-let-date').value,
+        letSubject: document.getElementById('inp-let-subject').value,
+        letSalutation: document.getElementById('inp-let-salutation').value,
+        letP1: document.getElementById('inp-let-p1').value,
+        letP2: document.getElementById('inp-let-p2').value,
+        letP3: document.getElementById('inp-let-p3').value,
+        letClosing: document.getElementById('inp-let-closing').value,
         exportDate: new Date().toISOString()
       };
       const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
       const a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
-      a.download = 'mon-profil-cv.json';
+      a.download = 'mon-dossier-etudiant-cv-lettre.json';
       a.click();
-      showToast('Fichier JSON téléchargé !');
+      showToast('Dossier complet (CV & Lettre) téléchargé !');
     }
 
     function printA4() {
@@ -1225,8 +1618,11 @@
 
     // INIT
     window.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('inp-let-date').value = getTodayFrenchDate();
+      applyLetterPreset('stage_dev');
       loadLocal();
       updateCV();
+      updateLetter();
     });
   </script>
 

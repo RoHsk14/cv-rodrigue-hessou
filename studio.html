@@ -356,6 +356,44 @@
     print-color-adjust: exact;
   }
 
+  
+  /* PHOTO IN SHEET SIDEBAR */
+  .sheet-photo-wrap {
+    text-align: center;
+    margin-bottom: 2.5mm;
+  }
+
+  .sheet-photo-wrap img {
+    width: 26mm;
+    height: 26mm;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1.8px solid #94a3b8;
+    background-color: #334155;
+    display: inline-block;
+  }
+
+  .photo-upload-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--surface-elevated);
+    border: 1px dashed var(--border-active);
+    padding: 10px 12px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+  }
+
+  .photo-preview-thumb {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1.5px solid var(--border);
+    background: var(--surface);
+    flex-shrink: 0;
+  }
+
   /* A4 PRINT SIDEBAR */
   .sheet-sidebar {
     width: 63mm;
@@ -684,6 +722,26 @@
         </div>
       </div>
 
+            <!-- PHOTO OPTIONNELLE -->
+      <div>
+        <div class="form-section-title">Photo de Profil (Optionnelle)</div>
+        <div class="photo-upload-box">
+          <img id="thumb-preview" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2364748b'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" alt="Aperçu" class="photo-preview-thumb">
+          <div style="flex:1;">
+            <input type="file" id="inp-photo" accept="image/*" style="display:none;" onchange="handlePhotoUpload(event)">
+            <div style="display:flex; gap:6px;">
+              <button type="button" class="btn btn-secondary" style="font-size:11.5px; padding:5px 9px;" onclick="document.getElementById('inp-photo').click()">
+                Choisir une photo
+              </button>
+              <button type="button" class="btn btn-secondary" id="btn-remove-photo" style="font-size:11.5px; padding:5px 9px; display:none;" onclick="removePhoto()">
+                Supprimer
+              </button>
+            </div>
+            <div style="font-size:10.5px; color:var(--text-muted); margin-top:4px;">JPG, PNG. Reste 100% sur votre appareil.</div>
+          </div>
+        </div>
+      </div>
+
       <!-- FORMATIONS -->
       <div>
         <div class="form-section-title">Formations & Diplômes</div>
@@ -741,8 +799,12 @@
         <!-- SIDEBAR GAUCHE -->
         <aside class="sheet-sidebar">
           <div>
-            <div style="font-size: 13pt; font-weight: 700; color: #ffffff; letter-spacing: -0.3px; margin-bottom: 2mm;" id="out-side-name">
-              A. DUPONT
+            <div class="sheet-photo-wrap" id="sheet-photo-container">
+              <img id="out-photo" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2364748b'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" alt="Photo de profil">
+            </div>
+
+            <div style="font-size: 13pt; font-weight: 700; color: #ffffff; letter-spacing: -0.3px; margin-bottom: 2mm; text-align: center;" id="out-side-name">
+              Alexandre DUPONT
             </div>
 
             <h3>Contact</h3>
@@ -780,8 +842,8 @@
             </div>
           </div>
 
-          <div style="font-size: 7.8pt; color: #94a3b8; border-top: 1px solid #475569; padding-top: 2mm;">
-            Document généré via le Studio Étudiant &bull; Format officiel A4
+          <div style="font-size: 8pt; color: #94a3b8; border-top: 1px solid #475569; padding-top: 1.5mm; text-align: center;" id="out-sidebar-footer">
+            Alexandre DUPONT
           </div>
         </aside>
 
@@ -841,9 +903,9 @@
           </div>
 
           <!-- FOOTER -->
-          <div style="border-top: 1px solid #e2e8f0; padding-top: 1.5mm; font-size: 7.8pt; color: #64748b; display: flex; justify-content: space-between;">
-            <span>Candidature Étudiante &bull; Format A4 Strict 1 Page</span>
-            <span>Permis B &bull; Mobilité Régionale</span>
+          <div style="border-top: 1px solid #e2e8f0; padding-top: 1.5mm; font-size: 8pt; color: #64748b; display: flex; justify-content: space-between;">
+            <span id="out-footer-left">Alexandre DUPONT</span>
+            <span id="out-footer-right">Curriculum Vitæ</span>
           </div>
         </section>
       </div>
@@ -856,6 +918,35 @@
   <!-- JS LOGIC -->
   <script>
     let currentMode = 'guest';
+
+    let currentPhotoB64 = "";
+    const defaultPlaceholderPhoto = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2364748b'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E";
+
+    function handlePhotoUpload(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        currentPhotoB64 = evt.target.result;
+        document.getElementById('out-photo').src = currentPhotoB64;
+        document.getElementById('thumb-preview').src = currentPhotoB64;
+        document.getElementById('btn-remove-photo').style.display = 'inline-flex';
+        showToast("Photo ajoutée avec succès !");
+        if (currentMode === 'local') saveLocal();
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function removePhoto() {
+      currentPhotoB64 = "";
+      document.getElementById('inp-photo').value = "";
+      document.getElementById('out-photo').src = defaultPlaceholderPhoto;
+      document.getElementById('thumb-preview').src = defaultPlaceholderPhoto;
+      document.getElementById('btn-remove-photo').style.display = 'none';
+      showToast("Photo retirée.");
+      if (currentMode === 'local') saveLocal();
+    }
+
 
     const presets = {
       stage_dev: {
@@ -948,8 +1039,15 @@
       const edu2 = document.getElementById('inp-edu2').value;
       const skillsStr = document.getElementById('inp-skills').value;
 
-      document.getElementById('out-name').innerText = name || 'VOTRE NOM';
-      document.getElementById('out-side-name').innerText = name ? name.split(' ').map((n, i) => i === 0 ? n[0] + '.' : n).join(' ') : 'VOTRE NOM';
+      const displayName = name ? name.trim() : 'VOTRE NOM';
+      document.getElementById('out-name').innerText = displayName;
+      document.getElementById('out-side-name').innerText = displayName;
+      
+      const sideFooter = document.getElementById('out-sidebar-footer');
+      if (sideFooter) sideFooter.innerText = displayName;
+
+      const mainFooterLeft = document.getElementById('out-footer-left');
+      if (mainFooterLeft) mainFooterLeft.innerText = displayName;
       document.getElementById('out-title').innerText = title || 'TITRE VISÉ';
       document.getElementById('out-city').innerText = city;
       document.getElementById('out-phone').innerText = phone;
@@ -1035,6 +1133,7 @@
         edu1Sub: document.getElementById('inp-edu1-sub').value,
         edu2: document.getElementById('inp-edu2').value,
         skills: document.getElementById('inp-skills').value,
+        photo: currentPhotoB64,
       };
       try {
         localStorage.setItem('studio_etudiant_cv', JSON.stringify(data));
@@ -1060,6 +1159,12 @@
           if (d.edu1Sub) document.getElementById('inp-edu1-sub').value = d.edu1Sub;
           if (d.edu2) document.getElementById('inp-edu2').value = d.edu2;
           if (d.skills) document.getElementById('inp-skills').value = d.skills;
+          if (d.photo) {
+            currentPhotoB64 = d.photo;
+            document.getElementById('out-photo').src = currentPhotoB64;
+            document.getElementById('thumb-preview').src = currentPhotoB64;
+            document.getElementById('btn-remove-photo').style.display = 'inline-flex';
+          }
           setMode('local');
         }
       } catch(e) {}
@@ -1093,6 +1198,7 @@
         edu1Sub: document.getElementById('inp-edu1-sub').value,
         edu2: document.getElementById('inp-edu2').value,
         skills: document.getElementById('inp-skills').value,
+        photo: currentPhotoB64,
         exportDate: new Date().toISOString()
       };
       const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });

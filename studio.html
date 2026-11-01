@@ -456,6 +456,106 @@
     background: rgba(59, 130, 246, 0.1);
   }
 
+  /* GENDER & SALUTATION SELECTOR TABS */
+  .gender-selector-tabs, .salutation-selector-tabs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    background: var(--bg-subtle);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 3px;
+    gap: 4px;
+  }
+
+  .gender-tab-btn, .salut-tab-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    padding: 7px 10px;
+    border-radius: 6px;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    outline: none;
+  }
+
+  .gender-tab-btn:hover, .salut-tab-btn:hover {
+    color: var(--text-primary);
+  }
+
+  .gender-tab-btn.active, .salut-tab-btn.active {
+    background: var(--surface-elevated);
+    color: var(--accent);
+    border: 1px solid var(--border-active);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  /* SMART GENERATOR CARD */
+  .smart-generator-card {
+    background: linear-gradient(145deg, #13141f, #181926);
+    border: 1px solid rgba(59, 130, 246, 0.28);
+    border-radius: 10px;
+    padding: 14px;
+    box-shadow: 0 4px 20px -2px rgba(37, 99, 235, 0.15);
+  }
+
+  .smart-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .smart-icon-badge {
+    width: 26px;
+    height: 26px;
+    background: rgba(59, 130, 246, 0.2);
+    border: 1px solid rgba(59, 130, 246, 0.4);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #60a5fa;
+    flex-shrink: 0;
+  }
+
+  .btn-toggle-smart {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+  }
+
+  .btn-toggle-smart.collapsed svg {
+    transform: rotate(-90deg);
+  }
+
+  .smart-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .smart-card-body.collapsed {
+    display: none;
+  }
+
   /* PHOTO UPLOAD BOX */
   .photo-upload-box {
     display: flex;
@@ -988,6 +1088,72 @@
         </div>
       </div>
 
+      <!-- ASSISTANT INTELLIGENT DE RÉDACTION -->
+      <div class="sidebar-section smart-generator-card">
+        <div class="smart-card-header" onclick="toggleSmartAssistant()">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <div class="smart-icon-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            </div>
+            <div>
+              <div style="font-weight: 700; font-size: 13px; color: #f4f4f5;">Assistant Intelligent de R&eacute;daction</div>
+              <div style="font-size: 11px; color: #a1a1aa;">G&eacute;n&egrave;re accroches CV, lettres &amp; missions sur-mesure</div>
+            </div>
+          </div>
+          <button type="button" class="btn-toggle-smart" id="btn-toggle-smart" aria-label="Replier ou d&eacute;plier l'assistant">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+        </div>
+
+        <div id="smart-generator-body" class="smart-card-body">
+          <div class="form-group">
+            <label>Poste ou M&eacute;tier vis&eacute;</label>
+            <input type="text" id="smart-input-role" class="form-input" placeholder="Ex: D&eacute;veloppeur Web, Conseiller Client, Stagiaire RH...">
+          </div>
+          <div class="form-group">
+            <label>Entreprise ou &Eacute;tablissement cibl&eacute;</label>
+            <input type="text" id="smart-input-company" class="form-input" placeholder="Ex: Capgemini, D&eacute;cathlon, Mairie de Lyon...">
+          </div>
+          <div class="form-group">
+            <label>Points forts / Comp&eacute;tences cl&eacute;s (optionnel)</label>
+            <input type="text" id="smart-input-keywords" class="form-input" placeholder="Ex: React, Python, autonomie OU sourire, caisse, rigueur">
+          </div>
+          <div class="row-2">
+            <div class="form-group">
+              <label>Niveau d'&eacute;tudes</label>
+              <select id="smart-input-level" class="form-select">
+                <option value="Master">Master / Bac+5</option>
+                <option value="Licence">Licence / Bachelor (Bac+3)</option>
+                <option value="BTS">BTS / BUT / Bac+2</option>
+                <option value="Universit&eacute;">&Eacute;tudiant Universitaire</option>
+                <option value="Lyc&eacute;e">Baccalaur&eacute;at / Lyc&eacute;e</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Ton de r&eacute;daction</label>
+              <select id="smart-input-tone" class="form-select">
+                <option value="professionnel">Professionnel &amp; Rigoureux</option>
+                <option value="dynamique">Dynamique &amp; Passionn&eacute;</option>
+                <option value="polyvalent">Terrain &amp; Polyvalent</option>
+                <option value="synthetique">Court &amp; Synth&eacute;tique</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 6px;">
+            <button type="button" class="btn btn-primary" style="font-size: 11.5px; padding: 7px 10px;" onclick="generateSmartSummary()">
+              G&eacute;n&eacute;rer l'Accroche CV
+            </button>
+            <button type="button" class="btn btn-primary" style="font-size: 11.5px; padding: 7px 10px;" onclick="generateSmartLetter()">
+              R&eacute;diger la Lettre
+            </button>
+          </div>
+          <button type="button" class="btn btn-secondary" style="font-size: 11.5px; padding: 7px 10px; width: 100%; margin-top: 4px;" onclick="generateSmartExperience()">
+            + Sugg&eacute;rer une Exp&eacute;rience &amp; Missions
+          </button>
+        </div>
+      </div>
+
       <!-- MODE SELECTION -->
       <div class="sidebar-section">
         <div class="form-section-title">Confidentialité &amp; Sauvegarde</div>
@@ -1025,6 +1191,17 @@
           <div class="form-group">
             <label>Email</label>
             <input type="email" id="inp-email" class="form-input" value="alexandre.dupont@email.fr" oninput="updateCV()">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Accord grammatical (Genre de l'&eacute;tudiant)</label>
+          <div class="gender-selector-tabs">
+            <button type="button" class="gender-tab-btn active" id="btn-gender-m" onclick="setCandidateGender('M')">
+              &Eacute;tudiant (Masculin)
+            </button>
+            <button type="button" class="gender-tab-btn" id="btn-gender-f" onclick="setCandidateGender('F')">
+              &Eacute;tudiante (F&eacute;minin)
+            </button>
           </div>
         </div>
         <div class="form-group">
@@ -1190,8 +1367,19 @@
             <input type="text" class="form-input" id="inp-let-subject" value="Candidature pour un stage conventionné de Développeur Web / Logiciel (4 à 6 mois)" oninput="updateLetter()">
           </div>
           <div class="form-group">
-            <label>Formule d'appel</label>
-            <input type="text" class="form-input" id="inp-let-salutation" value="Madame, Monsieur," oninput="updateLetter()">
+            <label>Destinataire / Formule d'appel</label>
+            <div class="salutation-selector-tabs">
+              <button type="button" class="salut-tab-btn active" id="btn-salut-both" onclick="setSalutation('Madame, Monsieur,')">
+                Madame, Monsieur,
+              </button>
+              <button type="button" class="salut-tab-btn" id="btn-salut-mme" onclick="setSalutation('Madame,')">
+                Madame,
+              </button>
+              <button type="button" class="salut-tab-btn" id="btn-salut-mr" onclick="setSalutation('Monsieur,')">
+                Monsieur,
+              </button>
+            </div>
+            <input type="hidden" id="inp-let-salutation" value="Madame, Monsieur,">
           </div>
         </div>
 
@@ -1368,6 +1556,195 @@
   <!-- JS LOGIC -->
   <script>
     let currentDoc = 'cv';
+    let candidateGender = 'M';
+    let recipientSalutation = 'Madame, Monsieur,';
+    let smartAssistantCollapsed = false;
+
+    function toggleSmartAssistant() {
+      const body = document.getElementById('smart-generator-body');
+      const btn = document.getElementById('btn-toggle-smart');
+      smartAssistantCollapsed = !smartAssistantCollapsed;
+      if (smartAssistantCollapsed) {
+        body.classList.add('collapsed');
+        btn.classList.add('collapsed');
+      } else {
+        body.classList.remove('collapsed');
+        btn.classList.remove('collapsed');
+      }
+    }
+
+    function setCandidateGender(g) {
+      candidateGender = g;
+      const btnM = document.getElementById('btn-gender-m');
+      const btnF = document.getElementById('btn-gender-f');
+      if (g === 'F') {
+        btnF.classList.add('active');
+        btnM.classList.remove('active');
+        showToast("Accord au féminin activé (Étudiante)");
+      } else {
+        btnM.classList.add('active');
+        btnF.classList.remove('active');
+        showToast("Accord au masculin activé (Étudiant)");
+      }
+      adjustTextsForGender();
+      updateCV();
+      updateLetter();
+      if (currentMode === 'local') saveLocal();
+    }
+
+    function adjustTextsForGender() {
+      const summaryEl = document.getElementById('inp-summary');
+      const titleEl = document.getElementById('inp-title');
+      const p1El = document.getElementById('inp-let-p1');
+      const p2El = document.getElementById('inp-let-p2');
+      const p3El = document.getElementById('inp-let-p3');
+
+      if (candidateGender === 'F') {
+        if (titleEl.value.includes('Étudiant')) titleEl.value = titleEl.value.replace(/Étudiant/g, 'Étudiante');
+        if (summaryEl.value.includes('étudiant')) summaryEl.value = summaryEl.value.replace(/étudiant /g, 'étudiante ');
+        if (summaryEl.value.includes('Passionné')) summaryEl.value = summaryEl.value.replace(/Passionné/g, 'Passionnée');
+        if (summaryEl.value.includes('Rigoureux')) summaryEl.value = summaryEl.value.replace(/Rigoureux/g, 'Rigoureuse');
+        if (summaryEl.value.includes('Curieux')) summaryEl.value = summaryEl.value.replace(/Curieux/g, 'Curieuse');
+        if (summaryEl.value.includes('Polyvalent')) summaryEl.value = summaryEl.value.replace(/Polyvalent/g, 'Polyvalente');
+        if (summaryEl.value.includes('Sérieux')) summaryEl.value = summaryEl.value.replace(/Sérieux/g, 'Sérieuse');
+
+        if (p1El.value.includes('étudiant')) p1El.value = p1El.value.replace(/étudiant /g, 'étudiante ');
+        if (p1El.value.includes('Attentif')) p1El.value = p1El.value.replace(/Attentif /g, 'Attentive ');
+        if (p1El.value.includes('Admis')) p1El.value = p1El.value.replace(/Admis /g, 'Admise ');
+        if (p2El.value.includes('Rigoureux')) p2El.value = p2El.value.replace(/Rigoureux /g, 'Rigoureuse ');
+        if (p2El.value.includes('Sérieux')) p2El.value = p2El.value.replace(/Sérieux /g, 'Sérieuse ');
+        if (p3El.value.includes('Curieux, persévérant')) p3El.value = p3El.value.replace(/Curieux, persévérant/g, 'Curieuse, persévérante');
+        if (p3El.value.includes("prêt à m'investir")) p3El.value = p3El.value.replace(/prêt à m'investir/g, "prête à m'investir");
+        if (p3El.value.includes('Polyvalent et travailleur')) p3El.value = p3El.value.replace(/Polyvalent et travailleur/g, 'Polyvalente et travailleuse');
+      } else {
+        if (titleEl.value.includes('Étudiante')) titleEl.value = titleEl.value.replace(/Étudiante/g, 'Étudiant');
+        if (summaryEl.value.includes('étudiante')) summaryEl.value = summaryEl.value.replace(/étudiante /g, 'étudiant ');
+        if (summaryEl.value.includes('Passionnée')) summaryEl.value = summaryEl.value.replace(/Passionnée/g, 'Passionné');
+        if (summaryEl.value.includes('Rigoureuse')) summaryEl.value = summaryEl.value.replace(/Rigoureuse/g, 'Rigoureux');
+        if (summaryEl.value.includes('Curieuse')) summaryEl.value = summaryEl.value.replace(/Curieuse/g, 'Curieux');
+        if (summaryEl.value.includes('Polyvalente')) summaryEl.value = summaryEl.value.replace(/Polyvalente/g, 'Polyvalent');
+        if (summaryEl.value.includes('Sérieuse')) summaryEl.value = summaryEl.value.replace(/Sérieuse/g, 'Sérieux');
+
+        if (p1El.value.includes('étudiante')) p1El.value = p1El.value.replace(/étudiante /g, 'étudiant ');
+        if (p1El.value.includes('Attentive')) p1El.value = p1El.value.replace(/Attentive /g, 'Attentif ');
+        if (p1El.value.includes('Admise')) p1El.value = p1El.value.replace(/Admise /g, 'Admis ');
+        if (p2El.value.includes('Rigoureuse')) p2El.value = p2El.value.replace(/Rigoureuse /g, 'Rigoureux ');
+        if (p2El.value.includes('Sérieuse')) p2El.value = p2El.value.replace(/Sérieuse /g, 'Sérieux ');
+        if (p3El.value.includes('Curieuse, persévérante')) p3El.value = p3El.value.replace(/Curieuse, persévérante/g, 'Curieux, persévérant');
+        if (p3El.value.includes("prête à m'investir")) p3El.value = p3El.value.replace(/prête à m'investir/g, "prêt à m'investir");
+        if (p3El.value.includes('Polyvalente et travailleuse')) p3El.value = p3El.value.replace(/Polyvalente et travailleuse/g, 'Polyvalent et travailleur');
+      }
+    }
+
+    function setSalutation(val) {
+      recipientSalutation = val;
+      document.getElementById('inp-let-salutation').value = val;
+
+      const btnBoth = document.getElementById('btn-salut-both');
+      const btnMme = document.getElementById('btn-salut-mme');
+      const btnMr = document.getElementById('btn-salut-mr');
+
+      btnBoth.classList.remove('active');
+      btnMme.classList.remove('active');
+      btnMr.classList.remove('active');
+
+      if (val === 'Madame,') btnMme.classList.add('active');
+      else if (val === 'Monsieur,') btnMr.classList.add('active');
+      else btnBoth.classList.add('active');
+
+      // Adjust closing formula accordingly
+      const closingEl = document.getElementById('inp-let-closing');
+      closingEl.value = `Restant à votre entière disposition pour tout échange ou entretien à votre convenance, je vous prie d'agréer, ${val} l'expression de mes salutations distinguées.`;
+
+      updateLetter();
+      showToast(`Formule d'appel mise à jour : ${val}`);
+      if (currentMode === 'local') saveLocal();
+    }
+
+    // SMART GENERATOR ENGINES
+    function generateSmartSummary() {
+      const role = document.getElementById('smart-input-role').value.trim() || document.getElementById('inp-title').value.trim() || "Développeur";
+      const level = document.getElementById('smart-input-level').value;
+      const keywords = document.getElementById('smart-input-keywords').value.trim();
+      const tone = document.getElementById('smart-input-tone').value;
+
+      const isF = candidateGender === 'F';
+      const etu = isF ? "Étudiante" : "Étudiant";
+      const pass = isF ? "Passionnée" : "Passionné";
+      const rig = isF ? "Rigoureuse" : "Rigoureux";
+      const cur = isF ? "curieuse" : "curieux";
+      const pret = isF ? "prête" : "prêt";
+
+      let text = "";
+      if (tone === 'professionnel') {
+        text = `${etu} en ${level}, je me spécialise activement en tant que ${role}. ${pass} par la qualité logicielle et l'efficacité opérationnelle${keywords ? ' (' + keywords + ')' : ''}, je recherche une opportunité pour apporter rigueur, méthode et autonomie au sein de votre équipe.`;
+      } else if (tone === 'dynamique') {
+        text = `${pass} par les défis techniques et le travail collaboratif en tant que ${role}. Actuellement en ${level}${keywords ? ' avec une maîtrise de ' + keywords : ''}, je suis ${pret} à m'investir pleinement pour concevoir des solutions performantes et innovantes.`;
+      } else if (tone === 'polyvalent') {
+        text = `${etu} en ${level}, dynamique, assidu et doté d'une grande capacité d'adaptation. À l'aise aussi bien sur le terrain que dans la résolution de problèmes complexes${keywords ? ' (' + keywords + ')' : ''}, je candidate pour le poste de ${role} avec l'envie de m'engager durablement.`;
+      } else {
+        text = `${etu} en ${level} visant un poste de ${role}. ${rig}, ${cur} et orienté résultats${keywords ? ' (' + keywords + ')' : ''}, disponible immédiatement pour contribuer activement à vos projets.`;
+      }
+
+      document.getElementById('inp-summary').value = text;
+      updateCV();
+      showToast("Accroche CV générée avec succès !");
+      if (currentMode === 'local') saveLocal();
+    }
+
+    function generateSmartLetter() {
+      const role = document.getElementById('smart-input-role').value.trim() || "Développeur Web";
+      const company = document.getElementById('smart-input-company').value.trim() || document.getElementById('inp-let-company').value.trim() || "votre entreprise";
+      const keywords = document.getElementById('smart-input-keywords').value.trim() || "rigueur, esprit d'équipe, compétences techniques";
+      const level = document.getElementById('smart-input-level').value;
+      const tone = document.getElementById('smart-input-tone').value;
+
+      const isF = candidateGender === 'F';
+      const etu = isF ? "étudiante" : "étudiant";
+      const att = isF ? "Attentive" : "Attentif";
+      const rig = isF ? "Rigoureuse" : "Rigoureux";
+      const poly = isF ? "Polyvalente" : "Polyvalent";
+      const pret = isF ? "prête" : "prêt";
+
+      // Subject
+      document.getElementById('inp-let-subject').value = `Candidature pour le poste de ${role} — ${company}`;
+      document.getElementById('inp-let-company').value = company;
+
+      // P1: Company context
+      document.getElementById('inp-let-p1').value = `Actuellement ${etu} en ${level}, je vous adresse ma candidature afin d'intégrer ${company} en tant que ${role}. ${att} à la renommée de vos réalisations, à vos valeurs et à votre dynamisme, je souhaite vivement mettre mon enthousiasme et mes compétences au service de vos équipes.`;
+
+      // P2: Skills & Background
+      document.getElementById('inp-let-p2').value = `Au cours de mes études et de mes réalisations pratiques, j'ai développé une solide maîtrise des fondamentaux du métier, avec un accent particulier sur ${keywords}. ${rig} et doté d'un excellent sens de l'écoute, j'accorde une importance majeure à la propreté du travail rendu et au respect scrupuleux des délais et des objectifs fixés.`;
+
+      // P3: Collaboration
+      document.getElementById('inp-let-p3').value = `Rejoindre ${company} constitue pour moi l'opportunité rêvée de m'investir au sein d'un environnement stimulant où je pourrai progresser tout en apportant une vraie valeur ajoutée au quotidien. ${poly} et travailleur, je suis ${pret} à m'impliquer avec constance pour relever vos défis opérationnels.`;
+
+      // Closing
+      document.getElementById('inp-let-closing').value = `Restant à votre entière disposition pour tout échange ou entretien à votre convenance, je vous prie d'agréer, ${recipientSalutation} l'expression de mes salutations distinguées.`;
+
+      updateLetter();
+      switchDoc('letter');
+      showToast("Lettre de motivation générée et personnalisée !");
+      if (currentMode === 'local') saveLocal();
+    }
+
+    function generateSmartExperience() {
+      const role = document.getElementById('smart-input-role').value.trim() || "Développeur Logiciel & QA";
+      const company = document.getElementById('smart-input-company').value.trim() || "Start-up & PME Numérique";
+      const keywords = document.getElementById('smart-input-keywords').value.trim() || "développement, tests unitaires, méthodes Agiles";
+
+      currentExperiences.unshift({
+        title: `${role} — ${company} (2025 - 2026)`,
+        desc: `Conception, développement et maintenance opérationnelle en s'appuyant sur ${keywords}. Participation active aux réunions de sprint, respect des normes de qualité et reporting hebdomadaire des réalisations.`
+      });
+
+      renderExperiencesEditor();
+      renderExperiencesPreview();
+      updateCV();
+      showToast("Expérience générée et ajoutée en tête de liste !");
+      if (currentMode === 'local') saveLocal();
+    }
+
     let currentMode = 'guest';
 
     let currentPhotoB64 = "";
@@ -2099,6 +2476,8 @@
     function saveLocal() {
       const data = {
         name: document.getElementById('inp-name').value,
+        candidateGender: candidateGender,
+        recipientSalutation: recipientSalutation,
         title: document.getElementById('inp-title').value,
         city: document.getElementById('inp-city').value,
         phone: document.getElementById('inp-phone').value,
@@ -2132,6 +2511,8 @@
         if (saved) {
           const d = JSON.parse(saved);
           if (d.name) document.getElementById('inp-name').value = d.name;
+          if (d.candidateGender) setCandidateGender(d.candidateGender);
+          if (d.recipientSalutation) setSalutation(d.recipientSalutation);
           if (d.title) document.getElementById('inp-title').value = d.title;
           if (d.city) document.getElementById('inp-city').value = d.city;
           if (d.phone) document.getElementById('inp-phone').value = d.phone;
@@ -2211,6 +2592,8 @@
     function exportDataJSON() {
       const data = {
         name: document.getElementById('inp-name').value,
+        candidateGender: candidateGender,
+        recipientSalutation: recipientSalutation,
         title: document.getElementById('inp-title').value,
         city: document.getElementById('inp-city').value,
         phone: document.getElementById('inp-phone').value,

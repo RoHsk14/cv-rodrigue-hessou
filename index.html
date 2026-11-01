@@ -216,11 +216,11 @@
     -webkit-backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--border);
     height: var(--header-h);
-    padding: 0 20px;
+    padding: 0 16px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 16px;
+    gap: 12px;
     box-sizing: border-box;
   }
 
@@ -230,24 +230,22 @@
     justify-content: center;
     align-items: center;
     min-width: 0;
-    overflow: hidden;
   }
 
   .nav-left {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     text-decoration: none;
     color: inherit;
     flex-shrink: 0;
-    min-width: max-content;
     z-index: 2;
   }
 
   .nav-menu {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 12px;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -257,7 +255,7 @@
   .nav-right-actions {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     flex-shrink: 0;
     z-index: 2;
   }
@@ -266,11 +264,11 @@
   .lang-switcher {
     display: inline-flex;
     align-items: center;
-    gap: 2px;
+    gap: 1px;
     background: var(--surface-elevated);
     border: 1px solid var(--border);
     border-radius: 7px;
-    padding: 0 4px;
+    padding: 0 3px;
     height: 32px;
     font-family: var(--font-mono);
     font-size: 11px;
@@ -284,7 +282,7 @@
     color: var(--text-muted);
     cursor: pointer;
     font-weight: 500;
-    padding: 4px 6px;
+    padding: 3px 5px;
     border-radius: 4px;
     transition: all 0.15s ease;
     font-family: inherit;
@@ -300,6 +298,17 @@
     color: var(--accent);
     background: var(--accent-subtle);
     font-weight: 700;
+  }
+
+  /* ICON-ONLY ON DESKTOP & RESPONSIVE */
+  .cmd-trigger-btn { width: 32px; padding: 0; justify-content: center; }
+  .cmd-trigger-btn span, .cmd-trigger-btn kbd { display: none; }
+  .nav-brand-sub { display: none; }
+
+  @media (max-width: 860px) {
+    .top-navbar > nav { display: none; }
+    .nav-menu { display: none; }
+    .mobile-menu-toggle { display: inline-flex; }
   }
 
   .brand-mark {
@@ -587,28 +596,7 @@
     stroke-linejoin: round;
   }
 
-  /* ULTRA-RESPONSIVE TOP NAVBAR ADAPTATION */
-  @media (max-width: 1400px) {
-    .nav-brand-sub { display: none; }
-    .cmd-trigger-btn kbd { display: none; }
-  }
-
-  @media (max-width: 1280px) {
-    .cmd-trigger-btn span { display: none; }
-    .cmd-trigger-btn { width: 34px; padding: 0; justify-content: center; }
-    #studio-nav-btn span { display: none; }
-    #studio-nav-btn { width: 34px; padding: 0; justify-content: center; }
-    .nav-menu { gap: 12px; }
-  }
-
-  @media (max-width: 1160px) {
-    #nav-auth-btn span { display: none; }
-    #nav-auth-btn { width: 34px; padding: 0; justify-content: center; }
-    .top-navbar { padding: 0 16px; gap: 10px; }
-    .top-navbar > nav { display: none; }
-    .nav-menu { display: none; }
-    .mobile-menu-toggle { display: inline-flex; }
-  }
+  /* Top navbar responsive handled above */
 
   @media (max-width: 480px) {
     .nav-brand-name { font-size: 12.5px; }
@@ -2580,9 +2568,9 @@
 
       <div class="nav-right-actions">
         <!-- STUDIO ÉTUDIANT -->
-        <a href="studio.html" class="login-nav-btn" id="studio-nav-btn" style="border-color: rgba(59, 130, 246, 0.4); color: var(--accent); background: rgba(59, 130, 246, 0.08);" title="Générateur de CV et Lettre A4 gratuit pour étudiants" data-i18n-title="studio_nav_title">
+        <a href="studio.html" class="login-nav-btn" id="studio-nav-btn" style="border-color: rgba(59, 130, 246, 0.4); color: var(--accent); background: rgba(59, 130, 246, 0.08); padding: 0 8px; gap: 5px;" title="Générateur de CV et Lettre A4 gratuit pour étudiants" data-i18n-title="studio_nav_title">
           <svg class="icon-svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-          <span data-i18n="nav_studio">Studio Étudiant</span>
+          <span data-i18n="nav_studio">Studio</span>
         </a>
 
         <!-- RECHERCHE CMD+K -->
@@ -3792,6 +3780,204 @@
 
   <!-- JAVASCRIPT -->
   <script>
+
+    // ====================================================
+    // GLOBAL I18N SYSTEM (FR / EN)
+    // ====================================================
+    let currentLang = 'fr';
+    try {
+      const stored = localStorage.getItem('portfolio_lang') || localStorage.getItem('studio_lang');
+      if (stored === 'en' || stored === 'fr') currentLang = stored;
+    } catch(e) {}
+
+    const translations = {
+      fr: {
+        page_title: "Rodrigue HESSOU — Software Engineer & Master 1 Informatique (Bac+5)",
+        nav_role: "Software Engineer",
+        nav_candidatures: "Candidatures",
+        nav_experience: "Expérience",
+        nav_projets: "Projets",
+        nav_competences: "Stack",
+        nav_temoignages: "Avis",
+        nav_formation: "Formation",
+        nav_studio: "Studio",
+        nav_studio_long: "Studio Étudiant (Générateur A4)",
+        nav_search: "Recherche",
+        nav_auth: "Connexion",
+        nav_auth_connected: "Connecté",
+        studio_nav_title: "Générateur de CV et Lettre A4 gratuit pour étudiants",
+        mobile_status: "Lyon, France · Disponible",
+        btn_cv_stage_short: "CV Stage",
+        hero_status: "Disponible — Stage ou alternance (Bac+5)",
+        hero_title_role: "Étudiant Master 1 en Informatique — Cursus Bac+5",
+        hero_tagline: "ingénierie logicielle, architecture & détails qui comptent",
+        hero_lead_text: "Titulaire d'une <strong>Licence en Génie Logiciel (Mention Bien)</strong> et actuellement en Master 1 à <strong>SUPINFO Lyon</strong>. Je conçois des applications back-end et fullstack fiables — Java, Python, SQL, Flutter, Web — avec une exigence particulière sur les tests, la documentation et l'expérience utilisateur.",
+        lbl_email: "Email",
+        lbl_phone: "Téléphone",
+        lbl_loc: "Localisation",
+        val_loc: "Lyon, France · Mobile",
+        lbl_lang: "Langues",
+        val_lang: "Français · Anglais B2",
+        meta_school: "Formation : SUPINFO Lyon (2026 - 2028)",
+        meta_degree: "Diplôme : Licence Génie Logiciel (Mention Bien)",
+        meta_avail: "Disponibilité : immédiate",
+        btn_cv_stage: "CV Stage (PDF)",
+        btn_cv_alt: "CV Alternance (PDF)",
+        btn_contact: "Me contacter",
+        studio_banner_badge: "Studio Gratuit pour Étudiants",
+        studio_banner_title: "Besoin d'un CV ou d'une lettre calibrée 1 page A4 ?",
+        studio_banner_desc: "J'ai développé un studio complet en accès libre : créez votre CV et votre lettre de motivation au format A4 strict 1 page, prêts pour l'impression ou l'exportation PDF. Vos données restent à 100% dans votre navigateur, aucun serveur n'enregistre quoi que ce soit.",
+        studio_banner_btn: "Ouvrir le Studio Étudiant &rarr;",
+        sec_candidatures_title: "Candidatures Techniques (Vitrine Publique)",
+        sec_candidatures_sub: "Dossiers généraux conventionnés Bac+5",
+        badge_stage: "Stage Conventionné",
+        title_stage: "Développeur Logiciel — Recherche de Stage",
+        sub_stage: "Master 1 SUPINFO Lyon · Durée 4 à 6 mois dès mars 2026",
+        desc_stage: "Candidature générale pour stage conventionné de fin de Master 1. Orienté conception logicielle, développement back-end et fullstack (Java, Python, C++, SQL, Flutter), intégration d'APIs et architectures orientées services.",
+        badge_alt: "Contrat d'Alternance",
+        title_alt: "Développeur Logiciel — Recherche d'Alternance",
+        sub_alt: "Rythme Master 1 SUPINFO Lyon (Cursus Bac+5)",
+        desc_alt: "Candidature générale pour contrat d'alternance en ingénierie logicielle. Investissement sur la durée au sein de l'équipe, participation aux sprints Agiles (Scrum), développement de fonctionnalités métiers, refonte applicative et maintien de standards de code élevés.",
+        sec_exp_title: "Parcours & Expérience",
+        sec_exp_sub: "Historique professionnel et technique",
+        sec_proj_title: "Projets & Réalisations Techniques",
+        sec_proj_sub: "Architecture logicielle et code",
+        sec_stack_title: "Stack Technique & Compétences",
+        sec_stack_sub: "Technologies maîtrisées et en cours d'approfondissement",
+        sec_test_title: "Retours & Recommandations",
+        sec_test_sub: "Ce que disent mes encadrants et collaborateurs",
+        sec_edu_title: "Formation Académique",
+        sec_edu_sub: "Cursus supérieur en informatique",
+        footer_avail: "Disponible pour stage / alternance",
+        footer_home: "Accueil",
+        footer_contact: "Contact",
+        footer_copy: "Conçu et développé par Rodrigue HESSOU. Tous droits réservés.",
+        cmd_placeholder: "Rechercher une section, un projet…"
+      },
+      en: {
+        page_title: "Rodrigue HESSOU — Software Engineer & Master 1 Computer Science (Bac+5)",
+        nav_role: "Software Engineer",
+        nav_candidatures: "Applications",
+        nav_experience: "Experience",
+        nav_projets: "Projects",
+        nav_competences: "Stack",
+        nav_temoignages: "Reviews",
+        nav_formation: "Education",
+        nav_studio: "Studio",
+        nav_studio_long: "Student Studio (1-Page A4 Generator)",
+        nav_search: "Search",
+        nav_auth: "Sign In",
+        nav_auth_connected: "Connected",
+        studio_nav_title: "Free 1-Page A4 Resume & Cover Letter Generator for students",
+        mobile_status: "Lyon, France · Available",
+        btn_cv_stage_short: "Internship CV",
+        hero_status: "Available — Internship or Apprenticeship (Bac+5)",
+        hero_title_role: "Master 1 Computer Science Student — 5-Year Curriculum",
+        hero_tagline: "software engineering, architecture & craft that matters",
+        hero_lead_text: "Holding a <strong>Bachelor's degree in Software Engineering (Honors)</strong> and currently pursuing Master 1 at <strong>SUPINFO Lyon</strong>. I build reliable back-end and fullstack applications — Java, Python, SQL, Flutter, Web — with strong emphasis on rigorous testing, documentation, and user experience.",
+        lbl_email: "Email",
+        lbl_phone: "Phone",
+        lbl_loc: "Location",
+        val_loc: "Lyon, France · Open to Relocation",
+        lbl_lang: "Languages",
+        val_lang: "French (Native) · English (B2 Professional)",
+        meta_school: "School : SUPINFO Lyon (2026 - 2028)",
+        meta_degree: "Degree : Bachelor of Software Engineering (Honors)",
+        meta_avail: "Availability : Immediate",
+        btn_cv_stage: "Internship CV (PDF)",
+        btn_cv_alt: "Apprenticeship CV (PDF)",
+        btn_contact: "Contact Me",
+        studio_banner_badge: "Free Student Studio Tool",
+        studio_banner_title: "Need a strict 1-page A4 Resume or Cover Letter?",
+        studio_banner_desc: "I developed a comprehensive open-access studio: build and export strict 1-page A4 resumes and tailored cover letters, ready to print or export as PDF. 100% client-side privacy, zero server trace.",
+        studio_banner_btn: "Open Student Studio &rarr;",
+        sec_candidatures_title: "Technical Applications (Public Showcase)",
+        sec_candidatures_sub: "Bac+5 Master general applications",
+        badge_stage: "Internship",
+        title_stage: "Software Developer — Internship Application",
+        sub_stage: "Master 1 SUPINFO Lyon · 4 to 6 months from March 2026",
+        desc_stage: "General application for accredited Master 1 internship. Focused on software design, back-end and fullstack development (Java, Python, C++, SQL, Flutter), API integrations, and service-oriented architectures.",
+        badge_alt: "Apprenticeship",
+        title_alt: "Software Developer — Apprenticeship Application",
+        sub_alt: "Master 1 SUPINFO Lyon · Structured Work-Study Schedule",
+        desc_alt: "General application for software engineering apprenticeship. Long-term commitment within the team, participating in Agile sprints (Scrum), implementing business logic, and upholding high code standards.",
+        sec_exp_title: "Career & Work Experience",
+        sec_exp_sub: "Professional history & technical contributions",
+        sec_proj_title: "Projects & Technical Realizations",
+        sec_proj_sub: "Software architecture, platforms & production code",
+        sec_stack_title: "Technical Stack & Skills",
+        sec_stack_sub: "Mastered technologies and expanding toolkit",
+        sec_test_title: "Reviews & Recommendations",
+        sec_test_sub: "Feedback from managers, peers & mentors",
+        sec_edu_title: "Academic Background & Degrees",
+        sec_edu_sub: "Higher education in Computer Science",
+        footer_avail: "Available for internship / apprenticeship",
+        footer_home: "Home",
+        footer_contact: "Contact",
+        footer_copy: "Designed and developed by Rodrigue HESSOU. All rights reserved.",
+        cmd_placeholder: "Search for a section, project…"
+      }
+    };
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      document.documentElement.lang = lang;
+      try {
+        localStorage.setItem('portfolio_lang', lang);
+        localStorage.setItem('studio_lang', lang);
+      } catch(e) {}
+
+      // Update switcher buttons
+      const frBtn = document.getElementById('lang-fr-btn');
+      const enBtn = document.getElementById('lang-en-btn');
+      const mobFrBtn = document.getElementById('mob-lang-fr-btn');
+      const mobEnBtn = document.getElementById('mob-lang-en-btn');
+
+      if (frBtn && enBtn) {
+        frBtn.classList.toggle('active', lang === 'fr');
+        enBtn.classList.toggle('active', lang === 'en');
+      }
+      if (mobFrBtn && mobEnBtn) {
+        mobFrBtn.classList.toggle('active', lang === 'fr');
+        mobEnBtn.classList.toggle('active', lang === 'en');
+      }
+
+      const dict = translations[lang] || translations.fr;
+      if (dict.page_title) document.title = dict.page_title;
+
+      document.querySelectorAll('[data-i18n]').forEach((el) => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key]) {
+          el.innerHTML = dict[key];
+        }
+      });
+
+      document.querySelectorAll('[data-i18n-title]').forEach((el) => {
+        const key = el.getAttribute('data-i18n-title');
+        if (dict[key]) {
+          el.setAttribute('title', dict[key]);
+        }
+      });
+
+      const searchInp = document.getElementById('cmd-search');
+      if (searchInp && dict['cmd_placeholder']) {
+        searchInp.setAttribute('placeholder', dict['cmd_placeholder']);
+      }
+
+      const dot = document.getElementById('nav-status-dot');
+      if (dot) {
+        dot.setAttribute('title', lang === 'en' ? 'Available for opportunities' : 'Disponible pour opportunités');
+      }
+
+      if (typeof checkAuth === 'function') {
+        checkAuth();
+      }
+      if (typeof updateClockAndGreeting === 'function') {
+        updateClockAndGreeting();
+      }
+    }
+    
+
     document.documentElement.classList.add('js');
 
     // Cursor Spotlight Tracking
@@ -4346,201 +4532,10 @@
     }
 
   
-    // ====================================================
-    // INTERNATIONALIZATION (FR / EN) & PERSISTENCE
-    // ====================================================
-    let currentLang = 'fr';
-
-    const translations = {
-      fr: {
-        page_title: "Rodrigue HESSOU — Software Engineer & Master 1 Informatique (Bac+5)",
-        nav_role: "Software Engineer",
-        nav_candidatures: "Candidatures",
-        nav_experience: "Expérience",
-        nav_projets: "Projets",
-        nav_competences: "Stack",
-        nav_temoignages: "Avis",
-        nav_formation: "Formation",
-        nav_studio: "Studio Étudiant",
-        nav_studio_long: "Studio Étudiant (Générateur A4)",
-        nav_search: "Recherche",
-        nav_auth: "Connexion",
-        nav_auth_connected: "Connecté",
-        studio_nav_title: "Générateur de CV et Lettre A4 gratuit pour étudiants",
-        mobile_status: "Lyon, France · Disponible",
-        btn_cv_stage_short: "CV Stage",
-        hero_status: "Disponible — Stage ou alternance (Bac+5)",
-        hero_title_role: "Étudiant Master 1 en Informatique — Cursus Bac+5",
-        hero_tagline: "ingénierie logicielle, architecture & détails qui comptent",
-        hero_lead_text: "Titulaire d'une <strong>Licence en Génie Logiciel (Mention Bien)</strong> et actuellement en Master 1 à <strong>SUPINFO Lyon</strong>. Je conçois des applications back-end et fullstack fiables — Java, Python, SQL, Flutter, Web — avec une exigence particulière sur les tests, la documentation et l'expérience utilisateur.",
-        lbl_email: "Email",
-        lbl_phone: "Téléphone",
-        lbl_loc: "Localisation",
-        val_loc: "Lyon, France · Mobile",
-        lbl_lang: "Langues",
-        val_lang: "Français · Anglais B2",
-        meta_school: "Formation : SUPINFO Lyon (2026 - 2028)",
-        meta_degree: "Diplôme : Licence Génie Logiciel (Mention Bien)",
-        meta_avail: "Disponibilité : immédiate",
-        btn_cv_stage: "CV Stage (PDF)",
-        btn_cv_alt: "CV Alternance (PDF)",
-        btn_contact: "Me contacter",
-        studio_banner_badge: "Studio Gratuit pour Étudiants",
-        studio_banner_title: "Besoin d'un CV ou d'une lettre calibrée 1 page A4 ?",
-        studio_banner_desc: "J'ai développé un studio complet en accès libre : créez votre CV et votre lettre de motivation au format A4 strict 1 page, prêts pour l'impression ou l'exportation PDF. Vos données restent à 100% dans votre navigateur, aucun serveur n'enregistre quoi que ce soit.",
-        studio_banner_btn: "Ouvrir le Studio Étudiant &rarr;",
-        sec_candidatures_title: "Candidatures Techniques (Vitrine Publique)",
-        sec_candidatures_sub: "Dossiers généraux conventionnés Bac+5",
-        badge_stage: "Stage Conventionné",
-        title_stage: "Développeur Logiciel — Recherche de Stage",
-        sub_stage: "Master 1 SUPINFO Lyon · Durée 4 à 6 mois dès mars 2026",
-        desc_stage: "Candidature générale pour stage conventionné de fin de Master 1. Orienté conception logicielle, développement back-end et fullstack (Java, Python, C++, SQL, Flutter), intégration d'APIs et architectures orientées services.",
-        badge_alt: "Contrat d'Alternance",
-        title_alt: "Développeur Logiciel — Recherche d'Alternance",
-        sub_alt: "Rythme Master 1 SUPINFO Lyon (Cursus Bac+5)",
-        desc_alt: "Candidature générale pour contrat d'alternance en ingénierie logicielle. Investissement sur la durée au sein de l'équipe, participation aux sprints Agiles (Scrum), développement de fonctionnalités métiers, refonte applicative et maintien de standards de code élevés.",
-        sec_exp_title: "Parcours & Expérience",
-        sec_exp_sub: "Historique professionnel et technique",
-        sec_proj_title: "Projets & Réalisations Techniques",
-        sec_proj_sub: "Architecture logicielle et code",
-        sec_stack_title: "Stack Technique & Compétences",
-        sec_stack_sub: "Technologies maîtrisées et en cours d'approfondissement",
-        sec_test_title: "Retours & Recommandations",
-        sec_test_sub: "Ce que disent mes encadrants et collaborateurs",
-        sec_edu_title: "Formation Académique",
-        sec_edu_sub: "Cursus supérieur en informatique",
-        footer_avail: "Disponible pour stage / alternance",
-        footer_home: "Accueil",
-        footer_contact: "Contact",
-        footer_copy: "Conçu et développé par Rodrigue HESSOU. Tous droits réservés.",
-        cmd_placeholder: "Tapez une commande ou recherchez..."
-      },
-      en: {
-        page_title: "Rodrigue HESSOU — Software Engineer & Master 1 Computer Science (Bac+5)",
-        nav_role: "Software Engineer",
-        nav_candidatures: "Applications",
-        nav_experience: "Experience",
-        nav_projets: "Projects",
-        nav_competences: "Stack",
-        nav_temoignages: "Reviews",
-        nav_formation: "Education",
-        nav_studio: "Student Studio",
-        nav_studio_long: "Student Studio (1-Page A4 Generator)",
-        nav_search: "Search",
-        nav_auth: "Sign In",
-        nav_auth_connected: "Connected",
-        studio_nav_title: "Free 1-Page A4 Resume & Cover Letter Generator for students",
-        mobile_status: "Lyon, France · Available",
-        btn_cv_stage_short: "Internship CV",
-        hero_status: "Available — Internship or Apprenticeship (Bac+5)",
-        hero_title_role: "Master 1 Computer Science Student — 5-Year Curriculum",
-        hero_tagline: "software engineering, architecture & craft that matters",
-        hero_lead_text: "Holding a <strong>Bachelor's degree in Software Engineering (Honors)</strong> and currently pursuing Master 1 at <strong>SUPINFO Lyon</strong>. I build reliable back-end and fullstack applications — Java, Python, SQL, Flutter, Web — with strong emphasis on rigorous testing, documentation, and user experience.",
-        lbl_email: "Email",
-        lbl_phone: "Phone",
-        lbl_loc: "Location",
-        val_loc: "Lyon, France · Open to Relocation",
-        lbl_lang: "Languages",
-        val_lang: "French (Native) · English (B2 Professional)",
-        meta_school: "School : SUPINFO Lyon (2026 - 2028)",
-        meta_degree: "Degree : Bachelor of Software Engineering (Honors)",
-        meta_avail: "Availability : Immediate",
-        btn_cv_stage: "Internship CV (PDF)",
-        btn_cv_alt: "Apprenticeship CV (PDF)",
-        btn_contact: "Contact Me",
-        studio_banner_badge: "Free Student Studio Tool",
-        studio_banner_title: "Need a strict 1-page A4 Resume or Cover Letter?",
-        studio_banner_desc: "I developed a comprehensive open-access studio: build and export strict 1-page A4 resumes and tailored cover letters, ready to print or export as PDF. 100% client-side privacy, zero server trace.",
-        studio_banner_btn: "Open Student Studio &rarr;",
-        sec_candidatures_title: "Technical Applications (Public Showcase)",
-        sec_candidatures_sub: "Bac+5 Master general applications",
-        badge_stage: "Internship",
-        title_stage: "Software Developer — Internship Application",
-        sub_stage: "Master 1 SUPINFO Lyon · 4 to 6 months from March 2026",
-        desc_stage: "General application for accredited Master 1 internship. Focused on software design, back-end and fullstack development (Java, Python, C++, SQL, Flutter), API integrations, and service-oriented architectures.",
-        badge_alt: "Apprenticeship",
-        title_alt: "Software Developer — Apprenticeship Application",
-        sub_alt: "Master 1 SUPINFO Lyon · Structured Work-Study Schedule",
-        desc_alt: "General application for software engineering apprenticeship. Long-term commitment within the team, participating in Agile sprints (Scrum), implementing business logic, and upholding high code standards.",
-        sec_exp_title: "Career & Work Experience",
-        sec_exp_sub: "Professional history & technical contributions",
-        sec_proj_title: "Projects & Technical Realizations",
-        sec_proj_sub: "Software architecture, platforms & production code",
-        sec_stack_title: "Technical Stack & Skills",
-        sec_stack_sub: "Mastered technologies and expanding toolkit",
-        sec_test_title: "Reviews & Recommendations",
-        sec_test_sub: "Feedback from managers, peers & mentors",
-        sec_edu_title: "Academic Background & Degrees",
-        sec_edu_sub: "Higher education in Computer Science",
-        footer_avail: "Available for internship / apprenticeship",
-        footer_home: "Home",
-        footer_contact: "Contact",
-        footer_copy: "Designed and developed by Rodrigue HESSOU. All rights reserved.",
-        cmd_placeholder: "Type a command or search..."
-      }
-    };
-
-    function setLanguage(lang) {
-      currentLang = lang;
-      document.documentElement.lang = lang;
-      try {
-        localStorage.setItem('portfolio_lang', lang);
-        localStorage.setItem('studio_lang', lang);
-      } catch(e) {}
-
-      // Toggle button states
-      const frBtn = document.getElementById('lang-fr-btn');
-      const enBtn = document.getElementById('lang-en-btn');
-      const mobFrBtn = document.getElementById('mob-lang-fr-btn');
-      const mobEnBtn = document.getElementById('mob-lang-en-btn');
-
-      if (frBtn && enBtn) {
-        frBtn.classList.toggle('active', lang === 'fr');
-        enBtn.classList.toggle('active', lang === 'en');
-      }
-      if (mobFrBtn && mobEnBtn) {
-        mobFrBtn.classList.toggle('active', lang === 'fr');
-        mobEnBtn.classList.toggle('active', lang === 'en');
-      }
-
-      const dict = translations[lang] || translations.fr;
-      if (dict.page_title) document.title = dict.page_title;
-
-      document.querySelectorAll('[data-i18n]').forEach((el) => {
-        const key = el.getAttribute('data-i18n');
-        if (dict[key]) {
-          el.innerHTML = dict[key];
-        }
-      });
-
-      document.querySelectorAll('[data-i18n-title]').forEach((el) => {
-        const key = el.getAttribute('data-i18n-title');
-        if (dict[key]) {
-          el.setAttribute('title', dict[key]);
-        }
-      });
-
-      const searchInp = document.getElementById('cmd-input');
-      if (searchInp && dict['cmd_placeholder']) {
-        searchInp.setAttribute('placeholder', dict['cmd_placeholder']);
-      }
-
-      const dot = document.getElementById('nav-status-dot');
-      if (dot) {
-        dot.setAttribute('title', lang === 'en' ? 'Available for opportunities' : 'Disponible pour opportunités');
-      }
-
-      // Refresh auth text based on current state
-      checkAuth();
-    }
-
-    // Auto-init language on load
-    const savedLang = localStorage.getItem('portfolio_lang') || localStorage.getItem('studio_lang') || 'fr';
-    if (savedLang === 'en') {
-      setLanguage('en');
-    }
-
-  </script>
+    
+    // Run language initialization on load
+    setLanguage(currentLang);
+</script>
 
 </body>
 </html>

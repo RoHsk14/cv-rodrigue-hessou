@@ -556,6 +556,67 @@
     display: none;
   }
 
+  /* REORDER CONTROLS */
+  .item-reorder-buttons {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 4px;
+    padding: 1px 3px;
+  }
+
+  .btn-reorder {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 2px 4px;
+    border-radius: 3px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s ease;
+  }
+
+  .btn-reorder:hover:not(:disabled) {
+    color: var(--accent);
+    background: rgba(59, 130, 246, 0.15);
+  }
+
+  .btn-reorder:disabled {
+    opacity: 0.25;
+    cursor: not-allowed;
+  }
+
+  .skill-move-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    margin-right: 2px;
+  }
+
+  .btn-move-skill {
+    background: transparent;
+    border: none;
+    color: #a1a1aa;
+    cursor: pointer;
+    padding: 1px 3px;
+    border-radius: 3px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s ease;
+    font-size: 11px;
+    line-height: 1;
+  }
+
+  .btn-move-skill:hover {
+    color: #60a5fa;
+    background: rgba(59, 130, 246, 0.2);
+  }
+
   /* PHOTO UPLOAD BOX */
   .photo-upload-box {
     display: flex;
@@ -1234,8 +1295,19 @@
           </div>
         </div>
 
+        <!-- SECTION REORDER CONTROL -->
+        <div class="sidebar-section" style="background: var(--bg-subtle); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <div style="font-size: 11.5px; font-weight: 700; color: var(--text-primary); font-family: var(--font-mono);">Disposition des Blocs CV</div>
+            <div style="font-size: 10.5px; color: var(--text-muted);" id="cv-section-order-sub">Exp&eacute;riences en premier, Formations en second</div>
+          </div>
+          <button type="button" class="btn btn-secondary" style="font-size: 11px; padding: 5px 9px;" onclick="swapCvSections()">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="7 16 12 21 17 16"></polyline><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="21"></line></svg>
+            Permuter
+          </button>
+        </div>
         <!-- EXPERIENCES DYNAMIQUES -->
-        <div class="sidebar-section">
+        <div class="sidebar-section" id="cv-sidebar-block-exp">
           <div class="form-section-title">
             <span>Expériences Professionnelles</span>
             <button type="button" class="btn btn-secondary" style="font-size: 11px; padding: 4px 8px;" onclick="addExperience()">
@@ -1267,7 +1339,7 @@
         </div>
 
         <!-- FORMATIONS DYNAMIQUES -->
-        <div class="sidebar-section">
+        <div class="sidebar-section" id="cv-sidebar-block-edu">
           <div class="form-section-title">
             <span>Formations &amp; Diplômes</span>
             <button type="button" class="btn btn-secondary" style="font-size: 11px; padding: 4px 8px;" onclick="addEducation()">
@@ -2079,6 +2151,42 @@
       }
     }
 
+    let cvSectionOrder = 'exp_first'; // or 'edu_first'
+
+    function swapCvSections() {
+      cvSectionOrder = cvSectionOrder === 'exp_first' ? 'edu_first' : 'exp_first';
+      applyCvSectionOrder();
+      showToast(cvSectionOrder === 'exp_first' ? 'Expériences placées en premier' : 'Formations placées en premier');
+      if (currentMode === 'local') saveLocal();
+    }
+
+    function applyCvSectionOrder() {
+      const sheetWrap = document.getElementById('cv-sheet-sections-wrap');
+      const sheetExp = document.getElementById('cv-sheet-block-exp');
+      const sheetEdu = document.getElementById('cv-sheet-block-edu');
+
+      const sideExp = document.getElementById('cv-sidebar-block-exp');
+      const sideEdu = document.getElementById('cv-sidebar-block-edu');
+
+      const label = document.getElementById('cv-section-order-sub');
+
+      if (!sheetWrap || !sheetExp || !sheetEdu) return;
+
+      if (cvSectionOrder === 'edu_first') {
+        sheetWrap.insertBefore(sheetEdu, sheetExp);
+        if (sideExp && sideEdu && sideExp.parentNode) {
+          sideExp.parentNode.insertBefore(sideEdu, sideExp);
+        }
+        if (label) label.innerText = "Formations en premier, Expériences en second";
+      } else {
+        sheetWrap.insertBefore(sheetExp, sheetEdu);
+        if (sideExp && sideEdu && sideEdu.parentNode) {
+          sideEdu.parentNode.insertBefore(sideExp, sideEdu);
+        }
+        if (label) label.innerText = "Expériences en premier, Formations en second";
+      }
+    }
+
     // DYNAMIC EXPERIENCES MANAGEMENT
     function renderExperiencesEditor() {
       const container = document.getElementById('experiences-editor-list');
@@ -2093,7 +2201,17 @@
         card.className = 'dynamic-item-card';
         card.innerHTML = `
           <div class="dynamic-item-header">
-            <span class="dynamic-item-label">Expérience ${idx + 1}</span>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span class="dynamic-item-label">Expérience ${idx + 1}</span>
+              <div class="item-reorder-buttons">
+                <button type="button" class="btn-reorder" onclick="moveExperience(${idx}, -1)" ${idx === 0 ? 'disabled' : ''} title="Monter cette expérience">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"></polyline></svg>
+                </button>
+                <button type="button" class="btn-reorder" onclick="moveExperience(${idx}, 1)" ${idx === currentExperiences.length - 1 ? 'disabled' : ''} title="Descendre cette expérience">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </button>
+              </div>
+            </div>
             <button type="button" class="btn-item-delete" onclick="removeExperience(${idx})" title="Supprimer cette expérience">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
               Supprimer
@@ -2110,6 +2228,18 @@
         `;
         container.appendChild(card);
       });
+    }
+
+    function moveExperience(idx, dir) {
+      const target = idx + dir;
+      if (target < 0 || target >= currentExperiences.length) return;
+      const tmp = currentExperiences[idx];
+      currentExperiences[idx] = currentExperiences[target];
+      currentExperiences[target] = tmp;
+      renderExperiencesEditor();
+      renderExperiencesPreview();
+      showToast("Ordre des expériences mis à jour");
+      if (currentMode === 'local') saveLocal();
     }
 
     function addExperience() {
@@ -2178,7 +2308,17 @@
         card.className = 'dynamic-item-card';
         card.innerHTML = `
           <div class="dynamic-item-header">
-            <span class="dynamic-item-label">Formation ${idx + 1}</span>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span class="dynamic-item-label">Formation ${idx + 1}</span>
+              <div class="item-reorder-buttons">
+                <button type="button" class="btn-reorder" onclick="moveEducation(${idx}, -1)" ${idx === 0 ? 'disabled' : ''} title="Monter cette formation">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"></polyline></svg>
+                </button>
+                <button type="button" class="btn-reorder" onclick="moveEducation(${idx}, 1)" ${idx === currentEducations.length - 1 ? 'disabled' : ''} title="Descendre cette formation">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </button>
+              </div>
+            </div>
             <button type="button" class="btn-item-delete" onclick="removeEducation(${idx})" title="Supprimer cette formation">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
               Supprimer
@@ -2195,6 +2335,18 @@
         `;
         container.appendChild(card);
       });
+    }
+
+    function moveEducation(idx, dir) {
+      const target = idx + dir;
+      if (target < 0 || target >= currentEducations.length) return;
+      const tmp = currentEducations[idx];
+      currentEducations[idx] = currentEducations[target];
+      currentEducations[target] = tmp;
+      renderEducationsEditor();
+      renderEducationsPreview();
+      showToast("Ordre des formations mis à jour");
+      if (currentMode === 'local') saveLocal();
     }
 
     function addEducation() {
@@ -2262,11 +2414,30 @@
         const tag = document.createElement('span');
         tag.className = 'editor-skill-badge';
         tag.innerHTML = `
+          <span class="skill-move-actions">
+            ${idx > 0 ? `<button type="button" class="btn-move-skill" onclick="moveSkill(${idx}, -1)" title="Déplacer vers la gauche / haut">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            </button>` : ''}
+            ${idx < currentSkills.length - 1 ? `<button type="button" class="btn-move-skill" onclick="moveSkill(${idx}, 1)" title="Déplacer vers la droite / bas">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>` : ''}
+          </span>
           <span>${escapeHtml(skill)}</span>
           <button type="button" class="btn-remove-skill" onclick="removeSkill(${idx})" title="Retirer ${escapeHtml(skill)}">&times;</button>
         `;
         container.appendChild(tag);
       });
+    }
+
+    function moveSkill(idx, dir) {
+      const target = idx + dir;
+      if (target < 0 || target >= currentSkills.length) return;
+      const tmp = currentSkills[idx];
+      currentSkills[idx] = currentSkills[target];
+      currentSkills[target] = tmp;
+      renderSkillsEditor();
+      renderSkillsPreview();
+      if (currentMode === 'local') saveLocal();
     }
 
     function renderSkillsPreview() {
@@ -2477,6 +2648,7 @@
       const data = {
         name: document.getElementById('inp-name').value,
         candidateGender: candidateGender,
+        cvSectionOrder: cvSectionOrder,
         recipientSalutation: recipientSalutation,
         title: document.getElementById('inp-title').value,
         city: document.getElementById('inp-city').value,
@@ -2512,6 +2684,10 @@
           const d = JSON.parse(saved);
           if (d.name) document.getElementById('inp-name').value = d.name;
           if (d.candidateGender) setCandidateGender(d.candidateGender);
+          if (d.cvSectionOrder) {
+            cvSectionOrder = d.cvSectionOrder;
+            applyCvSectionOrder();
+          }
           if (d.recipientSalutation) setSalutation(d.recipientSalutation);
           if (d.title) document.getElementById('inp-title').value = d.title;
           if (d.city) document.getElementById('inp-city').value = d.city;
@@ -2593,6 +2769,7 @@
       const data = {
         name: document.getElementById('inp-name').value,
         candidateGender: candidateGender,
+        cvSectionOrder: cvSectionOrder,
         recipientSalutation: recipientSalutation,
         title: document.getElementById('inp-title').value,
         city: document.getElementById('inp-city').value,

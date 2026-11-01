@@ -2138,6 +2138,7 @@
     function setLanguage(lang) {
       currentLang = lang;
       localStorage.setItem('studio_lang', lang);
+      localStorage.setItem('portfolio_lang', lang);
       document.documentElement.setAttribute('lang', lang);
 
       const btnFr = document.getElementById('lang-fr-btn');
@@ -3383,7 +3384,7 @@
     // INIT
     window.addEventListener('DOMContentLoaded', () => {
       initTheme();
-      const savedLang = localStorage.getItem('studio_lang') || 'fr';
+      const savedLang = localStorage.getItem('portfolio_lang') || localStorage.getItem('studio_lang') || 'fr';
       if (savedLang === 'en') setLanguage('en');
       document.getElementById('inp-let-date').value = getTodayFrenchDate();
       applyLetterPreset('stage_dev');

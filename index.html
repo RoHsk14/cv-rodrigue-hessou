@@ -37,9 +37,9 @@
     --border-subtle: rgba(255, 255, 255, 0.04);
     --border-active: rgba(255, 255, 255, 0.20);
     
-    --text-primary: #f4f4f5;
-    --text-secondary: #9da3ae;
-    --text-muted: #6b7280;
+    --text-primary: #f8fafc;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
     
     --accent: #3b82f6;
     --accent-dark: #1d4ed8;
@@ -69,9 +69,9 @@
     --border-subtle: #f0f0f2;
     --border-active: #71717a;
     
-    --text-primary: #09090b;
-    --text-secondary: #52525b;
-    --text-muted: #71717a;
+    --text-primary: #0f172a;
+    --text-secondary: #334155;
+    --text-muted: #64748b;
     
     --accent: #2563eb;
     --accent-dark: #1e40af;
@@ -126,12 +126,21 @@
     background-color: var(--bg);
     color: var(--text-primary);
     min-height: 100vh;
-    line-height: 1.5;
+    line-height: 1.55;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     transition: background-color 0.2s ease, color 0.2s ease;
     overflow-x: hidden;
     position: relative;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  p, .hero-lead-text, .timeline-desc, .project-desc, .testimonial-text, .bento-card p, .private-doc-desc {
+    text-wrap: pretty;
+  }
+
+  h1, h2, h3, h4, .section-title, .project-title, .bento-title h4, .showcase-title {
+    text-wrap: balance;
   }
 
   /* Layout wrapper */
@@ -900,29 +909,97 @@
   }
 
   @media (max-width: 768px) {
-    .hero-section { padding: 24px 18px 24px; }
+    .hero-section { padding: 26px 18px 22px; }
     .hero-profile-row {
-      flex-direction: column-reverse;
+      flex-direction: row-reverse;
+      justify-content: space-between;
       align-items: center;
-      text-align: center;
-      gap: 18px;
+      text-align: left;
+      gap: 16px;
     }
-    .hero-bio-container { align-items: center; }
-    .hero-name-block h1 { justify-content: center; font-size: 28px; }
-    .hero-avatar-frame { width: 96px; height: 96px; }
-    .hero-avatar-img { width: 96px; height: 96px; }
-    .hero-lead-text { font-size: 13.5px; margin-top: 16px; }
-    .hero-info-grid { grid-template-columns: 1fr; }
-    .hero-info-item { border-right: none; }
+    .hero-bio-container {
+      align-items: flex-start;
+      text-align: left;
+    }
+    .hero-name-block h1 {
+      justify-content: flex-start;
+      font-size: clamp(23px, 6vw, 28px);
+      letter-spacing: -0.5px;
+      line-height: 1.15;
+    }
+    .hero-title-role {
+      font-size: 14.5px;
+      line-height: 1.35;
+      color: var(--text-secondary);
+    }
+    .hero-tagline {
+      font-size: 11.5px;
+      line-height: 1.4;
+    }
+    .hero-avatar-frame {
+      width: 76px;
+      height: 76px;
+      flex-shrink: 0;
+    }
+    .hero-avatar-img {
+      width: 76px;
+      height: 76px;
+    }
+    .hero-lead-text {
+      font-size: 14.5px;
+      line-height: 1.65;
+      margin-top: 16px;
+      text-align: left;
+      color: var(--text-secondary);
+    }
+    .hero-info-grid {
+      grid-template-columns: 1fr;
+      margin-top: 16px;
+    }
+    .hero-info-item {
+      padding: 12px 14px;
+      border-right: none;
+      min-height: 48px;
+    }
+    .hero-info-value {
+      font-size: 13.5px;
+    }
     .hero-info-item:nth-last-child(-n+2) { border-bottom: 1px solid var(--border); }
     .hero-info-item:last-child { border-bottom: none; }
-    .hero-actions-bar { justify-content: center; }
+    .hero-meta-row {
+      justify-content: flex-start;
+      margin-top: 12px;
+      gap: 6px;
+    }
+    .hero-meta-item {
+      font-size: 11.5px;
+      padding: 4px 10px;
+    }
+    .hero-actions-bar {
+      justify-content: flex-start;
+    }
     .hero-socials {
       margin-left: 0;
       padding-left: 0;
       border-left: none;
       width: 100%;
-      justify-content: center;
+      justify-content: flex-start;
+    }
+  }
+
+  @media (max-width: 440px) {
+    .hero-profile-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .hero-avatar-frame {
+      width: 68px;
+      height: 68px;
+    }
+    .hero-avatar-img {
+      width: 68px;
+      height: 68px;
     }
   }
 
@@ -2276,74 +2353,221 @@
     transform: rotate(0deg) scale(1.02);
   }
 
-  /* Mobile-only tweaks */
+  /* Mobile-only enhancements & typography readability */
   @media (max-width: 768px) {
+    .layout-wrapper {
+      border-left: none;
+      border-right: none;
+    }
+    .content-section {
+      padding: 28px 18px;
+    }
+    .section-header-block {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 18px;
+    }
+    .section-title {
+      font-size: 19px;
+      line-height: 1.3;
+      align-items: flex-start;
+    }
+    .section-desc {
+      font-size: 13px;
+      line-height: 1.4;
+      color: var(--text-muted);
+    }
+    .section-index {
+      margin-top: 2px;
+      transform: none;
+    }
+    .section-link-btn {
+      display: none;
+    }
     .stats-grid {
       grid-template-columns: 1fr 1fr;
     }
     .stat-card:nth-child(2) { border-right: none; }
     .stat-card:nth-child(-n+2) { border-bottom: 1px solid var(--border); }
-    .section-header-block { align-items: flex-start; flex-direction: column; gap: 4px; }
-    .section-link-btn { display: none; }
-    .site-footer { padding: 30px 18px 22px; }
-    .footer-brand-row { flex-direction: column; gap: 16px; }
-    .footer-tagline { display: none; }
-    .footer-top-row { flex-direction: column; align-items: flex-start; }
-    .footer-bottom-row { flex-direction: column; align-items: flex-start; }
-    .heatmap-section { padding: 20px 18px; }
-    .heatmap-legend { display: none; }
-    .heatmap-scroll-hint { display: inline; }
-    .section-title { align-items: flex-start; }
-    .section-index { margin-top: 2px; transform: none; }
-    .content-section { padding: 30px 18px; }
+    .stat-card {
+      padding: 14px 16px;
+    }
+    .stat-num {
+      font-size: 19px;
+    }
+    .stat-label {
+      font-size: 11.5px;
+      line-height: 1.35;
+    }
+
+    /* Grids to single column for readability */
+    .showcase-grid, .bento-grid, .projects-grid, .testimonials-grid, .private-docs-list {
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    .showcase-card, .project-card, .testimonial-card, .bento-card {
+      padding: 18px 16px;
+      border-radius: 10px;
+    }
+    .showcase-title {
+      font-size: 17px;
+      line-height: 1.3;
+    }
+    .showcase-desc, .project-desc, .testimonial-text, .bento-card p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+    }
+
+    /* Timeline comfortable reading */
+    .timeline-list {
+      padding-left: 18px;
+      margin-left: 4px;
+      gap: 24px;
+    }
+    .timeline-node {
+      left: -23px;
+      top: 6px;
+      width: 9px;
+      height: 9px;
+    }
+    .timeline-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+    }
+    .timeline-role {
+      font-size: 15.5px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.25;
+    }
+    .timeline-company {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--accent);
+    }
+    .timeline-date {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+    .timeline-desc {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      margin-top: 6px;
+    }
+
+    /* Banners & CTAs */
+    .studio-promo-banner, .private-access-banner {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 20px 18px;
+      gap: 14px;
+      text-align: left;
+    }
+    .studio-promo-banner h3 {
+      font-size: 17px;
+      line-height: 1.3;
+    }
+    .studio-promo-banner p {
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .studio-promo-banner .btn, .private-access-banner .btn {
+      width: 100%;
+      min-height: 44px;
+      justify-content: center;
+    }
+
+    /* Buttons touch targets */
+    .btn {
+      min-height: 42px;
+      font-size: 13.5px;
+    }
+    .btn-sm {
+      min-height: 38px;
+      font-size: 12.5px;
+      padding: 7px 14px;
+    }
+
+    /* Dialogs mobile centering */
+    dialog#cmd-dialog, dialog#login-modal {
+      inset: 0;
+      margin: auto;
+      width: calc(100% - 24px);
+      max-height: calc(100dvh - 32px);
+      max-height: calc(100vh - 32px);
+      border-radius: 12px;
+    }
+
+    .greeting-bar {
+      padding: 10px 18px 0;
+      font-size: 11.5px;
+    }
+    .site-footer {
+      padding: 28px 18px 22px;
+    }
+    .footer-brand-row {
+      flex-direction: column;
+      gap: 16px;
+    }
+    .footer-tagline {
+      display: none;
+    }
+    .footer-top-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .footer-bottom-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .heatmap-section {
+      padding: 20px 18px;
+    }
+    .heatmap-legend {
+      display: none;
+    }
+    .heatmap-scroll-hint {
+      display: inline;
+    }
+    .hand-note {
+      display: none;
+    }
   }
 
   @media (max-width: 600px) {
     .hero-actions-bar {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 9px;
+      gap: 10px;
+      width: 100%;
     }
     .hero-actions-bar > .btn {
       width: 100%;
+      min-height: 44px;
     }
     .hero-actions-bar > .btn:nth-of-type(3) {
       grid-column: 1 / -1;
     }
     .hero-socials {
       grid-column: 1 / -1;
+      width: 100%;
+      margin-top: 6px;
     }
   }
 
   @media (max-width: 360px) {
-    .hero-actions-bar { grid-template-columns: 1fr; }
-    .hero-actions-bar > .btn:nth-of-type(3) { grid-column: auto; }
-  }
-
-  /* RESPONSIVE */
-  @media (max-width: 768px) {
-    .layout-wrapper {
-      border-left: none;
-      border-right: none;
-    }
-    .hero-actions-bar, .hero-meta-row {
-      justify-content: center;
-    }
-    .showcase-grid, .bento-grid, .projects-grid, .testimonials-grid, .private-docs-list {
+    .hero-actions-bar {
       grid-template-columns: 1fr;
     }
-    .content-section {
-      padding: 24px 18px;
-    }
-    .private-access-banner {
-      flex-direction: column;
-      text-align: center;
-    }
-    .hand-note {
-      display: none; /* Hide margin notes on narrow screens */
-    }
-    .greeting-bar {
-      padding: 10px 18px 0;
+    .hero-actions-bar > .btn:nth-of-type(3) {
+      grid-column: auto;
     }
   }
 
@@ -2691,7 +2915,7 @@
     <section class="content-section" id="candidatures">
 
       <!-- STUDIO ÉTUDIANT PUBLIC BANNER -->
-      <div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 24px; margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap;">
+      <div class="studio-promo-banner" style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 24px; margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap;">
         <div>
           <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
             <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 500; color: var(--accent); background: var(--accent-subtle); border: 1px solid var(--border); padding: 2px 7px; border-radius: 4px;">
@@ -3764,7 +3988,6 @@
         login_modal_desc: "Authentification biométrique matérielle (Touch ID / Face ID).",
         login_modal_bio_btn: "Se connecter avec Touch ID / Face ID",
         login_modal_bio_hint: "Reconnaissance biométrique locale ou via iPhone (scan QR code).",
-        login_modal_bio_reset: "Réenregistrer une Passkey biométrique",
         login_modal_cancel: "Fermer",
         cmd_cat_1: "Outils Publics Gratuits",
         cmd_cat_2: "Navigation Publique",
@@ -3917,7 +4140,6 @@
         login_modal_desc: "Hardware biometric authentication (Touch ID / Face ID).",
         login_modal_bio_btn: "Sign in with Touch ID / Face ID",
         login_modal_bio_hint: "Local biometrics or via iPhone (QR code scan).",
-        login_modal_bio_reset: "Re-register biometric passkey",
         login_modal_cancel: "Close",
         cmd_cat_1: "Free Public Tools",
         cmd_cat_2: "Public Navigation",

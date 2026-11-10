@@ -1742,6 +1742,116 @@
     margin-top: 4px;
   }
 
+  /* BIOMETRIC WEBAUTHN / PASSKEY MODULE */
+  .biometric-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 14px 16px;
+    background: var(--surface-elevated);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .biometric-card:hover {
+    border-color: rgba(59, 130, 246, 0.4);
+  }
+
+  .btn-biometric {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 11px 16px;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.14), rgba(99, 102, 241, 0.08));
+    border: 1px solid rgba(59, 130, 246, 0.35);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 13.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .btn-biometric:hover {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.24), rgba(99, 102, 241, 0.16));
+    border-color: var(--accent);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(59, 130, 246, 0.2);
+  }
+
+  .btn-biometric:active {
+    transform: translateY(0);
+  }
+
+  .btn-biometric svg {
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .biometric-badge {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 2px 7px;
+    border-radius: 4px;
+    background: rgba(16, 185, 129, 0.15);
+    color: #10b981;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    margin-left: auto;
+  }
+
+  .biometric-badge.new {
+    background: rgba(59, 130, 246, 0.15);
+    color: #60a5fa;
+    border-color: rgba(59, 130, 246, 0.3);
+  }
+
+  .biometric-hint {
+    font-size: 11.5px;
+    color: var(--text-muted);
+    text-align: center;
+    line-height: 1.4;
+  }
+
+  .biometric-reset-link {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 11px;
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 2px 4px;
+    font-family: var(--font-mono);
+    transition: color 0.15s ease;
+  }
+
+  .biometric-reset-link:hover {
+    color: var(--text-primary);
+  }
+
+  .login-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 2px 0;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .login-divider::before, .login-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
   /* TOAST */
   .toast {
     position: fixed;
@@ -3193,12 +3303,19 @@
          -------------------------------------------------- -->
     <div id="private-dashboard">
       <div class="private-header-bar">
-        <div class="private-status-tag">
+        <div class="private-status-tag" style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
           <span data-i18n="priv_dash_title">Espace Interne Connecté : Rodrigue HESSOU</span>
+          <span id="private-auth-method-badge" class="biometric-badge" style="display:none;"></span>
         </div>
-        <button class="btn btn-secondary btn-sm" onclick="logout()" data-i18n="priv_dash_logout">
-          Déconnexion
-        </button>
+        <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+          <button class="btn btn-secondary btn-sm" onclick="promptPasskeyManagement()" id="btn-manage-passkey" title="Gérer ou réenregistrer la Passkey biométrique">
+            <svg class="icon-svg" style="width:14px; height:14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 0-7.07 17.07"></path><path d="M12 6a6 6 0 0 0-4.24 10.24"></path><path d="M12 10a2 2 0 0 0-1.41 3.41"></path><path d="M12 14v4"></path></svg>
+            <span data-i18n="priv_dash_manage_passkey">Gérer ma Passkey</span>
+          </button>
+          <button class="btn btn-secondary btn-sm" onclick="logout()" data-i18n="priv_dash_logout">
+            Déconnexion
+          </button>
+        </div>
       </div>
 
       <!-- EDITORS BENTO -->
@@ -3458,26 +3575,39 @@
     </div>
   </dialog>
 
-  <!-- LOGIN MODAL DIALOG -->
-  <dialog id="login-modal" closedby="any" aria-label="Connexion à l'espace interne">
+  <!-- LOGIN MODAL DIALOG (100% BIOMETRIQUE / PASSKEY PASSWORDLESS) -->
+  <dialog id="login-modal" closedby="any" aria-label="Connexion biométrique à l'espace interne">
     <div class="login-card">
       <div class="login-header">
         <h3 data-i18n="login_modal_title">Espace Interne Réservé</h3>
-        <p data-i18n="login_modal_desc">Veuillez saisir votre mot de passe d'accès pour déverrouiller vos dossiers.</p>
+        <p data-i18n="login_modal_desc">Authentification biométrique matérielle (Touch ID / Face ID).</p>
       </div>
 
-      <form onsubmit="handleLoginSubmit(event)">
-        <div class="login-form-group">
-          <label for="login-pwd" data-i18n="login_modal_label">Mot de passe</label>
-          <input type="password" id="login-pwd" class="login-input" placeholder="Mot de passe d'accès..." data-i18n-placeholder="login_modal_placeholder" autofocus required>
-          <span class="login-error-msg" id="login-error" data-i18n="login_modal_error">Mot de passe incorrect. Veuillez réessayer.</span>
+      <!-- MODULE WEBAUTHN / BIOMETRIE (TOUCH ID, FACE ID, QR CODE SMARTPHONE) -->
+      <div id="biometric-login-container" class="biometric-card">
+        <button type="button" id="btn-biometric-auth" class="btn-biometric" onclick="handleBiometricAction()">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 9V6.5C2 4.01 4.01 2 6.5 2H9"></path>
+            <path d="M15 2h2.5C19.99 2 22 4.01 22 6.5V9"></path>
+            <path d="M22 15v2.5c0 2.49-2.01 4.5-4.5 4.5H15"></path>
+            <path d="M9 22H6.5C4.01 22 2 19.99 2 17.5V15"></path>
+            <path d="M9 10h.01"></path>
+            <path d="M15 10h.01"></path>
+            <path d="M9.5 15a3.5 3.5 0 0 0 5 0"></path>
+            <path d="M12 11v2"></path>
+          </svg>
+          <span id="biometric-btn-text" data-i18n="login_modal_bio_btn">Se connecter avec Touch ID / Face ID</span>
+          <span id="biometric-badge" class="biometric-badge">Passkey</span>
+        </button>
+        <div id="biometric-hint" class="biometric-hint" data-i18n="login_modal_bio_hint">
+          Reconnaissance biométrique locale ou via iPhone (scan QR code).
         </div>
+        <span class="login-error-msg" id="login-error" style="text-align:center;"></span>
+      </div>
 
-        <div class="login-actions" style="margin-top: 16px;">
-          <button type="button" class="btn btn-secondary btn-sm" onclick="closeLoginModal()" data-i18n="login_modal_cancel">Annuler</button>
-          <button type="submit" class="btn btn-primary btn-sm" data-i18n="login_modal_submit">Se connecter</button>
-        </div>
-      </form>
+      <div class="login-actions" style="margin-top: 8px;">
+        <button type="button" class="btn btn-secondary btn-sm" onclick="closeLoginModal()" data-i18n="login_modal_cancel">Fermer</button>
+      </div>
     </div>
   </dialog>
 
@@ -3618,6 +3748,7 @@
         auth_cta_desc: "Vous êtes Rodrigue HESSOU ? Connectez-vous à votre espace interne pour accéder à vos dossiers de candidatures ciblées (jobs étudiants, soutien scolaire, retail, restauration rapide) et ouvrir les éditeurs interactifs en ligne.",
         auth_cta_btn: "Accéder à l'espace interne",
         priv_dash_title: "Espace Interne Connecté : Rodrigue HESSOU",
+        priv_dash_manage_passkey: "Gérer ma Passkey",
         priv_dash_logout: "Déconnexion",
         priv_tools_title: "Outils d'Édition en Ligne",
         priv_tools_sub: "Personnalisation et export instantané",
@@ -3630,12 +3761,11 @@
         priv_jobs_title: "Candidatures Dédiées & Jobs Étudiants",
         priv_jobs_sub: "Dossiers ciblés prêts à l'envoi",
         login_modal_title: "Espace Interne Réservé",
-        login_modal_desc: "Veuillez saisir votre mot de passe d'accès pour déverrouiller vos dossiers.",
-        login_modal_label: "Mot de passe",
-        login_modal_placeholder: "Mot de passe d'accès...",
-        login_modal_error: "Mot de passe incorrect. Veuillez réessayer.",
-        login_modal_cancel: "Annuler",
-        login_modal_submit: "Se connecter",
+        login_modal_desc: "Authentification biométrique matérielle (Touch ID / Face ID).",
+        login_modal_bio_btn: "Se connecter avec Touch ID / Face ID",
+        login_modal_bio_hint: "Reconnaissance biométrique locale ou via iPhone (scan QR code).",
+        login_modal_bio_reset: "Réenregistrer une Passkey biométrique",
+        login_modal_cancel: "Fermer",
         cmd_cat_1: "Outils Publics Gratuits",
         cmd_cat_2: "Navigation Publique",
         cmd_cat_3: "Projets Déployés & Réalisations",
@@ -3771,6 +3901,7 @@
         auth_cta_desc: "Are you Rodrigue HESSOU? Log in to your private portal to access targeted application packages (student jobs, academic tutoring, retail, food service) and open the interactive online editors.",
         auth_cta_btn: "Access Private Portal",
         priv_dash_title: "Private Portal Connected: Rodrigue HESSOU",
+        priv_dash_manage_passkey: "Manage Passkey",
         priv_dash_logout: "Log out",
         priv_tools_title: "Online Document Editors",
         priv_tools_sub: "Tailored customization and instant export",
@@ -3783,12 +3914,11 @@
         priv_jobs_title: "Targeted Applications & Student Jobs",
         priv_jobs_sub: "Tailored application packs ready to send",
         login_modal_title: "Reserved Internal Portal",
-        login_modal_desc: "Please enter your access password to unlock your targeted application dossiers.",
-        login_modal_label: "Password",
-        login_modal_placeholder: "Access password...",
-        login_modal_error: "Incorrect password. Please try again.",
-        login_modal_cancel: "Cancel",
-        login_modal_submit: "Log in",
+        login_modal_desc: "Hardware biometric authentication (Touch ID / Face ID).",
+        login_modal_bio_btn: "Sign in with Touch ID / Face ID",
+        login_modal_bio_hint: "Local biometrics or via iPhone (QR code scan).",
+        login_modal_bio_reset: "Re-register biometric passkey",
+        login_modal_cancel: "Close",
         cmd_cat_1: "Free Public Tools",
         cmd_cat_2: "Public Navigation",
         cmd_cat_3: "Deployed Projects & Works",
@@ -4039,6 +4169,20 @@
         navText.textContent = currentLang === 'en' ? 'Connected' : 'Connecté';
         ctaSection.style.display = 'none';
         cmdLoginItem.innerHTML = '<div class="cmd-item" onclick="logout(); closeCmdPalette();"><span class="cmd-item-left">Déconnexion de l’Espace Interne</span><span class="cmd-item-badge">Auth</span></div>';
+        
+        const methodBadge = document.getElementById('private-auth-method-badge');
+        if (methodBadge) {
+          methodBadge.style.display = 'inline-block';
+          const method = localStorage.getItem('rodrigue_auth_method');
+          if (method === 'biometrics') {
+            methodBadge.textContent = '🔒 Touch ID / Face ID (Passkey)';
+            methodBadge.className = 'biometric-badge';
+          } else {
+            methodBadge.textContent = '🔑 Mot de passe';
+            methodBadge.className = 'biometric-badge new';
+          }
+        }
+
         document.querySelectorAll('#private-dashboard .reveal').forEach((el) => el.classList.add('in-view'));
       } else {
         dashboard.classList.remove('authenticated');
@@ -4046,6 +4190,8 @@
         navText.textContent = currentLang === 'en' ? 'Sign In' : 'Connexion';
         ctaSection.style.display = '';
         cmdLoginItem.innerHTML = '<div class="cmd-item" onclick="openLoginModal(); closeCmdPalette();"><span class="cmd-item-left">Connexion Espace Interne (Rodrigue)</span><span class="cmd-item-badge">Auth</span></div>';
+        const methodBadge = document.getElementById('private-auth-method-badge');
+        if (methodBadge) methodBadge.style.display = 'none';
       }
     }
 
@@ -4061,12 +4207,12 @@
     function openLoginModal() {
       const m = document.getElementById('login-modal');
       const err = document.getElementById('login-error');
-      const pwd = document.getElementById('login-pwd');
-      err.style.display = 'none';
-      pwd.value = '';
-      if (m.showModal) {
+      if (err) err.style.display = 'none';
+      if (typeof updateBiometricModalUI === 'function') {
+        updateBiometricModalUI();
+      }
+      if (m && m.showModal) {
         m.showModal();
-        setTimeout(() => pwd.focus(), 50);
       }
     }
 
@@ -4075,29 +4221,240 @@
       if (m && m.open) m.close();
     }
 
-    function handleLoginSubmit(e) {
-      e.preventDefault();
-      const pwd = document.getElementById('login-pwd').value.trim();
-      const err = document.getElementById('login-error');
+    function logout() {
+      localStorage.removeItem('rodrigue_auth');
+      localStorage.removeItem('rodrigue_auth_method');
+      checkAuth();
+      showToast(currentLang === 'en' ? 'Signed out' : 'Déconnexion effectuée');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
-      if (pwd === 'rodrigue' || pwd === 'rodrigue2026' || pwd === 'admin') {
-        localStorage.setItem('rodrigue_auth', 'true');
-        checkAuth();
-        closeLoginModal();
-        showToast('Connexion réussie : espace interne déverrouillé');
-        setTimeout(() => {
-          document.getElementById('private-dashboard').scrollIntoView({ behavior: 'smooth' });
-        }, 150);
+    // ====================================================
+    // WEBAUTHN / BIOMETRIC AUTHENTICATION (PASSKEYS / FIDO2)
+    // ====================================================
+
+    function bufferToBase64(buffer) {
+      const bytes = new Uint8Array(buffer);
+      let binary = '';
+      for (let i = 0; i < bytes.byteLength; i++) {
+        binary += String.fromCharCode(bytes[i]);
+      }
+      return window.btoa(binary);
+    }
+
+    function base64ToBuffer(base64) {
+      const binary = window.atob(base64);
+      const bytes = new Uint8Array(binary.length);
+      for (let i = 0; i < binary.length; i++) {
+        bytes[i] = binary.charCodeAt(i);
+      }
+      return bytes.buffer;
+    }
+
+    async function isBiometricsSupported() {
+      if (!window.isSecureContext) return false;
+      if (!window.PublicKeyCredential) return false;
+      return true;
+    }
+
+    async function updateBiometricModalUI() {
+      const container = document.getElementById('biometric-login-container');
+      const btnText = document.getElementById('biometric-btn-text');
+      const badge = document.getElementById('biometric-badge');
+      const hint = document.getElementById('biometric-hint');
+      if (!container || !btnText) return;
+
+      const supported = await isBiometricsSupported();
+      if (!supported && location.hostname !== 'localhost' && location.protocol !== 'https:') {
+        container.style.display = 'none';
+        return;
+      }
+
+      container.style.display = 'flex';
+      const hasPasskey = !!localStorage.getItem('rodrigue_passkey_id');
+
+      if (hasPasskey) {
+        btnText.textContent = currentLang === 'en' ? 'Sign in with Touch ID / Face ID' : 'Se connecter avec Touch ID / Face ID';
+        badge.textContent = currentLang === 'en' ? 'Active' : 'Actif';
+        badge.className = 'biometric-badge';
+        hint.textContent = currentLang === 'en' 
+          ? 'Device recognized · Hardware-secured by Apple Touch ID, Face ID or iPhone QR code' 
+          : 'Appareil reconnu · Sécurisé par Touch ID, Face ID ou scan iPhone';
       } else {
-        err.style.display = 'block';
+        btnText.textContent = currentLang === 'en' ? 'Touch ID / Face ID / iPhone QR' : 'Touch ID / Face ID / iPhone QR';
+        badge.textContent = currentLang === 'en' ? 'Passkey' : 'Passkey';
+        badge.className = 'biometric-badge new';
+        hint.textContent = currentLang === 'en' 
+          ? 'Touch to sign in with Touch ID, Face ID or scan the QR code with your iPhone.' 
+          : 'Reconnaissance biométrique Touch ID, Face ID ou scannez le QR code avec votre iPhone.';
       }
     }
 
-    function logout() {
-      localStorage.removeItem('rodrigue_auth');
-      checkAuth();
-      showToast('Déconnexion effectuée');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    async function handleBiometricAction() {
+      const hasPasskey = !!localStorage.getItem('rodrigue_passkey_id');
+      const err = document.getElementById('login-error');
+      if (err) err.style.display = 'none';
+
+      if (hasPasskey) {
+        await authenticateWithBiometrics(false);
+      } else {
+        const ok = await authenticateWithBiometrics(true);
+        if (!ok) {
+          await registerBiometrics();
+        }
+      }
+    }
+
+    async function registerBiometrics(isAuthorized = false) {
+      const err = document.getElementById('login-error');
+      const hasPasskey = !!localStorage.getItem('rodrigue_passkey_id');
+      const isAuth = localStorage.getItem('rodrigue_auth') === 'true';
+
+      // SÉCURITÉ STRICTE : Si une clé existe déjà, on interdit formellement tout réenregistrement
+      // tant que l'utilisateur n'est pas déjà authentifié.
+      if (hasPasskey && !isAuth && !isAuthorized) {
+        if (err) {
+          err.textContent = currentLang === 'en' 
+            ? 'Unauthorized: please sign in first to manage your passkey.' 
+            : 'Non autorisé : vous devez être connecté pour modifier votre Passkey.';
+          err.style.display = 'block';
+        }
+        return false;
+      }
+
+      try {
+        const challenge = new Uint8Array(32);
+        window.crypto.getRandomValues(challenge);
+        const userId = new Uint8Array(16);
+        window.crypto.getRandomValues(userId);
+
+        const publicKey = {
+          challenge: challenge,
+          rp: {
+            name: "Portfolio Rodrigue HESSOU"
+          },
+          user: {
+            id: userId,
+            name: "rodriguehessou14@gmail.com",
+            displayName: "Rodrigue HESSOU"
+          },
+          pubKeyCredParams: [
+            { alg: -7, type: "public-key" },
+            { alg: -257, type: "public-key" }
+          ],
+          authenticatorSelection: {
+            userVerification: "required",
+            residentKey: "preferred"
+          },
+          timeout: 60000,
+          attestation: "none"
+        };
+
+        if (window.location.hostname && window.location.hostname.includes('.')) {
+          publicKey.rp.id = window.location.hostname;
+        }
+
+        const credential = await navigator.credentials.create({ publicKey });
+        if (credential) {
+          const credIdBase64 = bufferToBase64(credential.rawId);
+          localStorage.setItem('rodrigue_passkey_id', credIdBase64);
+          localStorage.setItem('rodrigue_auth', 'true');
+          localStorage.setItem('rodrigue_auth_method', 'biometrics');
+          checkAuth();
+          closeLoginModal();
+          showToast(currentLang === 'en' ? 'Touch ID / Face ID activated! Portal unlocked' : 'Touch ID / Face ID activé ! Espace interne déverrouillé');
+          setTimeout(() => {
+            const el = document.getElementById('private-dashboard');
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+          }, 150);
+          return true;
+        }
+      } catch (e) {
+        console.warn('Biometric registration error:', e);
+        if (e.name === 'NotAllowedError') {
+          showToast(currentLang === 'en' ? 'Biometric action cancelled' : 'Action biométrique annulée');
+        } else {
+          if (err) {
+            err.textContent = currentLang === 'en' ? 'Biometrics error: ' + e.message : 'Erreur biométrique : ' + e.message;
+            err.style.display = 'block';
+          }
+        }
+        return false;
+      }
+    }
+
+    async function authenticateWithBiometrics(isSilentDiscovery = false) {
+      const err = document.getElementById('login-error');
+      try {
+        const challenge = new Uint8Array(32);
+        window.crypto.getRandomValues(challenge);
+        const savedCredId = localStorage.getItem('rodrigue_passkey_id');
+
+        const publicKey = {
+          challenge: challenge,
+          userVerification: "required",
+          timeout: 60000
+        };
+
+        if (window.location.hostname && window.location.hostname.includes('.')) {
+          publicKey.rpId = window.location.hostname;
+        }
+
+        if (savedCredId) {
+          try {
+            publicKey.allowCredentials = [{
+              id: base64ToBuffer(savedCredId),
+              type: 'public-key',
+              transports: ['internal', 'hybrid']
+            }];
+          } catch(e) {}
+        }
+
+        const assertion = await navigator.credentials.get({ publicKey });
+        if (assertion) {
+          const credIdBase64 = bufferToBase64(assertion.rawId);
+          localStorage.setItem('rodrigue_passkey_id', credIdBase64);
+          localStorage.setItem('rodrigue_auth', 'true');
+          localStorage.setItem('rodrigue_auth_method', 'biometrics');
+          checkAuth();
+          closeLoginModal();
+          showToast(currentLang === 'en' ? 'Biometric login successful!' : 'Authentification biométrique réussie !');
+          setTimeout(() => {
+            const el = document.getElementById('private-dashboard');
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+          }, 150);
+          return true;
+        }
+      } catch (e) {
+        if (!isSilentDiscovery) {
+          console.warn('Biometric auth error:', e);
+          if (e.name === 'NotAllowedError') {
+            showToast(currentLang === 'en' ? 'Biometric login cancelled' : 'Authentification biométrique annulée');
+          } else {
+            if (err) {
+              err.textContent = currentLang === 'en' ? 'Biometrics error: ' + e.message : 'Erreur biométrique : ' + e.message;
+              err.style.display = 'block';
+            }
+          }
+        }
+        return false;
+      }
+    }
+
+    async function promptPasskeyManagement() {
+      const isAuth = localStorage.getItem('rodrigue_auth') === 'true';
+      if (!isAuth) {
+        showToast(currentLang === 'en' ? 'Unauthorized' : 'Non autorisé');
+        return;
+      }
+
+      const msg = currentLang === 'en'
+        ? 'Do you want to re-register / update your Touch ID or Face ID passkey on this device?'
+        : 'Souhaitez-vous enregistrer ou renouveler votre Passkey Touch ID / Face ID sur cet appareil ?';
+
+      if (window.confirm(msg)) {
+        await registerBiometrics(true);
+      }
     }
 
     checkAuth();

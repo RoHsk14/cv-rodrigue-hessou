@@ -265,6 +265,8 @@
     .top-navbar > nav { display: none; }
     .nav-menu { display: none; }
     .mobile-menu-toggle { display: inline-flex; }
+    #studio-nav-btn, .cmd-trigger-btn, #nav-auth-btn { display: none !important; }
+    .nav-right-actions { gap: 6px; }
   }
 
   .brand-mark {
@@ -472,6 +474,110 @@
     color: var(--text-muted);
   }
 
+  /* Mobile Shortcuts & Drawer styling */
+  .mobile-nav-shortcuts {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 8px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .mobile-shortcut-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: all 0.15s ease;
+  }
+
+  .mobile-shortcut-item.studio-shortcut {
+    background: rgba(59, 130, 246, 0.08);
+    border-color: rgba(59, 130, 246, 0.35);
+  }
+
+  .mobile-shortcut-item.studio-shortcut .icon-svg {
+    color: var(--accent);
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+  }
+
+  .mobile-shortcut-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .mobile-shortcut-title {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .mobile-shortcut-sub {
+    font-size: 11px;
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+  }
+
+  .mobile-shortcut-badge {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    font-weight: 600;
+    padding: 2px 7px;
+    border-radius: 4px;
+    background: var(--accent);
+    color: #fff;
+    letter-spacing: 0.2px;
+    flex-shrink: 0;
+  }
+
+  .mobile-shortcuts-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .mobile-shortcut-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 9px 12px;
+    border-radius: 8px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .mobile-shortcut-btn:hover, .mobile-shortcut-btn:active {
+    background: var(--surface-hover);
+    color: var(--text-primary);
+    border-color: var(--border-active);
+  }
+
+  .mobile-shortcut-btn.authenticated {
+    border-color: rgba(16, 185, 129, 0.4);
+    color: var(--green);
+    background: var(--green-subtle);
+  }
+
   .mobile-nav-actions {
     display: flex;
     gap: 8px;
@@ -535,8 +641,8 @@
     .brand-mark svg { height: 20px; }
   }
 
-  @media (max-width: 400px) {
-    .nav-brand-text { display: none; }
+  @media (max-width: 350px) {
+    .nav-brand-name { font-size: 11.5px; }
   }
 
   /* Handwritten Annotations */
@@ -2722,19 +2828,39 @@
     </header>
 
     <nav class="mobile-nav" id="mobile-nav" aria-label="Navigation mobile">
+      <!-- ACCÈS PRIVILÉGIÉS MOBILES -->
+      <div class="mobile-nav-shortcuts">
+        <a href="studio.html" class="mobile-shortcut-item studio-shortcut" onclick="toggleMobileMenu(false);">
+          <svg class="icon-svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          <div class="mobile-shortcut-info">
+            <span class="mobile-shortcut-title" data-i18n="nav_studio">Studio Étudiant</span>
+            <span class="mobile-shortcut-sub" data-i18n="studio_nav_desc">Générateur CV/Lettre A4</span>
+          </div>
+          <span class="mobile-shortcut-badge">Gratuit</span>
+        </a>
+
+        <div class="mobile-shortcuts-row">
+          <button type="button" class="mobile-shortcut-btn" onclick="toggleMobileMenu(false); handleAuthNavClick();" id="mob-auth-btn">
+            <svg class="icon-svg" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            <span id="mob-nav-auth-text" data-i18n="nav_auth">Connexion</span>
+          </button>
+          <button type="button" class="mobile-shortcut-btn" onclick="toggleMobileMenu(false); openCmdPalette();">
+            <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <span data-i18n="nav_search">Recherche</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- SECTIONS -->
       <a href="#candidatures" data-i18n="nav_candidatures">Candidatures</a>
       <a href="#experience" data-i18n="nav_experience">Expérience</a>
       <a href="#projets" data-i18n="nav_projets">Projets</a>
       <a href="#competences" data-i18n="nav_competences">Stack technique</a>
       <a href="#temoignages" data-i18n="nav_temoignages">Recommandations</a>
       <a href="#formation" data-i18n="nav_formation">Formation</a>
-      <a href="studio.html" style="color: var(--accent); font-weight: 600;" data-i18n="nav_studio_long">Studio Étudiant (Générateur A4)</a>
+
+      <!-- ACTIONS CV & CONTACT -->
       <div class="mobile-nav-actions">
-        <div class="lang-switcher" style="margin-right: 8px;">
-          <button type="button" class="lang-btn active" id="mob-lang-fr-btn" onclick="setLanguage('fr')">FR</button>
-          <span style="color: var(--border);">|</span>
-          <button type="button" class="lang-btn" id="mob-lang-en-btn" onclick="setLanguage('en')">EN</button>
-        </div>
         <a href="mailto:rodriguehessou14@gmail.com" class="btn btn-secondary btn-sm">Email</a>
         <a href="CV_Rodrigue_HESSOU_Stage_Tech.pdf" target="_blank" class="btn btn-primary btn-sm" rel="noopener noreferrer" data-i18n="btn_cv_stage_short">CV Stage</a>
       </div>
@@ -3860,8 +3986,9 @@
         nav_competences: "Stack",
         nav_temoignages: "Avis",
         nav_formation: "Formation",
-        nav_studio: "Studio",
+        nav_studio: "Studio Étudiant",
         nav_studio_long: "Studio Étudiant (Générateur A4)",
+        studio_nav_desc: "Générateur CV/Lettre A4",
         nav_search: "Recherche",
         nav_auth: "Connexion",
         nav_auth_connected: "Connecté",
@@ -4012,8 +4139,9 @@
         nav_competences: "Stack",
         nav_temoignages: "Reviews",
         nav_formation: "Education",
-        nav_studio: "Studio",
+        nav_studio: "Student Studio",
         nav_studio_long: "Student Studio (1-Page A4 Generator)",
+        studio_nav_desc: "Free A4 Resume & Cover Letter",
         nav_search: "Search",
         nav_auth: "Sign In",
         nav_auth_connected: "Connected",
@@ -4382,15 +4510,19 @@
       const dashboard = document.getElementById('private-dashboard');
       const navBtn = document.getElementById('nav-auth-btn');
       const navText = document.getElementById('nav-auth-text');
+      const mobAuthBtn = document.getElementById('mob-auth-btn');
+      const mobNavText = document.getElementById('mob-nav-auth-text');
       const ctaSection = document.getElementById('auth-cta-section');
       const cmdLoginItem = document.getElementById('cmd-login-item');
 
       if (isAuth) {
         dashboard.classList.add('authenticated');
-        navBtn.classList.add('authenticated');
-        navText.textContent = currentLang === 'en' ? 'Connected' : 'Connecté';
-        ctaSection.style.display = 'none';
-        cmdLoginItem.innerHTML = '<div class="cmd-item" onclick="logout(); closeCmdPalette();"><span class="cmd-item-left">Déconnexion de l’Espace Interne</span><span class="cmd-item-badge">Auth</span></div>';
+        if (navBtn) navBtn.classList.add('authenticated');
+        if (navText) navText.textContent = currentLang === 'en' ? 'Connected' : 'Connecté';
+        if (mobAuthBtn) mobAuthBtn.classList.add('authenticated');
+        if (mobNavText) mobNavText.textContent = currentLang === 'en' ? 'Connected' : 'Connecté';
+        if (ctaSection) ctaSection.style.display = 'none';
+        if (cmdLoginItem) cmdLoginItem.innerHTML = '<div class="cmd-item" onclick="logout(); closeCmdPalette();"><span class="cmd-item-left">Déconnexion de l’Espace Interne</span><span class="cmd-item-badge">Auth</span></div>';
         
         const methodBadge = document.getElementById('private-auth-method-badge');
         if (methodBadge) {
@@ -4408,10 +4540,12 @@
         document.querySelectorAll('#private-dashboard .reveal').forEach((el) => el.classList.add('in-view'));
       } else {
         dashboard.classList.remove('authenticated');
-        navBtn.classList.remove('authenticated');
-        navText.textContent = currentLang === 'en' ? 'Sign In' : 'Connexion';
-        ctaSection.style.display = '';
-        cmdLoginItem.innerHTML = '<div class="cmd-item" onclick="openLoginModal(); closeCmdPalette();"><span class="cmd-item-left">Connexion Espace Interne (Rodrigue)</span><span class="cmd-item-badge">Auth</span></div>';
+        if (navBtn) navBtn.classList.remove('authenticated');
+        if (navText) navText.textContent = currentLang === 'en' ? 'Sign In' : 'Connexion';
+        if (mobAuthBtn) mobAuthBtn.classList.remove('authenticated');
+        if (mobNavText) mobNavText.textContent = currentLang === 'en' ? 'Sign In' : 'Connexion';
+        if (ctaSection) ctaSection.style.display = '';
+        if (cmdLoginItem) cmdLoginItem.innerHTML = '<div class="cmd-item" onclick="openLoginModal(); closeCmdPalette();"><span class="cmd-item-left">Connexion Espace Interne (Rodrigue)</span><span class="cmd-item-badge">Auth</span></div>';
         const methodBadge = document.getElementById('private-auth-method-badge');
         if (methodBadge) methodBadge.style.display = 'none';
       }

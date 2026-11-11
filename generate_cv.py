@@ -290,6 +290,7 @@ html_content = f"""<!DOCTYPE html>
       <div class="sidebar-item">69100 Villeurbanne – Lyon</div>
       <div class="sidebar-item">+33 7 44 11 75 73</div>
       <div class="sidebar-item">rodriguehessou14@gmail.com</div>
+      <div class="sidebar-item">Portfolio : <a href="https://cv-rodrigue-hessou.vercel.app" target="_blank" style="color: #93c5fd; text-decoration: none;">cv-rodrigue-hessou.vercel.app</a></div>
       <div class="sidebar-item">Né le 14/03/2006</div>
     </div>
 

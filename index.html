@@ -14,36 +14,37 @@
 <meta property="og:description" content="Étudiant Master 1 Informatique SUPINFO Lyon. Candidatures générales stage et alternance.">
 <meta property="og:type" content="website">
 
-<!-- Fonts: Geist & Geist Mono -->
+<!-- Fonts: Geist, Geist Mono & Caveat (handwritten notes) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Geist:wght@100..900&family=Geist+Mono:wght@100..900&display=swap" rel="stylesheet">
 
 <style>
   :root {
     --font-sans: 'Geist', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     --font-mono: 'Geist Mono', 'SF Mono', Menlo, Consolas, monospace;
+    --font-hand: 'Caveat', cursive;
     --ease: cubic-bezier(0.22, 1, 0.36, 1);
     --header-h: 57px;
-    --radius: 10px;
+    --radius: 12px;
 
-    /* Base Dark Theme (Graphite neutral ramp) */
-    --bg: #0c0d0f;
-    --bg-subtle: #111215;
-    --surface: #15171b;
-    --surface-elevated: #1a1d22;
-    --surface-hover: #22262d;
+    /* Base Dark Theme */
+    --bg: #09090b;
+    --bg-subtle: #0d0d11;
+    --surface: #111115;
+    --surface-elevated: #18181d;
+    --surface-hover: #1f1f26;
     --border: rgba(255, 255, 255, 0.08);
     --border-subtle: rgba(255, 255, 255, 0.04);
-    --border-active: rgba(255, 255, 255, 0.20);
+    --border-active: rgba(255, 255, 255, 0.22);
     
-    --text-primary: #f8fafc;
-    --text-secondary: #cbd5e1;
-    --text-muted: #94a3b8;
+    --text-primary: #f4f4f5;
+    --text-secondary: #a1a1aa;
+    --text-muted: #71717a;
     
     --accent: #3b82f6;
     --accent-dark: #1d4ed8;
-    --accent-subtle: rgba(59, 130, 246, 0.10);
+    --accent-subtle: rgba(59, 130, 246, 0.12);
     --accent-glow: transparent;
     
     --green: #10b981;
@@ -52,26 +53,37 @@
     --amber-subtle: rgba(245, 158, 11, 0.12);
     
     --tag-bg: rgba(255, 255, 255, 0.04);
-    --tag-border: rgba(255, 255, 255, 0.07);
+    --tag-border: rgba(255, 255, 255, 0.08);
     --tag-text: #d4d4d8;
 
-    --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-    --nav-blur: rgba(12, 13, 15, 0.88);
+    --card-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
+    --nav-blur: rgba(9, 9, 11, 0.82);
+
+    /* Grid background */
+    --grid-line: rgba(255, 255, 255, 0.035);
+    --grid-size: 32px;
+
+    /* Cursor spotlight default coords */
+    --mouse-x: 50vw;
+    --mouse-y: 200px;
+
+    /* Film grain overlay */
+    --grain-opacity: 0.28;
   }
 
   [data-theme="light"] {
-    --bg: #fcfcfc;
-    --bg-subtle: #f4f4f5;
+    --bg: #fafafa;
+    --bg-subtle: #f4f4f6;
     --surface: #ffffff;
-    --surface-elevated: #f4f4f5;
-    --surface-hover: #eaebee;
+    --surface-elevated: #f4f4f6;
+    --surface-hover: #eaeaea;
     --border: #e4e4e7;
     --border-subtle: #f0f0f2;
     --border-active: #71717a;
     
-    --text-primary: #0f172a;
-    --text-secondary: #334155;
-    --text-muted: #64748b;
+    --text-primary: #09090b;
+    --text-secondary: #52525b;
+    --text-muted: #71717a;
     
     --accent: #2563eb;
     --accent-dark: #1e40af;
@@ -82,8 +94,14 @@
     --tag-border: #e4e4e7;
     --tag-text: #27272a;
 
-    --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
-    --nav-blur: rgba(252, 252, 252, 0.88);
+    --card-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.06);
+    --nav-blur: rgba(250, 250, 250, 0.85);
+
+    --grid-line: rgba(0, 0, 0, 0.038);
+    --grid-size: 32px;
+
+    /* Film grain overlay */
+    --grain-opacity: 0.2;
   }
 
   * {
@@ -126,24 +144,54 @@
     background-color: var(--bg);
     color: var(--text-primary);
     min-height: 100vh;
-    line-height: 1.55;
+    line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    transition: background-color 0.2s ease, color 0.2s ease;
+    transition: background-color 0.25s ease, color 0.25s ease;
     overflow-x: hidden;
     position: relative;
-    padding-bottom: env(safe-area-inset-bottom, 0px);
+    /* Grid background */
+    background-image: 
+      linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+    background-size: var(--grid-size) var(--grid-size);
   }
 
-  p, .hero-lead-text, .timeline-desc, .project-desc, .testimonial-text, .bento-card p, .private-doc-desc {
-    text-wrap: pretty;
+  /* Interactive Cursor Spotlight Glow */
+  #cursor-spotlight {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 1;
+    background: radial-gradient(650px circle at var(--mouse-x) var(--mouse-y), rgba(59, 130, 246, 0.07), transparent 70%);
+    transition: opacity 0.3s ease;
   }
 
-  h1, h2, h3, h4, .section-title, .project-title, .bento-title h4, .showcase-title {
-    text-wrap: balance;
+  [data-theme="light"] #cursor-spotlight {
+    background: radial-gradient(650px circle at var(--mouse-x) var(--mouse-y), rgba(37, 99, 235, 0.05), transparent 70%);
   }
 
-  /* Layout wrapper */
+  /* Film grain overlay */
+  #grain-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: var(--grain-opacity);
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)'/%3E%3C/svg%3E");
+    background-size: 180px 180px;
+    background-repeat: repeat;
+  }
+
+  @media print {
+    #grain-overlay { display: none; }
+  }
+
+  /* Architectural Layout wrapper with bordered vertical lines */
   .layout-wrapper {
     max-width: 980px;
     margin: 0 auto;
@@ -155,6 +203,7 @@
     flex-direction: column;
     position: relative;
     z-index: 2;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.4);
   }
 
   /* TOP STICKY NAVBAR */
@@ -167,110 +216,21 @@
     -webkit-backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--border);
     height: var(--header-h);
-    padding: 0 16px;
+    padding: 0 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 12px;
-    box-sizing: border-box;
-  }
-
-  .top-navbar > nav {
-    flex: 1 1 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-width: 0;
-    overflow: hidden;
+    gap: 16px;
   }
 
   .nav-left {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     text-decoration: none;
     color: inherit;
     flex-shrink: 0;
     z-index: 2;
-  }
-
-  .nav-menu {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    white-space: nowrap;
-  }
-
-  .nav-right-actions {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    flex-shrink: 0;
-    z-index: 2;
-  }
-
-  /* LANGUAGE SWITCHER */
-  .lang-switcher {
-    display: inline-flex;
-    align-items: center;
-    gap: 1px;
-    background: var(--surface-elevated);
-    border: 1px solid var(--border);
-    border-radius: 7px;
-    padding: 0 3px;
-    height: 32px;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    user-select: none;
-    flex-shrink: 0;
-  }
-
-  .lang-btn {
-    background: transparent;
-    border: none;
-    color: var(--text-muted);
-    cursor: pointer;
-    font-weight: 500;
-    padding: 3px 5px;
-    border-radius: 4px;
-    transition: all 0.15s ease;
-    font-family: inherit;
-    font-size: inherit;
-    line-height: 1;
-  }
-
-  .lang-btn:hover {
-    color: var(--text-primary);
-  }
-
-  .lang-btn.active {
-    color: var(--accent);
-    background: var(--accent-subtle);
-    font-weight: 700;
-  }
-
-  /* ICON-ONLY ON DESKTOP & RESPONSIVE */
-  .cmd-trigger-btn { width: 32px; padding: 0; justify-content: center; }
-  .cmd-trigger-btn span, .cmd-trigger-btn kbd { display: none; }
-  .nav-brand-sub { display: none; }
-
-  #nav-auth-btn { width: 32px; padding: 0; justify-content: center; }
-  #nav-auth-btn span { display: none; }
-
-  @media (max-width: 1040px) {
-    .nav-menu { gap: 6px; }
-    .nav-link { font-size: 11.5px; padding: 3px 5px; }
-  }
-
-  @media (max-width: 960px) {
-    .top-navbar > nav { display: none; }
-    .nav-menu { display: none; }
-    .mobile-menu-toggle { display: inline-flex; }
-    #studio-nav-btn, .cmd-trigger-btn, #nav-auth-btn { display: none !important; }
-    .nav-right-actions { gap: 6px; }
   }
 
   .brand-mark {
@@ -320,14 +280,47 @@
     max-width: 190px;
   }
 
+  .status-pulse-dot { display: none !important;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: var(--green);
+    display: inline-block;
+    position: relative;
+  }
+
+  .status-pulse-dot::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 50%;
+    background-color: var(--green);
+    opacity: 0.5;
+    animation: statusPulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes statusPulse {
+    0% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(2.2); opacity: 0; }
+    100% { transform: scale(1); opacity: 0; }
+  }
+
+  .nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    list-style: none;
+    margin: 0 auto;
+  }
+
   .nav-link {
     position: relative;
-    font-size: 12px;
+    font-size: 12.5px;
     font-weight: 500;
     color: var(--text-secondary);
     text-decoration: none;
     transition: color 0.2s var(--ease);
-    padding: 4px 6px;
+    padding: 6px 2px;
     white-space: nowrap;
   }
 
@@ -470,110 +463,6 @@
     color: var(--text-muted);
   }
 
-  /* Mobile Shortcuts & Drawer styling */
-  .mobile-nav-shortcuts {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-bottom: 8px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .mobile-shortcut-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 10px 14px;
-    border-radius: 8px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    text-decoration: none;
-    color: var(--text-primary);
-    transition: all 0.15s ease;
-  }
-
-  .mobile-shortcut-item.studio-shortcut {
-    background: rgba(59, 130, 246, 0.08);
-    border-color: rgba(59, 130, 246, 0.35);
-  }
-
-  .mobile-shortcut-item.studio-shortcut .icon-svg {
-    color: var(--accent);
-    width: 18px;
-    height: 18px;
-    flex-shrink: 0;
-  }
-
-  .mobile-shortcut-info {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    min-width: 0;
-  }
-
-  .mobile-shortcut-title {
-    font-size: 13.5px;
-    font-weight: 600;
-    color: var(--text-primary);
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .mobile-shortcut-sub {
-    font-size: 11px;
-    font-family: var(--font-mono);
-    color: var(--text-muted);
-  }
-
-  .mobile-shortcut-badge {
-    font-family: var(--font-mono);
-    font-size: 10.5px;
-    font-weight: 600;
-    padding: 2px 7px;
-    border-radius: 4px;
-    background: var(--accent);
-    color: #fff;
-    letter-spacing: 0.2px;
-    flex-shrink: 0;
-  }
-
-  .mobile-shortcuts-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-  }
-
-  .mobile-shortcut-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 7px;
-    padding: 9px 12px;
-    border-radius: 8px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    color: var(--text-secondary);
-    font-family: var(--font-mono);
-    font-size: 12px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.15s ease;
-  }
-
-  .mobile-shortcut-btn:hover, .mobile-shortcut-btn:active {
-    background: var(--surface-hover);
-    color: var(--text-primary);
-    border-color: var(--border-active);
-  }
-
-  .mobile-shortcut-btn.authenticated {
-    border-color: rgba(16, 185, 129, 0.4);
-    color: var(--green);
-    background: var(--green-subtle);
-  }
-
   .mobile-nav-actions {
     display: flex;
     gap: 8px;
@@ -629,7 +518,20 @@
     stroke-linejoin: round;
   }
 
-  /* Top navbar responsive handled above */
+  @media (max-width: 1180px) {
+    .nav-brand-sub { display: none; }
+    .nav-menu { gap: 12px; }
+    .cmd-trigger-btn kbd { display: none; }
+  }
+
+  @media (max-width: 1040px) {
+    .top-navbar { padding: 0 16px; gap: 10px; }
+    .top-navbar > nav { display: none; }
+    .nav-menu { display: none; }
+    .mobile-menu-toggle { display: inline-flex; }
+    .cmd-trigger-btn span, .cmd-trigger-btn kbd, .login-nav-btn span { display: none; }
+    .cmd-trigger-btn, .login-nav-btn, .theme-toggle-btn { width: 34px; padding: 0; }
+  }
 
   @media (max-width: 480px) {
     .nav-brand-name { font-size: 12.5px; }
@@ -637,8 +539,8 @@
     .brand-mark svg { height: 20px; }
   }
 
-  @media (max-width: 350px) {
-    .nav-brand-name { font-size: 11.5px; }
+  @media (max-width: 400px) {
+    .nav-brand-text { display: none; }
   }
 
   /* Handwritten Annotations */
@@ -684,15 +586,79 @@
 
   /* HERO SECTION */
   .hero-section {
-    padding: 36px 32px 32px;
+    padding: 0 32px 32px;
     border-bottom: 1px solid var(--border);
     position: relative;
+    overflow: hidden;
+  }
+
+  .hero-art-band {
+    position: relative;
+    height: 258px;
+    margin: 0 -32px;
+    border-bottom: 1px solid var(--border-subtle);
+    overflow: hidden;
+    background: radial-gradient(620px 230px at 55% 0%, var(--accent-subtle), transparent 70%);
+  }
+
+  .hero-art-band::before, .hero-art-band::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--border-subtle);
+  }
+
+  .hero-art-band::before { left: 18%; }
+  .hero-art-band::after { right: 18%; }
+
+  .hero-art-svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: min(620px, 88%);
+    height: auto;
+    transform: translate(-50%, -50%);
+    color: var(--text-primary);
+    opacity: 0.42;
+    transition: transform 0.5s var(--ease), opacity 0.5s var(--ease);
+    will-change: transform;
+  }
+
+  .hero-section:hover .hero-art-svg { opacity: 0.62; }
+
+  .hero-art-dim, .hero-art-angle {
+    position: absolute;
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.6px;
+    color: var(--text-muted);
+    background: var(--bg);
+    padding: 0 4px;
+    pointer-events: none;
+  }
+
+  .hero-art-dim { top: 18px; left: 50%; transform: translateX(-50%); }
+  .hero-art-angle { top: 30px; right: 22%; }
+
+  .hero-art-note {
+    position: absolute;
+    right: 24px;
+    bottom: 20px;
+    font-family: var(--font-hand);
+    font-size: 18px;
+    line-height: 1.1;
+    color: var(--text-muted);
+    transform: rotate(-3deg);
+    pointer-events: none;
   }
 
   .hero-profile-row {
     display: flex;
     align-items: center;
-    gap: 24px;
+    gap: 22px;
+    padding-top: 24px;
     position: relative;
     z-index: 2;
   }
@@ -700,81 +666,118 @@
   .hero-bio-container {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
     flex: 1;
     min-width: 0;
   }
 
   .status-pill {
     font-family: var(--font-mono);
-    font-size: 11px;
+    font-size: 10.5px;
     font-weight: 500;
-    padding: 3px 10px;
-    border-radius: 6px;
-    background: var(--surface-elevated);
-    border: 1px solid var(--border);
-    color: var(--text-secondary);
+    padding: 3px 9px;
+    border-radius: 999px;
+    background: var(--green-subtle);
+    border: 1px solid rgba(16, 185, 129, 0.25);
+    color: var(--green);
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: 7px;
     width: fit-content;
-    letter-spacing: 0.1px;
-    margin-bottom: 4px;
+    letter-spacing: 0.2px;
   }
 
   .hero-name-block h1 {
-    font-size: clamp(28px, 4.2vw, 38px);
-    font-weight: 600;
-    letter-spacing: -0.8px;
+    font-size: clamp(30px, 4.4vw, 40px);
+    font-weight: 700;
+    letter-spacing: -1.4px;
     color: var(--text-primary);
-    line-height: 1.1;
+    line-height: 1.05;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 9px;
     flex-wrap: wrap;
   }
 
+  .verified-badge {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    color: var(--accent);
+    filter: drop-shadow(0 0 8px var(--accent-glow));
+    transform: translateY(1px);
+  }
+
   .hero-title-role {
-    font-size: 15px;
+    font-size: 14.5px;
     font-weight: 500;
     color: var(--text-secondary);
-    margin-top: 4px;
+    margin-top: 5px;
   }
 
   .hero-tagline {
     font-family: var(--font-mono);
-    font-size: 12px;
+    font-size: 11.5px;
     color: var(--text-muted);
     letter-spacing: 0.1px;
-    margin-top: 2px;
+    margin-top: 1px;
     text-wrap: balance;
   }
 
   .hero-tagline::before { content: '// '; color: var(--accent); }
 
-  /* Avatar frame */
+  /* Avatar with architectural dimensions (e.g. ⌀112, ticks) */
   .hero-avatar-frame {
     position: relative;
     flex-shrink: 0;
-    width: 116px;
-    height: 116px;
+    width: 124px;
+    height: 124px;
+    padding: 6px;
+    border: 1px dashed var(--border);
     border-radius: 50%;
   }
 
+  .hero-avatar-dimension {
+    position: absolute;
+    top: -17px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    background: var(--bg);
+    padding: 0 5px;
+    white-space: nowrap;
+  }
+
+  .hero-avatar-frame::before, .hero-avatar-frame::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    width: 1px;
+    height: 7px;
+    background: var(--border);
+    transform: translateX(-50%);
+  }
+
+  .hero-avatar-frame::before { top: -1px; }
+  .hero-avatar-frame::after { bottom: -1px; }
+
   .hero-avatar-img {
-    width: 116px;
-    height: 116px;
+    width: 112px;
+    height: 112px;
     border-radius: 50%;
     object-fit: cover;
-    border: 1px solid var(--border);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    border: 2px solid var(--border);
+    box-shadow: 0 18px 40px -18px var(--accent-glow);
     display: block;
-    transition: transform 0.25s var(--ease), border-color 0.2s ease;
+    transition: transform 0.35s var(--ease), border-color 0.25s ease;
   }
 
   .hero-avatar-frame:hover .hero-avatar-img {
-    transform: scale(1.02);
-    border-color: var(--border-active);
+    transform: scale(1.04);
+    border-color: var(--accent);
   }
 
   .hero-lead-text {
@@ -973,9 +976,9 @@
   }
 
   .btn-primary:hover {
-    opacity: 0.94;
+    opacity: 0.92;
     transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 24px -12px var(--accent-glow);
   }
 
   .btn-secondary {
@@ -1012,95 +1015,35 @@
   }
 
   @media (max-width: 768px) {
-    .hero-section { padding: 26px 18px 22px; }
+    .hero-section { padding: 0 18px 24px; }
+    .hero-art-band { margin: 0 -18px; height: 170px; }
+    .hero-art-svg { width: 122%; opacity: 0.32; }
+    .hero-art-note { display: none; }
+    .hero-art-dim { left: 50%; top: 12px; transform: translateX(-50%); }
+    .hero-art-angle { display: none; }
     .hero-profile-row {
-      flex-direction: row;
+      flex-direction: column-reverse;
       align-items: center;
-      text-align: left;
-      gap: 14px;
-      margin: 10px 0 6px;
+      text-align: center;
+      gap: 18px;
+      padding-top: 20px;
     }
-    .hero-bio-container {
-      align-items: flex-start;
-      text-align: left;
-      gap: 3px;
-      flex: 1;
-      min-width: 0;
-    }
-    .hero-name-block h1 {
-      justify-content: flex-start;
-      font-size: clamp(20px, 5.2vw, 25px);
-      letter-spacing: -0.5px;
-      line-height: 1.15;
-      margin: 0;
-      white-space: nowrap;
-    }
-    .hero-title-role {
-      font-size: 13px;
-      line-height: 1.35;
-      color: var(--text-secondary);
-      margin-top: 3px;
-    }
-    .hero-tagline {
-      font-size: 11.5px;
-      line-height: 1.45;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      padding: 5px 11px;
-      border-radius: 6px;
-      margin-top: 8px;
-      display: inline-flex;
-    }
-    .hero-avatar-frame {
-      width: 68px;
-      height: 68px;
-      flex-shrink: 0;
-    }
-    .hero-avatar-img {
-      width: 68px;
-      height: 68px;
-      border: 1px solid var(--border-active);
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-    }
-    .hero-lead-text {
-      font-size: 14.5px;
-      line-height: 1.65;
-      margin-top: 16px;
-      text-align: left;
-      color: var(--text-secondary);
-    }
-    .hero-info-grid {
-      grid-template-columns: 1fr;
-      margin-top: 16px;
-    }
-    .hero-info-item {
-      padding: 12px 14px;
-      border-right: none;
-      min-height: 48px;
-    }
-    .hero-info-value {
-      font-size: 13.5px;
-    }
+    .hero-bio-container { align-items: center; }
+    .hero-name-block h1 { justify-content: center; font-size: 30px; }
+    .hero-avatar-frame { width: 102px; height: 102px; }
+    .hero-avatar-img { width: 90px; height: 90px; }
+    .hero-lead-text { font-size: 13.5px; margin-top: 16px; }
+    .hero-info-grid { grid-template-columns: 1fr; }
+    .hero-info-item { border-right: none; }
     .hero-info-item:nth-last-child(-n+2) { border-bottom: 1px solid var(--border); }
     .hero-info-item:last-child { border-bottom: none; }
-    .hero-meta-row {
-      justify-content: flex-start;
-      margin-top: 12px;
-      gap: 6px;
-    }
-    .hero-meta-item {
-      font-size: 11.5px;
-      padding: 4px 10px;
-    }
-    .hero-actions-bar {
-      justify-content: flex-start;
-    }
+    .hero-actions-bar { justify-content: center; }
     .hero-socials {
       margin-left: 0;
       padding-left: 0;
       border-left: none;
       width: 100%;
-      justify-content: flex-start;
+      justify-content: center;
     }
   }
 
@@ -1271,10 +1214,10 @@
   }
 
   .showcase-card:hover {
-    border-color: var(--border-active);
-    transform: translateY(-1px);
-    background: var(--surface-hover);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    background: var(--surface-elevated);
+    box-shadow: 0 10px 25px -8px var(--accent-glow);
   }
 
   .showcase-badge {
@@ -1920,116 +1863,6 @@
     margin-top: 4px;
   }
 
-  /* BIOMETRIC WEBAUTHN / PASSKEY MODULE */
-  .biometric-card {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding: 14px 16px;
-    background: var(--surface-elevated);
-    border: 1px solid var(--border);
-    border-radius: 9px;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-  }
-
-  .biometric-card:hover {
-    border-color: rgba(59, 130, 246, 0.4);
-  }
-
-  .btn-biometric {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    width: 100%;
-    padding: 11px 16px;
-    background: linear-gradient(135deg, rgba(59, 130, 246, 0.14), rgba(99, 102, 241, 0.08));
-    border: 1px solid rgba(59, 130, 246, 0.35);
-    border-radius: 8px;
-    color: var(--text-primary);
-    font-size: 13.5px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-
-  .btn-biometric:hover {
-    background: linear-gradient(135deg, rgba(59, 130, 246, 0.24), rgba(99, 102, 241, 0.16));
-    border-color: var(--accent);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 16px rgba(59, 130, 246, 0.2);
-  }
-
-  .btn-biometric:active {
-    transform: translateY(0);
-  }
-
-  .btn-biometric svg {
-    color: var(--accent);
-    flex-shrink: 0;
-  }
-
-  .biometric-badge {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    padding: 2px 7px;
-    border-radius: 4px;
-    background: rgba(16, 185, 129, 0.15);
-    color: #10b981;
-    border: 1px solid rgba(16, 185, 129, 0.3);
-    margin-left: auto;
-  }
-
-  .biometric-badge.new {
-    background: rgba(59, 130, 246, 0.15);
-    color: #60a5fa;
-    border-color: rgba(59, 130, 246, 0.3);
-  }
-
-  .biometric-hint {
-    font-size: 11.5px;
-    color: var(--text-muted);
-    text-align: center;
-    line-height: 1.4;
-  }
-
-  .biometric-reset-link {
-    background: none;
-    border: none;
-    color: var(--text-muted);
-    font-size: 11px;
-    text-decoration: underline;
-    cursor: pointer;
-    padding: 2px 4px;
-    font-family: var(--font-mono);
-    transition: color 0.15s ease;
-  }
-
-  .biometric-reset-link:hover {
-    color: var(--text-primary);
-  }
-
-  .login-divider {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin: 2px 0;
-    color: var(--text-muted);
-    font-family: var(--font-mono);
-    font-size: 10.5px;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-  }
-
-  .login-divider::before, .login-divider::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-  }
-
   /* TOAST */
   .toast {
     position: fixed;
@@ -2065,6 +1898,7 @@
     width: 0%;
     background: var(--accent);
     z-index: 120;
+    box-shadow: 0 0 12px var(--accent-glow);
     transition: width 0.08s linear;
   }
 
@@ -2141,13 +1975,34 @@
     --my: 50%;
   }
 
-  .showcase-card, .project-card, .testimonial-card, .bento-card {
-    transition: border-color 0.2s var(--ease), background-color 0.2s var(--ease);
+  .showcase-card::before, .project-card::before, .testimonial-card::before, .bento-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(320px circle at var(--mx) var(--my), var(--accent-subtle), transparent 65%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
   }
 
-  .showcase-card:hover, .testimonial-card:hover, .project-card:hover, .bento-card:hover {
+  .showcase-card:hover::before, .project-card:hover::before, .testimonial-card:hover::before, .bento-card:hover::before {
+    opacity: 1;
+  }
+
+  .showcase-card > *, .project-card > *, .testimonial-card > *, .bento-card > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .showcase-card:hover, .testimonial-card:hover {
     border-color: var(--border-active);
-    background-color: var(--surface-hover);
+    transform: translateY(-3px);
+    box-shadow: 0 16px 40px -22px var(--accent-glow), 0 2px 0 var(--border-subtle) inset;
+  }
+
+  .project-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 12px 30px -20px var(--accent-glow);
   }
 
   .showcase-badge {
@@ -2171,7 +2026,7 @@
   }
 
   .timeline-item:hover {
-    background: var(--surface-hover);
+    background: linear-gradient(90deg, var(--surface) 0%, transparent 80%);
   }
 
   .timeline-node {
@@ -2181,7 +2036,7 @@
     height: 9px;
     border-width: 1.5px;
     background: var(--bg);
-    box-shadow: 0 0 0 3px var(--bg);
+    box-shadow: 0 0 0 4px var(--bg), 0 0 12px var(--accent-glow);
     transition: all 0.2s var(--ease);
   }
 
@@ -2366,11 +2221,10 @@
   }
 
   .footer-tagline {
-    font-family: var(--font-mono);
-    font-size: 11px;
+    font-family: var(--font-hand);
+    font-size: 20px;
     color: var(--text-muted);
-    letter-spacing: 0.2px;
-    line-height: 1.4;
+    transform: rotate(-2deg);
     max-width: 260px;
   }
 
@@ -2454,221 +2308,74 @@
     transform: rotate(0deg) scale(1.02);
   }
 
-  /* Mobile-only enhancements & typography readability */
+  /* Mobile-only tweaks */
   @media (max-width: 768px) {
-    .layout-wrapper {
-      border-left: none;
-      border-right: none;
-    }
-    .content-section {
-      padding: 28px 18px;
-    }
-    .section-header-block {
-      align-items: flex-start;
-      flex-direction: column;
-      gap: 4px;
-      margin-bottom: 18px;
-    }
-    .section-title {
-      font-size: 19px;
-      line-height: 1.3;
-      align-items: flex-start;
-    }
-    .section-desc {
-      font-size: 13px;
-      line-height: 1.4;
-      color: var(--text-muted);
-    }
-    .section-index {
-      margin-top: 2px;
-      transform: none;
-    }
-    .section-link-btn {
-      display: none;
-    }
     .stats-grid {
       grid-template-columns: 1fr 1fr;
     }
     .stat-card:nth-child(2) { border-right: none; }
     .stat-card:nth-child(-n+2) { border-bottom: 1px solid var(--border); }
-    .stat-card {
-      padding: 14px 16px;
-    }
-    .stat-num {
-      font-size: 19px;
-    }
-    .stat-label {
-      font-size: 11.5px;
-      line-height: 1.35;
-    }
-
-    /* Grids to single column for readability */
-    .showcase-grid, .bento-grid, .projects-grid, .testimonials-grid, .private-docs-list {
-      grid-template-columns: 1fr;
-      gap: 14px;
-    }
-    .showcase-card, .project-card, .testimonial-card, .bento-card {
-      padding: 18px 16px;
-      border-radius: 10px;
-    }
-    .showcase-title {
-      font-size: 17px;
-      line-height: 1.3;
-    }
-    .showcase-desc, .project-desc, .testimonial-text, .bento-card p {
-      font-size: 14px;
-      line-height: 1.6;
-      color: var(--text-secondary);
-    }
-
-    /* Timeline comfortable reading */
-    .timeline-list {
-      padding-left: 18px;
-      margin-left: 4px;
-      gap: 24px;
-    }
-    .timeline-node {
-      left: -23px;
-      top: 6px;
-      width: 9px;
-      height: 9px;
-    }
-    .timeline-header {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 4px;
-    }
-    .timeline-role {
-      font-size: 15.5px;
-      font-weight: 700;
-      color: var(--text-primary);
-      line-height: 1.25;
-    }
-    .timeline-company {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--accent);
-    }
-    .timeline-date {
-      font-size: 12px;
-      color: var(--text-muted);
-      margin-top: 2px;
-    }
-    .timeline-desc {
-      font-size: 14px;
-      line-height: 1.6;
-      color: var(--text-secondary);
-      margin-top: 6px;
-    }
-
-    /* Banners & CTAs */
-    .studio-promo-banner, .private-access-banner {
-      flex-direction: column;
-      align-items: flex-start;
-      padding: 20px 18px;
-      gap: 14px;
-      text-align: left;
-    }
-    .studio-promo-banner h3 {
-      font-size: 17px;
-      line-height: 1.3;
-    }
-    .studio-promo-banner p {
-      font-size: 14px;
-      line-height: 1.6;
-    }
-    .studio-promo-banner .btn, .private-access-banner .btn {
-      width: 100%;
-      min-height: 44px;
-      justify-content: center;
-    }
-
-    /* Buttons touch targets */
-    .btn {
-      min-height: 42px;
-      font-size: 13.5px;
-    }
-    .btn-sm {
-      min-height: 38px;
-      font-size: 12.5px;
-      padding: 7px 14px;
-    }
-
-    /* Dialogs mobile centering */
-    dialog#cmd-dialog, dialog#login-modal {
-      inset: 0;
-      margin: auto;
-      width: calc(100% - 24px);
-      max-height: calc(100dvh - 32px);
-      max-height: calc(100vh - 32px);
-      border-radius: 12px;
-    }
-
-    .greeting-bar {
-      padding: 10px 18px 0;
-      font-size: 11.5px;
-    }
-    .site-footer {
-      padding: 28px 18px 22px;
-    }
-    .footer-brand-row {
-      flex-direction: column;
-      gap: 16px;
-    }
-    .footer-tagline {
-      display: none;
-    }
-    .footer-top-row {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 16px;
-    }
-    .footer-bottom-row {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 10px;
-    }
-    .heatmap-section {
-      padding: 20px 18px;
-    }
-    .heatmap-legend {
-      display: none;
-    }
-    .heatmap-scroll-hint {
-      display: inline;
-    }
-    .hand-note {
-      display: none;
-    }
+    .section-header-block { align-items: flex-start; flex-direction: column; gap: 4px; }
+    .section-link-btn { display: none; }
+    .site-footer { padding: 30px 18px 22px; }
+    .footer-brand-row { flex-direction: column; gap: 16px; }
+    .footer-tagline { display: none; }
+    .footer-top-row { flex-direction: column; align-items: flex-start; }
+    .footer-bottom-row { flex-direction: column; align-items: flex-start; }
+    .heatmap-section { padding: 20px 18px; }
+    .heatmap-legend { display: none; }
+    .heatmap-scroll-hint { display: inline; }
+    .section-title { align-items: flex-start; }
+    .section-index { margin-top: 2px; transform: none; }
+    .content-section { padding: 30px 18px; }
   }
 
   @media (max-width: 600px) {
     .hero-actions-bar {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      width: 100%;
+      gap: 9px;
     }
     .hero-actions-bar > .btn {
       width: 100%;
-      min-height: 44px;
     }
     .hero-actions-bar > .btn:nth-of-type(3) {
       grid-column: 1 / -1;
     }
     .hero-socials {
       grid-column: 1 / -1;
-      width: 100%;
-      margin-top: 6px;
     }
   }
 
   @media (max-width: 360px) {
-    .hero-actions-bar {
+    .hero-actions-bar { grid-template-columns: 1fr; }
+    .hero-actions-bar > .btn:nth-of-type(3) { grid-column: auto; }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .layout-wrapper {
+      border-left: none;
+      border-right: none;
+    }
+    .hero-actions-bar, .hero-meta-row {
+      justify-content: center;
+    }
+    .showcase-grid, .bento-grid, .projects-grid, .testimonials-grid, .private-docs-list {
       grid-template-columns: 1fr;
     }
-    .hero-actions-bar > .btn:nth-of-type(3) {
-      grid-column: auto;
+    .content-section {
+      padding: 24px 18px;
+    }
+    .private-access-banner {
+      flex-direction: column;
+      text-align: center;
+    }
+    .hand-note {
+      display: none; /* Hide margin notes on narrow screens */
+    }
+    .greeting-bar {
+      padding: 10px 18px 0;
     }
   }
 
@@ -2683,16 +2390,18 @@
 
   .project-status-badge {
     font-family: var(--font-mono);
-    font-size: 10.5px;
-    font-weight: 500;
+    font-size: 10px;
+    font-weight: 600;
     padding: 2px 7px;
-    border-radius: 4px;
-    letter-spacing: 0.2px;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
     display: inline-flex;
     align-items: center;
-    background: var(--surface-hover);
-    color: var(--text-secondary);
-    border: 1px solid var(--border);
+    gap: 4px;
+    background: rgba(16, 185, 129, 0.12);
+    color: #10b981;
+    border: 1px solid rgba(16, 185, 129, 0.25);
     white-space: nowrap;
   }
 
@@ -2742,6 +2451,12 @@
 </head>
 <body>
 
+  <!-- Cursor spotlight element -->
+  <div id="cursor-spotlight"></div>
+
+  <!-- Film grain overlay -->
+  <div id="grain-overlay" aria-hidden="true"></div>
+
   <!-- Reading progress -->
   <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
 
@@ -2767,55 +2482,45 @@
           </svg>
         </span>
         <div class="nav-brand-text">
-          <div class="nav-brand-name">Rodrigue HESSOU</div>
-          <span class="nav-brand-sub" data-i18n="nav_role">Software Engineer</span>
+          <div class="nav-brand-name">
+            Rodrigue HESSOU
+            <span class="status-pulse-dot" title="Disponible pour opportunités"></span>
+          </div>
+          <span class="nav-brand-sub">Software Engineer</span>
         </div>
       </a>
 
       <nav aria-label="Navigation principale">
         <ul class="nav-menu">
-          <li><a href="#candidatures" class="nav-link" data-i18n="nav_candidatures">Candidatures</a></li>
-          <li><a href="#experience" class="nav-link" data-i18n="nav_experience">Expérience</a></li>
-          <li><a href="#projets" class="nav-link" data-i18n="nav_projets">Projets</a></li>
-          <li><a href="#competences" class="nav-link" data-i18n="nav_competences">Stack</a></li>
-          <li><a href="#temoignages" class="nav-link" data-i18n="nav_temoignages">Avis</a></li>
-          <li><a href="#formation" class="nav-link" data-i18n="nav_formation">Formation</a></li>
+          <li><a href="#candidatures" class="nav-link">Candidatures</a></li>
+          <li><a href="#experience" class="nav-link">Expérience</a></li>
+          <li><a href="#projets" class="nav-link">Projets</a></li>
+          <li><a href="#competences" class="nav-link">Stack</a></li>
+          <li><a href="#temoignages" class="nav-link">Avis</a></li>
+          <li><a href="#formation" class="nav-link">Formation</a></li>
         </ul>
       </nav>
 
       <div class="nav-right-actions">
-        <!-- STUDIO ÉTUDIANT -->
-        <a href="studio.html" class="login-nav-btn" id="studio-nav-btn" style="border-color: rgba(59, 130, 246, 0.4); color: var(--accent); background: rgba(59, 130, 246, 0.08); padding: 0 8px; gap: 5px;" title="Générateur de CV et Lettre A4 gratuit pour étudiants" data-i18n-title="studio_nav_title">
+        <a href="studio.html" class="login-nav-btn" style="border-color: rgba(59, 130, 246, 0.4); color: var(--accent); background: rgba(59, 130, 246, 0.08);" title="Générateur de CV et Lettre A4 gratuit pour étudiants">
           <svg class="icon-svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-          <span data-i18n="nav_studio">Studio</span>
+          <span>Studio Étudiant</span>
         </a>
-
-        <!-- RECHERCHE CMD+K -->
         <button class="cmd-trigger-btn" onclick="openCmdPalette()" title="Ouvrir la palette de commandes (Ctrl+K)" aria-label="Recherche">
           <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-          <span data-i18n="nav_search">Recherche</span>
+          <span>Recherche</span>
           <kbd class="cmd-shortcut-badge" id="cmd-kbd">Ctrl K</kbd>
         </button>
 
-        <!-- LANGUAGE SWITCHER FR | EN -->
-        <div class="lang-switcher" aria-label="Choisir la langue">
-          <button type="button" class="lang-btn active" id="lang-fr-btn" onclick="setLanguage('fr')">FR</button>
-          <span style="color: var(--border);">|</span>
-          <button type="button" class="lang-btn" id="lang-en-btn" onclick="setLanguage('en')">EN</button>
-        </div>
-
-        <!-- THEME TOGGLE -->
         <button class="theme-toggle-btn" id="theme-btn" onclick="toggleTheme()" title="Basculer le thème clair / sombre" aria-label="Basculer le thème">
           <svg class="icon-svg" id="theme-icon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
         </button>
 
-        <!-- AUTH -->
         <button class="login-nav-btn" id="nav-auth-btn" onclick="handleAuthNavClick()" aria-label="Espace interne">
           <svg class="icon-svg" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-          <span id="nav-auth-text" data-i18n="nav_auth">Connexion</span>
+          <span id="nav-auth-text">Connexion</span>
         </button>
 
-        <!-- MOBILE MENU TOGGLE -->
         <button class="mobile-menu-toggle" id="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-nav">
           <span></span><span></span><span></span>
         </button>
@@ -2823,44 +2528,18 @@
     </header>
 
     <nav class="mobile-nav" id="mobile-nav" aria-label="Navigation mobile">
-      <!-- ACCÈS PRIVILÉGIÉS MOBILES -->
-      <div class="mobile-nav-shortcuts">
-        <a href="studio.html" class="mobile-shortcut-item studio-shortcut" onclick="toggleMobileMenu(false);">
-          <svg class="icon-svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-          <div class="mobile-shortcut-info">
-            <span class="mobile-shortcut-title" data-i18n="nav_studio_full">Studio Étudiant</span>
-            <span class="mobile-shortcut-sub" data-i18n="studio_nav_desc">Générateur CV/Lettre A4</span>
-          </div>
-          <span class="mobile-shortcut-badge">Gratuit</span>
-        </a>
-
-        <div class="mobile-shortcuts-row">
-          <button type="button" class="mobile-shortcut-btn" onclick="toggleMobileMenu(false); handleAuthNavClick();" id="mob-auth-btn">
-            <svg class="icon-svg" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-            <span id="mob-nav-auth-text" data-i18n="nav_auth">Connexion</span>
-          </button>
-          <button type="button" class="mobile-shortcut-btn" onclick="toggleMobileMenu(false); openCmdPalette();">
-            <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-            <span data-i18n="nav_search">Recherche</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- SECTIONS -->
-      <a href="#candidatures" data-i18n="nav_candidatures">Candidatures</a>
-      <a href="#experience" data-i18n="nav_experience">Expérience</a>
-      <a href="#projets" data-i18n="nav_projets">Projets</a>
-      <a href="#competences" data-i18n="nav_competences">Stack technique</a>
-      <a href="#temoignages" data-i18n="nav_temoignages">Recommandations</a>
-      <a href="#formation" data-i18n="nav_formation">Formation</a>
-
-      <!-- ACTIONS CV & CONTACT -->
+      <a href="#candidatures">Candidatures</a>
+      <a href="#experience">Expérience</a>
+      <a href="#projets">Projets</a>
+      <a href="#competences">Stack technique</a>
+      <a href="#temoignages">Recommandations</a>
+      <a href="#formation">Formation</a>
       <div class="mobile-nav-actions">
         <a href="mailto:rodriguehessou14@gmail.com" class="btn btn-secondary btn-sm">Email</a>
-        <a href="CV_Rodrigue_HESSOU_Stage_Tech.pdf" target="_blank" class="btn btn-primary btn-sm" rel="noopener noreferrer" data-i18n="btn_cv_stage_short">CV Stage</a>
+        <a href="CV_Rodrigue_HESSOU_Stage_Tech.pdf" target="_blank" class="btn btn-primary btn-sm" rel="noopener noreferrer">CV Stage</a>
       </div>
       <div class="mobile-nav-meta">
-        <span data-i18n="mobile_status">Lyon, France · Disponible</span>
+        <span>Lyon, France · Disponible</span>
         <div class="mobile-nav-meta-links">
           <a href="https://github.com/RoHsk14" target="_blank" rel="noopener">GitHub</a>
           <a href="https://www.linkedin.com/in/rodrigue-hessou-aa2b11416" target="_blank" rel="noopener">LinkedIn</a>
@@ -2868,30 +2547,91 @@
       </div>
     </nav>
 
+    <!-- Time Greeting & Clock Bar -->
+    <div class="greeting-bar">
+      <div class="greeting-text" id="live-greeting">Bonjour</div>
+      <div class="greeting-clock">
+        <span id="live-clock">--:--:--</span>
+        <span>// Lyon, FR</span>
+      </div>
+    </div>
+
     <!-- HERO PROFILE -->
     <section class="hero-section" id="overview">
 
-      <div class="status-pill">
-        <span data-i18n="hero_status">Disponible — Stage ou alternance (Bac+5)</span>
+      <div class="hero-art-band" aria-hidden="true">
+        <svg class="hero-art-svg" viewBox="0 0 640 300" fill="none" stroke="currentColor" stroke-width="1.1">
+          <g opacity="0.95">
+            <polygon points="320,54 430,109 320,164 210,109" fill="currentColor" fill-opacity="0.025"/>
+            <polyline points="210,109 210,205 320,260 320,164"/>
+            <polyline points="430,109 430,205 320,260"/>
+            <line x1="320" y1="54" x2="320" y2="164" stroke-dasharray="3 3" opacity="0.55"/>
+            <line x1="210" y1="157" x2="320" y2="212" stroke-dasharray="3 3" opacity="0.35"/>
+            <line x1="430" y1="157" x2="320" y2="212" stroke-dasharray="3 3" opacity="0.35"/>
+            <line x1="265" y1="82" x2="375" y2="137" opacity="0.35"/>
+            <line x1="375" y1="82" x2="265" y2="137" opacity="0.35"/>
+          </g>
+          <g opacity="0.55">
+            <polygon points="112,128 170,157 112,186 54,157"/>
+            <polyline points="54,157 54,207 112,236 112,186"/>
+            <polyline points="170,157 170,207 112,236"/>
+            <line x1="112" y1="128" x2="112" y2="186" stroke-dasharray="2 3" opacity="0.5"/>
+          </g>
+          <g opacity="0.55">
+            <polygon points="528,128 586,157 528,186 470,157"/>
+            <polyline points="470,157 470,207 528,236 528,186"/>
+            <polyline points="586,157 586,207 528,236"/>
+            <line x1="528" y1="128" x2="528" y2="186" stroke-dasharray="2 3" opacity="0.5"/>
+          </g>
+          <g opacity="0.35" stroke-dasharray="2 4">
+            <line x1="54" y1="252" x2="586" y2="252"/>
+            <line x1="112" y1="236" x2="112" y2="268"/>
+            <line x1="320" y1="260" x2="320" y2="286"/>
+            <line x1="528" y1="236" x2="528" y2="268"/>
+          </g>
+          <g fill="currentColor" stroke="none">
+            <circle cx="320" cy="54" r="2.4"/>
+            <circle cx="54" cy="157" r="2"/>
+            <circle cx="586" cy="157" r="2"/>
+          </g>
+          <g stroke="var(--accent)" stroke-width="1.4" fill="none">
+            <circle cx="320" cy="54" r="6"/>
+            <path d="M320 44v-8M320 64v8M310 54h-8M330 54h8" opacity="0.6"/>
+          </g>
+        </svg>
+        <span class="hero-art-dim">640 × 300 — ISO 30°</span>
+        <span class="hero-art-angle">AXONOMÉTRIE / STUDY 01</span>
+        <span class="hero-art-note">small details matter ~&gt;</span>
       </div>
 
       <div class="hero-profile-row">
-        <div class="hero-avatar-frame">
-          <img src="photo.jpg" alt="Photo Rodrigue HESSOU" class="hero-avatar-img">
+        <div class="hero-bio-container">
+          <div class="status-pill">
+            <span class="status-pulse-dot"></span>
+            Disponible — Stage ou alternance (Bac+5)
+          </div>
+
+          <div class="hero-name-block">
+            <h1>
+              Rodrigue HESSOU
+              <svg class="verified-badge" viewBox="0 0 24 24" aria-label="Profil vérifié">
+                <path d="M12 2.5l2.4 1.9 3-.3 1 2.9 2.6 1.6-1 2.9 1 2.9-2.6 1.6-1 2.9-3-.3L12 21.5l-2.4-1.9-3 .3-1-2.9-2.6-1.6 1-2.9-1-2.9 2.6-1.6 1-2.9 3 .3L12 2.5z" fill="currentColor"/>
+                <path d="M8.6 12.3l2.2 2.2 4.6-4.7" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              </svg>
+            </h1>
+            <div class="hero-title-role">Étudiant Master 1 en Informatique — Cursus Bac+5</div>
+            <div class="hero-tagline">ingénierie logicielle, architecture & détails qui comptent</div>
+          </div>
         </div>
 
-        <div class="hero-bio-container">
-          <div class="hero-name-block">
-            <h1>Rodrigue HESSOU</h1>
-            <div class="hero-title-role" data-i18n="hero_title_role">Master 1 Infrastructure &amp; Sécurité des Systèmes Réseaux • Licence Génie Logiciel</div>
-          </div>
+        <div class="hero-avatar-frame">
+          <span class="hero-avatar-dimension">&empty;112</span>
+          <img src="photo.jpg" alt="Photo Rodrigue HESSOU" class="hero-avatar-img">
         </div>
       </div>
 
-      <div class="hero-tagline" data-i18n="hero_tagline">// génie logiciel, sécurisation des réseaux &amp; infrastructures cloud</div>
-
-      <p class="hero-lead-text" data-i18n="hero_lead_text">
-        Titulaire d'une <strong>Licence en Génie Logiciel (Mention Bien)</strong> et actuellement en <strong>Master 1 Infrastructure &amp; Sécurité des Systèmes Réseaux</strong> à <strong>SUPINFO Lyon</strong>. J'associe une solide expertise de développement applicatif (Java, Python, SQL, Web) à la maîtrise des infrastructures systèmes et réseaux, du durcissement (hardening Linux), des protocoles sécurisés et du DevSecOps.
+      <p class="hero-lead-text">
+        Titulaire d'une <strong>Licence en Génie Logiciel (Mention Bien)</strong> et actuellement en Master 1 à <strong>SUPINFO Lyon</strong>. Je conçois des applications back-end et fullstack fiables — Java, Python, SQL, Flutter, Web — avec une exigence particulière sur les tests, la documentation et l'expérience utilisateur.
       </p>
 
       <div class="hero-info-grid">
@@ -2900,7 +2640,7 @@
             <svg class="icon-svg" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-10 6L2 7"></path></svg>
           </span>
           <span class="hero-info-text">
-            <span class="hero-info-label" data-i18n="lbl_email">Email</span>
+            <span class="hero-info-label">Email</span>
             <span class="hero-info-value">rodriguehessou14@gmail.com</span>
           </span>
           <span class="hero-info-copy">
@@ -2913,7 +2653,7 @@
             <svg class="icon-svg" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
           </span>
           <span class="hero-info-text">
-            <span class="hero-info-label" data-i18n="lbl_phone">Téléphone</span>
+            <span class="hero-info-label">Téléphone</span>
             <span class="hero-info-value">+33 7 44 11 75 73</span>
           </span>
           <span class="hero-info-copy">
@@ -2926,8 +2666,8 @@
             <svg class="icon-svg" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
           </span>
           <span class="hero-info-text">
-            <span class="hero-info-label" data-i18n="lbl_loc">Localisation</span>
-            <span class="hero-info-value" data-i18n="val_loc">Lyon, France · Mobile</span>
+            <span class="hero-info-label">Localisation</span>
+            <span class="hero-info-value">Lyon, France · Mobile</span>
           </span>
         </div>
 
@@ -2936,22 +2676,22 @@
             <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
           </span>
           <span class="hero-info-text">
-            <span class="hero-info-label" data-i18n="lbl_lang">Langues</span>
-            <span class="hero-info-value" data-i18n="val_lang">Français · Anglais B2</span>
+            <span class="hero-info-label">Langues</span>
+            <span class="hero-info-value">Français · Anglais B2</span>
           </span>
         </div>
       </div>
 
       <div class="hero-meta-row">
-        <span class="hero-meta-item" data-i18n="meta_school">Formation : SUPINFO Lyon (2026 - 2028)</span>
-        <span class="hero-meta-item" data-i18n="meta_degree">Diplôme : Licence Génie Logiciel (Mention Bien) • M1 Infra &amp; Sécurité</span>
-        <span class="hero-meta-item" data-i18n="meta_avail">Disponibilité : immédiate</span>
+        <span class="hero-meta-item">Formation : SUPINFO Lyon (2026 - 2028)</span>
+        <span class="hero-meta-item">Diplôme : Licence Génie Logiciel (Mention Bien)</span>
+        <span class="hero-meta-item">Disponibilité : immédiate</span>
       </div>
 
       <div class="hero-actions-bar">
         <a href="CV_Rodrigue_HESSOU_Stage_Tech.pdf" target="_blank" class="btn btn-primary" rel="noopener noreferrer">
           <svg class="icon-svg" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-          <span data-i18n="btn_cv_stage">CV Stage (PDF)</span>
+          CV Stage (PDF)
         </a>
         <a href="CV_Rodrigue_HESSOU_Alternance_Tech.pdf" target="_blank" class="btn btn-secondary" rel="noopener noreferrer">
           <svg class="icon-svg" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
@@ -2980,19 +2720,19 @@
     <div class="stats-grid">
       <div class="stat-card">
         <span class="stat-num">Bac+5</span>
-        <span class="stat-label" data-i18n="stat_label_1">Cursus Ingénierie SUPINFO</span>
+        <span class="stat-label">Cursus Ingénierie SUPINFO</span>
       </div>
       <div class="stat-card">
         <span class="stat-num">2</span>
-        <span class="stat-label" data-i18n="stat_label_2">Dossiers Techniques Dédiés</span>
+        <span class="stat-label">Dossiers Techniques Dédiés</span>
       </div>
       <div class="stat-card">
         <span class="stat-num">100+</span>
-        <span class="stat-label" data-i18n="stat_label_3">Cas de Recette & QA Exécutés</span>
+        <span class="stat-label">Cas de Recette & QA Exécutés</span>
       </div>
       <div class="stat-card">
         <span class="stat-num">100%</span>
-        <span class="stat-label" data-i18n="stat_label_4">Recette &amp; Tests QA Validés</span>
+        <span class="stat-label">Format A4 Strict 1 Page</span>
       </div>
     </div>
 
@@ -3001,17 +2741,17 @@
       <div class="heatmap-header">
         <div class="heatmap-title">
           <svg style="width: 14px; height: 14px; fill: currentColor;" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-          <span><strong id="heatmap-total">512</strong> <span data-i18n="heatmap_suffix">contributions au cours des 12 derniers mois</span></span>
+          <span><strong id="heatmap-total">512</strong> contributions au cours des 12 derniers mois</span>
         </div>
-        <span class="heatmap-scroll-hint" data-i18n="heatmap_scroll">Glisser →</span>
+        <span class="heatmap-scroll-hint">Glisser →</span>
         <div class="heatmap-legend">
-          <span data-i18n="heatmap_less">Moins</span>
+          <span>Moins</span>
           <div class="legend-box lvl-0"></div>
           <div class="legend-box lvl-1"></div>
           <div class="legend-box lvl-2"></div>
           <div class="legend-box lvl-3"></div>
           <div class="legend-box lvl-4"></div>
-          <span data-i18n="heatmap_more">Plus</span>
+          <span>Plus</span>
         </div>
       </div>
 
@@ -3037,13 +2777,14 @@
     <section class="content-section" id="candidatures">
 
       <!-- STUDIO ÉTUDIANT PUBLIC BANNER -->
-      <div class="studio-promo-banner" style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 24px; margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap;">
+      <div style="background: linear-gradient(135deg, rgba(59,130,246,0.08) 0%, rgba(16,185,129,0.06) 100%); border: 1px solid rgba(59,130,246,0.25); border-radius: 12px; padding: 20px 24px; margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap;">
         <div>
           <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
-            <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 500; color: var(--accent); background: var(--accent-subtle); border: 1px solid var(--border); padding: 2px 7px; border-radius: 4px;">
-              Espace Étudiant
+            <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--accent); background: rgba(59,130,246,0.12); border: 1px solid rgba(59,130,246,0.3); padding: 2px 7px; border-radius: 4px; text-transform: uppercase;">
+              Nouveau &bull; Espace Étudiant
             </span>
-            <span style="font-family: var(--font-mono); font-size: 11.5px; color: var(--text-muted); display: inline-flex; align-items: center; gap: 5px;">
+            <span style="font-family: var(--font-mono); font-size: 11.5px; color: var(--green); display: inline-flex; align-items: center; gap: 5px;">
+              <span class="status-pulse-dot" style="width:5px;height:5px;"></span>
               100% Gratuit &bull; Zéro Trace &bull; Confidentialité Totale
             </span>
           </div>
@@ -3062,8 +2803,8 @@
       </div>
 
       <div class="section-header-block">
-        <h2 class="section-title" data-i18n="sec_candidatures_title">Candidatures Techniques (Vitrine Publique)</h2>
-        <span class="section-desc" data-i18n="sec_candidatures_sub">Dossiers généraux conventionnés Bac+5</span>
+        <h2 class="section-title">Candidatures Techniques (Vitrine Publique)</h2>
+        <span class="section-desc">Dossiers généraux conventionnés Bac+5</span>
       </div>
 
       <div class="showcase-grid">
@@ -3071,22 +2812,22 @@
         <!-- 1. STAGE TECHNIQUE GENERAL -->
         <div class="showcase-card">
           <div>
-            <span class="showcase-badge" data-i18n="badge_stage">Stage Tremplin Pré-Alternance (4 à 6 mois)</span>
-            <h3 class="showcase-title" data-i18n="title_stage">Développeur Logiciel, Infrastructure &amp; Sécurité Réseau — Stage Conventionné</h3>
-            <div class="showcase-sub" data-i18n="stage_level">Master 1 SUPINFO Lyon • Spécialisation Infrastructure &amp; Sécurité Réseaux</div>
+            <span class="showcase-badge">Stage Conventionné</span>
+            <h3 class="showcase-title">Développeur Logiciel — Recherche de Stage</h3>
+            <div class="showcase-sub">Niveau Master 1 / Bac+5 Informatique — Lyon & Remote</div>
 
-            <p class="showcase-desc" style="margin-top: 10px;" data-i18n="stage_desc">
-              Stage tremplin pré-embauche : mise en application de la double compétence en génie logiciel et sécurité des systèmes réseaux (durcissement Linux, APIs sécurisées, architecture réseau, chiffrement et audits) avant contrat d'alternance Master 2.
+            <p class="showcase-desc" style="margin-top: 10px;">
+              Candidature générale pour stage en développement logiciel. Conception orientée objet, développement back-end et fullstack, création d'APIs REST, intégration de bases de données relationnelles, tests unitaires approfondis et documentation technique.
             </p>
 
             <div class="tags-list" style="margin-top: 12px;">
-              <span class="tech-tag">Génie Logiciel</span>
-              <span class="tech-tag">Sécurité Réseaux</span>
-              <span class="tech-tag">Linux Hardening</span>
-              <span class="tech-tag">Python &amp; Java</span>
-              <span class="tech-tag">Docker &amp; Cloud</span>
-              <span class="tech-tag">WebAuthn / Passkeys</span>
-              <span class="tech-tag">Audits QA &amp; OWASP</span>
+              <span class="tech-tag">Java</span>
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">SQL</span>
+              <span class="tech-tag">C++</span>
+              <span class="tech-tag">Méthodes Agiles</span>
+              <span class="tech-tag">Tests Unitaires</span>
+              <span class="tech-tag">Cycle de Vie Applicatif</span>
             </div>
           </div>
 
@@ -3097,7 +2838,7 @@
             </a>
             <a href="Lettre_de_Motivation_Stage_Tech_Rodrigue_HESSOU.pdf" target="_blank" class="btn btn-secondary btn-sm" rel="noopener noreferrer">
               <svg class="icon-svg" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-              <span data-i18n="btn_letter_stage">Lettre Stage (PDF)</span>
+              Lettre Stage (PDF)
             </a>
           </div>
         </div>
@@ -3105,22 +2846,22 @@
         <!-- 2. ALTERNANCE TECHNIQUE GENERALE -->
         <div class="showcase-card">
           <div>
-            <span class="showcase-badge" data-i18n="badge_alt">Contrat d'Alternance</span>
-            <h3 class="showcase-title" data-i18n="title_alt">Ingénieur Logiciel &amp; Sécurité des Systèmes Réseaux — Recherche d'Alternance</h3>
-            <div class="showcase-sub" data-i18n="sub_alt">Rythme Master 1 SUPINFO Lyon (Cursus Bac+5)</div>
+            <span class="showcase-badge">Contrat d'Alternance</span>
+            <h3 class="showcase-title">Développeur Logiciel — Recherche d'Alternance</h3>
+            <div class="showcase-sub">Rythme Master 1 SUPINFO Lyon (Cursus Bac+5)</div>
 
-            <p class="showcase-desc" style="margin-top: 10px;" data-i18n="desc_alt">
-              Candidature pour contrat d'alternance alliant ingénierie logicielle et sécurisation des infrastructures. Investissement sur la durée au sein de l'équipe : développement de solutions logicielles résilientes, administration et durcissement des systèmes réseaux, automatisation CI/CD et sécurité applicative.
+            <p class="showcase-desc" style="margin-top: 10px;">
+              Candidature générale pour contrat d'alternance en ingénierie logicielle. Investissement sur la durée au sein de l'équipe, participation aux sprints Agiles (Scrum), développement de fonctionnalités métiers, refonte applicative et maintien de standards de code élevés.
             </p>
 
             <div class="tags-list" style="margin-top: 12px;">
-              <span class="tech-tag">Génie Logiciel (Java/Python)</span>
-              <span class="tech-tag">Infrastructures Réseaux</span>
-              <span class="tech-tag">Sécurité &amp; Hardening</span>
-              <span class="tech-tag">TCP/IP &amp; Protocoles</span>
-              <span class="tech-tag">Docker &amp; Linux</span>
-              <span class="tech-tag">PostgreSQL / SQL</span>
-              <span class="tech-tag">DevSecOps &amp; CI/CD</span>
+              <span class="tech-tag">Java</span>
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">Web Fullstack</span>
+              <span class="tech-tag">Flutter / Dart</span>
+              <span class="tech-tag">MySQL / PostgreSQL</span>
+              <span class="tech-tag">Docker</span>
+              <span class="tech-tag">Git & CI/CD</span>
             </div>
           </div>
 
@@ -3131,7 +2872,7 @@
             </a>
             <a href="Lettre_de_Motivation_Alternance_Tech_Rodrigue_HESSOU.pdf" target="_blank" class="btn btn-secondary btn-sm" rel="noopener noreferrer">
               <svg class="icon-svg" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-              <span data-i18n="btn_letter_alt">Lettre Alternance (PDF)</span>
+              Lettre Alternance (PDF)
             </a>
           </div>
         </div>
@@ -3144,8 +2885,8 @@
          -------------------------------------------------- -->
     <section class="content-section" id="experience">
       <div class="section-header-block">
-        <h2 class="section-title" data-i18n="sec_exp_title">Parcours & Expérience</h2>
-        <span class="section-desc" data-i18n="sec_exp_sub">Historique professionnel et technique</span>
+        <h2 class="section-title">Parcours & Expérience</h2>
+        <span class="section-desc">Historique professionnel et technique</span>
       </div>
 
       <div class="timeline-list">
@@ -3155,12 +2896,12 @@
           <span class="timeline-node"></span>
           <div class="timeline-header">
             <div>
-              <div class="timeline-role" data-i18n="exp_role_1">Stagiaire — Développement Mobile, QA & Business Development</div>
+              <div class="timeline-role">Stagiaire — Développement Mobile, QA & Business Development</div>
               <div class="timeline-company">Nataan Group (ESN)</div>
             </div>
-            <span class="timeline-date" data-i18n="exp_date_1">Juil. 2026 - Sept. 2026</span>
+            <span class="timeline-date">Juil. 2026 - Sept. 2026</span>
           </div>
-          <p class="timeline-desc" data-i18n="exp_desc_1">
+          <p class="timeline-desc">
             Co-développement de l'application BoutiK sous Flutter et intégration passerelle FedaPay. Portage iOS conforme aux guidelines Apple et publication App Store Connect. Recette fonctionnelle complète (103 cas de tests exécutés) et prospection B2B auprès de 100 commerçants.
           </p>
           <div class="tags-list">
@@ -3173,7 +2914,7 @@
           <div style="margin-top: 8px;">
             <a href="https://boutik-landing.web.app/" target="_blank" class="btn-project" style="display:inline-flex; font-size:11px; padding:3px 8px;" rel="noopener noreferrer">
               <svg class="icon-svg" style="width:11px;height:11px;" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-              <span data-i18n="exp_link_boutik">Voir la landing page BoutiK</span>
+              Voir la landing page BoutiK
             </a>
           </div>
         </div>
@@ -3183,12 +2924,12 @@
           <span class="timeline-node"></span>
           <div class="timeline-header">
             <div>
-              <div class="timeline-role" data-i18n="exp_role_2">Stagiaire en Développement Web Fullstack</div>
+              <div class="timeline-role">Stagiaire en Développement Web Fullstack</div>
               <div class="timeline-company">ATANYS</div>
             </div>
-            <span class="timeline-date" data-i18n="exp_date_2">Sept. 2025 - Déc. 2025</span>
+            <span class="timeline-date">Sept. 2025 - Déc. 2025</span>
           </div>
-          <p class="timeline-desc" data-i18n="exp_desc_2">
+          <p class="timeline-desc">
             Conception et développement d'une plateforme web complète de signalement et de gestion des objets perdus et retrouvés. Modélisation relationnelle de la base de données MySQL, développement back-end et interface utilisateur.
           </p>
           <div class="tags-list">
@@ -3204,12 +2945,12 @@
           <span class="timeline-node"></span>
           <div class="timeline-header">
             <div>
-              <div class="timeline-role" data-i18n="exp_role_3">Stagiaire en Développement d'Applications Mobiles</div>
+              <div class="timeline-role">Stagiaire en Développement d'Applications Mobiles</div>
               <div class="timeline-company">Darollo Technologies Corporation</div>
             </div>
-            <span class="timeline-date" data-i18n="exp_date_3">Juil. 2025 - Août 2025</span>
+            <span class="timeline-date">Juil. 2025 - Août 2025</span>
           </div>
-          <p class="timeline-desc" data-i18n="exp_desc_3">
+          <p class="timeline-desc">
             Développement d'une application mobile Flutter dédiée aux artisans tailleurs pour la gestion des commandes et mensurations. Conception d'un fonctionnement hors-ligne (offline-first) avec synchronisation automatique.
           </p>
           <div class="tags-list">
@@ -3224,12 +2965,12 @@
           <span class="timeline-node"></span>
           <div class="timeline-header">
             <div>
-              <div class="timeline-role" data-i18n="exp_role_4">Préparateur de Commandes & Employé Commercial</div>
+              <div class="timeline-role">Préparateur de Commandes & Employé Commercial</div>
               <div class="timeline-company">Plateforme Logistique & Supermarché Champion</div>
             </div>
             <span class="timeline-date">2024 - 2025</span>
           </div>
-          <p class="timeline-desc" data-i18n="exp_desc_4">
+          <p class="timeline-desc">
             Rigueur de cadence en préparation de commandes, respect des consignes de sécurité. Gestion des encaissements en période de forte affluence, tenue de caisse exacte, réassort et sens du service client.
           </p>
           <div class="tags-list">
@@ -3244,12 +2985,12 @@
           <span class="timeline-node"></span>
           <div class="timeline-header">
             <div>
-              <div class="timeline-role" data-i18n="exp_role_5">Stagiaire en Gestion & Automatisation de Données</div>
+              <div class="timeline-role">Stagiaire en Gestion & Automatisation de Données</div>
               <div class="timeline-company">ONG-CRISTO</div>
             </div>
-            <span class="timeline-date" data-i18n="exp_date_5">Juil. 2024 - Sept. 2024</span>
+            <span class="timeline-date">Juil. 2024 - Sept. 2024</span>
           </div>
-          <p class="timeline-desc" data-i18n="exp_desc_5">
+          <p class="timeline-desc">
             Mise en place d'un système de gestion automatisée de la collecte d'informations pour un cabinet de recherche. Structuration et contrôle qualité des données terrain.
           </p>
           <div class="tags-list">
@@ -3267,8 +3008,8 @@
          -------------------------------------------------- -->
     <section class="content-section" id="projets">
       <div class="section-header-block">
-        <h2 class="section-title" data-i18n="sec_proj_title">Projets & Réalisations Techniques</h2>
-        <span class="section-desc" data-i18n="sec_proj_sub">Architecture logicielle et code</span>
+        <h2 class="section-title">Projets & Réalisations Techniques</h2>
+        <span class="section-desc">Architecture logicielle et code</span>
       </div>
 
       <div class="projects-grid">
@@ -3277,10 +3018,13 @@
         <div class="project-card">
           <div>
             <div class="project-card-header">
-              <div class="project-title" data-i18n="proj_title_1">BoutiK — Logiciel de Caisse & Gestion POS (Projet de Stage)</div>
-              <span class="project-status-badge">Projet de Stage · En ligne</span>
+              <div class="project-title">BoutiK — Logiciel de Caisse & Gestion POS (Projet de Stage)</div>
+              <span class="project-status-badge">
+                <span class="status-pulse-dot" style="width:5px;height:5px;"></span>
+                Projet de Stage · En ligne
+              </span>
             </div>
-            <p class="project-desc" data-i18n="proj_desc_1">
+            <p class="project-desc">
               Logiciel tout-en-un de caisse enregistreuse et de gestion commerciale (ventes, stocks, employés, reporting) pour les commerçants et points de vente. Développé lors de mon stage chez Nataan Group : co-conception de l'application mobile Flutter, intégration de la passerelle de paiement FedaPay, portage iOS pour App Store Connect, recette fonctionnelle (103 cas de tests) et landing page officielle.
             </p>
             <div class="tags-list" style="margin-top: 10px;">
@@ -3295,7 +3039,7 @@
           <div class="project-actions">
             <a href="https://boutik-landing.web.app/" target="_blank" class="btn-project primary" rel="noopener noreferrer">
               <svg class="icon-svg" style="width:12px;height:12px;" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-              <span data-i18n="proj_link_1">Visiter boutik-landing.web.app</span>
+              Visiter boutik-landing.web.app
             </a>
           </div>
         </div>
@@ -3307,9 +3051,12 @@
           <div>
             <div class="project-card-header">
               <div class="project-title">AfroSpy — E-Commerce Ad & Product Intelligence</div>
-              <span class="project-status-badge">En ligne</span>
+              <span class="project-status-badge">
+                <span class="status-pulse-dot" style="width:5px;height:5px;"></span>
+                En ligne
+              </span>
             </div>
-            <p class="project-desc" data-i18n="proj_desc_2">
+            <p class="project-desc">
               Plateforme d'intelligence publicitaire et de détection de produits gagnants pour le e-commerce africain et international. Suivi des campagnes de vente, analyse des métriques d'engagement et détection de tendances en temps réel.
             </p>
             <div class="tags-list" style="margin-top: 10px;">
@@ -3323,7 +3070,7 @@
           <div class="project-actions">
             <a href="https://afro-spy.com" target="_blank" class="btn-project primary" rel="noopener noreferrer">
               <svg class="icon-svg" style="width:12px;height:12px;" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-              <span data-i18n="proj_link_2">Visiter afro-spy.com</span>
+              Visiter afro-spy.com
             </a>
           </div>
         </div>
@@ -3332,10 +3079,13 @@
         <div class="project-card">
           <div>
             <div class="project-card-header">
-              <div class="project-title" data-i18n="proj_title_3">ShopEazy — Plateforme E-Commerce Moderne</div>
-              <span class="project-status-badge">En ligne</span>
+              <div class="project-title">ShopEazy — Plateforme E-Commerce Moderne</div>
+              <span class="project-status-badge">
+                <span class="status-pulse-dot" style="width:5px;height:5px;"></span>
+                En ligne
+              </span>
             </div>
-            <p class="project-desc" data-i18n="proj_desc_3">
+            <p class="project-desc">
               Solution complète de commerce électronique : catalogue interactif de produits, panier d'achat dynamique, tunnel de conversion optimisé et design responsive taillé pour les taux de conversion élevés.
             </p>
             <div class="tags-list" style="margin-top: 10px;">
@@ -3349,7 +3099,7 @@
           <div class="project-actions">
             <a href="https://shopeazy-five.vercel.app" target="_blank" class="btn-project primary" rel="noopener noreferrer">
               <svg class="icon-svg" style="width:12px;height:12px;" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-              <span data-i18n="proj_link_3">Visiter shopeazy-five.vercel.app</span>
+              Visiter shopeazy-five.vercel.app
             </a>
             <a href="https://github.com/RoHsk14/SHOP" target="_blank" class="btn-project" rel="noopener noreferrer">
               <svg class="icon-svg" style="width:12px;height:12px;" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
@@ -3362,9 +3112,11 @@
         <div class="project-card">
           <div>
             <div class="project-card-header">
-              <div class="project-title" data-i18n="proj_title_4">
-<!-- tagged -->Plateforme Objets Perdus & Retrouvés (LostFound)</div>
-              <span class="project-status-badge">En ligne</span>
+              <div class="project-title">Plateforme Objets Perdus & Retrouvés (LostFound)</div>
+              <span class="project-status-badge">
+                <span class="status-pulse-dot" style="width:5px;height:5px;"></span>
+                En ligne
+              </span>
             </div>
             <p class="project-desc">
               Service web complet de dépôt d'annonces, recherche indexée et mise en relation sécurisée pour biens égarés. Algorithme de correspondance spatio-temporelle et gestion administrative des déclarations.
@@ -3393,9 +3145,11 @@
         <div class="project-card">
           <div>
             <div class="project-card-header">
-              <div class="project-title" data-i18n="proj_title_5">
-<!-- tagged -->AfroCodeurs — Panafrican Tech Community</div>
-              <span class="project-status-badge">Open Source</span>
+              <div class="project-title">AfroCodeurs — Panafrican Tech Community</div>
+              <span class="project-status-badge">
+                <span class="status-pulse-dot" style="width:5px;height:5px;"></span>
+                Open Source
+              </span>
             </div>
             <p class="project-desc">
               Plateforme communautaire open source réunissant développeurs et makers tech panafricains. Partage de ressources techniques, projets collaboratifs et émulation "Build Before Consume".
@@ -3419,8 +3173,7 @@
         <div class="project-card">
           <div>
             <div class="project-card-header">
-              <div class="project-title" data-i18n="proj_title_6">
-<!-- tagged -->Miab Tela — Application Mobile Artisans Tailleurs</div>
+              <div class="project-title">Miab Tela — Application Mobile Artisans Tailleurs</div>
               <span class="project-status-badge" style="color:#38bdf8;background:rgba(56,189,248,0.12);border-color:rgba(56,189,248,0.25);">
                 Mobile App
               </span>
@@ -3448,8 +3201,7 @@
         <div class="project-card">
           <div>
             <div class="project-card-header">
-              <div class="project-title" data-i18n="proj_title_7">
-<!-- tagged -->Moteur de Génération & Impression CV A4 Exact</div>
+              <div class="project-title">Moteur de Génération & Impression CV A4 Exact</div>
               <span class="project-status-badge">
                 Système
               </span>
@@ -3486,7 +3238,7 @@
       </div>
 
       <div class="stack-category-block">
-        <div class="stack-category-title" data-i18n="stack_cat_1">Langages de Programmation</div>
+        <div class="stack-category-title">Langages de Programmation</div>
         <div class="stack-chips-wrap">
           <span class="stack-chip">Java</span>
           <span class="stack-chip">Python</span>
@@ -3500,7 +3252,7 @@
       </div>
 
       <div class="stack-category-block">
-        <div class="stack-category-title" data-i18n="stack_cat_2">Frameworks & Environnements Web / Mobile</div>
+        <div class="stack-category-title">Frameworks & Environnements Web / Mobile</div>
         <div class="stack-chips-wrap">
           <span class="stack-chip">Flutter</span>
           <span class="stack-chip">React.js</span>
@@ -3514,34 +3266,17 @@
       </div>
 
       <div class="stack-category-block">
-        <div class="stack-category-title" data-i18n="stack_cat_3">Bases de Données, DevOps &amp; Outils</div>
+        <div class="stack-category-title">Bases de Données, Outils & Méthodologies</div>
         <div class="stack-chips-wrap">
           <span class="stack-chip">MySQL</span>
           <span class="stack-chip">PostgreSQL</span>
           <span class="stack-chip">Firebase Firestore</span>
-          <span class="stack-chip">Git &amp; GitHub</span>
+          <span class="stack-chip">Git & GitHub</span>
           <span class="stack-chip">Docker</span>
-          <span class="stack-chip">Linux / Shell Scripting</span>
+          <span class="stack-chip">Linux / Shell</span>
           <span class="stack-chip">Méthodes Agiles (Scrum)</span>
-          <span class="stack-chip">Tests Unitaires &amp; QA</span>
+          <span class="stack-chip">Tests Unitaires & QA</span>
           <span class="stack-chip">Outils EAM / PLM</span>
-        </div>
-      </div>
-
-      <div class="stack-category-block">
-        <div class="stack-category-title" data-i18n="stack_cat_4">Infrastructures, Réseaux &amp; Cybersécurité</div>
-        <div class="stack-chips-wrap">
-          <span class="stack-chip">Administration Systèmes Linux</span>
-          <span class="stack-chip">Protocoles Réseaux (TCP/IP, DNS, DHCP)</span>
-          <span class="stack-chip">VLAN &amp; Segmentation</span>
-          <span class="stack-chip">Routage &amp; Commutation</span>
-          <span class="stack-chip">Durcissement (Linux Hardening)</span>
-          <span class="stack-chip">Pare-feu &amp; Filtrage Réseau</span>
-          <span class="stack-chip">Wireshark &amp; Nmap</span>
-          <span class="stack-chip">Cryptographie &amp; Chiffrement (TLS / AES)</span>
-          <span class="stack-chip">WebAuthn &amp; Passkeys (FIDO2)</span>
-          <span class="stack-chip">Sécurité Applicative (OWASP Top 10)</span>
-          <span class="stack-chip">Sécurisation Conteneurs &amp; Cloud</span>
         </div>
       </div>
     </section>
@@ -3558,27 +3293,27 @@
 
       <div class="testimonials-grid">
         <div class="testimonial-card">
-          <p class="testimonial-text" data-i18n="test_quote_1">
+          <p class="testimonial-text">
             "Rodrigue fait preuve d'une autonomie remarquable et d'une rigueur exemplaire sur les recettes applicatives. Sa capacité à s'adapter aux contraintes iOS et aux guidelines Apple Store a été un atout précieux."
           </p>
           <div class="testimonial-author-row">
             <div class="testimonial-avatar">NG</div>
             <div class="testimonial-author-info">
-              <span class="testimonial-name" data-i18n="test_name_1">Tuteur de Stage — Nataan Group</span>
-              <span class="testimonial-role" data-i18n="test_role_1">Direction Technique Mobile & QA</span>
+              <span class="testimonial-name">Tuteur de Stage — Nataan Group</span>
+              <span class="testimonial-role">Direction Technique Mobile & QA</span>
             </div>
           </div>
         </div>
 
         <div class="testimonial-card">
-          <p class="testimonial-text" data-i18n="test_quote_2">
+          <p class="testimonial-text">
             "Un profil complet alliant solides bases algorithmiques, sérieux dans la modélisation de données relationnelles et excellent esprit d'équipe au sein de la promotion."
           </p>
           <div class="testimonial-author-row">
             <div class="testimonial-avatar">SI</div>
             <div class="testimonial-author-info">
-              <span class="testimonial-name" data-i18n="test_name_2">Responsable Pédagogique</span>
-              <span class="testimonial-role" data-i18n="test_role_2">Département Génie Logiciel & Master</span>
+              <span class="testimonial-name">Responsable Pédagogique</span>
+              <span class="testimonial-role">Département Génie Logiciel & Master</span>
             </div>
           </div>
         </div>
@@ -3600,13 +3335,13 @@
           <span class="timeline-node"></span>
           <div class="timeline-header">
             <div>
-              <div class="timeline-role" data-i18n="edu_role_1">Master 1 en Infrastructure et Sécurité des Systèmes Réseaux (Bac+5)</div>
+              <div class="timeline-role">Master 1 en Informatique (Cursus Bac+5)</div>
               <div class="timeline-company">SUPINFO Lyon — Lyon, France</div>
             </div>
-            <span class="timeline-date" data-i18n="edu_date_1">Oct. 2026 - Présent</span>
+            <span class="timeline-date">Oct. 2026 - Présent</span>
           </div>
-          <p class="timeline-desc" data-i18n="edu_desc_1">
-            Programme d'Ingénierie Systèmes, Réseaux &amp; Sécurité : administration et sécurisation des réseaux d'entreprise, infrastructures cloud &amp; Linux, durcissement (hardening), cryptographie appliquée, protocoles sécurisés et gestion des identités.
+          <p class="timeline-desc">
+            Programme d'Ingénierie Informatique : conception et modélisation logicielle, architectures distribuées, bases de données avancées et gestion de projet Agile.
           </p>
         </div>
 
@@ -3614,13 +3349,13 @@
           <span class="timeline-node"></span>
           <div class="timeline-header">
             <div>
-              <div class="timeline-role" data-i18n="edu_role_2">Licence Professionnelle en Génie Logiciel (Mention Bien)</div>
+              <div class="timeline-role">Licence Professionnelle en Génie Logiciel (Mention Bien)</div>
               <div class="timeline-company">IAI-TOGO (Institut Africain d'Informatique)</div>
             </div>
             <span class="timeline-date">2022 - 2025</span>
           </div>
-          <p class="timeline-desc" data-i18n="edu_desc_2">
-            Diplôme obtenu : algorithmique fondamentale, génie logiciel, programmation orientée objet (Java, C++), modélisation relationnelle (UML, Merise), bases de données et développement applicatif.
+          <p class="timeline-desc">
+            Algorithmique fondamentale, programmation orientée objet (Java, C++), modélisation relationnelle (UML, Merise), développement web et mobile.
           </p>
         </div>
 
@@ -3628,12 +3363,12 @@
           <span class="timeline-node"></span>
           <div class="timeline-header">
             <div>
-              <div class="timeline-role" data-i18n="edu_role_3">Baccalauréat Scientifique (BAC 2)</div>
+              <div class="timeline-role">Baccalauréat Scientifique (BAC 2)</div>
               <div class="timeline-company">LPL Le Rossignol</div>
             </div>
             <span class="timeline-date">2021 - 2022</span>
           </div>
-          <p class="timeline-desc" data-i18n="edu_desc_3">
+          <p class="timeline-desc">
             Série scientifique : Mathématiques, Sciences Physiques et SVT.
           </p>
         </div>
@@ -3647,15 +3382,15 @@
     <section class="content-section" id="auth-cta-section">
       <div class="private-access-banner">
         <div class="private-banner-content">
-          <h3 data-i18n="auth_cta_title">Espace Candidat Réservé</h3>
-          <p data-i18n="auth_cta_desc">
+          <h3>Espace Candidat Réservé</h3>
+          <p>
             Vous êtes Rodrigue HESSOU ? Connectez-vous à votre espace interne pour accéder à vos dossiers de candidatures ciblées (jobs étudiants, soutien scolaire, retail, restauration rapide) et ouvrir les éditeurs interactifs en ligne.
           </p>
         </div>
         <div>
           <button class="btn btn-secondary" onclick="openLoginModal()" id="btn-login-cta">
             <svg class="icon-svg" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-            <span data-i18n="auth_cta_btn">Accéder à l'espace interne</span>
+            Accéder à l'espace interne
           </button>
         </div>
       </div>
@@ -3666,34 +3401,28 @@
          -------------------------------------------------- -->
     <div id="private-dashboard">
       <div class="private-header-bar">
-        <div class="private-status-tag" style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
-          <span data-i18n="priv_dash_title">Espace Interne Connecté : Rodrigue HESSOU</span>
-          <span id="private-auth-method-badge" class="biometric-badge" style="display:none;"></span>
+        <div class="private-status-tag">
+          <span class="status-pulse-dot"></span>
+          Espace Interne Connecté : Rodrigue HESSOU
         </div>
-        <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
-          <button class="btn btn-secondary btn-sm" onclick="promptPasskeyManagement()" id="btn-manage-passkey" title="Gérer ou réenregistrer la Passkey biométrique">
-            <svg class="icon-svg" style="width:14px; height:14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 0-7.07 17.07"></path><path d="M12 6a6 6 0 0 0-4.24 10.24"></path><path d="M12 10a2 2 0 0 0-1.41 3.41"></path><path d="M12 14v4"></path></svg>
-            <span data-i18n="priv_dash_manage_passkey">Gérer ma Passkey</span>
-          </button>
-          <button class="btn btn-secondary btn-sm" onclick="logout()" data-i18n="priv_dash_logout">
-            Déconnexion
-          </button>
-        </div>
+        <button class="btn btn-secondary btn-sm" onclick="logout()">
+          Déconnexion
+        </button>
       </div>
 
       <!-- EDITORS BENTO -->
       <section class="content-section">
         <div class="section-header-block">
-          <h2 class="section-title" data-i18n="priv_tools_title">Outils d'Édition en Ligne</h2>
-          <span class="section-desc" data-i18n="priv_tools_sub">Personnalisation et export instantané</span>
+          <h2 class="section-title">Outils d'Édition en Ligne</h2>
+          <span class="section-desc">Personnalisation et export instantané</span>
         </div>
 
         <div class="bento-grid">
           <div class="bento-card">
             <div>
               <div class="bento-title">
-                <h4 data-i18n="priv_cv_title">Éditeur de CV Interactif</h4>
-                <p data-i18n="priv_cv_sub">Mise en page WYSIWYG sur feuille A4 stricte</p>
+                <h4>Éditeur de CV Interactif</h4>
+                <p>Mise en page WYSIWYG sur feuille A4 stricte</p>
               </div>
               <ul class="bento-features" style="margin-top: 12px;">
                 <li>12 profils métiers pré-configurés en 1 clic</li>
@@ -3702,15 +3431,15 @@
               </ul>
             </div>
             <a href="editeur_cv.html" class="btn btn-primary btn-sm">
-              <span data-i18n="btn_open_cv_editor">Ouvrir l'Éditeur de CV</span>
+              Ouvrir l'Éditeur de CV
             </a>
           </div>
 
           <div class="bento-card">
             <div>
               <div class="bento-title">
-                <h4 data-i18n="priv_let_title">Éditeur de Lettre de Motivation</h4>
-                <p data-i18n="priv_let_sub">Génération sur-mesure pour chaque annonce</p>
+                <h4>Éditeur de Lettre de Motivation</h4>
+                <p>Génération sur-mesure pour chaque annonce</p>
               </div>
               <ul class="bento-features" style="margin-top: 12px;">
                 <li>Injection automatique de l'objet et référence</li>
@@ -3719,7 +3448,7 @@
               </ul>
             </div>
             <a href="editeur_lettre_motivation.html" class="btn btn-primary btn-sm">
-              <span data-i18n="btn_open_let_editor">Ouvrir l'Éditeur de Lettre</span>
+              Ouvrir l'Éditeur de Lettre
             </a>
           </div>
         </div>
@@ -3728,8 +3457,8 @@
       <!-- DOSSIERS CIBLES / JOBS ETUDIANTS -->
       <section class="content-section">
         <div class="section-header-block">
-          <h2 class="section-title" data-i18n="priv_jobs_title">Candidatures Dédiées & Jobs Étudiants</h2>
-          <span class="section-desc" data-i18n="priv_jobs_sub">Dossiers ciblés prêts à l'envoi</span>
+          <h2 class="section-title">Candidatures Dédiées & Jobs Étudiants</h2>
+          <span class="section-desc">Dossiers ciblés prêts à l'envoi</span>
         </div>
 
         <div class="private-docs-list">
@@ -3853,21 +3582,22 @@
         <div class="footer-tagline">conçu avec rigueur,<br>pensé dans les détails</div>
 
         <div class="footer-status">
-          <span data-i18n="footer_avail">Disponible pour stage / alternance</span>
+          <span class="status-pulse-dot"></span>
+          <span>Disponible pour stage / alternance</span>
         </div>
       </div>
 
       <div class="footer-top-row">
         <ul class="footer-links">
-          <li><a href="#overview" data-i18n="footer_home">Accueil</a></li>
-          <li><a href="#candidatures" data-i18n="nav_candidatures">Candidatures</a></li>
-          <li><a href="#experience" data-i18n="nav_experience">Expérience</a></li>
-          <li><a href="#projets" data-i18n="nav_projets">Projets</a></li>
-          <li><a href="#temoignages" data-i18n="nav_temoignages">Recommandations</a></li>
+          <li><a href="#overview">Accueil</a></li>
+          <li><a href="#candidatures">Candidatures</a></li>
+          <li><a href="#experience">Expérience</a></li>
+          <li><a href="#projets">Projets</a></li>
+          <li><a href="#temoignages">Recommandations</a></li>
           <li><a href="https://github.com/RoHsk14" target="_blank" rel="noopener noreferrer">GitHub</a></li>
           <li><a href="https://www.linkedin.com/in/rodrigue-hessou-aa2b11416" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-          <li><a href="studio.html" style="color: var(--accent);" data-i18n="nav_studio_full">Studio Étudiant</a></li>
-          <li><a href="mailto:rodriguehessou14@gmail.com" data-i18n="footer_contact">Contact</a></li>
+          <li><a href="studio.html" style="color: var(--accent);">Studio Étudiant</a></li>
+          <li><a href="mailto:rodriguehessou14@gmail.com">Contact</a></li>
         </ul>
 
         <a href="#overview" class="back-to-top">
@@ -3896,11 +3626,11 @@
 
       <ul class="cmd-results-list" id="cmd-list">
                 <!-- STUDIO ÉTUDIANT -->
-        <li class="cmd-category-header" data-i18n="cmd_cat_1">Outils Publics Gratuits</li>
+        <li class="cmd-category-header">Outils Publics Gratuits</li>
         <li><a class="cmd-item" href="studio.html"><span class="cmd-item-left">Studio Étudiant (Générateur CV & Lettre A4 Gratuit)</span><span class="cmd-item-badge">Outil</span></a></li>
 
         <!-- NAVIGATION -->
-        <li class="cmd-category-header" data-i18n="cmd_cat_2">Navigation Publique</li>
+        <li class="cmd-category-header">Navigation Publique</li>
         <li><a class="cmd-item" href="#candidatures" onclick="closeCmdPalette()"><span class="cmd-item-left">Candidatures Techniques (Stage & Alternance)</span><span class="cmd-item-badge">Section</span></a></li>
         <li><a class="cmd-item" href="#experience" onclick="closeCmdPalette()"><span class="cmd-item-left">Parcours & Expérience</span><span class="cmd-item-badge">Timeline</span></a></li>
         <li><a class="cmd-item" href="#projets" onclick="closeCmdPalette()"><span class="cmd-item-left">Projets & Réalisations Techniques</span><span class="cmd-item-badge">Code</span></a></li>
@@ -3909,21 +3639,21 @@
         <li><a class="cmd-item" href="#formation" onclick="closeCmdPalette()"><span class="cmd-item-left">Formation Académique</span><span class="cmd-item-badge">Diplômes</span></a></li>
 
                         <!-- PROJETS EN LIGNE -->
-        <li class="cmd-category-header" data-i18n="cmd_cat_3">Projets Déployés & Réalisations</li>
+        <li class="cmd-category-header">Projets Déployés & Réalisations</li>
         <li><a class="cmd-item" href="https://afro-spy.com" target="_blank" onclick="closeCmdPalette()" rel="noopener noreferrer"><span class="cmd-item-left">AfroSpy (Intelligence Publicitaire E-Com)</span><span class="cmd-item-badge">Site Web</span></a></li>
         <li><a class="cmd-item" href="https://shopeazy-five.vercel.app" target="_blank" onclick="closeCmdPalette()" rel="noopener noreferrer"><span class="cmd-item-left">ShopEazy (Plateforme E-Commerce)</span><span class="cmd-item-badge">Site Web</span></a></li>
         <li><a class="cmd-item" href="https://lost-mu.vercel.app" target="_blank" onclick="closeCmdPalette()" rel="noopener noreferrer"><span class="cmd-item-left">LostFound (Plateforme Objets Perdus)</span><span class="cmd-item-badge">Site Web</span></a></li>
         <li><a class="cmd-item" href="https://github.com/RoHsk14/afrocodeurs" target="_blank" onclick="closeCmdPalette()" rel="noopener noreferrer"><span class="cmd-item-left">AfroCodeurs (Panafrican Tech Community)</span><span class="cmd-item-badge">GitHub</span></a></li>
         <li><a class="cmd-item" href="https://github.com/RoHsk14/Miab_tela_v2" target="_blank" onclick="closeCmdPalette()" rel="noopener noreferrer"><span class="cmd-item-left">Miab Tela (Application Mobile Tailleurs)</span><span class="cmd-item-badge">Mobile App</span></a></li>
         <!-- DOCUMENTS PUBLICS -->
-        <li class="cmd-category-header" data-i18n="cmd_cat_4">Documents Techniques Généraux</li>
+        <li class="cmd-category-header">Documents Techniques Généraux</li>
         <li><a class="cmd-item" href="CV_Rodrigue_HESSOU_Stage_Tech.pdf" target="_blank" rel="noopener noreferrer"><span class="cmd-item-left">CV Développeur Logiciel (Stage Bac+5)</span><span class="cmd-item-badge">PDF</span></a></li>
         <li><a class="cmd-item" href="Lettre_de_Motivation_Stage_Tech_Rodrigue_HESSOU.pdf" target="_blank" rel="noopener noreferrer"><span class="cmd-item-left">Lettre de Motivation Développeur Logiciel (Stage)</span><span class="cmd-item-badge">PDF</span></a></li>
         <li><a class="cmd-item" href="CV_Rodrigue_HESSOU_Alternance_Tech.pdf" target="_blank" rel="noopener noreferrer"><span class="cmd-item-left">CV Développeur Logiciel (Alternance Bac+5)</span><span class="cmd-item-badge">PDF</span></a></li>
         <li><a class="cmd-item" href="Lettre_de_Motivation_Alternance_Tech_Rodrigue_HESSOU.pdf" target="_blank" rel="noopener noreferrer"><span class="cmd-item-left">Lettre de Motivation Développeur Logiciel (Alternance)</span><span class="cmd-item-badge">PDF</span></a></li>
 
         <!-- ACTIONS -->
-        <li class="cmd-category-header" data-i18n="cmd_cat_5">Actions Rapides</li>
+        <li class="cmd-category-header">Actions Rapides</li>
         <li><a class="cmd-item" href="https://www.linkedin.com/in/rodrigue-hessou-aa2b11416" target="_blank" onclick="closeCmdPalette()" rel="noopener noreferrer"><span class="cmd-item-left">Profil LinkedIn (rodrigue-hessou)</span><span class="cmd-item-badge">Lien</span></a></li>
         <li><div class="cmd-item" onclick="copyContact('rodriguehessou14@gmail.com', 'Email copié dans le presse-papier'); closeCmdPalette();"><span class="cmd-item-left">Copier l'Email (rodriguehessou14@gmail.com)</span><span class="cmd-item-badge">Copier</span></div></li>
         <li><div class="cmd-item" onclick="copyContact('+33 7 44 11 75 73', 'Téléphone copié dans le presse-papier'); closeCmdPalette();"><span class="cmd-item-left">Copier le Téléphone (+33 7 44 11 75 73)</span><span class="cmd-item-badge">Copier</span></div></li>
@@ -3932,45 +3662,32 @@
       </ul>
 
       <div class="cmd-footer-bar">
-        <span data-i18n="cmd_footer_nav">Navigation : Flèches haut/bas</span>
-        <span data-i18n="cmd_footer_enter">Validation : Entrée</span>
+        <span>Navigation : Flèches haut/bas</span>
+        <span>Validation : Entrée</span>
       </div>
     </div>
   </dialog>
 
-  <!-- LOGIN MODAL DIALOG (100% BIOMETRIQUE / PASSKEY PASSWORDLESS) -->
-  <dialog id="login-modal" closedby="any" aria-label="Connexion biométrique à l'espace interne">
+  <!-- LOGIN MODAL DIALOG -->
+  <dialog id="login-modal" closedby="any" aria-label="Connexion à l'espace interne">
     <div class="login-card">
       <div class="login-header">
-        <h3 data-i18n="login_modal_title">Espace Interne Réservé</h3>
-        <p data-i18n="login_modal_desc">Authentification biométrique matérielle (Touch ID / Face ID).</p>
+        <h3>Espace Interne Réservé</h3>
+        <p>Veuillez saisir votre mot de passe d'accès pour déverrouiller vos dossiers.</p>
       </div>
 
-      <!-- MODULE WEBAUTHN / BIOMETRIE (TOUCH ID, FACE ID, QR CODE SMARTPHONE) -->
-      <div id="biometric-login-container" class="biometric-card">
-        <button type="button" id="btn-biometric-auth" class="btn-biometric" onclick="handleBiometricAction()">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M2 9V6.5C2 4.01 4.01 2 6.5 2H9"></path>
-            <path d="M15 2h2.5C19.99 2 22 4.01 22 6.5V9"></path>
-            <path d="M22 15v2.5c0 2.49-2.01 4.5-4.5 4.5H15"></path>
-            <path d="M9 22H6.5C4.01 22 2 19.99 2 17.5V15"></path>
-            <path d="M9 10h.01"></path>
-            <path d="M15 10h.01"></path>
-            <path d="M9.5 15a3.5 3.5 0 0 0 5 0"></path>
-            <path d="M12 11v2"></path>
-          </svg>
-          <span id="biometric-btn-text" data-i18n="login_modal_bio_btn">Se connecter avec Touch ID / Face ID</span>
-          <span id="biometric-badge" class="biometric-badge">Passkey</span>
-        </button>
-        <div id="biometric-hint" class="biometric-hint" data-i18n="login_modal_bio_hint">
-          Reconnaissance biométrique locale ou via iPhone (scan QR code).
+      <form onsubmit="handleLoginSubmit(event)">
+        <div class="login-form-group">
+          <label for="login-pwd">Mot de passe</label>
+          <input type="password" id="login-pwd" class="login-input" placeholder="Mot de passe d'accès..." autofocus required>
+          <span class="login-error-msg" id="login-error">Mot de passe incorrect. Veuillez réessayer.</span>
         </div>
-        <span class="login-error-msg" id="login-error" style="text-align:center;"></span>
-      </div>
 
-      <div class="login-actions" style="margin-top: 8px;">
-        <button type="button" class="btn btn-secondary btn-sm" onclick="closeLoginModal()" data-i18n="login_modal_cancel">Fermer</button>
-      </div>
+        <div class="login-actions" style="margin-top: 16px;">
+          <button type="button" class="btn btn-secondary btn-sm" onclick="closeLoginModal()">Annuler</button>
+          <button type="submit" class="btn btn-primary btn-sm">Se connecter</button>
+        </div>
+      </form>
     </div>
   </dialog>
 
@@ -3979,387 +3696,16 @@
 
   <!-- JAVASCRIPT -->
   <script>
-
-    // ====================================================
-    // GLOBAL I18N SYSTEM (FR / EN)
-    // ====================================================
-    let currentLang = 'fr';
-    try {
-      const stored = localStorage.getItem('portfolio_lang') || localStorage.getItem('studio_lang');
-      if (stored === 'en' || stored === 'fr') currentLang = stored;
-    } catch(e) {}
-
-    const translations = {
-      fr: {
-        page_title: "Rodrigue HESSOU — Génie Logiciel & Sécurité des Systèmes Réseaux (Bac+5)",
-        nav_role: "Génie Logiciel & Sécurité Réseaux",
-        nav_candidatures: "Candidatures",
-        nav_experience: "Expérience",
-        nav_projets: "Projets",
-        nav_competences: "Stack",
-        nav_temoignages: "Avis",
-        nav_formation: "Formation",
-        nav_studio: "Studio",
-        nav_studio_full: "Studio Étudiant",
-        nav_studio_long: "Studio Étudiant (Générateur A4)",
-        studio_nav_desc: "Générateur CV/Lettre A4",
-        nav_search: "Recherche",
-        nav_auth: "Connexion",
-        nav_auth_connected: "Connecté",
-        studio_nav_title: "Générateur de CV et Lettre A4 gratuit pour étudiants",
-        mobile_status: "Lyon, France · Disponible",
-        btn_cv_stage_short: "CV Stage",
-        hero_status: "Disponible — Stage ou alternance (Bac+5)",
-        hero_title_role: "Master 1 Infrastructure & Sécurité des Systèmes Réseaux • Licence Génie Logiciel",
-        hero_tagline: "// génie logiciel, sécurisation des réseaux & infrastructures cloud",
-        hero_lead_text: "Titulaire d'une <strong>Licence en Génie Logiciel (Mention Bien)</strong> et actuellement en <strong>Master 1 Infrastructure & Sécurité des Systèmes Réseaux</strong> à <strong>SUPINFO Lyon</strong>. J'associe une solide expertise de développement applicatif (Java, Python, SQL, Web) à la maîtrise des infrastructures systèmes et réseaux, du durcissement (hardening Linux), des protocoles sécurisés et du DevSecOps.",
-        lbl_email: "Email",
-        lbl_phone: "Téléphone",
-        lbl_loc: "Localisation",
-        val_loc: "Lyon, France · Mobile",
-        lbl_lang: "Langues",
-        val_lang: "Français · Anglais B2",
-        meta_school: "Formation : SUPINFO Lyon (2026 - 2028)",
-        meta_degree: "Diplôme : Licence Génie Logiciel (Mention Bien) • M1 Infra & Sécurité",
-        meta_avail: "Disponibilité : immédiate",
-        btn_cv_stage: "CV Stage (PDF)",
-        btn_cv_alt: "CV Alternance (PDF)",
-        btn_view_projects: "Voir les projets",
-        btn_contact: "Me contacter",
-        stat_label_1: "Cursus Ingénierie SUPINFO",
-        stat_label_2: "Dossiers Techniques Dédiés",
-        stat_label_3: "Cas de Recette & QA Exécutés",
-        stat_label_4: "Recette & Tests QA Validés",
-        heatmap_suffix: "contributions au cours des 12 derniers mois",
-        heatmap_scroll: "Glisser →",
-        heatmap_less: "Moins",
-        heatmap_more: "Plus",
-        studio_banner_badge: "Studio Gratuit pour Étudiants",
-        studio_banner_title: "Besoin d'un CV ou d'une lettre calibrée 1 page A4 ?",
-        studio_banner_desc: "J'ai développé un studio complet en accès libre : créez votre CV et votre lettre de motivation au format A4 strict 1 page, prêts pour l'impression ou l'exportation PDF. Vos données restent à 100% dans votre navigateur, aucun serveur n'enregistre quoi que ce soit.",
-        studio_banner_btn: "Ouvrir le Studio Étudiant &rarr;",
-        sec_candidatures_title: "Candidatures Techniques (Vitrine Publique)",
-        sec_candidatures_sub: "Dossiers généraux conventionnés Bac+5",
-        badge_stage: "Stage Tremplin Pré-Alternance (4 à 6 mois)",
-        title_stage: "Développeur Logiciel, Infrastructure & Sécurité Réseau — Stage Conventionné",
-        stage_level: "Master 1 SUPINFO Lyon • Spécialisation Infrastructure & Sécurité Réseaux",
-        stage_desc: "Stage tremplin pré-embauche : mise en application de la double compétence en génie logiciel et sécurité des systèmes réseaux (durcissement Linux, APIs sécurisées, architecture réseau, chiffrement et audits) avant contrat d'alternance Master 2.",
-        btn_letter_stage: "Lettre Stage (PDF)",
-        badge_alt: "Contrat d'Alternance",
-        title_alt: "Ingénieur Logiciel & Sécurité des Systèmes Réseaux — Recherche d'Alternance",
-        sub_alt: "Rythme Master 1 SUPINFO Lyon (Cursus Bac+5)",
-        desc_alt: "Candidature pour contrat d'alternance alliant ingénierie logicielle et sécurisation des infrastructures. Investissement sur la durée au sein de l'équipe : développement de solutions logicielles résilientes, administration et durcissement des systèmes réseaux, automatisation CI/CD et sécurité applicative.",
-        btn_letter_alt: "Lettre Alternance (PDF)",
-        sec_exp_title: "Parcours & Expérience",
-        sec_exp_sub: "Historique professionnel et technique",
-        exp_role_1: "Stagiaire — Développement Mobile, QA & Business Development",
-        exp_date_1: "Juil. 2026 - Sept. 2026",
-        exp_desc_1: "Co-développement de l'application BoutiK sous Flutter et intégration passerelle FedaPay. Portage iOS conforme aux guidelines Apple et publication App Store Connect. Recette fonctionnelle complète (103 cas de tests exécutés) et prospection B2B auprès de 100 commerçants.",
-        exp_link_boutik: "Voir la landing page BoutiK",
-        exp_role_2: "Stagiaire en Développement Web Fullstack",
-        exp_date_2: "Sept. 2025 - Déc. 2025",
-        exp_desc_2: "Conception et développement d'une plateforme web complète de signalement et de gestion des objets perdus et retrouvés. Modélisation relationnelle de la base de données MySQL, développement back-end et interface utilisateur.",
-        exp_role_3: "Stagiaire en Développement d'Applications Mobiles",
-        exp_date_3: "Juil. 2025 - Août 2025",
-        exp_desc_3: "Développement d'une application mobile Flutter dédiée aux artisans tailleurs pour la gestion des commandes et mensurations. Conception d'un fonctionnement hors-ligne (offline-first) avec synchronisation automatique.",
-        exp_role_4: "Préparateur de Commandes & Employé Commercial",
-        exp_desc_4: "Rigueur de cadence en préparation de commandes, respect des consignes de sécurité. Gestion des encaissements en période de forte affluence, tenue de caisse exacte, réassort et sens du service client.",
-        exp_role_5: "Stagiaire en Gestion & Automatisation de Données",
-        exp_date_5: "Juil. 2024 - Sept. 2024",
-        exp_desc_5: "Mise en place d'un système de gestion automatisée de la collecte d'informations pour un cabinet de recherche. Structuration et contrôle qualité des données terrain.",
-        sec_proj_title: "Projets & Réalisations Techniques",
-        sec_proj_sub: "Architecture logicielle et code",
-        proj_title_1: "BoutiK — Logiciel de Caisse & Gestion POS (Projet de Stage)",
-        proj_desc_1: "Logiciel tout-en-un de caisse enregistreuse et de gestion commerciale (ventes, stocks, employés, reporting) pour les commerçants et points de vente. Développé lors de mon stage chez Nataan Group : co-conception de l'application mobile Flutter, intégration de la passerelle de paiement FedaPay, portage iOS pour App Store Connect, recette fonctionnelle (103 cas de tests) et landing page officielle.",
-        proj_link_1: "Visiter boutik-landing.web.app",
-        proj_desc_2: "Plateforme d'intelligence publicitaire et de détection de produits gagnants pour le e-commerce africain et international. Suivi des campagnes de vente, analyse des métriques d'engagement et détection de tendances en temps réel.",
-        proj_link_2: "Visiter afro-spy.com",
-        proj_title_3: "ShopEazy — Plateforme E-Commerce Moderne",
-        proj_desc_3: "Solution complète de commerce électronique : catalogue interactif de produits, panier d'achat dynamique, tunnel de conversion optimisé et design responsive taillé pour les taux de conversion élevés.",
-        proj_link_3: "Visiter shopeazy-five.vercel.app",
-        proj_title_4: "Plateforme Objets Perdus & Retrouvés (LostFound)",
-        proj_desc_4: "Service web complet de dépôt d'annonces, recherche indexée et mise en relation sécurisée pour la restitution d'objets égarés. Moteur de filtres géographiques et tableau de bord administrateur.",
-        proj_title_5: "AfroCodeurs — Panafrican Tech Community",
-        proj_desc_5: "Plateforme communautaire open source réunissant développeurs et makers tech panafricains. Partage de tutoriels, d'outils et annuaire collaboratif de projets d'ingénierie logicielle.",
-        proj_link_github: "Explorer le dépôt GitHub",
-        proj_title_6: "Miab Tela — Application Mobile Artisans Tailleurs",
-        proj_desc_6: "Application de carnet de mesures, gestion des commandes sur-mesure et calendrier d'essayages pour artisans de mode et tailleurs. Architecture offline-first avec synchronisation automatique.",
-        proj_title_7: "Moteur de Génération & Impression CV A4 Exact",
-        proj_desc_7: "Moteur web avec calibration CSS et orchestration headless Chrome assurant un rendu A4 210 × 297 mm sans débordement multi-page pour la génération automatisée de documents officiels.",
-        sec_stack_title: "Stack Technique & Compétences",
-        sec_stack_sub: "Technologies maîtrisées et en cours d'approfondissement",
-        stack_cat_1: "Langages de Programmation",
-        stack_cat_2: "Frameworks & Environnements Web / Mobile",
-        stack_cat_3: "Bases de Données, DevOps & Outils",
-        stack_cat_4: "Infrastructures, Réseaux & Cybersécurité",
-        sec_test_title: "Retours & Recommandations",
-        sec_test_sub: "Ce que disent mes encadrants et collaborateurs",
-        test_quote_1: "\"Rodrigue fait preuve d'une autonomie remarquable et d'une rigueur exemplaire sur les recettes applicatives. Sa capacité à s'adapter aux contraintes iOS et aux guidelines Apple Store a été un atout précieux.\"",
-        test_name_1: "Tuteur de Stage — Nataan Group",
-        test_role_1: "Direction Technique Mobile & QA",
-        test_quote_2: "\"Un profil complet alliant solides bases algorithmiques, sérieux dans la modélisation de données relationnelles et excellent esprit d'équipe au sein de la promotion.\"",
-        test_name_2: "Responsable Pédagogique",
-        test_role_2: "Département Génie Logiciel & Master",
-        sec_edu_title: "Formation Académique",
-        sec_edu_sub: "Cursus supérieur en informatique & sécurité",
-        edu_role_1: "Master 1 en Infrastructure et Sécurité des Systèmes Réseaux (Bac+5)",
-        edu_date_1: "Oct. 2026 - Présent",
-        edu_desc_1: "Programme d'Ingénierie Systèmes, Réseaux & Sécurité : administration et sécurisation des réseaux d'entreprise, infrastructures cloud & Linux, durcissement (hardening), cryptographie appliquée, protocoles sécurisés et gestion des identités.",
-        edu_role_2: "Licence Professionnelle en Génie Logiciel (Mention Bien)",
-        edu_desc_2: "Diplôme obtenu : algorithmique fondamentale, génie logiciel, programmation orientée objet (Java, C++), modélisation relationnelle (UML, Merise), bases de données et développement applicatif.",
-        edu_role_3: "Baccalauréat Scientifique (BAC 2)",
-        edu_desc_3: "Série scientifique : Mathématiques, Sciences Physiques et SVT.",
-        auth_cta_title: "Espace Candidat Réservé",
-        auth_cta_desc: "Vous êtes Rodrigue HESSOU ? Connectez-vous à votre espace interne pour accéder à vos dossiers de candidatures ciblées (jobs étudiants, soutien scolaire, retail, restauration rapide) et ouvrir les éditeurs interactifs en ligne.",
-        auth_cta_btn: "Accéder à l'espace interne",
-        priv_dash_title: "Espace Interne Connecté : Rodrigue HESSOU",
-        priv_dash_manage_passkey: "Gérer ma Passkey",
-        priv_dash_logout: "Déconnexion",
-        priv_tools_title: "Outils d'Édition en Ligne",
-        priv_tools_sub: "Personnalisation et export instantané",
-        priv_cv_title: "Éditeur de CV Interactif",
-        priv_cv_sub: "Mise en page WYSIWYG sur feuille A4 stricte",
-        priv_let_title: "Éditeur de Lettre de Motivation",
-        priv_let_sub: "Génération sur-mesure pour chaque annonce",
-        btn_open_cv_editor: "Ouvrir l'Éditeur de CV",
-        btn_open_let_editor: "Ouvrir l'Éditeur de Lettre",
-        priv_jobs_title: "Candidatures Dédiées & Jobs Étudiants",
-        priv_jobs_sub: "Dossiers ciblés prêts à l'envoi",
-        login_modal_title: "Espace Interne Réservé",
-        login_modal_desc: "Authentification biométrique matérielle (Touch ID / Face ID).",
-        login_modal_bio_btn: "Se connecter avec Touch ID / Face ID",
-        login_modal_bio_hint: "Reconnaissance biométrique locale ou via iPhone (scan QR code).",
-        login_modal_cancel: "Fermer",
-        cmd_cat_1: "Outils Publics Gratuits",
-        cmd_cat_2: "Navigation Publique",
-        cmd_cat_3: "Projets Déployés & Réalisations",
-        cmd_cat_4: "Documents Techniques Généraux",
-        cmd_cat_5: "Actions Rapides",
-        cmd_footer_nav: "Navigation : Flèches haut/bas",
-        cmd_footer_enter: "Validation : Entrée",
-        footer_avail: "Disponible pour stage / alternance",
-        footer_home: "Accueil",
-        footer_contact: "Contact",
-        footer_copy: "Conçu et développé par Rodrigue HESSOU. Tous droits réservés.",
-        cmd_placeholder: "Rechercher une section, un projet…"
-      },
-
-      en: {
-        page_title: "Rodrigue HESSOU — Software Engineering & Network Systems Security (Bac+5)",
-        nav_role: "Software & Network Security",
-        nav_candidatures: "Applications",
-        nav_experience: "Experience",
-        nav_projets: "Projects",
-        nav_competences: "Stack",
-        nav_temoignages: "Reviews",
-        nav_formation: "Education",
-        nav_studio: "Studio",
-        nav_studio_full: "Student Studio",
-        nav_studio_long: "Student Studio (1-Page A4 Generator)",
-        studio_nav_desc: "Free A4 Resume & Cover Letter",
-        nav_search: "Search",
-        nav_auth: "Sign In",
-        nav_auth_connected: "Connected",
-        studio_nav_title: "Free 1-Page A4 Resume & Cover Letter Generator for students",
-        mobile_status: "Lyon, France · Available",
-        btn_cv_stage_short: "Internship CV",
-        hero_status: "Available — Internship or Apprenticeship (Bac+5)",
-        hero_title_role: "Master 1 Infrastructure & Network Systems Security • Bachelor in Software Engineering",
-        hero_tagline: "// software engineering, network security & cloud infrastructure",
-        hero_lead_text: "Holder of a <strong>Bachelor's degree in Software Engineering (Honors)</strong> and currently pursuing a <strong>Master 1 in Infrastructure & Network Systems Security</strong> at <strong>SUPINFO Lyon</strong>. I combine deep software engineering capabilities (Java, Python, SQL, Web) with systems & network infrastructure, Linux hardening, secure protocols, and DevSecOps.",
-        lbl_email: "Email",
-        lbl_phone: "Phone",
-        lbl_loc: "Location",
-        val_loc: "Lyon, France · Open to Relocation",
-        lbl_lang: "Languages",
-        val_lang: "French (Native) · English (B2 Professional)",
-        meta_school: "School : SUPINFO Lyon (2026 - 2028)",
-        meta_degree: "Degree : Bachelor of Software Engineering (Honors) • M1 Infra & Security",
-        meta_avail: "Availability : Immediate",
-        btn_cv_stage: "Internship CV (PDF)",
-        btn_cv_alt: "Apprenticeship CV (PDF)",
-        btn_view_projects: "View Projects",
-        btn_contact: "Contact Me",
-        stat_label_1: "SUPINFO Engineering Curriculum",
-        stat_label_2: "Dedicated Application Dossiers",
-        stat_label_3: "QA & Test Cases Executed",
-        stat_label_4: "QA & Test Suites Validated",
-        heatmap_suffix: "contributions in the last 12 months",
-        heatmap_scroll: "Scroll →",
-        heatmap_less: "Less",
-        heatmap_more: "More",
-        studio_banner_badge: "Free Student Studio Tool",
-        studio_banner_title: "Need a strict 1-page A4 Resume or Cover Letter?",
-        studio_banner_desc: "I developed a comprehensive open-access studio: build and export strict 1-page A4 resumes and tailored cover letters, ready to print or export as PDF. 100% client-side privacy, zero server trace.",
-        studio_banner_btn: "Open Student Studio &rarr;",
-        sec_candidatures_title: "Technical Applications (Public Showcase)",
-        sec_candidatures_sub: "Bac+5 Master general applications",
-        badge_stage: "Pre-Apprenticeship Internship (4 to 6 months)",
-        title_stage: "Software, Infrastructure & Network Security Developer — Accredited Internship",
-        stage_level: "Master 1 SUPINFO Lyon • Infrastructure & Network Security Track",
-        stage_desc: "Pre-hiring internship: leveraging dual expertise in software engineering and network systems security (Linux hardening, secure APIs, network architecture, encryption and audits) before transitioning into Master 2 apprenticeship.",
-        btn_letter_stage: "Internship Cover Letter (PDF)",
-        badge_alt: "Apprenticeship",
-        title_alt: "Software & Network Systems Security Engineer — Apprenticeship Application",
-        sub_alt: "Master 1 SUPINFO Lyon · Structured Work-Study Schedule",
-        desc_alt: "Apprenticeship application bridging software engineering and infrastructure hardening. Long-term team integration: building resilient applications, administering and securing network systems, CI/CD automation, and application security.",
-        btn_letter_alt: "Apprenticeship Cover Letter (PDF)",
-        sec_exp_title: "Career & Work Experience",
-        sec_exp_sub: "Professional history and technical background",
-        exp_role_1: "Intern — Mobile Development, QA & Business Development",
-        exp_date_1: "Jul. 2026 - Sep. 2026",
-        exp_desc_1: "Co-developed the BoutiK mobile app in Flutter with FedaPay payment gateway integration. iOS porting compliant with Apple guidelines and App Store Connect publishing. Comprehensive functional QA (103 test cases executed) and B2B merchant onboarding.",
-        exp_link_boutik: "Visit BoutiK Landing Page",
-        exp_role_2: "Fullstack Web Development Intern",
-        exp_date_2: "Sep. 2025 - Dec. 2025",
-        exp_desc_2: "Designed and developed an end-to-end web platform for reporting and managing lost-and-found items. Relational modeling of the MySQL database, back-end architecture, and user interface development.",
-        exp_role_3: "Mobile Application Development Intern",
-        exp_date_3: "Jul. 2025 - Aug. 2025",
-        exp_desc_3: "Developed a Flutter mobile app for custom tailors to manage client orders and body measurements. Implemented an offline-first architecture with background synchronization upon reconnection.",
-        exp_role_4: "Order Fulfillment Specialist & Retail Assistant",
-        exp_desc_4: "High-tempo order picking and strict adherence to warehouse safety protocols. Fast-paced cashier service during peak hours, balanced till operations, inventory restocking, and customer care.",
-        exp_role_5: "Data Management & Automation Intern",
-        exp_date_5: "Jul. 2024 - Sep. 2024",
-        exp_desc_5: "Implemented an automated data intake and processing pipeline for a research agency. Structured field datasets and conducted automated QA checks.",
-        sec_proj_title: "Projects & Technical Realizations",
-        sec_proj_sub: "Software architecture, platforms & production code",
-        proj_title_1: "BoutiK — Point of Sale & Retail Management (Internship)",
-        proj_desc_1: "All-in-one POS and retail management software (sales, inventory, employees, analytics) for local businesses. Engineered during my internship at Nataan Group: Flutter mobile app co-development, FedaPay gateway integration, iOS porting for App Store Connect, functional QA (103 test cases), and official landing page.",
-        proj_link_1: "Visit boutik-landing.web.app",
-        proj_desc_2: "Ad intelligence and winning product discovery platform for African and international e-commerce. Tracks marketing campaigns, analyzes real-time engagement metrics, and detects emerging trends.",
-        proj_link_2: "Visit afro-spy.com",
-        proj_title_3: "ShopEazy — Modern E-Commerce Platform",
-        proj_desc_3: "Full-featured e-commerce solution: interactive product catalog, dynamic cart, optimized checkout funnel, and a responsive interface crafted for high conversion rates.",
-        proj_link_3: "Visit shopeazy-five.vercel.app",
-        proj_title_4: "Lost & Found Community Platform",
-        proj_desc_4: "Community and administrative web application enabling geolocated reporting, indexing, and secure retrieval of lost items. Multi-criteria search engine and moderation dashboard.",
-        proj_title_5: "AfroCodeurs — Pan-African Tech Community",
-        proj_desc_5: "Collaborative platform and open-source directory bringing together African developers and creators. Technical resource sharing, peer mentorship, and spotlight on pan-African tech innovations.",
-        proj_link_github: "Explore GitHub Project",
-        proj_title_6: "Miab Tela — Tailoring Management Mobile App",
-        proj_desc_6: "Android and iOS mobile application built for tailoring workshops: digital measurement books per client, order progress tracking, delivery notifications, and encrypted local storage.",
-        proj_title_7: "Exact 1-Page A4 Resume Engine & Print System",
-        proj_desc_7: "Lightweight WYSIWYG editing engine without bloated dependencies: strict 210x297 mm bounds, automatic overflow calculation ensuring strict 1-page compliance, and crisp vector PDF printing.",
-        sec_stack_title: "Technical Stack & Skills",
-        sec_stack_sub: "Mastered technologies and expanding toolkit",
-        stack_cat_1: "Programming Languages",
-        stack_cat_2: "Web & Mobile Frameworks",
-        stack_cat_3: "Databases, DevOps & Tools",
-        stack_cat_4: "Infrastructure, Networks & Cybersecurity",
-        sec_test_title: "Reviews & Recommendations",
-        sec_test_sub: "Feedback from managers, peers & mentors",
-        test_quote_1: "\"Rodrigue demonstrates remarkable autonomy and exemplary thoroughness in quality assurance. His fast adaptation to iOS constraints and Apple App Store guidelines has been a tremendous asset to our team.\"",
-        test_name_1: "Internship Mentor — Nataan Group",
-        test_role_1: "Mobile Engineering & QA Leadership",
-        test_quote_2: "\"A well-rounded engineer combining rock-solid algorithmic foundations, rigorous relational data modeling, and exemplary team spirit among his cohort.\"",
-        test_name_2: "Academic Director",
-        test_role_2: "Software Engineering & Master Department",
-        sec_edu_title: "Academic Background & Degrees",
-        sec_edu_sub: "Higher education in Computer Science & Security",
-        edu_role_1: "Master 1 in Infrastructure & Network Systems Security (5-Year Degree)",
-        edu_date_1: "Oct. 2026 - Present",
-        edu_desc_1: "Graduate Systems, Networks & Security Program: enterprise network administration and hardening, cloud & Linux infrastructure, applied cryptography, secure communication protocols, and identity management.",
-        edu_role_2: "Bachelor of Science in Software Engineering (Honors)",
-        edu_desc_2: "Accredited Degree: core algorithms, software engineering, OOP (Java, C++), relational database modeling (UML, Merise), databases, and web/mobile development.",
-        edu_role_3: "High School Diploma — Scientific Major (BAC 2)",
-        edu_desc_3: "Scientific track: Mathematics, Physics, Chemistry, and Life Sciences.",
-        auth_cta_title: "Candidate Private Portal",
-        auth_cta_desc: "Are you Rodrigue HESSOU? Log in to your private portal to access targeted application packages (student jobs, academic tutoring, retail, food service) and open the interactive online editors.",
-        auth_cta_btn: "Access Private Portal",
-        priv_dash_title: "Private Portal Connected: Rodrigue HESSOU",
-        priv_dash_manage_passkey: "Manage Passkey",
-        priv_dash_logout: "Log out",
-        priv_tools_title: "Online Document Editors",
-        priv_tools_sub: "Tailored customization and instant export",
-        priv_cv_title: "Interactive Resume Editor",
-        priv_cv_sub: "WYSIWYG layout on strict 1-page A4 canvas",
-        priv_let_title: "Cover Letter Editor",
-        priv_let_sub: "Tailored generation for each job posting",
-        btn_open_cv_editor: "Open Resume Editor",
-        btn_open_let_editor: "Open Cover Letter Editor",
-        priv_jobs_title: "Targeted Applications & Student Jobs",
-        priv_jobs_sub: "Tailored application packs ready to send",
-        login_modal_title: "Reserved Internal Portal",
-        login_modal_desc: "Hardware biometric authentication (Touch ID / Face ID).",
-        login_modal_bio_btn: "Sign in with Touch ID / Face ID",
-        login_modal_bio_hint: "Local biometrics or via iPhone (QR code scan).",
-        login_modal_cancel: "Close",
-        cmd_cat_1: "Free Public Tools",
-        cmd_cat_2: "Public Navigation",
-        cmd_cat_3: "Deployed Projects & Works",
-        cmd_cat_4: "General Technical Documents",
-        cmd_cat_5: "Quick Actions",
-        cmd_footer_nav: "Navigate: Arrow keys",
-        cmd_footer_enter: "Select: Enter",
-        footer_avail: "Available for internship / apprenticeship",
-        footer_home: "Home",
-        footer_contact: "Contact",
-        footer_copy: "Designed and developed by Rodrigue HESSOU. All rights reserved.",
-        cmd_placeholder: "Search for a section, project…"
-      }
-    };
-
-    function setLanguage(lang) {
-      currentLang = lang;
-      document.documentElement.lang = lang;
-      try {
-        localStorage.setItem('portfolio_lang', lang);
-        localStorage.setItem('studio_lang', lang);
-      } catch(e) {}
-
-      // Update switcher buttons
-      const frBtn = document.getElementById('lang-fr-btn');
-      const enBtn = document.getElementById('lang-en-btn');
-      const mobFrBtn = document.getElementById('mob-lang-fr-btn');
-      const mobEnBtn = document.getElementById('mob-lang-en-btn');
-
-      if (frBtn && enBtn) {
-        frBtn.classList.toggle('active', lang === 'fr');
-        enBtn.classList.toggle('active', lang === 'en');
-      }
-      if (mobFrBtn && mobEnBtn) {
-        mobFrBtn.classList.toggle('active', lang === 'fr');
-        mobEnBtn.classList.toggle('active', lang === 'en');
-      }
-
-      const dict = translations[lang] || translations.fr;
-      if (dict.page_title) document.title = dict.page_title;
-
-      document.querySelectorAll('[data-i18n]').forEach((el) => {
-        const key = el.getAttribute('data-i18n');
-        if (dict[key]) {
-          el.innerHTML = dict[key];
-        }
-      });
-
-      document.querySelectorAll('[data-i18n-title]').forEach((el) => {
-        const key = el.getAttribute('data-i18n-title');
-        if (dict[key]) {
-          el.setAttribute('title', dict[key]);
-        }
-      });
-
-      const searchInp = document.getElementById('cmd-search');
-      if (searchInp && dict['cmd_placeholder']) {
-        searchInp.setAttribute('placeholder', dict['cmd_placeholder']);
-      }
-
-      const dot = document.getElementById('nav-status-dot');
-      if (dot) {
-        dot.setAttribute('title', lang === 'en' ? 'Available for opportunities' : 'Disponible pour opportunités');
-      }
-
-      if (typeof checkAuth === 'function') {
-        checkAuth();
-      }
-      if (typeof updateClockAndGreeting === 'function') {
-        updateClockAndGreeting();
-      }
-    }
-    
-
     document.documentElement.classList.add('js');
+
+    // Cursor Spotlight Tracking
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduceMotion) {
+      window.addEventListener('mousemove', (e) => {
+        document.documentElement.style.setProperty('--mouse-x', e.clientX + 'px');
+        document.documentElement.style.setProperty('--mouse-y', e.clientY + 'px');
+      });
+    }
 
     // TIME-AWARE GREETING & REALTIME CLOCK
     function updateClockAndGreeting() {
@@ -4375,14 +3721,12 @@
 
       const greetingEl = document.getElementById('live-greeting');
       if (greetingEl) {
-        if (currentLang === 'en') {
-          if (hours >= 5 && hours < 12) greetingEl.textContent = 'Good morning';
-          else if (hours >= 12 && hours < 18) greetingEl.textContent = 'Good afternoon';
-          else greetingEl.textContent = 'Good evening';
+        if (hours >= 5 && hours < 12) {
+          greetingEl.textContent = 'Good morning / Bonjour';
+        } else if (hours >= 12 && hours < 18) {
+          greetingEl.textContent = 'Good afternoon / Bon après-midi';
         } else {
-          if (hours >= 5 && hours < 12) greetingEl.textContent = 'Bonjour';
-          else if (hours >= 12 && hours < 18) greetingEl.textContent = 'Bon après-midi';
-          else greetingEl.textContent = 'Bonsoir';
+          greetingEl.textContent = 'Good evening / Bonsoir';
         }
       }
     }
@@ -4525,44 +3869,22 @@
       const dashboard = document.getElementById('private-dashboard');
       const navBtn = document.getElementById('nav-auth-btn');
       const navText = document.getElementById('nav-auth-text');
-      const mobAuthBtn = document.getElementById('mob-auth-btn');
-      const mobNavText = document.getElementById('mob-nav-auth-text');
       const ctaSection = document.getElementById('auth-cta-section');
       const cmdLoginItem = document.getElementById('cmd-login-item');
 
       if (isAuth) {
         dashboard.classList.add('authenticated');
-        if (navBtn) navBtn.classList.add('authenticated');
-        if (navText) navText.textContent = currentLang === 'en' ? 'Connected' : 'Connecté';
-        if (mobAuthBtn) mobAuthBtn.classList.add('authenticated');
-        if (mobNavText) mobNavText.textContent = currentLang === 'en' ? 'Connected' : 'Connecté';
-        if (ctaSection) ctaSection.style.display = 'none';
-        if (cmdLoginItem) cmdLoginItem.innerHTML = '<div class="cmd-item" onclick="logout(); closeCmdPalette();"><span class="cmd-item-left">Déconnexion de l’Espace Interne</span><span class="cmd-item-badge">Auth</span></div>';
-        
-        const methodBadge = document.getElementById('private-auth-method-badge');
-        if (methodBadge) {
-          methodBadge.style.display = 'inline-block';
-          const method = localStorage.getItem('rodrigue_auth_method');
-          if (method === 'biometrics') {
-            methodBadge.textContent = '🔒 Touch ID / Face ID (Passkey)';
-            methodBadge.className = 'biometric-badge';
-          } else {
-            methodBadge.textContent = '🔑 Mot de passe';
-            methodBadge.className = 'biometric-badge new';
-          }
-        }
-
+        navBtn.classList.add('authenticated');
+        navText.textContent = 'Connecté';
+        ctaSection.style.display = 'none';
+        cmdLoginItem.innerHTML = '<div class="cmd-item" onclick="logout(); closeCmdPalette();"><span class="cmd-item-left">Déconnexion de l’Espace Interne</span><span class="cmd-item-badge">Auth</span></div>';
         document.querySelectorAll('#private-dashboard .reveal').forEach((el) => el.classList.add('in-view'));
       } else {
         dashboard.classList.remove('authenticated');
-        if (navBtn) navBtn.classList.remove('authenticated');
-        if (navText) navText.textContent = currentLang === 'en' ? 'Sign In' : 'Connexion';
-        if (mobAuthBtn) mobAuthBtn.classList.remove('authenticated');
-        if (mobNavText) mobNavText.textContent = currentLang === 'en' ? 'Sign In' : 'Connexion';
-        if (ctaSection) ctaSection.style.display = '';
-        if (cmdLoginItem) cmdLoginItem.innerHTML = '<div class="cmd-item" onclick="openLoginModal(); closeCmdPalette();"><span class="cmd-item-left">Connexion Espace Interne (Rodrigue)</span><span class="cmd-item-badge">Auth</span></div>';
-        const methodBadge = document.getElementById('private-auth-method-badge');
-        if (methodBadge) methodBadge.style.display = 'none';
+        navBtn.classList.remove('authenticated');
+        navText.textContent = 'Connexion';
+        ctaSection.style.display = '';
+        cmdLoginItem.innerHTML = '<div class="cmd-item" onclick="openLoginModal(); closeCmdPalette();"><span class="cmd-item-left">Connexion Espace Interne (Rodrigue)</span><span class="cmd-item-badge">Auth</span></div>';
       }
     }
 
@@ -4578,12 +3900,12 @@
     function openLoginModal() {
       const m = document.getElementById('login-modal');
       const err = document.getElementById('login-error');
-      if (err) err.style.display = 'none';
-      if (typeof updateBiometricModalUI === 'function') {
-        updateBiometricModalUI();
-      }
-      if (m && m.showModal) {
+      const pwd = document.getElementById('login-pwd');
+      err.style.display = 'none';
+      pwd.value = '';
+      if (m.showModal) {
         m.showModal();
+        setTimeout(() => pwd.focus(), 50);
       }
     }
 
@@ -4592,240 +3914,29 @@
       if (m && m.open) m.close();
     }
 
+    function handleLoginSubmit(e) {
+      e.preventDefault();
+      const pwd = document.getElementById('login-pwd').value.trim();
+      const err = document.getElementById('login-error');
+
+      if (pwd === 'rodrigue' || pwd === 'rodrigue2026' || pwd === 'admin') {
+        localStorage.setItem('rodrigue_auth', 'true');
+        checkAuth();
+        closeLoginModal();
+        showToast('Connexion réussie : espace interne déverrouillé');
+        setTimeout(() => {
+          document.getElementById('private-dashboard').scrollIntoView({ behavior: 'smooth' });
+        }, 150);
+      } else {
+        err.style.display = 'block';
+      }
+    }
+
     function logout() {
       localStorage.removeItem('rodrigue_auth');
-      localStorage.removeItem('rodrigue_auth_method');
       checkAuth();
-      showToast(currentLang === 'en' ? 'Signed out' : 'Déconnexion effectuée');
+      showToast('Déconnexion effectuée');
       window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    // ====================================================
-    // WEBAUTHN / BIOMETRIC AUTHENTICATION (PASSKEYS / FIDO2)
-    // ====================================================
-
-    function bufferToBase64(buffer) {
-      const bytes = new Uint8Array(buffer);
-      let binary = '';
-      for (let i = 0; i < bytes.byteLength; i++) {
-        binary += String.fromCharCode(bytes[i]);
-      }
-      return window.btoa(binary);
-    }
-
-    function base64ToBuffer(base64) {
-      const binary = window.atob(base64);
-      const bytes = new Uint8Array(binary.length);
-      for (let i = 0; i < binary.length; i++) {
-        bytes[i] = binary.charCodeAt(i);
-      }
-      return bytes.buffer;
-    }
-
-    async function isBiometricsSupported() {
-      if (!window.isSecureContext) return false;
-      if (!window.PublicKeyCredential) return false;
-      return true;
-    }
-
-    async function updateBiometricModalUI() {
-      const container = document.getElementById('biometric-login-container');
-      const btnText = document.getElementById('biometric-btn-text');
-      const badge = document.getElementById('biometric-badge');
-      const hint = document.getElementById('biometric-hint');
-      if (!container || !btnText) return;
-
-      const supported = await isBiometricsSupported();
-      if (!supported && location.hostname !== 'localhost' && location.protocol !== 'https:') {
-        container.style.display = 'none';
-        return;
-      }
-
-      container.style.display = 'flex';
-      const hasPasskey = !!localStorage.getItem('rodrigue_passkey_id');
-
-      if (hasPasskey) {
-        btnText.textContent = currentLang === 'en' ? 'Sign in with Touch ID / Face ID' : 'Se connecter avec Touch ID / Face ID';
-        badge.textContent = currentLang === 'en' ? 'Active' : 'Actif';
-        badge.className = 'biometric-badge';
-        hint.textContent = currentLang === 'en' 
-          ? 'Device recognized · Hardware-secured by Apple Touch ID, Face ID or iPhone QR code' 
-          : 'Appareil reconnu · Sécurisé par Touch ID, Face ID ou scan iPhone';
-      } else {
-        btnText.textContent = currentLang === 'en' ? 'Touch ID / Face ID / iPhone QR' : 'Touch ID / Face ID / iPhone QR';
-        badge.textContent = currentLang === 'en' ? 'Passkey' : 'Passkey';
-        badge.className = 'biometric-badge new';
-        hint.textContent = currentLang === 'en' 
-          ? 'Touch to sign in with Touch ID, Face ID or scan the QR code with your iPhone.' 
-          : 'Reconnaissance biométrique Touch ID, Face ID ou scannez le QR code avec votre iPhone.';
-      }
-    }
-
-    async function handleBiometricAction() {
-      const hasPasskey = !!localStorage.getItem('rodrigue_passkey_id');
-      const err = document.getElementById('login-error');
-      if (err) err.style.display = 'none';
-
-      if (hasPasskey) {
-        await authenticateWithBiometrics(false);
-      } else {
-        const ok = await authenticateWithBiometrics(true);
-        if (!ok) {
-          await registerBiometrics();
-        }
-      }
-    }
-
-    async function registerBiometrics(isAuthorized = false) {
-      const err = document.getElementById('login-error');
-      const hasPasskey = !!localStorage.getItem('rodrigue_passkey_id');
-      const isAuth = localStorage.getItem('rodrigue_auth') === 'true';
-
-      // SÉCURITÉ STRICTE : Si une clé existe déjà, on interdit formellement tout réenregistrement
-      // tant que l'utilisateur n'est pas déjà authentifié.
-      if (hasPasskey && !isAuth && !isAuthorized) {
-        if (err) {
-          err.textContent = currentLang === 'en' 
-            ? 'Unauthorized: please sign in first to manage your passkey.' 
-            : 'Non autorisé : vous devez être connecté pour modifier votre Passkey.';
-          err.style.display = 'block';
-        }
-        return false;
-      }
-
-      try {
-        const challenge = new Uint8Array(32);
-        window.crypto.getRandomValues(challenge);
-        const userId = new Uint8Array(16);
-        window.crypto.getRandomValues(userId);
-
-        const publicKey = {
-          challenge: challenge,
-          rp: {
-            name: "Portfolio Rodrigue HESSOU"
-          },
-          user: {
-            id: userId,
-            name: "rodriguehessou14@gmail.com",
-            displayName: "Rodrigue HESSOU"
-          },
-          pubKeyCredParams: [
-            { alg: -7, type: "public-key" },
-            { alg: -257, type: "public-key" }
-          ],
-          authenticatorSelection: {
-            userVerification: "required",
-            residentKey: "preferred"
-          },
-          timeout: 60000,
-          attestation: "none"
-        };
-
-        if (window.location.hostname && window.location.hostname.includes('.')) {
-          publicKey.rp.id = window.location.hostname;
-        }
-
-        const credential = await navigator.credentials.create({ publicKey });
-        if (credential) {
-          const credIdBase64 = bufferToBase64(credential.rawId);
-          localStorage.setItem('rodrigue_passkey_id', credIdBase64);
-          localStorage.setItem('rodrigue_auth', 'true');
-          localStorage.setItem('rodrigue_auth_method', 'biometrics');
-          checkAuth();
-          closeLoginModal();
-          showToast(currentLang === 'en' ? 'Touch ID / Face ID activated! Portal unlocked' : 'Touch ID / Face ID activé ! Espace interne déverrouillé');
-          setTimeout(() => {
-            const el = document.getElementById('private-dashboard');
-            if (el) el.scrollIntoView({ behavior: 'smooth' });
-          }, 150);
-          return true;
-        }
-      } catch (e) {
-        console.warn('Biometric registration error:', e);
-        if (e.name === 'NotAllowedError') {
-          showToast(currentLang === 'en' ? 'Biometric action cancelled' : 'Action biométrique annulée');
-        } else {
-          if (err) {
-            err.textContent = currentLang === 'en' ? 'Biometrics error: ' + e.message : 'Erreur biométrique : ' + e.message;
-            err.style.display = 'block';
-          }
-        }
-        return false;
-      }
-    }
-
-    async function authenticateWithBiometrics(isSilentDiscovery = false) {
-      const err = document.getElementById('login-error');
-      try {
-        const challenge = new Uint8Array(32);
-        window.crypto.getRandomValues(challenge);
-        const savedCredId = localStorage.getItem('rodrigue_passkey_id');
-
-        const publicKey = {
-          challenge: challenge,
-          userVerification: "required",
-          timeout: 60000
-        };
-
-        if (window.location.hostname && window.location.hostname.includes('.')) {
-          publicKey.rpId = window.location.hostname;
-        }
-
-        if (savedCredId) {
-          try {
-            publicKey.allowCredentials = [{
-              id: base64ToBuffer(savedCredId),
-              type: 'public-key',
-              transports: ['internal', 'hybrid']
-            }];
-          } catch(e) {}
-        }
-
-        const assertion = await navigator.credentials.get({ publicKey });
-        if (assertion) {
-          const credIdBase64 = bufferToBase64(assertion.rawId);
-          localStorage.setItem('rodrigue_passkey_id', credIdBase64);
-          localStorage.setItem('rodrigue_auth', 'true');
-          localStorage.setItem('rodrigue_auth_method', 'biometrics');
-          checkAuth();
-          closeLoginModal();
-          showToast(currentLang === 'en' ? 'Biometric login successful!' : 'Authentification biométrique réussie !');
-          setTimeout(() => {
-            const el = document.getElementById('private-dashboard');
-            if (el) el.scrollIntoView({ behavior: 'smooth' });
-          }, 150);
-          return true;
-        }
-      } catch (e) {
-        if (!isSilentDiscovery) {
-          console.warn('Biometric auth error:', e);
-          if (e.name === 'NotAllowedError') {
-            showToast(currentLang === 'en' ? 'Biometric login cancelled' : 'Authentification biométrique annulée');
-          } else {
-            if (err) {
-              err.textContent = currentLang === 'en' ? 'Biometrics error: ' + e.message : 'Erreur biométrique : ' + e.message;
-              err.style.display = 'block';
-            }
-          }
-        }
-        return false;
-      }
-    }
-
-    async function promptPasskeyManagement() {
-      const isAuth = localStorage.getItem('rodrigue_auth') === 'true';
-      if (!isAuth) {
-        showToast(currentLang === 'en' ? 'Unauthorized' : 'Non autorisé');
-        return;
-      }
-
-      const msg = currentLang === 'en'
-        ? 'Do you want to re-register / update your Touch ID or Face ID passkey on this device?'
-        : 'Souhaitez-vous enregistrer ou renouveler votre Passkey Touch ID / Face ID sur cet appareil ?';
-
-      if (window.confirm(msg)) {
-        await registerBiometrics(true);
-      }
     }
 
     checkAuth();
@@ -4976,7 +4087,7 @@
     }
 
     window.addEventListener('resize', () => {
-      if (window.innerWidth > 960) toggleMobileMenu(false);
+      if (window.innerWidth > 900) toggleMobileMenu(false);
     });
 
     document.querySelectorAll('#mobile-nav > a').forEach((link) => {
@@ -5136,11 +4247,7 @@
       });
     }
 
-  
-    
-    // Run language initialization on load
-    setLanguage(currentLang);
-</script>
+  </script>
 
 </body>
 </html>

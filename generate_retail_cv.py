@@ -9,7 +9,7 @@ html_content = f"""<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<title>CV - Rodrigue HESSOU - Conseiller de Vente & Vendeur Polyvalent</title>
+<title>CV - Rodrigue HESSOU - Vendeur Polyvalent & Employé Commercial</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
@@ -31,10 +31,10 @@ html_content = f"""<!DOCTYPE html>
     width: 210mm;
     height: 297mm;
     margin: 0 auto;
-    padding: 7.5mm 8mm 7.5mm 8mm;
+    padding: 7mm 7.5mm 7mm 7.5mm;
     display: flex;
     flex-direction: row;
-    gap: 5.5mm;
+    gap: 5mm;
     overflow: hidden;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
@@ -45,22 +45,22 @@ html_content = f"""<!DOCTYPE html>
     width: 63mm;
     background-color: #1e293b;
     border-radius: 4px;
-    padding: 4.8mm 4.5mm;
+    padding: 4.5mm 4.2mm;
     color: #f1f5f9;
     display: flex;
     flex-direction: column;
-    gap: 3.6mm;
+    gap: 3.2mm;
     flex-shrink: 0;
   }}
 
   .photo-container {{
     text-align: center;
-    margin-bottom: 0.2mm;
+    margin-bottom: 0.1mm;
   }}
 
   .photo {{
-    width: 38mm;
-    height: 49mm;
+    width: 37mm;
+    height: 47mm;
     object-fit: cover;
     border-radius: 5px;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
@@ -71,23 +71,23 @@ html_content = f"""<!DOCTYPE html>
   .sidebar-section {{
     display: flex;
     flex-direction: column;
-    gap: 1.2mm;
+    gap: 1.1mm;
   }}
 
   .sidebar-title {{
-    font-size: 9.8pt;
+    font-size: 9.6pt;
     font-weight: 700;
     color: #ffffff;
     letter-spacing: 0.5px;
     text-transform: uppercase;
-    padding-bottom: 0.6mm;
+    padding-bottom: 0.5mm;
     border-bottom: 1px solid #5b7fa6;
-    margin-bottom: 0.6mm;
+    margin-bottom: 0.5mm;
   }}
 
   .sidebar-item {{
-    font-size: 8.3pt;
-    line-height: 1.25;
+    font-size: 8.2pt;
+    line-height: 1.23;
     color: #cbd5e1;
   }}
 
@@ -95,34 +95,34 @@ html_content = f"""<!DOCTYPE html>
     color: #ffffff;
     font-weight: 700;
     display: block;
-    font-size: 8.5pt;
+    font-size: 8.4pt;
   }}
 
   .sidebar-item.compact {{
-    line-height: 1.22;
+    line-height: 1.2;
   }}
 
   .sidebar-list {{
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 1.1mm;
+    gap: 1mm;
   }}
 
   .sidebar-list li {{
-    font-size: 8.3pt;
-    line-height: 1.22;
+    font-size: 8.15pt;
+    line-height: 1.2;
     color: #cbd5e1;
     position: relative;
-    padding-left: 3.5mm;
+    padding-left: 3.2mm;
   }}
 
   .sidebar-list li::before {{
     content: "•";
     position: absolute;
     left: 0;
-    color: #60a5fa;
-    font-size: 9pt;
+    color: #94a3b8;
+    font-size: 8.8pt;
     line-height: 1;
   }}
 
@@ -131,17 +131,17 @@ html_content = f"""<!DOCTYPE html>
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 2.8mm;
+    gap: 2.5mm;
     min-width: 0;
   }}
 
   .header {{
-    margin-top: 0.2mm;
-    margin-bottom: 0.2mm;
+    margin-top: 0.1mm;
+    margin-bottom: 0.1mm;
   }}
 
   .header h1 {{
-    font-size: 20.5pt;
+    font-size: 20pt;
     font-weight: 700;
     color: #1e293b;
     line-height: 1.1;
@@ -149,31 +149,31 @@ html_content = f"""<!DOCTYPE html>
   }}
 
   .header .subtitle {{
-    font-size: 11pt;
+    font-size: 10.8pt;
     font-weight: 700;
     color: #2e75b6;
-    margin-top: 0.6mm;
+    margin-top: 0.5mm;
   }}
 
   .main-section {{
     display: flex;
     flex-direction: column;
-    gap: 1.5mm;
+    gap: 1.3mm;
   }}
 
   .main-section-title {{
-    font-size: 10.5pt;
+    font-size: 10.2pt;
     font-weight: 700;
     color: #2e75b6;
     text-transform: uppercase;
     letter-spacing: 0.3px;
-    padding-bottom: 0.6mm;
+    padding-bottom: 0.5mm;
     border-bottom: 1.5px solid #2e75b6;
   }}
 
   .profile-text {{
-    font-size: 8.35pt;
-    line-height: 1.3;
+    font-size: 8.25pt;
+    line-height: 1.28;
     color: #262626;
     text-align: justify;
   }}
@@ -182,11 +182,11 @@ html_content = f"""<!DOCTYPE html>
   .experience-item {{
     display: flex;
     flex-direction: column;
-    gap: 0.5mm;
+    gap: 0.4mm;
   }}
 
   .item-title {{
-    font-size: 9pt;
+    font-size: 8.9pt;
     font-weight: 700;
     color: #262626;
   }}
@@ -195,7 +195,7 @@ html_content = f"""<!DOCTYPE html>
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    font-size: 8.2pt;
+    font-size: 8.1pt;
     font-style: italic;
     color: #595959;
   }}
@@ -204,16 +204,16 @@ html_content = f"""<!DOCTYPE html>
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 0.5mm;
-    margin-top: 0.2mm;
+    gap: 0.45mm;
+    margin-top: 0.15mm;
   }}
 
   .item-bullets li {{
-    font-size: 8.15pt;
-    line-height: 1.22;
+    font-size: 8.05pt;
+    line-height: 1.2;
     color: #262626;
     position: relative;
-    padding-left: 3.5mm;
+    padding-left: 3.2mm;
     text-align: justify;
   }}
 
@@ -222,7 +222,7 @@ html_content = f"""<!DOCTYPE html>
     position: absolute;
     left: 0;
     color: #2e75b6;
-    font-size: 8.8pt;
+    font-size: 8.6pt;
     line-height: 1.1;
   }}
 
@@ -230,7 +230,7 @@ html_content = f"""<!DOCTYPE html>
   .formation-list {{
     display: flex;
     flex-direction: column;
-    gap: 1.2mm;
+    gap: 1mm;
   }}
 
   .formation-item {{
@@ -240,7 +240,7 @@ html_content = f"""<!DOCTYPE html>
   }}
 
   .formation-title {{
-    font-size: 8.9pt;
+    font-size: 8.8pt;
     font-weight: 700;
     color: #262626;
   }}
@@ -249,7 +249,7 @@ html_content = f"""<!DOCTYPE html>
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    font-size: 8.1pt;
+    font-size: 8pt;
     font-style: italic;
     color: #595959;
   }}
@@ -258,12 +258,12 @@ html_content = f"""<!DOCTYPE html>
   .keywords-block {{
     display: flex;
     flex-direction: column;
-    gap: 0.7mm;
+    gap: 0.6mm;
   }}
 
   .keyword-line {{
-    font-size: 8.15pt;
-    line-height: 1.22;
+    font-size: 8.05pt;
+    line-height: 1.2;
     color: #262626;
   }}
 
@@ -288,15 +288,17 @@ html_content = f"""<!DOCTYPE html>
       <div class="sidebar-item">69100 Villeurbanne – Lyon</div>
       <div class="sidebar-item">+33 7 44 11 75 73</div>
       <div class="sidebar-item">rodriguehessou14@gmail.com</div>
-      <div class="sidebar-item">Né le 14/03/2006</div>
+      <div class="sidebar-item">Né le 14/03/2006 (20 ans)</div>
     </div>
 
-    <!-- DISPONIBILITÉ -->
+    <!-- DISPONIBILITÉS -->
     <div class="sidebar-section">
       <div class="sidebar-title">Disponibilités</div>
       <div class="sidebar-item">
-        <strong>Vente & Relation Client</strong>
-        Disponible immédiatement · Adaptabilité horaire (soirées, week-ends, 35H ou temps partiel)
+        <strong>Rythme Fixe (Semestre Garanti)</strong>
+        - <strong>1 sem. sur 2 :</strong> 100% disponible (Lun à Dim, matins/journées/soirs, 35H)<br>
+        - <strong>Semaines de cours :</strong> Vendredi soirs, Samedis et Dimanches complets<br>
+        - Opérationnel immédiatement pour contrat étudiant, mi-temps ou intérim
       </div>
     </div>
 
@@ -305,36 +307,36 @@ html_content = f"""<!DOCTYPE html>
       <div class="sidebar-title">Langues</div>
       <div class="sidebar-item">
         <strong>Français</strong>
-        Langue maternelle — élocution soignée et aisance relationnelle
+        Langue maternelle — élocution soignée, écoute et politesse
       </div>
       <div class="sidebar-item">
         <strong>Anglais</strong>
-        Niveau B1/B2 — accueil et conseil d'une clientèle internationale
+        Niveau B1/B2 — accueil et orientation d'une clientèle internationale
       </div>
     </div>
 
-    <!-- ATOUTS & SAVOIR-ÊTRE RETAIL -->
+    <!-- SAVOIR-ÊTRE RETAIL -->
     <div class="sidebar-section">
-      <div class="sidebar-title">Atouts & Savoir-Être</div>
+      <div class="sidebar-title">Savoir-Être Retail</div>
       <div class="sidebar-item">
-        <strong>Sens du Service & Conseil</strong>
-        Accueil chaleureux, écoute active, découverte des besoins et personnalisation
+        <strong>Accueil & Sens du Service</strong>
+        Sourire constant, politesse, écoute active et orientation client
       </div>
       <div class="sidebar-item">
-        <strong>Performance & KPIs Retail</strong>
-        Sensibilisation aux objectifs : panier moyen, taux de transformation, fidélisation
+        <strong>Caisse & Fiabilité</strong>
+        Encaissement rapide, rigueur des comptes et gestion de l'affluence
+      </div>
+      <div class="sidebar-item">
+        <strong>Mise en Rayon & Merchandising</strong>
+        Réassort soigné, facing impeccable, contrôle des dates et étiquetage
       </div>
       <div class="sidebar-item">
         <strong>Dynamisme & Esprit d'Équipe</strong>
-        Entraide permanente, optimisme, curiosité et respect de la diversité & inclusion
+        Polyvalence, entraide permanente et respect des consignes
       </div>
       <div class="sidebar-item">
-        <strong>Gestion du Rythme & Affluence</strong>
-        Sang-froid en pic d'activité, polyvalence caisse, conseil et réassort
-      </div>
-      <div class="sidebar-item">
-        <strong>Rigueur & Tenue du Magasin</strong>
-        Encaissement exact, respect du merchandising et tenue irréprochable des zones
+        <strong>Endurance & Ponctualité</strong>
+        Résistance au port de charges, travail debout et assiduité exemplaire
       </div>
     </div>
 
@@ -342,19 +344,19 @@ html_content = f"""<!DOCTYPE html>
     <div class="sidebar-section">
       <div class="sidebar-title">Qualités</div>
       <ul class="sidebar-list">
-        <li>Sourire, enthousiasme et relationnel naturel</li>
-        <li>Ambassadeur de marque engagé et proactif</li>
-        <li>Sens du détail et exigence d'excellence</li>
-        <li>Ponctualité, résilience et esprit d'apprentissage</li>
+        <li>Sourire, sens du contact et relationnel facile</li>
+        <li>Excellente endurance et sang-froid aux heures de rush</li>
+        <li>Rigueur, honnêteté et propreté de travail</li>
+        <li>Ponctualité stricte et adaptabilité rapide</li>
       </ul>
     </div>
 
     <!-- CENTRES D'INTÉRÊT -->
     <div class="sidebar-section">
       <div class="sidebar-title">Centres d'intérêt</div>
-      <div class="sidebar-item compact">Sport, Football & Esprit d'équipe</div>
-      <div class="sidebar-item compact">Mode, Lifestyle & Tendances</div>
-      <div class="sidebar-item compact">Nouvelles technologies & Innovation</div>
+      <div class="sidebar-item compact">Sport & Football (esprit d'équipe, discipline)</div>
+      <div class="sidebar-item compact">Commerce de détail & relation client</div>
+      <div class="sidebar-item compact">Outils digitaux & nouvelles technologies</div>
     </div>
   </aside>
 
@@ -363,14 +365,14 @@ html_content = f"""<!DOCTYPE html>
     <!-- HEADER -->
     <header class="header">
       <h1>Rodrigue HESSOU</h1>
-      <div class="subtitle">Conseiller de Vente & Relation Client — Vendeur Polyvalent</div>
+      <div class="subtitle">Vendeur Polyvalent & Employé Commercial — Job Étudiant (Temps Partiel / Intérim)</div>
     </header>
 
     <!-- PROFIL -->
     <section class="main-section">
-      <div class="main-section-title">Profil Professionnel</div>
+      <div class="main-section-title">Profil & Engagement</div>
       <p class="profile-text">
-        Étudiant en <strong>Master 1 à SUPINFO Lyon</strong>, doté d'une excellente énergie relationnelle et passionné par le contact humain et le commerce de détail. Fort d'expériences concrètes dans le commerce en magasin, la logistique de distribution et la prospection terrain, je maîtrise l'ensemble des étapes de l'acte de vente : accueil personnalisé, identification fine des attentes, conseil produit sur-mesure, gestion fluide de la caisse et fidélisation. Dynamique, curieux et résilient, je m'épanouis dans les environnements rythmés et valorise l'esprit d'équipe, l'inclusion et le dépassement de soi. Je souhaite m'investir pleinement comme ambassadeur de votre marque afin de délivrer une expérience client mémorable et contribuer aux objectifs commerciaux du magasin.
+        Étudiant à <strong>SUPINFO Lyon</strong> avec un <strong>calendrier semestriel fixe (1 semaine sur 2 libre à 100% du lundi au dimanche + week-ends réguliers)</strong>, je recherche un poste d'<strong>Employé Commercial / Vendeur Polyvalent</strong> pour l'ensemble de l'année universitaire. Fort d'expériences concrètes sur le terrain en magasin (caisse, réassort, facing) et en logistique (préparation de commandes à cadence soutenue), je suis immédiatement opérationnel. Dynamique, ponctuel et doté d'un excellent sens du service client, je garde mon sang-froid en pic d'affluence et m'investis avec rigueur pour assurer la bonne tenue des rayons, la fluidité des encaissements et la satisfaction de chaque visiteur.
       </p>
     </section>
 
@@ -380,58 +382,57 @@ html_content = f"""<!DOCTYPE html>
 
       <!-- SUPERMARCHÉ CHAMPION -->
       <div class="experience-item">
-        <div class="item-title">Employé Commercial & Polyvalent — Vente & Relation Client</div>
+        <div class="item-title">Employé Commercial Polyvalent — Caisse, Rayon & Service Client</div>
         <div class="item-subrow">
           <span>Supermarché Champion</span>
           <span>2024</span>
         </div>
         <ul class="item-bullets">
-          <li><strong>Accueil & Conseil Client :</strong> Accueil personnalisé des visiteurs, écoute attentive des besoins, orientation immédiate et valorisation des offres du magasin.</li>
-          <li><strong>Encaissement & Gestion d'Affluence :</strong> Gestion rapide et rigoureuse des encaissements lors des pics de forte affluence ; fidélisation et gestion bienveillante des réclamations.</li>
-          <li><strong>Tenue de Rayon & Merchandising :</strong> Réassort quotidien, respect des standards de facing et de propreté, contrôle minutieux des stocks et des dates de péremption.</li>
-          <li><strong>Travail d'Équipe & Polyvalence :</strong> Entraide active avec l'équipe pour garantir la fluidité opérationnelle et la satisfaction totale de chaque client.</li>
+          <li><strong>Accueil & Renseignement :</strong> Accueil chaleureux des clients, orientation précise dans les rayons, écoute attentive et réponse aux demandes avec le sourire.</li>
+          <li><strong>Tenue de Caisse & Encaissement :</strong> Encaissement rapide et fiable (espèces, CB), fluidification active des files d'attente en heures de pointe et exactitude des comptes.</li>
+          <li><strong>Mise en Rayon & Merchandising :</strong> Réassort quotidien des linéaires, facing impeccable, contrôle rigoureux du balisage des prix et respect des dates de péremption (FIFO).</li>
+          <li><strong>Tenue du Magasin :</strong> Maintien d'une zone de vente propre et ordonnée, réception des livraisons et polyvalence constante en renfort d'équipe.</li>
         </ul>
       </div>
 
-      <!-- PRÉPARATEUR DE COMMANDES (2025) -->
+      <!-- PLATEFORME LOGISTIQUE -->
       <div class="experience-item">
-        <div class="item-title">Préparateur de Commandes & Relation Client</div>
+        <div class="item-title">Préparateur de Commandes & Logistique de Réassort</div>
         <div class="item-subrow">
           <span>Plateforme Logistique & Distribution</span>
           <span>2025</span>
         </div>
         <ul class="item-bullets">
-          <li><strong>Rigueur Opérationnelle :</strong> Réception, contrôle conformité, préparation minutieuse et emballage des commandes selon les normes d'exigence et de sécurité.</li>
-          <li><strong>Gestion des Flux & Cadence :</strong> Coordination des flux de marchandises et respect strict des délais de livraison dans un environnement à haut rythme.</li>
-          <li><strong>Remise Client & Closing :</strong> Remise soignée des commandes aux clients, écoute des retours, résolution proactive des imprévus et fidélisation.</li>
+          <li><strong>Réception & Rangement :</strong> Déchargement des arrivages, contrôle de conformité des colis et mise en stock méthodique en réserve.</li>
+          <li><strong>Préparation & Cadence :</strong> Prélèvement précis des références en stock, conditionnement soigné des commandes et respect strict des cadences et normes de sécurité.</li>
+          <li><strong>Endurance & Rigueur :</strong> Excellente résistance physique au port de charges, travail debout prolongé et efficacité en rythme soutenu.</li>
         </ul>
       </div>
 
       <!-- NATAAN GROUP -->
       <div class="experience-item">
-        <div class="item-title">Chargé de Prospection Commerciale & Déploiement POS</div>
+        <div class="item-title">Conseiller Commercial & Déploiement Systèmes de Caisse de Proximité</div>
         <div class="item-subrow">
-          <span>Nataan Group (ESN) — Lomé, Togo</span>
+          <span>Nataan Group — Lomé, Togo</span>
           <span>Juil. 2026 – Sept. 2026</span>
         </div>
         <ul class="item-bullets">
-          <li><strong>Développement Commercial B2B :</strong> Prospection directe et qualification approfondie de <strong>100 commerçants et professionnels</strong> de proximité ; démonstration de valeur et closing d'offres.</li>
-          <li><strong>Solution d'Encaissement & Retail :</strong> Déploiement de l'application de caisse/point de vente <em>BoutiK</em> ; accompagnement des commerçants sur la gestion des encaissements et le suivi des stocks.</li>
-          <li><strong>Sensibilisation aux KPIs Retail :</strong> Analyse des leviers de vente (panier moyen, fréquence d'achat, rapidité d'encaissement) et optimisation des parcours clients.</li>
-          <li><strong>Service & Qualité :</strong> Écoute active des retours utilisateurs (103 tests fonctionnels exécutés) pour assurer une satisfaction et une adoption optimales.</li>
+          <li><strong>Accompagnement Commerçants :</strong> Formation et accompagnement direct de <strong>100 commerçants de proximité</strong> sur des logiciels de caisse et de gestion des stocks.</li>
+          <li><strong>Sens du Commerce Terrain :</strong> Écoute des besoins quotidiens des vendeurs (rapidité d'encaissement, suivi des ventes, réassort) et apport d'assistance réactive.</li>
+          <li><strong>Fluidité de Service :</strong> Optimisation des gestes d'encaissement pour garantir un passage en caisse rapide et sans erreur.</li>
         </ul>
       </div>
 
       <!-- DAROLLO & ATANYS -->
       <div class="experience-item">
-        <div class="item-title">Conseiller Utilisateurs & Analyse des Besoins</div>
+        <div class="item-title">Conseiller Relation Utilisateurs & Service Client</div>
         <div class="item-subrow">
           <span>Darollo Technologies & ATANYS</span>
           <span>2025</span>
         </div>
         <ul class="item-bullets">
-          <li>Écoute empathique, diagnostic précis des attentes utilisateurs et formulation de recommandations adaptées.</li>
-          <li>Sens de la pédagogie et démonstration claire pour valoriser les bénéfices concrets des produits et services.</li>
+          <li>Accueil, écoute empathique, diagnostic précis des demandes et apport de solutions personnalisées.</li>
+          <li>Sens de la pédagogie, politesse constante et engagement quotidien pour la satisfaction client.</li>
         </ul>
       </div>
     </section>
@@ -441,7 +442,7 @@ html_content = f"""<!DOCTYPE html>
       <div class="main-section-title">Formation</div>
       <div class="formation-list">
         <div class="formation-item">
-          <div class="formation-title">Master 1 en Informatique (Cursus Bac+5)</div>
+          <div class="formation-title">Master 1 en Informatique (Rythme alterné : 1 sem. cours / 1 sem. libre)</div>
           <div class="formation-subrow">
             <span>SUPINFO Lyon — Lyon, France</span>
             <span>Depuis Oct. 2026</span>
@@ -449,15 +450,15 @@ html_content = f"""<!DOCTYPE html>
         </div>
 
         <div class="formation-item">
-          <div class="formation-title">Licence en Génie Logiciel</div>
+          <div class="formation-title">Licence en Informatique / Génie Logiciel</div>
           <div class="formation-subrow">
-            <span>IAI-TOGO (Institut Africain d'Informatique)</span>
+            <span>IAI (Institut Africain d'Informatique)</span>
             <span>2022 – 2025</span>
           </div>
         </div>
 
         <div class="formation-item">
-          <div class="formation-title">Baccalauréat (BAC 2)</div>
+          <div class="formation-title">Baccalauréat</div>
           <div class="formation-subrow">
             <span>LPL Le Rossignol</span>
             <span>2021 – 2022</span>
@@ -468,22 +469,22 @@ html_content = f"""<!DOCTYPE html>
 
     <!-- COMPÉTENCES CLÉS RETAIL -->
     <section class="main-section">
-      <div class="main-section-title">Compétences Clés & Savoir-Faire Retail</div>
+      <div class="main-section-title">Compétences Clés & Savoir-Faire Magasin</div>
       <div class="keywords-block">
         <div class="keyword-line">
-          <strong>Vente Conseil & Relation Client :</strong> Accueil haut de gamme, découverte des besoins, argumentation personnalisée, vente complémentaire, fidélisation
+          <strong>Relation Client & Service :</strong> Accueil souriant, écoute active, politesse, orientation en rayon, fidélisation et gestion bienveillante des retours
         </div>
         <div class="keyword-line">
-          <strong>Opérations en Magasin :</strong> Tenue de caisse rapide & exacte, réassort, facing merchandising, gestion des livraisons, inventaire et réapprovisionnement
+          <strong>Caisse & Encaissement :</strong> Encaissement rapide et fiable, ouverture/fermeture de caisse, fluidification des files en forte affluence
         </div>
         <div class="keyword-line">
-          <strong>Performance & Indicateurs Retail :</strong> Sensibilité aux KPI (panier moyen, taux de transformation, indice de vente), contribution aux objectifs d'équipe
+          <strong>Mise en Rayon & Merchandising :</strong> Réassort quotidien, facing soigné, contrôle rigoureux du balisage et rotation des dates (FIFO)
         </div>
         <div class="keyword-line">
-          <strong>Esprit d'Équipe & Culture Retail :</strong> Collaboration active, communication constructive, respect de la diversité, dynamisme et culture du sport/lifestyle
+          <strong>Manutention & Logistique :</strong> Déchargement de palettes, port de charges, rangement de réserve, préparation de commandes et consignes de sécurité
         </div>
         <div class="keyword-line">
-          <strong>Flexibilité & Engagement :</strong> Disponibilité soirs, week-ends et temps plein/partiel, gestion efficace du stress en forte affluence, ponctualité exemplaire
+          <strong>Stabilité & Disponibilité :</strong> Calendrier semestriel garanti (1 sem./2 libre à 35H + week-ends), ponctualité stricte et dynamisme d'équipe
         </div>
       </div>
     </section>

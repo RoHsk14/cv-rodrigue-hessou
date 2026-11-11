@@ -121,7 +121,7 @@ html_content = f"""<!DOCTYPE html>
     content: "•";
     position: absolute;
     left: 0;
-    color: #60a5fa;
+    color: #94a3b8;
     font-size: 9pt;
     line-height: 1;
   }}
@@ -295,8 +295,10 @@ html_content = f"""<!DOCTYPE html>
     <div class="sidebar-section">
       <div class="sidebar-title">Disponibilités</div>
       <div class="sidebar-item">
-        <strong>Job Étudiant (Rôle #114438069)</strong>
-        Soirées, week-ends, vacances scolaires & plannings flexibles Apple Store
+        <strong>Rythme Fixe (Semestre Garanti)</strong>
+        - <strong>1 sem. sur 2 :</strong> 100% disponible (Lun à Dim, 35H)<br>
+        - <strong>Semaines de cours :</strong> Vendredi soirs, Samedis et Dimanches complets<br>
+        - Contrat étudiant temps partiel Apple Retail (16h à 24h)
       </div>
     </div>
 
@@ -368,9 +370,9 @@ html_content = f"""<!DOCTYPE html>
 
     <!-- PROFIL -->
     <section class="main-section">
-      <div class="main-section-title">Profil</div>
+      <div class="main-section-title">Profil & Engagement</div>
       <p class="profile-text">
-        Étudiant en <strong>Master 1 à SUPINFO Lyon</strong>, doté d'un excellent sens relationnel et passionné par les produits et l'écosystème Apple. Fort d'expériences réussies dans le commerce de proximité, la préparation logistique et la prospection B2B, je sais écouter avec bienveillance, cerner les attentes réelles de chaque personne et délivrer une expérience client humaine et personnalisée. Dynamique, curieux et rigoureux, je m'adapte avec aisance au rythme soutenu d'un espace de vente tout en gardant le sens de l'accueil. Je souhaite mettre mon enthousiasme, mon esprit d'équipe et mon sens du service au cœur de l'Apple Store pour fidéliser la clientèle et faire rayonner la marque.
+        Étudiant à <strong>SUPINFO Lyon</strong> avec un <strong>rythme semestriel fixe (1 semaine sur 2 libre à 100% du lundi au dimanche + week-ends réguliers)</strong>, doté d'un excellent sens relationnel et passionné par les produits et l'écosystème Apple. Fort d'expériences réussies dans le commerce de proximité, la préparation logistique et la relation utilisateur, je sais écouter avec bienveillance, cerner les attentes réelles de chaque personne et délivrer une expérience client humaine et personnalisée. Dynamique, curieux et rigoureux, je m'adapte avec aisance au rythme soutenu de l'Apple Store tout en gardant le sens du détail. Je souhaite mettre mon enthousiasme et mon esprit d'équipe au service de la clientèle pour faire rayonner la marque.
       </p>
     </section>
 
@@ -441,7 +443,7 @@ html_content = f"""<!DOCTYPE html>
       <div class="main-section-title">Formation</div>
       <div class="formation-list">
         <div class="formation-item">
-          <div class="formation-title">Master 1 en Informatique (Cursus Bac+5)</div>
+          <div class="formation-title">Master 1 en Informatique (Rythme alterné : 1 sem. cours / 1 sem. libre)</div>
           <div class="formation-subrow">
             <span>SUPINFO Lyon — Lyon, France</span>
             <span>Depuis Oct. 2026</span>
@@ -449,7 +451,7 @@ html_content = f"""<!DOCTYPE html>
         </div>
 
         <div class="formation-item">
-          <div class="formation-title">Licence en Génie Logiciel</div>
+          <div class="formation-title">Licence en Informatique / Génie Logiciel</div>
           <div class="formation-subrow">
             <span>IAI-TOGO (Institut Africain d'Informatique)</span>
             <span>2022 – 2025</span>
@@ -457,7 +459,7 @@ html_content = f"""<!DOCTYPE html>
         </div>
 
         <div class="formation-item">
-          <div class="formation-title">Baccalauréat (BAC 2)</div>
+          <div class="formation-title">Baccalauréat</div>
           <div class="formation-subrow">
             <span>LPL Le Rossignol</span>
             <span>2021 – 2022</span>
@@ -471,10 +473,10 @@ html_content = f"""<!DOCTYPE html>
       <div class="main-section-title">Compétences Clés pour Apple Retail</div>
       <div class="keywords-block">
         <div class="keyword-line">
-          <strong>Relation Client & Vente :</strong> Accueil d'excellence, écoute active, découverte des besoins, conseil personnalisé, fidélisation, closing
+          <strong>Relation Client & Vente :</strong> Accueil d'excellence, écoute active, découverte des besoins, conseil personnalisé, fidélisation
         </div>
         <div class="keyword-line">
-          <strong>Gestion d'Espace de Vente :</strong> Encaissement en pic d'affluence, réassort, mise en valeur des produits, rigueur de tenue de rayon
+          <strong>Gestion d'Espace de Vente :</strong> Encaissement en pic d'affluence, réassort, mise en valeur des produits, rigueur de tenue de zone
         </div>
         <div class="keyword-line">
           <strong>Écosystème & Produits Apple :</strong> Prise en main iPhone, iPad, Mac, Apple Watch, AirPods, services iOS/macOS, iCloud, AppleCare
@@ -483,7 +485,7 @@ html_content = f"""<!DOCTYPE html>
           <strong>Valeurs & Esprit d'Équipe :</strong> Entraide, communication bienveillante, respect de l'inclusion et de la diversité, intelligence relationnelle
         </div>
         <div class="keyword-line">
-          <strong>Organisation & Flexibilité :</strong> Disponibilité soirs et week-ends, ponctualité, adaptabilité à un flux client élevé, autonomie
+          <strong>Organisation & Stabilité :</strong> Calendrier semestriel garanti (1 sem./2 libre à 35H + week-ends), ponctualité, adaptabilité à un flux élevé
         </div>
       </div>
     </section>
@@ -496,4 +498,24 @@ html_content = f"""<!DOCTYPE html>
 with open('CV_Rodrigue_HESSOU_Apple_Retail.html', 'w', encoding='utf-8') as f:
     f.write(html_content)
 
-print("CV_Rodrigue_HESSOU_Apple_Retail.html updated with Role number and 2025!")
+print("CV_Rodrigue_HESSOU_Apple_Retail.html updated!")
+
+# Build PDF with Chrome Headless
+chrome_path = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+pdf_path = "CV_Rodrigue_HESSOU_Apple_Retail.pdf"
+
+subprocess.run([
+    chrome_path, "--headless", "--disable-gpu", "--no-pdf-header-footer",
+    f"--print-to-pdf={pdf_path}",
+    "CV_Rodrigue_HESSOU_Apple_Retail.html"
+], check=True)
+
+doc = fitz.open(pdf_path)
+print(f"Apple CV Page count: {len(doc)}")
+assert len(doc) == 1, f"Expected 1 page, got {len(doc)}"
+
+page = doc[0]
+pix = page.get_pixmap(dpi=150)
+pix.save("CV_Rodrigue_HESSOU_Apple_Retail_preview.png")
+print("Apple CV preview updated!")
+

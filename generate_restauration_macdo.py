@@ -121,7 +121,7 @@ cv_html = f"""<!DOCTYPE html>
     content: "•";
     position: absolute;
     left: 0;
-    color: #60a5fa;
+    color: #94a3b8;
     font-size: 9pt;
     line-height: 1;
   }}
@@ -291,8 +291,10 @@ cv_html = f"""<!DOCTYPE html>
     <div class="sidebar-section">
       <div class="sidebar-title">Disponibilités</div>
       <div class="sidebar-item">
-        <strong>Temps Partiel Étudiant</strong>
-        Soirées (rushs & fermetures), week-ends complets, jours fériés et vacances scolaires
+        <strong>Rythme Fixe (Semestre Garanti)</strong>
+        - <strong>1 sem. sur 2 :</strong> 100% libre (Lun-Dim, rushs midi & soir, fermetures, 35H)<br>
+        - <strong>Semaines de cours :</strong> Vendredi soirs, Samedis et Dimanches complets<br>
+        - Contrat étudiant, rushs de midi, soirées & fermetures
       </div>
     </div>
 
@@ -355,14 +357,14 @@ cv_html = f"""<!DOCTYPE html>
     <!-- HEADER -->
     <header class="header">
       <h1>Rodrigue HESSOU</h1>
-      <div class="subtitle">Équipier Polyvalent de Restauration Rapide — Job Étudiant (McDonald's Lyon)</div>
+      <div class="subtitle">Équipier Polyvalent de Restauration Rapide — Job Étudiant (Temps Partiel / Intérim)</div>
     </header>
 
     <!-- PROFIL -->
     <section class="main-section">
-      <div class="main-section-title">Profil Professionnel</div>
+      <div class="main-section-title">Profil & Engagement</div>
       <p class="profile-text">
-        Étudiant en <strong>Master 1 à SUPINFO Lyon</strong>, dynamique, rigoureux et résistant au stress, je recherche un poste d'<strong>Équipier Polyvalent de Restauration Rapide</strong>. Fort d'une expérience concrète du contact client et de la gestion de caisse en période de forte affluence (Supermarché Champion en 2024) ainsi que de la logistique à cadence soutenue (préparation de commandes en 2025), j'ai développé une grande réactivité et le goût du travail en équipe rythmée. Rigoureux sur les normes d'hygiène (HACCP) et doté d'un relationnel chaleureux, je souhaite m'investir pleinement au sein de votre restaurant afin d'offrir un service rapide, impeccable et convivial à chaque client.
+        Étudiant à <strong>SUPINFO Lyon</strong> avec un <strong>rythme semestriel fixe (1 semaine sur 2 libre à 100% du lundi au dimanche + week-ends réguliers)</strong>, je recherche un poste d'<strong>Équipier Polyvalent de Restauration Rapide</strong> pour l'ensemble de l'année universitaire. Dynamique, endurant et rigoureux sur les normes d'hygiène (HACCP), je suis immédiatement opérationnel sur le terrain. Fort d'expériences concrètes sous forte affluence en caisse (Supermarché Champion en 2024) et en cadence soutenue (préparation logistique en 2025), je garde mon sang-froid lors des rushs les plus intenses. Polyvalent (salle, caisse, cuisine), souriant et solidaire, je m'investis avec énergie pour offrir un service rapide et irréprochable.
       </p>
     </section>
 
@@ -430,7 +432,7 @@ cv_html = f"""<!DOCTYPE html>
       <div class="main-section-title">Formation</div>
       <div class="formation-list">
         <div class="formation-item">
-          <div class="formation-title">Master 1 en Informatique (Cursus Bac+5)</div>
+          <div class="formation-title">Master 1 en Informatique (Rythme alterné : 1 sem. cours / 1 sem. libre)</div>
           <div class="formation-subrow">
             <span>SUPINFO Lyon — Lyon, France</span>
             <span>Depuis Oct. 2026</span>
@@ -438,7 +440,7 @@ cv_html = f"""<!DOCTYPE html>
         </div>
 
         <div class="formation-item">
-          <div class="formation-title">Licence en Génie Logiciel</div>
+          <div class="formation-title">Licence en Informatique / Génie Logiciel</div>
           <div class="formation-subrow">
             <span>IAI-TOGO (Institut Africain d'Informatique)</span>
             <span>2022 – 2025</span>
@@ -446,7 +448,7 @@ cv_html = f"""<!DOCTYPE html>
         </div>
 
         <div class="formation-item">
-          <div class="formation-title">Baccalauréat (BAC 2)</div>
+          <div class="formation-title">Baccalauréat</div>
           <div class="formation-subrow">
             <span>LPL Le Rossignol</span>
             <span>2021 – 2022</span>
@@ -472,7 +474,7 @@ cv_html = f"""<!DOCTYPE html>
           <strong>Gestion du Rush & Collectif :</strong> Esprit d'équipe solidaire, rapidité d'exécution, gestion positive du stress, communication fluide
         </div>
         <div class="keyword-line">
-          <strong>Disponibilité & Flexibilité :</strong> Adaptabilité immédiate aux plannings modulables (soirées, week-ends complets, fermetures)
+          <strong>Stabilité & Disponibilité :</strong> Calendrier semestriel garanti (1 sem./2 libre à 35H + week-ends), ponctualité stricte et endurance au rush
         </div>
       </div>
     </section>
@@ -700,7 +702,7 @@ letter_html = """<!DOCTYPE html>
       </p>
 
       <p>
-        Parfaitement conscient des exigences d'un contrat étudiant en restauration, je vous garantis une <strong>grande flexibilité horaire</strong> : je suis disponible en soirée (fermetures incluses), les week-ends complets ainsi que pendant toutes les vacances scolaires.
+        Parfaitement conscient des impératifs d'organisation en restauration, je vous offre un atout rare et stable : mon calendrier semestriel fixe me permet d'être <strong>disponible à 100% du lundi au dimanche (rushs du midi, soirées et fermetures) une semaine sur deux</strong>, ainsi que <strong>tous les vendredis soirs, samedis et dimanches complets</strong> lors de mes semaines de cours. Je suis également mobilisable sur toutes les vacances scolaires.
       </p>
 
       <p>
